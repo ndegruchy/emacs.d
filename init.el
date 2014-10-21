@@ -88,7 +88,7 @@
 (evil-leader/set-key "cc"   'org-capture)
 (evil-leader/set-key "ca"   'org-agenda)
 (evil-leader/set-key "cb"   'org-iswitchb)
-(evil-leader/set-key "b"    'ibuffer)
+(evil-leader/set-key "b"    'bs-show)
 (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
 (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
 (add-to-list 'evil-emacs-state-modes 'dired-mode)
@@ -100,6 +100,9 @@
 ;; IDO
 (require 'ido)
 (ido-mode +1)
+(setq ido-enable-flex-matching +1)
+(setq ido-everywhere +1)
+(setq ido-file-extensions-order '(".org" ".html" ".php" ".tex" ".el" ".js" ".coffee"))
 
 ;; Emmet
 (add-hook 'sgml-mode-hook 'emmet-mode)
