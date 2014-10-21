@@ -16,12 +16,12 @@
 (load-theme 'tango-dark)
 
 ;; Chrome
-(when (window-system)
+;; (when (window-system)
 	(tool-bar-mode -1)
 	(scroll-bar-mode -1)
 	(set-frame-height (selected-frame) 30)
 	(set-frame-width  (selected-frame) 80)
-)
+;; )
 
 ;; Fringe
 (setq-default indicate-bufffer-boundaries 'left)
@@ -95,7 +95,15 @@
 (add-to-list 'evil-emacs-state-modes 'reb-mode)
 (add-to-list 'evil-emacs-state-modes 'wdired-mode)
 (add-to-list 'evil-emacs-state-modes 'eshell-mode)
+(add-to-list 'evil-emacs-state-modes 'bs-mode)
 (evil-set-initial-state 'eshell-mode 'emacs)
+;; Wow. Okay.
+;; Found: https://stackoverflow.com/questions/8204316/cant-change-cursor-color-in-emacsclient
+(setq evil-default-cursor +1)
+(set-cursor-color "white")
+(set-mouse-color "white")
+;; (setq evil-default-cursor (quote (t "white")))
+;; '(evil-default-cursor (quote (t "white")))
 
 ;; IDO
 (require 'ido)
