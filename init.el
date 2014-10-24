@@ -46,8 +46,8 @@
     scroll-step 1
     scroll-conservatively 10000
     scroll-preserve-screen-position 1)
-(setq mouse-wheel-follow-mouse 't)
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+;; (setq mouse-wheel-follow-mouse 't)
+;; (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 ;; Searching
 (setq completion-ignore-case t
@@ -96,6 +96,8 @@
 (add-to-list 'evil-emacs-state-modes 'wdired-mode)
 (add-to-list 'evil-emacs-state-modes 'eshell-mode)
 (add-to-list 'evil-emacs-state-modes 'bs-mode)
+(add-to-list 'evil-emacs-state-modes 'elfeed-search-mode)
+(add-to-list 'evil-emacs-state-modes 'elfeed-show-mode)
 (evil-set-initial-state 'eshell-mode 'emacs)
 ;; Wow. Okay.
 ;; Found: https://stackoverflow.com/questions/8204316/cant-change-cursor-color-in-emacsclient
@@ -172,8 +174,6 @@
 		  (kill-buffer buffer)))
 	  (message "Killed %i dired buffer(s)." count ))))
 
-(custom-set-variables
-  '(auto-save-file-name-transforms ' ((".*"
-  "~/.emacs.d/autosaves/\\1" t)))
-  '(backup-directory-alist '((".*" . "~/.emacs.d/backups"))))
-(make-directory "~/.emacs.d/autosaves" t)
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+
