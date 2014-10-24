@@ -1,0 +1,12 @@
+#+TITLE: Emacs Config: The Second Coming of Emacs
+#+AUTHOR: Nathan DeGruchy
+#+DATE: 2014-10-24
+#+OPTIONS: toc:nil num:nil
+
+* Emacs Config
+  Yep, I redid my Emacs config, because I wasn't happy that the
+  configuration was so incredibly difficult to get running on non-*nix
+  platforms, like my Windows Workstation.
+
+  Thus, the new Emacs config was born. Basically the same, but flatter
+  and with less dependencies.
