@@ -1,75 +1,88 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
+;; Time-stamp: <2014-10-29 14:55:15 ndegruchy>
 
-;; MacOS X Fixes
-;; Fix an issue on Mac where you start from a GUI and
-;; Emacs fails to pull in the right PATH variable
-(when (memq window-system '(mac ns))
-    (exec-path-from-shell-initialize))
+;; Me
+(setq user-full-name    "Nathan DeGruchy"
+      user-mail-address "nathan@degruchy.org")
+
+;; Setup Emacs Package Management System
+
+(require 'package)
+(package-initialize)
+
+;; I like having more choices than the in-built GNU repo
+(setq package-archives '(("gnu"         . "http://elpa.gnu.org/packages/")
+                         ("marmalade"   . "https://marmalade-repo.org/packages/")
+                         ("melpa"       . "http://stable.melpa.org/packages/")
+                         ("org"         . "http://orgmode.org/elpa/")
+                        ))
+
 
 ;; GUI Features
 
 ;; Font
-(add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
+;; My preferred font is Source Code Pro
+;;(add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
+(set-face-attribute 'default nil :family "Source Code Pro" :height 140)
+(global-font-lock-mode t)
 
 ;; Color Scheme
-(load-theme 'tango-dark)
+;; (load-theme 'tango-dark)
+(load-theme 'solarized-dark +1)
 
-;; Chrome
-;; (when (window-system)
-	(tool-bar-mode -1)
-	(scroll-bar-mode -1)
-	(set-frame-height (selected-frame) 30)
-	(set-frame-width  (selected-frame) 80)
-;; )
+;; Remove some of the window "chrome" like toolbars and scrollbars
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
 ;; Fringe
+;; I utilize the fringe here to do basically the same-ish thing
+;; that scrollbars do, but without the annoying hassle of it being
+;; window manager dependant theming
 (setq-default indicate-bufffer-boundaries 'left)
 (setq-default indicate-empty-lines +1)
 
 ;; Startup
+;; I like a nice, simple startup screen. The welcome screen isn't
+;; really that helpful
 (setq inhibit-startup-message +1)
 (setq initial-scratch-message ";; Scratch buffer\n")
 
 ;; Coding Style
 
+;; Sentances
+(setq sentance-end-double-space -1)
+
 ;; Line numbers
+;; Turn off line numbers
 (global-linum-mode -1)
 
 ;; Indentation
 (setq-default indent-tabs-mode -1)
 (setq-default tab-width 4)
+(setq-default c-basic-offset 4)
 
 ;; Scrolling
+;; Make scrolling a little bit less janky
 (setq redisplay-dont-pause t
     scroll-margin 1
     scroll-step 1
     scroll-conservatively 10000
     scroll-preserve-screen-position 1)
-;; (setq mouse-wheel-follow-mouse 't)
-;; (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 ;; Searching
+;; Case insensitive searching, ain't nobody got time for
+;; case sensitivity!
 (setq completion-ignore-case t
-	read-file-name-completion-ignore-case t)
+    read-file-name-completion-ignore-case t)
 
 ;; Key Bindings
-
-;; Align
+;; Quick align-regexp bind, as well as an easy
+;; insert date one.
 (global-set-key (kbd "C-x \\") 'align-regexp)
 (global-set-key (kbd "C-c d")  'insert-date)
 
-
-;; Packages
-
-(require 'package)
-(package-initialize)
-
-(setq package-archives '(("gnu"			. "http://elpa.gnu.org/packages/")
-                         ("marmalade"	. "http://marmalade-repo.org/packages/")
-                         ("melpa"		. "http://melpa.milkbox.net/packages/")
-						 ("org"			. "http://orgmode.org/elpa/")
-						 ))
+;; ================= Packages
 
 ;; Evil
 (require 'evil)
@@ -77,6 +90,7 @@
 (require 'evil-numbers)
 (require 'evil-surround)
 (evil-mode 1)
+(setq evil-default-cursor '(t))
 (global-evil-surround-mode)
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
@@ -95,16 +109,6 @@
 (add-to-list 'evil-emacs-state-modes 'wdired-mode)
 (add-to-list 'evil-emacs-state-modes 'eshell-mode)
 (add-to-list 'evil-emacs-state-modes 'bs-mode)
-(add-to-list 'evil-emacs-state-modes 'elfeed-search-mode)
-(add-to-list 'evil-emacs-state-modes 'elfeed-show-mode)
-(evil-set-initial-state 'eshell-mode 'emacs)
-;; Wow. Okay.
-;; Found: https://stackoverflow.com/questions/8204316/cant-change-cursor-color-in-emacsclient
-(setq evil-default-cursor +1)
-(set-cursor-color "white")
-(set-mouse-color "white")
-;; (setq evil-default-cursor (quote (t "white")))
-;; '(evil-default-cursor (quote (t "white")))
 
 ;; IDO
 (require 'ido)
@@ -125,17 +129,26 @@
 (add-hook 'web-mode-hook  'toggle-truncate-lines)
 (add-hook 'php-mode-hook  'toggle-truncate-lines)
 
+;; JavaScript
+(autoload 'js2-mode "js2" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
 ;; ORG Mode
 (require 'org-mouse)
-(require 'org-agenda)
 (add-hook 'org-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'auto-fill-mode)
-(setq org-src-fontify-natively t)
-(setq org-src-tab-acts-natively t)
-(setq org-agenda-span 14)
+(setq org-src-fontify-natively -1)
+(setq org-src-tab-acts-natively +1)
 
 ;; Markdown
 (add-hook 'markdown-mode-hook 'flyspell-mode)
+
+;; Uniquify
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'reverse)
+(setq uniquify-separator "/")
+(setq uniquify-after-kill-buffer-p t)
+(setq uniquify-ignore-buffers-re "^\\*")
 
 ;; Custom Functions
 
@@ -165,14 +178,28 @@
   "Kill all dired buffers."
   (interactive)
   (save-excursion
-	(let((count 0))
-	  (dolist(buffer (buffer-list))
-		(set-buffer buffer)
-		(when (equal major-mode 'dired-mode)
-		  (setq count (1+ count))
-		  (kill-buffer buffer)))
-	  (message "Killed %i dired buffer(s)." count ))))
+    (let((count 0))
+      (dolist(buffer (buffer-list))
+        (set-buffer buffer)
+        (when (equal major-mode 'dired-mode)
+          (setq count (1+ count))
+          (kill-buffer buffer)))
+      (message "Killed %i dired buffer(s)." count ))))
+
+(defun unfill-paragraph ()
+  "Takes a multi-line paragraph and makes it into a single line of text."
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-paragraph nil)))
+
+;; MacOS X Fixes
+;; Fix an issue on Mac where you start from a GUI and
+;; Emacs fails to pull in the right PATH variable
+(when (memq window-system '(mac ns))
+    (exec-path-from-shell-initialize))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
+;; Before saving
+(add-hook 'before-save-hook 'time-stamp)
