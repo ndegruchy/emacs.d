@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2014-10-29 14:55:15 ndegruchy>
+;; Time-stamp: <2014-11-04 19:42:38 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -25,13 +25,15 @@
 ;; My preferred font is Source Code Pro
 ;;(add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
 (set-face-attribute 'default nil :family "Source Code Pro" :height 140)
-(global-font-lock-mode t)
+;; Functions take a number. Positive = enabled; Negative = disabled
+(global-font-lock-mode +1)
 
 ;; Color Scheme
-;; (load-theme 'tango-dark)
-(load-theme 'solarized-dark +1)
+;; Second argument loads the theme without prompting if it's safe
+(load-theme 'tango t)
 
 ;; Remove some of the window "chrome" like toolbars and scrollbars
+;; Functions take a number. Positive = enabled; Negative = disabled
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
@@ -40,25 +42,26 @@
 ;; that scrollbars do, but without the annoying hassle of it being
 ;; window manager dependant theming
 (setq-default indicate-bufffer-boundaries 'left)
-(setq-default indicate-empty-lines +1)
+(setq-default indicate-empty-lines t)
 
 ;; Startup
 ;; I like a nice, simple startup screen. The welcome screen isn't
 ;; really that helpful
-(setq inhibit-startup-message +1)
+(setq inhibit-startup-message t)
 (setq initial-scratch-message ";; Scratch buffer\n")
 
 ;; Coding Style
 
-;; Sentances
-(setq sentance-end-double-space -1)
+;; Sentences
+(setq sentence-end-double-space t)
 
 ;; Line numbers
 ;; Turn off line numbers
+;; Functions take a number. Positive = enabled; Negative = disabled
 (global-linum-mode -1)
 
 ;; Indentation
-(setq-default indent-tabs-mode -1)
+(setq-default indent-tabs-mode ())
 (setq-default tab-width 4)
 (setq-default c-basic-offset 4)
 
@@ -68,13 +71,13 @@
     scroll-margin 1
     scroll-step 1
     scroll-conservatively 10000
-    scroll-preserve-screen-position 1)
+    scroll-preserve-screen-position t)
 
 ;; Searching
 ;; Case insensitive searching, ain't nobody got time for
 ;; case sensitivity!
-(setq completion-ignore-case t
-    read-file-name-completion-ignore-case t)
+(setq completion-ignore-case                t
+      read-file-name-completion-ignore-case t)
 
 ;; Key Bindings
 ;; Quick align-regexp bind, as well as an easy
@@ -89,13 +92,12 @@
 (require 'evil-leader)
 (require 'evil-numbers)
 (require 'evil-surround)
-(evil-mode 1)
+(evil-mode +1)
 (setq evil-default-cursor '(t))
 (global-evil-surround-mode)
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
 (evil-leader/set-key "k"    'kill-buffer)
-(evil-leader/set-key "bd"   'kill-buffer)
 (evil-leader/set-key "gs"   'magit-status)
 (evil-leader/set-key "cl"   'org-store-link)
 (evil-leader/set-key "cc"   'org-capture)
@@ -137,8 +139,8 @@
 (require 'org-mouse)
 (add-hook 'org-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'auto-fill-mode)
-(setq org-src-fontify-natively -1)
-(setq org-src-tab-acts-natively +1)
+(setq org-src-fontify-natively ())
+(setq org-src-tab-acts-natively t)
 
 ;; Markdown
 (add-hook 'markdown-mode-hook 'flyspell-mode)
@@ -174,7 +176,7 @@
   (interactive)
   (indent-region (point-min) (point-max)))
 
-(defun kill-all-dired-buffers()
+(defun kill-all-dired-buffers ()
   "Kill all dired buffers."
   (interactive)
   (save-excursion
