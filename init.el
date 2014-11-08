@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2014-11-04 19:42:38 ndegruchy>
+;; Time-stamp: <2014-11-07 19:35:27 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -63,7 +63,9 @@
 ;; Indentation
 (setq-default indent-tabs-mode ())
 (setq-default tab-width 4)
+(setq-default tab-always-indent t)
 (setq-default c-basic-offset 4)
+(electric-indent-mode 1)
 
 ;; Scrolling
 ;; Make scrolling a little bit less janky
@@ -111,6 +113,8 @@
 (add-to-list 'evil-emacs-state-modes 'wdired-mode)
 (add-to-list 'evil-emacs-state-modes 'eshell-mode)
 (add-to-list 'evil-emacs-state-modes 'bs-mode)
+(add-to-list 'evil-emacs-state-modes 'eww-mode)
+(evil-ex-define-cmd "Align" 'align-regexp)
 
 ;; IDO
 (require 'ido)
@@ -139,11 +143,31 @@
 (require 'org-mouse)
 (add-hook 'org-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'auto-fill-mode)
+(add-hook 'org-mode-hook 'electric-indent-mode)
 (setq org-src-fontify-natively ())
 (setq org-src-tab-acts-natively t)
+(setq org-agenda-files (quote ("~/Documents/Org/Agenda/")))
 
 ;; Markdown
 (add-hook 'markdown-mode-hook 'flyspell-mode)
+
+;; ERC - Emacs IRC
+(require 'erc)
+(require 'erc-notify)
+(require 'erc-spelling)
+(require 'erc-autoaway)
+
+(setq erc-kill-buffer-on-part t)
+(setq erc-kill-queries-on-quit t)
+(setq erc-kill-server-buffer-on-quit t)
+
+(erc-truncate-mode +1)
+(erc-spelling-mode +1)
+
+;; autoaway setup
+(setq erc-auto-discard-away t)
+(setq erc-autoaway-idle-seconds 600)
+(setq erc-autoaway-use-emacs-idle t)
 
 ;; Uniquify
 (require 'uniquify)
@@ -194,6 +218,31 @@
   (let ((fill-column (point-max)))
     (fill-paragraph nil)))
 
+;; Stolen from prelude
+(defun nd-swap-windows ()
+  "If you have 2 windows, it swaps them."
+  (interactive)
+  (if (/= (count-windows) 2)
+      (message "You need exactly 2 windows to do this.")
+    (let* ((w1 (car (window-list)))
+           (w2 (cadr (window-list)))
+           (b1 (window-buffer w1))
+           (b2 (window-buffer w2))
+           (s1 (window-start w1))
+           (s2 (window-start w2)))
+      (set-window-buffer w1 b2)
+      (set-window-buffer w2 b1)
+      (set-window-start w1 s2)
+      (set-window-start w2 s1)))
+  (other-window 1))
+
+(defun stop-irc ()
+    "Disconnects from all irc servers"
+    (interactive)
+    (dolist (buffer (filter-server-buffers))
+        (message "Server buffer: %s" (buffer-name buffer))
+        (with-current-buffer buffer (erc-quit-server "Out"))))
+
 ;; MacOS X Fixes
 ;; Fix an issue on Mac where you start from a GUI and
 ;; Emacs fails to pull in the right PATH variable
@@ -202,6 +251,9 @@
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
+
+;; Org To-do
+(find-file "~/Documents/Org/todo.org")
 
 ;; Before saving
 (add-hook 'before-save-hook 'time-stamp)
