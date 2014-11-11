@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2014-11-07 19:35:27 ndegruchy>
+;; Time-stamp: <2014-11-11 15:33:05 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -37,13 +37,6 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-;; Fringe
-;; I utilize the fringe here to do basically the same-ish thing
-;; that scrollbars do, but without the annoying hassle of it being
-;; window manager dependant theming
-(setq-default indicate-bufffer-boundaries 'left)
-(setq-default indicate-empty-lines t)
-
 ;; Startup
 ;; I like a nice, simple startup screen. The welcome screen isn't
 ;; really that helpful
@@ -64,7 +57,6 @@
 (setq-default indent-tabs-mode ())
 (setq-default tab-width 4)
 (setq-default tab-always-indent t)
-(setq-default c-basic-offset 4)
 (electric-indent-mode 1)
 
 ;; Scrolling
@@ -86,35 +78,37 @@
 ;; insert date one.
 (global-set-key (kbd "C-x \\") 'align-regexp)
 (global-set-key (kbd "C-c d")  'insert-date)
+(global-set-key (kbd "C-c b")  'bs-show)
+(global-set-key (kbd "C-c gs") 'magit-status)
+(global-set-key (kbd "C-c j")  'join-line)
 
 ;; ================= Packages
 
 ;; Evil
-(require 'evil)
-(require 'evil-leader)
-(require 'evil-numbers)
-(require 'evil-surround)
-(evil-mode +1)
-(setq evil-default-cursor '(t))
-(global-evil-surround-mode)
-(global-evil-leader-mode)
-(evil-leader/set-leader ",")
-(evil-leader/set-key "k"    'kill-buffer)
-(evil-leader/set-key "gs"   'magit-status)
-(evil-leader/set-key "cl"   'org-store-link)
-(evil-leader/set-key "cc"   'org-capture)
-(evil-leader/set-key "ca"   'org-agenda)
-(evil-leader/set-key "cb"   'org-iswitchb)
-(evil-leader/set-key "b"    'bs-show)
-(global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
-(global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
-(add-to-list 'evil-emacs-state-modes 'dired-mode)
-(add-to-list 'evil-emacs-state-modes 'reb-mode)
-(add-to-list 'evil-emacs-state-modes 'wdired-mode)
-(add-to-list 'evil-emacs-state-modes 'eshell-mode)
-(add-to-list 'evil-emacs-state-modes 'bs-mode)
-(add-to-list 'evil-emacs-state-modes 'eww-mode)
-(evil-ex-define-cmd "Align" 'align-regexp)
+;; (require 'evil)
+;; (require 'evil-leader)
+;; (require 'evil-numbers)
+;; (require 'evil-surround)
+;; (evil-mode +1)
+;; (setq evil-default-cursor '(t))
+;; (global-evil-surround-mode)
+;; (global-evil-leader-mode)
+;; (evil-leader/set-leader ",")
+;; (evil-leader/set-key "gs"   'magit-status)
+;; (evil-leader/set-key "cl"   'org-store-link)
+;; (evil-leader/set-key "cc"   'org-capture)
+;; (evil-leader/set-key "b"    'bs-show)
+;; (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
+;; (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
+;; (add-to-list 'evil-emacs-state-modes 'dired-mode)
+;; (add-to-list 'evil-emacs-state-modes 'wdired-mode)
+;; (add-to-list 'evil-emacs-state-modes 'reb-mode)
+;; (add-to-list 'evil-emacs-state-modes 'eshell-mode)
+;; (add-to-list 'evil-emacs-state-modes 'bs-mode)
+;; (add-to-list 'evil-emacs-state-modes 'eww-mode)
+;; (add-to-list 'evil-emacs-state-modes 'erc-mode)
+;; (add-to-list 'evil-emacs-state-modes 'elfeed-mode)
+;; (evil-ex-define-cmd "Align" 'align-regexp)
 
 ;; IDO
 (require 'ido)
@@ -146,7 +140,7 @@
 (add-hook 'org-mode-hook 'electric-indent-mode)
 (setq org-src-fontify-natively ())
 (setq org-src-tab-acts-natively t)
-(setq org-agenda-files (quote ("~/Documents/Org/Agenda/")))
+(setq org-agenda-files (quote ("~/Documents/Org/todo.org")))
 
 ;; Markdown
 (add-hook 'markdown-mode-hook 'flyspell-mode)
@@ -160,6 +154,15 @@
 (setq erc-kill-buffer-on-part t)
 (setq erc-kill-queries-on-quit t)
 (setq erc-kill-server-buffer-on-quit t)
+(setq erc-modules
+ (quote
+  (autoaway autojoin button completion fill irccontrols list
+  match menu move-to-prompt netsplit networks noncommands
+  readonly ring scrolltobottom services stamp spelling track
+  truncate)))
+(setq erc-user-full-name "Nathan DeGruchy")
+(setq erc-hide-list (quote ("JOIN" "NICK" "PART" "QUIT")))
+(setq erc-log-channels-directory "~/.emacs.d/erc.logs/")
 
 (erc-truncate-mode +1)
 (erc-spelling-mode +1)
@@ -175,6 +178,10 @@
 (setq uniquify-separator "/")
 (setq uniquify-after-kill-buffer-p t)
 (setq uniquify-ignore-buffers-re "^\\*")
+
+
+;; Tex stuff
+(setq TeX-command-list (quote ("View" "okular %s.pdf" TeX-run-discard-or-function t t :help "Run Viewer")))
 
 ;; Custom Functions
 
@@ -217,31 +224,6 @@
   (interactive)
   (let ((fill-column (point-max)))
     (fill-paragraph nil)))
-
-;; Stolen from prelude
-(defun nd-swap-windows ()
-  "If you have 2 windows, it swaps them."
-  (interactive)
-  (if (/= (count-windows) 2)
-      (message "You need exactly 2 windows to do this.")
-    (let* ((w1 (car (window-list)))
-           (w2 (cadr (window-list)))
-           (b1 (window-buffer w1))
-           (b2 (window-buffer w2))
-           (s1 (window-start w1))
-           (s2 (window-start w2)))
-      (set-window-buffer w1 b2)
-      (set-window-buffer w2 b1)
-      (set-window-start w1 s2)
-      (set-window-start w2 s1)))
-  (other-window 1))
-
-(defun stop-irc ()
-    "Disconnects from all irc servers"
-    (interactive)
-    (dolist (buffer (filter-server-buffers))
-        (message "Server buffer: %s" (buffer-name buffer))
-        (with-current-buffer buffer (erc-quit-server "Out"))))
 
 ;; MacOS X Fixes
 ;; Fix an issue on Mac where you start from a GUI and
