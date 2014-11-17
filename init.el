@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2014-11-11 15:33:05 ndegruchy>
+;; Time-stamp: <2014-11-17 10:18:21 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -18,6 +18,10 @@
                          ("org"         . "http://orgmode.org/elpa/")
                         ))
 
+
+;; Since I use FISH as my preferred shell, I have to
+;; have Emacs parse the $PATH in a different way
+(exec-path-from-shell-initialize)
 
 ;; GUI Features
 
@@ -76,11 +80,14 @@
 ;; Key Bindings
 ;; Quick align-regexp bind, as well as an easy
 ;; insert date one.
-(global-set-key (kbd "C-x \\") 'align-regexp)
+(global-set-key (kbd "C-c \\") 'align-regexp)
 (global-set-key (kbd "C-c d")  'insert-date)
 (global-set-key (kbd "C-c b")  'bs-show)
 (global-set-key (kbd "C-c gs") 'magit-status)
 (global-set-key (kbd "C-c j")  'join-line)
+(global-set-key (kbd "C-c k")  'kill-whole-line)
+
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups/")))
 
 ;; ================= Packages
 
@@ -138,9 +145,11 @@
 (add-hook 'org-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'auto-fill-mode)
 (add-hook 'org-mode-hook 'electric-indent-mode)
+(add-hook 'org-mode-hook 'org-display-inline-images)
 (setq org-src-fontify-natively ())
 (setq org-src-tab-acts-natively t)
 (setq org-agenda-files (quote ("~/Documents/Org/todo.org")))
+(setq org-support-shift-select t)
 
 ;; Markdown
 (add-hook 'markdown-mode-hook 'flyspell-mode)
@@ -163,6 +172,9 @@
 (setq erc-user-full-name "Nathan DeGruchy")
 (setq erc-hide-list (quote ("JOIN" "NICK" "PART" "QUIT")))
 (setq erc-log-channels-directory "~/.emacs.d/erc.logs/")
+(setq erc-autojoin-channels-alist '(("freenode.net"
+                                     "#emacs"
+                                     "#archlinux")))
 
 (erc-truncate-mode +1)
 (erc-spelling-mode +1)
@@ -179,9 +191,15 @@
 (setq uniquify-after-kill-buffer-p t)
 (setq uniquify-ignore-buffers-re "^\\*")
 
+;; Rainbow Mode
+(dolist (hook '(css-mode-hook html-mode-hook sass-mode-hook))
+  (add-hook hook 'rainbow-mode))
 
-;; Tex stuff
-(setq TeX-command-list (quote ("View" "okular %s.pdf" TeX-run-discard-or-function t t :help "Run Viewer")))
+;; Smex
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;; Custom Functions
 
@@ -224,6 +242,17 @@
   (interactive)
   (let ((fill-column (point-max)))
     (fill-paragraph nil)))
+
+(defun kill-whole-line nil
+  "kills the entire line on which the cursor is located, and
+places the cursor as close to its previous position as possible."
+  (interactive)
+  (progn
+    (let ((y (current-column))
+          (a (progn (beginning-of-line) (point)))
+          (b (progn (forward-line 1) (point))))
+      (kill-region a b)
+      (move-to-column y))))
 
 ;; MacOS X Fixes
 ;; Fix an issue on Mac where you start from a GUI and
