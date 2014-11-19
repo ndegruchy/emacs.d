@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2014-11-17 10:18:21 ndegruchy>
+;; Time-stamp: <2014-11-19 16:47:36 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -86,6 +86,8 @@
 (global-set-key (kbd "C-c gs") 'magit-status)
 (global-set-key (kbd "C-c j")  'join-line)
 (global-set-key (kbd "C-c k")  'kill-whole-line)
+(global-set-key (kbd "<C-return>") 'open-line-below)
+(global-set-key (kbd "<C-S-return>") 'open-line-above)
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups/")))
 
@@ -203,6 +205,10 @@
 
 ;; Custom Functions
 
+;; after deleting a tag, indent properly
+(defadvice sgml-delete-tag (after reindent activate)
+  (indent-region (point-min) (point-max)))
+
 (defun insert-date (format)
   "Wrapper around format-time-string"
   (interactive "MFormat: ")
@@ -253,6 +259,20 @@ places the cursor as close to its previous position as possible."
           (b (progn (forward-line 1) (point))))
       (kill-region a b)
       (move-to-column y))))
+
+(defun open-line-below ()
+  (interactive)
+  (end-of-line)
+  (newline)
+  (indent-for-tab-command))
+
+(defun open-line-above ()
+  (interactive)
+  (beginning-of-line)
+  (newline)
+  (forward-line -1)
+  (indent-for-tab-command))
+
 
 ;; MacOS X Fixes
 ;; Fix an issue on Mac where you start from a GUI and
