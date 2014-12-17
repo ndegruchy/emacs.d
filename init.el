@@ -1,10 +1,16 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2014-11-19 16:47:36 ndegruchy>
+;; Time-stamp: <2014-12-17 00:04:21 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
       user-mail-address "nathan@degruchy.org")
+
+;;(when window-system (set-frame-size (selected-frame) 80 24))
+(add-to-list 'default-frame-alist '(width  . 80))
+(add-to-list 'default-frame-alist '(height . 24))
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 ;; Setup Emacs Package Management System
 
@@ -21,7 +27,7 @@
 
 ;; Since I use FISH as my preferred shell, I have to
 ;; have Emacs parse the $PATH in a different way
-(exec-path-from-shell-initialize)
+;;(exec-path-from-shell-initialize)
 
 ;; GUI Features
 
@@ -34,7 +40,8 @@
 
 ;; Color Scheme
 ;; Second argument loads the theme without prompting if it's safe
-(load-theme 'tango t)
+;; (load-theme 'tango t)
+(load-theme 'jazz t)
 
 ;; Remove some of the window "chrome" like toolbars and scrollbars
 ;; Functions take a number. Positive = enabled; Negative = disabled
@@ -63,14 +70,6 @@
 (setq-default tab-always-indent t)
 (electric-indent-mode 1)
 
-;; Scrolling
-;; Make scrolling a little bit less janky
-(setq redisplay-dont-pause t
-    scroll-margin 1
-    scroll-step 1
-    scroll-conservatively 10000
-    scroll-preserve-screen-position t)
-
 ;; Searching
 ;; Case insensitive searching, ain't nobody got time for
 ;; case sensitivity!
@@ -93,31 +92,12 @@
 
 ;; ================= Packages
 
-;; Evil
-;; (require 'evil)
-;; (require 'evil-leader)
-;; (require 'evil-numbers)
-;; (require 'evil-surround)
-;; (evil-mode +1)
-;; (setq evil-default-cursor '(t))
-;; (global-evil-surround-mode)
-;; (global-evil-leader-mode)
-;; (evil-leader/set-leader ",")
-;; (evil-leader/set-key "gs"   'magit-status)
-;; (evil-leader/set-key "cl"   'org-store-link)
-;; (evil-leader/set-key "cc"   'org-capture)
-;; (evil-leader/set-key "b"    'bs-show)
-;; (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
-;; (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
-;; (add-to-list 'evil-emacs-state-modes 'dired-mode)
-;; (add-to-list 'evil-emacs-state-modes 'wdired-mode)
-;; (add-to-list 'evil-emacs-state-modes 'reb-mode)
-;; (add-to-list 'evil-emacs-state-modes 'eshell-mode)
-;; (add-to-list 'evil-emacs-state-modes 'bs-mode)
-;; (add-to-list 'evil-emacs-state-modes 'eww-mode)
-;; (add-to-list 'evil-emacs-state-modes 'erc-mode)
-;; (add-to-list 'evil-emacs-state-modes 'elfeed-mode)
-;; (evil-ex-define-cmd "Align" 'align-regexp)
+;; Hungry like the woooolllffff
+(unless (fboundp 'hungry-delete-mode)
+  (package-install 'hungry-delete))
+
+(require 'hungry-delete)
+(global-hungry-delete-mode)
 
 ;; IDO
 (require 'ido)
@@ -142,7 +122,7 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
-;; ORG Mode
+;; Org Mode
 (require 'org-mouse)
 (add-hook 'org-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'auto-fill-mode)
@@ -150,41 +130,15 @@
 (add-hook 'org-mode-hook 'org-display-inline-images)
 (setq org-src-fontify-natively ())
 (setq org-src-tab-acts-natively t)
-(setq org-agenda-files (quote ("~/Documents/Org/todo.org")))
 (setq org-support-shift-select t)
 
 ;; Markdown
 (add-hook 'markdown-mode-hook 'flyspell-mode)
-
-;; ERC - Emacs IRC
-(require 'erc)
-(require 'erc-notify)
-(require 'erc-spelling)
-(require 'erc-autoaway)
-
-(setq erc-kill-buffer-on-part t)
-(setq erc-kill-queries-on-quit t)
-(setq erc-kill-server-buffer-on-quit t)
-(setq erc-modules
- (quote
-  (autoaway autojoin button completion fill irccontrols list
-  match menu move-to-prompt netsplit networks noncommands
-  readonly ring scrolltobottom services stamp spelling track
-  truncate)))
-(setq erc-user-full-name "Nathan DeGruchy")
-(setq erc-hide-list (quote ("JOIN" "NICK" "PART" "QUIT")))
-(setq erc-log-channels-directory "~/.emacs.d/erc.logs/")
-(setq erc-autojoin-channels-alist '(("freenode.net"
-                                     "#emacs"
-                                     "#archlinux")))
-
-(erc-truncate-mode +1)
-(erc-spelling-mode +1)
-
-;; autoaway setup
-(setq erc-auto-discard-away t)
-(setq erc-autoaway-idle-seconds 600)
-(setq erc-autoaway-use-emacs-idle t)
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; Uniquify
 (require 'uniquify)
@@ -197,11 +151,21 @@
 (dolist (hook '(css-mode-hook html-mode-hook sass-mode-hook))
   (add-hook hook 'rainbow-mode))
 
+;; Rainbow Delimiter mode
+(dolist (hook '(lisp-mode))
+  (add-hook hook 'rainbow-delimiters-mode))
+
 ;; Smex
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; This is your old M-x.
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+;; Expand Region
+(require 'expand-region)
+(global-set-key (kbd "C-@") 'er/expand-region)
+
+(display-battery-mode +1)
 
 ;; Custom Functions
 
@@ -261,30 +225,66 @@ places the cursor as close to its previous position as possible."
       (move-to-column y))))
 
 (defun open-line-below ()
+  "Inserts a line below the current line, moving the cursor to
+that line and setting the indent properly"
   (interactive)
   (end-of-line)
   (newline)
   (indent-for-tab-command))
 
 (defun open-line-above ()
+   "Inserts a line above the current line, moving the cursor to
+that line and setting the indent properly"
   (interactive)
   (beginning-of-line)
   (newline)
   (forward-line -1)
   (indent-for-tab-command))
 
-
-;; MacOS X Fixes
-;; Fix an issue on Mac where you start from a GUI and
-;; Emacs fails to pull in the right PATH variable
-(when (memq window-system '(mac ns))
-    (exec-path-from-shell-initialize))
+;; Ugly hack to fix epa-list-keys
+(defun epg--list-keys-1 (context name mode)
+  (let ((args (append (if (epg-context-home-directory context)
+			  (list "--homedir"
+				(epg-context-home-directory context)))
+		      '("--with-colons" "--no-greeting" "--batch"
+			"--with-fingerprint" "--with-fingerprint")
+		      (unless (eq (epg-context-protocol context) 'CMS)
+			'("--fixed-list-mode"))))
+	(list-keys-option (if (memq mode '(t secret))
+			      "--list-secret-keys"
+			    (if (memq mode '(nil public))
+				"--list-keys"
+			      "--list-sigs")))
+	(coding-system-for-read 'binary)
+	keys string field index)
+    (if name
+	(progn
+	  (unless (listp name)
+	    (setq name (list name)))
+	  (while name
+	    (setq args (append args (list list-keys-option (car name)))
+		  name (cdr name))))
+      (setq args (append args (list list-keys-option))))
+    (with-temp-buffer
+      (apply #'call-process
+	     (epg-context-program context)
+	     nil (list t nil) nil args)
+      (goto-char (point-min))
+      (while (re-search-forward "^[a-z][a-z][a-z]:.*" nil t)
+	(setq keys (cons (make-vector 15 nil) keys)
+	      string (match-string 0)
+	      index 0
+	      field 0)
+	(while (and (< field (length (car keys)))
+		    (eq index
+			(string-match "\\([^:]+\\)?:" string index)))
+	  (setq index (match-end 0))
+	  (aset (car keys) field (match-string 1 string))
+	  (setq field (1+ field))))
+      (nreverse keys))))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
-
-;; Org To-do
-(find-file "~/Documents/Org/todo.org")
 
 ;; Before saving
 (add-hook 'before-save-hook 'time-stamp)
