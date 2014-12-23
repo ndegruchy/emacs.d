@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2014-12-17 00:04:21 ndegruchy>
+;; Time-stamp: <2014-12-23 12:33:23 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -163,7 +163,8 @@
 
 ;; Expand Region
 (require 'expand-region)
-(global-set-key (kbd "C-@") 'er/expand-region)
+;; (global-set-key (kbd "C-@") 'er/expand-region)
+(global-set-key (kbd "M-+") 'er/expand-region)
 
 (display-battery-mode +1)
 
@@ -244,44 +245,74 @@ that line and setting the indent properly"
 ;; Ugly hack to fix epa-list-keys
 (defun epg--list-keys-1 (context name mode)
   (let ((args (append (if (epg-context-home-directory context)
-			  (list "--homedir"
-				(epg-context-home-directory context)))
-		      '("--with-colons" "--no-greeting" "--batch"
-			"--with-fingerprint" "--with-fingerprint")
-		      (unless (eq (epg-context-protocol context) 'CMS)
-			'("--fixed-list-mode"))))
-	(list-keys-option (if (memq mode '(t secret))
-			      "--list-secret-keys"
-			    (if (memq mode '(nil public))
-				"--list-keys"
-			      "--list-sigs")))
-	(coding-system-for-read 'binary)
-	keys string field index)
+              (list "--homedir"
+                (epg-context-home-directory context)))
+              '("--with-colons" "--no-greeting" "--batch"
+            "--with-fingerprint" "--with-fingerprint")
+              (unless (eq (epg-context-protocol context) 'CMS)
+            '("--fixed-list-mode"))))
+    (list-keys-option (if (memq mode '(t secret))
+                  "--list-secret-keys"
+                (if (memq mode '(nil public))
+                "--list-keys"
+                  "--list-sigs")))
+    (coding-system-for-read 'binary)
+    keys string field index)
     (if name
-	(progn
-	  (unless (listp name)
-	    (setq name (list name)))
-	  (while name
-	    (setq args (append args (list list-keys-option (car name)))
-		  name (cdr name))))
+    (progn
+      (unless (listp name)
+        (setq name (list name)))
+      (while name
+        (setq args (append args (list list-keys-option (car name)))
+          name (cdr name))))
       (setq args (append args (list list-keys-option))))
     (with-temp-buffer
       (apply #'call-process
-	     (epg-context-program context)
-	     nil (list t nil) nil args)
+         (epg-context-program context)
+         nil (list t nil) nil args)
       (goto-char (point-min))
       (while (re-search-forward "^[a-z][a-z][a-z]:.*" nil t)
-	(setq keys (cons (make-vector 15 nil) keys)
-	      string (match-string 0)
-	      index 0
-	      field 0)
-	(while (and (< field (length (car keys)))
-		    (eq index
-			(string-match "\\([^:]+\\)?:" string index)))
-	  (setq index (match-end 0))
-	  (aset (car keys) field (match-string 1 string))
-	  (setq field (1+ field))))
+    (setq keys (cons (make-vector 15 nil) keys)
+          string (match-string 0)
+          index 0
+          field 0)
+    (while (and (< field (length (car keys)))
+            (eq index
+            (string-match "\\([^:]+\\)?:" string index)))
+      (setq index (match-end 0))
+      (aset (car keys) field (match-string 1 string))
+      (setq field (1+ field))))
       (nreverse keys))))
+
+;; Create parent folder(s) when visiting a non-existant file
+(defun my-create-non-existent-directory ()
+      (let ((parent-directory (file-name-directory buffer-file-name)))
+        (when (and (not (file-exists-p parent-directory))
+                   (y-or-n-p (format "Directory `%s' does not exist! Create it?" parent-directory)))
+          (make-directory parent-directory t))))
+
+(add-to-list 'find-file-not-found-functions #'my-create-non-existent-directory)
+
+;; Autocorrect word
+
+(define-key ctl-x-map "\C-i" 'endless/ispell-word-then-abbrev)
+
+(defun endless/ispell-word-then-abbrev (p)
+  "Call `ispell-word'. Then create an abbrev for the correction made.
+With prefix P, create local abbrev. Otherwise it will be global."
+  (interactive "P")
+  (let ((bef (downcase (or (thing-at-point 'word) ""))) aft)
+    (call-interactively 'ispell-word)
+    (setq aft (downcase (or (thing-at-point 'word) "")))
+    (unless (string= aft bef)
+      (message "\"%s\" now expands to \"%s\" %sally"
+               bef aft (if p "loc" "glob"))
+      (define-abbrev
+        (if p local-abbrev-table global-abbrev-table)
+        bef aft))))
+
+(setq save-abbrevs t)
+(setq-default abbrev-mode t)
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
