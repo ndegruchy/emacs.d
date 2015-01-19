@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2014-12-23 12:33:23 ndegruchy>
+;; Time-stamp: <2015-01-18 21:27:13 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -110,10 +110,6 @@
 (add-hook 'sgml-mode-hook 'emmet-mode)
 (add-hook 'web-mode-hook  'emmet-mode)
 (add-hook 'css-mode-hook  'emmet-mode)
-(add-hook 'sgml-mode-hook 'electric-pair-mode)
-(add-hook 'web-mode-hook  'electric-pair-mode)
-(add-hook 'css-mode-hook  'electric-pair-mode)
-(add-hook 'json-mode-hook 'electric-pair-mode)
 (add-hook 'sgml-mode-hook 'toggle-truncate-lines)
 (add-hook 'web-mode-hook  'toggle-truncate-lines)
 (add-hook 'php-mode-hook  'toggle-truncate-lines)
@@ -166,7 +162,12 @@
 ;; (global-set-key (kbd "C-@") 'er/expand-region)
 (global-set-key (kbd "M-+") 'er/expand-region)
 
+;; Show battery percentage
 (display-battery-mode +1)
+
+;; Recent Files
+(recentf-mode 1)
+(global-set-key (kbd "C-c f") 'ido-choose-from-recentf)
 
 ;; Custom Functions
 
@@ -242,47 +243,10 @@ that line and setting the indent properly"
   (forward-line -1)
   (indent-for-tab-command))
 
-;; Ugly hack to fix epa-list-keys
-(defun epg--list-keys-1 (context name mode)
-  (let ((args (append (if (epg-context-home-directory context)
-              (list "--homedir"
-                (epg-context-home-directory context)))
-              '("--with-colons" "--no-greeting" "--batch"
-            "--with-fingerprint" "--with-fingerprint")
-              (unless (eq (epg-context-protocol context) 'CMS)
-            '("--fixed-list-mode"))))
-    (list-keys-option (if (memq mode '(t secret))
-                  "--list-secret-keys"
-                (if (memq mode '(nil public))
-                "--list-keys"
-                  "--list-sigs")))
-    (coding-system-for-read 'binary)
-    keys string field index)
-    (if name
-    (progn
-      (unless (listp name)
-        (setq name (list name)))
-      (while name
-        (setq args (append args (list list-keys-option (car name)))
-          name (cdr name))))
-      (setq args (append args (list list-keys-option))))
-    (with-temp-buffer
-      (apply #'call-process
-         (epg-context-program context)
-         nil (list t nil) nil args)
-      (goto-char (point-min))
-      (while (re-search-forward "^[a-z][a-z][a-z]:.*" nil t)
-    (setq keys (cons (make-vector 15 nil) keys)
-          string (match-string 0)
-          index 0
-          field 0)
-    (while (and (< field (length (car keys)))
-            (eq index
-            (string-match "\\([^:]+\\)?:" string index)))
-      (setq index (match-end 0))
-      (aset (car keys) field (match-string 1 string))
-      (setq field (1+ field))))
-      (nreverse keys))))
+(defun ido-choose-from-recentf ()
+  "Use ido to select a recently visited file from the `recentf-list'"
+  (interactive)
+  (find-file (ido-completing-read "Open file: " recentf-list nil t)))
 
 ;; Create parent folder(s) when visiting a non-existant file
 (defun my-create-non-existent-directory ()
@@ -313,6 +277,21 @@ With prefix P, create local abbrev. Otherwise it will be global."
 
 (setq save-abbrevs t)
 (setq-default abbrev-mode t)
+
+(defun unix-file ()
+      "Change the current buffer to Latin 1 with Unix line-ends."
+      (interactive)
+      (set-buffer-file-coding-system 'iso-latin-1-unix t))
+
+(defun dos-file ()
+      "Change the current buffer to Latin 1 with DOS line-ends."
+      (interactive)
+      (set-buffer-file-coding-system 'iso-latin-1-dos t))
+
+(defun mac-file ()
+      "Change the current buffer to Latin 1 with Mac line-ends."
+      (interactive)
+      (set-buffer-file-coding-system 'iso-latin-1-mac t))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
