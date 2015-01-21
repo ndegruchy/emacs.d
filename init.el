@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-01-18 21:27:13 ndegruchy>
+;; Time-stamp: <2015-01-21 12:02:52 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -92,10 +92,21 @@
 
 ;; ================= Packages
 
-;; Hungry like the woooolllffff
 (unless (fboundp 'hungry-delete-mode)
   (package-install 'hungry-delete))
 
+(unless (fboundp 'yas-minor-mode)
+  (package-install 'yasnippet))
+
+;; (require 'evil)
+;; (require 'surround)
+;; (evil-mode 1)
+
+;; YaSnippet
+(require 'yasnippet)
+(yas-global-mode 1)
+
+;; Hungry like the woooolllffff
 (require 'hungry-delete)
 (global-hungry-delete-mode)
 
@@ -162,6 +173,17 @@
 ;; (global-set-key (kbd "C-@") 'er/expand-region)
 (global-set-key (kbd "M-+") 'er/expand-region)
 
+;; Dired
+;;(define-key dired-mode-map (kbd "Z") 'dired-get-size)
+
+;; Hydra
+(require 'cl) ;; Needed for now...
+(require 'hydra)
+(setq hydra-is-helpful t)
+(hydra-create "<f2>"
+ '(("g" text-scale-increase)
+   ("l" text-scale-decrease)))
+
 ;; Show battery percentage
 (display-battery-mode +1)
 
@@ -170,6 +192,18 @@
 (global-set-key (kbd "C-c f") 'ido-choose-from-recentf)
 
 ;; Custom Functions
+
+;; Dired DU Function
+(defun dired-get-size ()
+  (interactive)
+  (let ((files (dired-get-marked-files)))
+    (with-temp-buffer
+      (apply 'call-process "/usr/bin/du" nil t nil "-sch" files)
+      (message
+       "Size of all marked files: %s"
+       (progn
+         (re-search-backward "\\(^[0-9.,]+[A-Za-z]+\\).*total$")
+         (match-string 1))))))
 
 ;; after deleting a tag, indent properly
 (defadvice sgml-delete-tag (after reindent activate)
