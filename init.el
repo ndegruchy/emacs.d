@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-01-21 12:02:52 ndegruchy>
+;; Time-stamp: <2015-02-01 09:46:54 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -11,6 +11,10 @@
 (add-to-list 'default-frame-alist '(height . 24))
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
+;; Quiet, please
+(custom-set-variables '(ring-bell-function 'ignore))
+(setq visible-bell nil)
 
 ;; Setup Emacs Package Management System
 
@@ -75,6 +79,13 @@
 ;; case sensitivity!
 (setq completion-ignore-case                t
       read-file-name-completion-ignore-case t)
+
+;; Yes or no
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; Don't warn
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
 
 ;; Key Bindings
 ;; Quick align-regexp bind, as well as an easy
@@ -182,7 +193,9 @@
 (setq hydra-is-helpful t)
 (hydra-create "<f2>"
  '(("g" text-scale-increase)
-   ("l" text-scale-decrease)))
+   ("l" text-scale-decrease)
+   ("p" package-list-packages)
+   (";" endless/comment-line)))
 
 ;; Show battery percentage
 (display-battery-mode +1)
@@ -311,6 +324,17 @@ With prefix P, create local abbrev. Otherwise it will be global."
 
 (setq save-abbrevs t)
 (setq-default abbrev-mode t)
+
+(defun endless/comment-line (n)
+  "Comment or uncomment current line and leave point after it.
+With positive prefix, apply to N lines including current one.
+With negative prefix, apply to -N lines above."
+  (interactive "p")
+  (comment-or-uncomment-region
+   (line-beginning-position)
+   (goto-char (line-end-position n)))
+  (forward-line 1)
+  (back-to-indentation))
 
 (defun unix-file ()
       "Change the current buffer to Latin 1 with Unix line-ends."
