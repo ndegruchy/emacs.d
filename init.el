@@ -1,20 +1,79 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-02-01 09:46:54 ndegruchy>
+;; Time-stamp: <2015-02-24 11:52:31 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
       user-mail-address "nathan@degruchy.org")
 
-;;(when window-system (set-frame-size (selected-frame) 80 24))
+;; Window Geometry
 (add-to-list 'default-frame-alist '(width  . 80))
 (add-to-list 'default-frame-alist '(height . 24))
 
+;; Custom theme "Jazz"
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
+;; Color Scheme
+(load-theme 'jazz t)
 
 ;; Quiet, please
 (custom-set-variables '(ring-bell-function 'ignore))
-(setq visible-bell nil)
+
+;; Some default settings
+(setq inhibit-startup-message               t
+      make-backup-files                     nil
+      auto-save-default                     t
+      auto-save-interval                    50
+      auto-save-timeout                     5
+      delete-auto-save-files                t
+      case-fold-search                      t
+      tooltip-delay                         1
+      show-trailing-whitespace              1
+      initial-scratch-message               ";; Scratch buffer\n"
+      visible-bell                          nil
+      sentance-end-double-space             t
+      completion-ignore-case                t
+      read-file-name-completion-ignore-case t)
+
+;; Since I use FISH as my preferred shell, I have to
+;; have Emacs parse the $PATH in a different way
+;;(exec-path-from-shell-initialize)
+
+;; GUI Features
+
+;; Font
+;; My preferred font is Source Code Pro
+(set-face-attribute 'default nil :family "Source Code Pro" :height 140)
+(global-font-lock-mode +1)
+
+;; Delete/Overwrite Selection
+(delete-selection-mode t)
+
+;; Remove some of the window "chrome" like toolbars and scrollbars
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
+;; Coding Style
+
+;; Sentences
+(setq sentence-end-double-space t)
+
+;; Line numbers
+(global-linum-mode -1)
+
+;; Indentation
+(setq-default indent-tabs-mode ())
+(setq-default tab-width 4)
+(setq-default tab-always-indent t)
+(electric-indent-mode 1)
+(global-set-key (kbd "<RET>") 'newline-and-indent)
+
+;; Yes or no
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; Don't warn
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
 
 ;; Setup Emacs Package Management System
 
@@ -26,92 +85,22 @@
                          ("marmalade"   . "https://marmalade-repo.org/packages/")
                          ("melpa"       . "http://stable.melpa.org/packages/")
                          ("org"         . "http://orgmode.org/elpa/")
-                        ))
-
-
-;; Since I use FISH as my preferred shell, I have to
-;; have Emacs parse the $PATH in a different way
-;;(exec-path-from-shell-initialize)
-
-;; GUI Features
-
-;; Font
-;; My preferred font is Source Code Pro
-;;(add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
-(set-face-attribute 'default nil :family "Source Code Pro" :height 140)
-;; Functions take a number. Positive = enabled; Negative = disabled
-(global-font-lock-mode +1)
-
-;; Color Scheme
-;; Second argument loads the theme without prompting if it's safe
-;; (load-theme 'tango t)
-(load-theme 'jazz t)
-
-;; Remove some of the window "chrome" like toolbars and scrollbars
-;; Functions take a number. Positive = enabled; Negative = disabled
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-
-;; Startup
-;; I like a nice, simple startup screen. The welcome screen isn't
-;; really that helpful
-(setq inhibit-startup-message t)
-(setq initial-scratch-message ";; Scratch buffer\n")
-
-;; Coding Style
-
-;; Sentences
-(setq sentence-end-double-space t)
-
-;; Line numbers
-;; Turn off line numbers
-;; Functions take a number. Positive = enabled; Negative = disabled
-(global-linum-mode -1)
-
-;; Indentation
-(setq-default indent-tabs-mode ())
-(setq-default tab-width 4)
-(setq-default tab-always-indent t)
-(electric-indent-mode 1)
-
-;; Searching
-;; Case insensitive searching, ain't nobody got time for
-;; case sensitivity!
-(setq completion-ignore-case                t
-      read-file-name-completion-ignore-case t)
-
-;; Yes or no
-(fset 'yes-or-no-p 'y-or-n-p)
-
-;; Don't warn
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
+                         ))
 
 ;; Key Bindings
-;; Quick align-regexp bind, as well as an easy
-;; insert date one.
 (global-set-key (kbd "C-c \\") 'align-regexp)
 (global-set-key (kbd "C-c d")  'insert-date)
 (global-set-key (kbd "C-c b")  'bs-show)
 (global-set-key (kbd "C-c gs") 'magit-status)
 (global-set-key (kbd "C-c j")  'join-line)
 (global-set-key (kbd "C-c k")  'kill-whole-line)
+(global-set-key (kbd "C-c ;") 'endless/comment-line)
+(global-set-key (kbd "C-c <up>") 'text-scale-increase)
+(global-set-key (kbd "C-c <down>") 'text-scale-decrease)
 (global-set-key (kbd "<C-return>") 'open-line-below)
 (global-set-key (kbd "<C-S-return>") 'open-line-above)
 
-(setq backup-directory-alist '(("." . "~/.emacs.d/backups/")))
-
 ;; ================= Packages
-
-(unless (fboundp 'hungry-delete-mode)
-  (package-install 'hungry-delete))
-
-(unless (fboundp 'yas-minor-mode)
-  (package-install 'yasnippet))
-
-;; (require 'evil)
-;; (require 'surround)
-;; (evil-mode 1)
 
 ;; YaSnippet
 (require 'yasnippet)
@@ -187,15 +176,9 @@
 ;; Dired
 ;;(define-key dired-mode-map (kbd "Z") 'dired-get-size)
 
-;; Hydra
-(require 'cl) ;; Needed for now...
-(require 'hydra)
-(setq hydra-is-helpful t)
-(hydra-create "<f2>"
- '(("g" text-scale-increase)
-   ("l" text-scale-decrease)
-   ("p" package-list-packages)
-   (";" endless/comment-line)))
+;; Discover
+(require 'discover)
+(global-discover-mode 1)
 
 ;; Show battery percentage
 (display-battery-mode +1)
