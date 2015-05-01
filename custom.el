@@ -10,7 +10,8 @@
      (output-dvi "xdvi")
      (output-pdf "xdg-open")
      (output-html "xdg-open"))))
- '(ring-bell-function (quote ignore) t))
+ '(ring-bell-function (quote ignore) t)
+ '(url-cookie-untrusted-urls (quote (".*"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

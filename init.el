@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-02-24 11:52:31 ndegruchy>
+;; Time-stamp: <2015-05-01 12:13:59 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -14,7 +14,8 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 ;; Color Scheme
-(load-theme 'jazz t)
+;; (load-theme 'jazz t)
+(load-theme 'tango t)
 
 ;; Quiet, please
 (custom-set-variables '(ring-bell-function 'ignore))
@@ -99,8 +100,14 @@
 (global-set-key (kbd "C-c <down>") 'text-scale-decrease)
 (global-set-key (kbd "<C-return>") 'open-line-below)
 (global-set-key (kbd "<C-S-return>") 'open-line-above)
+(global-set-key (kbd "C-c l") 'ndegruchy-select-current-line)
+(global-set-key (kbd "C-c q") 'ndegruchy-select-text-in-quote)
+(global-set-key (kbd "C-c w") 'mark-word)
 
 ;; ================= Packages
+
+;; Electric Pair Mode
+(electric-pair-mode 1)
 
 ;; YaSnippet
 (require 'yasnippet)
@@ -318,6 +325,86 @@ With negative prefix, apply to -N lines above."
    (goto-char (line-end-position n)))
   (forward-line 1)
   (back-to-indentation))
+
+(defun ndegruchy-title-case-region-or-line (φp1 φp2)
+  "Title case text between nearest brackets, or current line, or text selection.
+Capitalize first letter of each word, except words like {to, of, the, a, in, or, and, …}. If a word already contains cap letters such as HTTP, URL, they are left as is.
+
+When called in a elisp program, φp1 φp2 are region boundaries.
+URL `http://ergoemacs.org/emacs/elisp_title_case_text.html'
+Version 2015-04-08"
+  (interactive
+   (if (use-region-p)
+       (list (region-beginning) (region-end))
+     (let (
+           ξp1
+           ξp2
+           (ξskipChars "^\"<>(){}[]“”‘’‹›«»「」『』【】〖〗《》〈〉〔〕"))
+       (progn
+         (skip-chars-backward ξskipChars (line-beginning-position))
+         (setq ξp1 (point))
+         (skip-chars-forward ξskipChars (line-end-position))
+         (setq ξp2 (point)))
+       (list ξp1 ξp2))))
+  (let* (
+         (ξstrPairs [
+                     [" A " " a "]
+                     [" And " " and "]
+                     [" At " " at "]
+                     [" As " " as "]
+                     [" By " " by "]
+                     [" Be " " be "]
+                     [" Into " " into "]
+                     [" In " " in "]
+                     [" Is " " is "]
+                     [" It " " it "]
+                     [" For " " for "]
+                     [" Of " " of "]
+                     [" Or " " or "]
+                     [" On " " on "]
+                     [" The " " the "]
+                     [" That " " that "]
+                     [" To " " to "]
+                     [" Vs " " vs "]
+                     [" With " " with "]
+                     [" From " " from "]
+                     ["'S " "'s "]
+                     ]))
+    (save-restriction
+      (narrow-to-region φp1 φp2)
+      (upcase-initials-region (point-min) (point-max))
+      (let ((case-fold-search nil))
+        (mapc
+         (lambda (ξx)
+           (goto-char (point-min))
+           (while
+               (search-forward (aref ξx 0) nil t)
+             (replace-match (aref ξx 1) 'FIXEDCASE 'LITERAL)))
+         ξstrPairs)))))
+
+(defun ndegruchy-select-text-in-quote ()
+  "Select text between the nearest left and right delimiters.
+Delimiters are paired characters: () [] {} <> «» ‹› “” ‘’ 「」 【】《》〈〉〔〕（）, including \"\".
+
+URL `http://ergoemacs.org/emacs/modernization_mark-word.html'
+version 2015-02-07
+"
+  (interactive)
+  (let (p1 p2)
+    (skip-chars-backward "^<>(“{[«‹「【《〈〔（\"‘")
+    (setq p1 (point))
+    (skip-chars-forward "^<>)”}]»›」】》〉〕）\"’")
+    (setq p2 (point))
+    (set-mark p1)))
+
+(defun ndegruchy-select-current-line ()
+  "Select current line.
+URL `http://ergoemacs.org/emacs/modernization_mark-word.html'
+Version 2015-02-07
+"
+  (interactive)
+  (end-of-line)
+  (set-mark (line-beginning-position)))
 
 (defun unix-file ()
       "Change the current buffer to Latin 1 with Unix line-ends."
