@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-05-01 12:13:59 ndegruchy>
+;; Time-stamp: <2015-05-04 14:31:59 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -325,6 +325,16 @@ With negative prefix, apply to -N lines above."
    (goto-char (line-end-position n)))
   (forward-line 1)
   (back-to-indentation))
+
+(defun my-asciify-string (string)
+"Convert STRING to ASCII string.
+For example:
+“passé” becomes “passe”"
+;; Code originally by Teemu Likonen
+  (with-temp-buffer
+    (insert string)
+    (call-process-region (point-min) (point-max) "iconv" t t nil "--to-code=ASCII//TRANSLIT")
+    (buffer-substring-no-properties (point-min) (point-max))))
 
 (defun ndegruchy-title-case-region-or-line (φp1 φp2)
   "Title case text between nearest brackets, or current line, or text selection.
