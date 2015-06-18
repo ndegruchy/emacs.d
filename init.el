@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-05-04 14:31:59 ndegruchy>
+;; Time-stamp: <2015-06-14 22:34:54 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -34,17 +34,15 @@
       visible-bell                          nil
       sentance-end-double-space             t
       completion-ignore-case                t
-      read-file-name-completion-ignore-case t)
-
-;; Since I use FISH as my preferred shell, I have to
-;; have Emacs parse the $PATH in a different way
-;;(exec-path-from-shell-initialize)
+      read-file-name-completion-ignore-case t
+      initial-major-mode                    (quote text-mode))
 
 ;; GUI Features
 
 ;; Font
 ;; My preferred font is Source Code Pro
 (set-face-attribute 'default nil :family "Source Code Pro" :height 140)
+(set-frame-font "Source Code Pro-14")
 (global-font-lock-mode +1)
 
 ;; Delete/Overwrite Selection
@@ -103,8 +101,18 @@
 (global-set-key (kbd "C-c l") 'ndegruchy-select-current-line)
 (global-set-key (kbd "C-c q") 'ndegruchy-select-text-in-quote)
 (global-set-key (kbd "C-c w") 'mark-word)
+(global-set-key (kbd "C-c C-n") 'xah-new-empty-buffer)
+(global-set-key (kbd "M-/") 'hippie-expand)
 
 ;; ================= Packages
+
+;; Since I use FISH as my preferred shell, I have to
+;; have Emacs parse the $PATH in a different way
+(exec-path-from-shell-initialize)
+
+(autoload 'zap-up-to-char "misc"
+  "Kill up to, but not including ARGth occurrence of CHAR." t)
+(global-set-key (kbd "M-z") 'zap-up-to-char)
 
 ;; Electric Pair Mode
 (electric-pair-mode 1)
@@ -294,6 +302,49 @@ that line and setting the indent properly"
 
 (add-to-list 'find-file-not-found-functions #'my-create-non-existent-directory)
 
+;; Open file in preferred app
+(defun xah-open-in-external-app ()
+  "Open the current file or dired marked files in external app.
+The app is chosen from your OS's preference.
+
+Version 2015-01-26
+URL `http://ergoemacs.org/emacs/emacs_dired_open_file_in_ext_apps.html'"
+  (interactive)
+  (let* (
+         (ξfile-list
+          (if (string-equal major-mode "dired-mode")
+              (dired-get-marked-files)
+            (list (buffer-file-name))))
+         (ξdo-it-p (if (<= (length ξfile-list) 5)
+                       t
+                     (y-or-n-p "Open more than 5 files? "))))
+
+    (when ξdo-it-p
+      (cond
+       ((string-equal system-type "windows-nt")
+        (mapc
+         (lambda (fPath)
+           (w32-shell-execute "open" (replace-regexp-in-string "/" "\\" fPath t t))) ξfile-list))
+       ((string-equal system-type "darwin")
+        (mapc
+         (lambda (fPath) (shell-command (format "open \"%s\"" fPath)))  ξfile-list))
+       ((string-equal system-type "gnu/linux")
+        (mapc
+         (lambda (fPath) (let ((process-connection-type nil)) (start-process "" nil "xdg-open" fPath))) ξfile-list))))))
+
+;; Open in file manager
+(defun xah-open-in-desktop ()
+  "Show current file in desktop (OS's file manager)."
+  (interactive)
+  (cond
+   ((string-equal system-type "windows-nt")
+    (w32-shell-execute "explore" (replace-regexp-in-string "/" "\\" default-directory t t)))
+   ((string-equal system-type "darwin") (shell-command "open ."))
+   ((string-equal system-type "gnu/linux")
+    (let ((process-connection-type nil)) (start-process "" nil "xdg-open" "."))
+    ;; (shell-command "xdg-open .") ;; 2013-02-10 this sometimes froze emacs till the folder is closed. ⁖ with nautilus
+    ) ))
+
 ;; Autocorrect word
 
 (define-key ctl-x-map "\C-i" 'endless/ispell-word-then-abbrev)
@@ -416,6 +467,14 @@ Version 2015-02-07
   (end-of-line)
   (set-mark (line-beginning-position)))
 
+(defun turn-off-mouse (&optional frame)
+  (interactive)
+  (shell-command "xinput --disable \"AlpsPS\/2 ALPS DualPoint TouchPad\""))
+
+(defun turn-on-mouse (&optional frame)
+  (interactive)
+  (shell-command "xinput --enable \"AlpsPS\/2 ALPS DualPoint TouchPad\""))
+
 (defun unix-file ()
       "Change the current buffer to Latin 1 with Unix line-ends."
       (interactive)
@@ -431,8 +490,22 @@ Version 2015-02-07
       (interactive)
       (set-buffer-file-coding-system 'iso-latin-1-mac t))
 
+(defun xah-new-empty-buffer ()
+  "Open a new empty buffer.
+URL `http://ergoemacs.org/emacs/emacs_new_empty_buffer.html'
+Version 2015-06-12"
+  (interactive)
+  (let ((ξbuf (generate-new-buffer "untitled")))
+    (switch-to-buffer ξbuf)
+    (funcall (and initial-major-mode))
+    (setq buffer-offer-save t)))
+
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
+
+;; (add-hook 'focus-in-hook #'turn-off-mouse)
+;; (add-hook 'focus-out-hook #'turn-on-mouse)
+;; (add-hook 'delete-frame-functions #'turn-on-mouse)
 
 ;; Before saving
 (add-hook 'before-save-hook 'time-stamp)
