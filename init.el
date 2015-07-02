@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-06-14 22:34:54 ndegruchy>
+;; Time-stamp: <2015-06-30 15:17:35 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -103,6 +103,9 @@
 (global-set-key (kbd "C-c w") 'mark-word)
 (global-set-key (kbd "C-c C-n") 'xah-new-empty-buffer)
 (global-set-key (kbd "M-/") 'hippie-expand)
+;; Unbind Pesky Sleep Button
+(global-unset-key [(control z)])
+(global-unset-key [(control x)(control z)])
 
 ;; ================= Packages
 
