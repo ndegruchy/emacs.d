@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-03 11:19:58 ndegruchy>
+;; Time-stamp: <2015-07-03 11:25:58 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -265,6 +265,7 @@
 ;; Rainbow Mode
 (use-package rainbow-mode
   :ensure t
+  :diminish rainbow-delimiters-mode
   :config
   (dolist (hook '(css-mode-hook html-mode-hook sass-mode-hook))
     (add-hook hook 'rainbow-mode)))
@@ -272,10 +273,9 @@
 ;; Rainbow Delimiter mode
 (use-package rainbow-delimiters
   :ensure t
-  :diminish rainbow-delimiters-mode
   :config
-  (dolist (hook '(lisp-mode))
-    (add-hook hook 'rainbow-delimiters-mode)))
+  (add-hook 'lisp-mode  'rainbow-delimiters-mode)
+  (add-hook 'elisp-mode 'rainbow-delimiters-mode)
 
 ;; Smex
 (use-package smex
