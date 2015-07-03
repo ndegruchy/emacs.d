@@ -275,7 +275,6 @@
 ;; Rainbow Mode
 (use-package rainbow-mode
   :ensure t
-  :diminish rainbow-delimiters-mode
   :config
   (dolist (hook '(css-mode-hook html-mode-hook sass-mode-hook))
     (add-hook hook 'rainbow-mode)))
@@ -283,6 +282,7 @@
 ;; Rainbow Delimiter mode
 (use-package rainbow-delimiters
   :ensure t
+  :diminish rainbow-delimiters-mode
   :config
   (add-hook 'lisp-mode  'rainbow-delimiters-mode)
   (add-hook 'elisp-mode 'rainbow-delimiters-mode))
