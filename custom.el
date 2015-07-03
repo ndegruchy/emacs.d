@@ -10,6 +10,7 @@
      (output-dvi "xdvi")
      (output-pdf "xdg-open")
      (output-html "xdg-open"))))
+ '(magit-commit-arguments (quote ("--gpg-sign=nathan@degruchy.org")))
  '(ring-bell-function (quote ignore) t)
  '(url-cookie-untrusted-urls (quote (".*"))))
 (custom-set-faces
