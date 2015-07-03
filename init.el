@@ -78,11 +78,17 @@
 
 (require 'package)
 (package-initialize)
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(require 'use-package)
 
 ;; I like having more choices than the in-built GNU repo
 (setq package-archives '(("gnu"         . "http://elpa.gnu.org/packages/")
-                         ("marmalade"   . "https://marmalade-repo.org/packages/")
                          ("melpa"       . "http://stable.melpa.org/packages/")
+                         ("marmalade"   . "https://marmalade-repo.org/packages/")
                          ("org"         . "http://orgmode.org/elpa/")
                          ))
 
