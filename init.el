@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-06-30 15:17:35 ndegruchy>
+;; Time-stamp: <2015-07-02 20:36:59 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -109,9 +109,85 @@
 
 ;; ================= Packages
 
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)                ;; if you use :diminish
+(require 'bind-key)                ;; if you use any :bind variant
+
+(use-package async)
+;;(use-package auctex
+;;  :ensure t
+;;  :pin gnu)
+(use-package tex-site
+  :ensure auctex)
+(use-package browse-kill-ring
+  :ensure t)
+(use-package caps-lock
+  :ensure t)
+(use-package coffee-mode
+  :ensure t)
+(use-package csv-mode
+  :ensure t)
+(use-package dash
+  :ensure t)
+(use-package abbrev
+  :diminish abbrev-mode
+  :config
+  (if (file-exists-p abbrev-file-name)
+      (quietly-read-abbrev-file)))
+(use-package git-commit
+  :ensure t)
+(use-package goto-chg
+  :ensure t)
+(use-package graphviz-dot-mode
+  :ensure t)
+(use-package haml-mode
+  :ensure t)
+(use-package hydra
+  :ensure t)
+(use-package json-mode
+  :ensure t)
+(use-package let-alist
+  :ensure t)
+(use-package magit
+  :ensure t)
+(use-package magit-find-file
+  :ensure t)
+(use-package magit-gitflow
+  :ensure t)
+(use-package magit-popup
+  :ensure t)
+(use-package makey
+  :ensure t)
+(use-package pandoc-mode
+  :ensure t)
+(use-package paredit
+  :ensure t)
+(use-package php-mode
+  :ensure t)
+(use-package pkg-info
+  :ensure t)
+(use-package s
+  :ensure t)
+(use-package sass-mode
+  :ensure t)
+(use-package scss-mode
+  :ensure t)
+(use-package smartparens
+  :ensure t)
+(use-package systemd
+  :ensure t)
+(use-package with-editor
+  :ensure t)
+(use-package yaml-mode
+  :ensure t)
+
 ;; Since I use FISH as my preferred shell, I have to
 ;; have Emacs parse the $PATH in a different way
-(exec-path-from-shell-initialize)
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
 
 (autoload 'zap-up-to-char "misc"
   "Kill up to, but not including ARGth occurrence of CHAR." t)
@@ -121,12 +197,16 @@
 (electric-pair-mode 1)
 
 ;; YaSnippet
-(require 'yasnippet)
-(yas-global-mode 1)
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode 1))
 
 ;; Hungry like the woooolllffff
-(require 'hungry-delete)
-(global-hungry-delete-mode)
+(use-package hungry-delete
+  :ensure t
+  :config
+  (global-hungry-delete-mode))
 
 ;; IDO
 (require 'ido)
@@ -136,12 +216,16 @@
 (setq ido-file-extensions-order '(".org" ".html" ".php" ".tex" ".el" ".js" ".coffee"))
 
 ;; Emmet
-(add-hook 'sgml-mode-hook 'emmet-mode)
-(add-hook 'web-mode-hook  'emmet-mode)
-(add-hook 'css-mode-hook  'emmet-mode)
-(add-hook 'sgml-mode-hook 'toggle-truncate-lines)
-(add-hook 'web-mode-hook  'toggle-truncate-lines)
-(add-hook 'php-mode-hook  'toggle-truncate-lines)
+(use-package emmet-mode
+  :ensure t
+  :config
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  (add-hook 'web-mode-hook  'emmet-mode)
+  (add-hook 'css-mode-hook  'emmet-mode)
+  (add-hook 'sgml-mode-hook 'toggle-truncate-lines)
+  (add-hook 'web-mode-hook  'toggle-truncate-lines)
+  (add-hook 'php-mode-hook  'toggle-truncate-lines))
+
 
 ;; JavaScript
 (autoload 'js2-mode "js2" nil t)
@@ -158,12 +242,16 @@
 (setq org-support-shift-select t)
 
 ;; Markdown
-(add-hook 'markdown-mode-hook 'flyspell-mode)
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(use-package markdown-mode
+  :ensure t
+  :config
+  (add-hook 'markdown-mode-hook 'flyspell-mode)
+  (autoload 'markdown-mode "markdown-mode"
+    "Major mode for editing Markdown files" t)
+  (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+
 
 ;; Uniquify
 (require 'uniquify)
@@ -173,30 +261,39 @@
 (setq uniquify-ignore-buffers-re "^\\*")
 
 ;; Rainbow Mode
-(dolist (hook '(css-mode-hook html-mode-hook sass-mode-hook))
-  (add-hook hook 'rainbow-mode))
+(use-package rainbow-mode
+  :ensure t
+  :config
+  (dolist (hook '(css-mode-hook html-mode-hook sass-mode-hook))
+    (add-hook hook 'rainbow-mode)))
 
 ;; Rainbow Delimiter mode
-(dolist (hook '(lisp-mode))
-  (add-hook hook 'rainbow-delimiters-mode))
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (dolist (hook '(lisp-mode))
+    (add-hook hook 'rainbow-delimiters-mode)))
 
 ;; Smex
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-;; This is your old M-x.
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+(use-package smex
+  :ensure t
+  :bind (("M-x" . smex)
+         ("M-X" . smex-major-mode-commands)
+         ("C-c C-c M-x" . execute-extended-command)))
 
 ;; Expand Region
-(require 'expand-region)
-;; (global-set-key (kbd "C-@") 'er/expand-region)
-(global-set-key (kbd "M-+") 'er/expand-region)
+(use-package expand-region
+  :ensure t
+  :bind ("M-+" . er/expand-region))
 
 ;; Dired
 ;;(define-key dired-mode-map (kbd "Z") 'dired-get-size)
 
 ;; Discover
-(require 'discover)
-(global-discover-mode 1)
+(use-package discover
+  :ensure t
+  :config
+  (global-discover-mode 1))
 
 ;; Show battery percentage
 (display-battery-mode +1)
