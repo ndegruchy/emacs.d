@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-03 11:25:58 ndegruchy>
+;; Time-stamp: <2015-07-03 11:35:10 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -90,7 +90,6 @@
 (global-set-key (kbd "C-c \\") 'align-regexp)
 (global-set-key (kbd "C-c d")  'insert-date)
 (global-set-key (kbd "C-c b")  'bs-show)
-(global-set-key (kbd "C-c gs") 'magit-status)
 (global-set-key (kbd "C-c j")  'join-line)
 (global-set-key (kbd "C-c k")  'kill-whole-line)
 (global-set-key (kbd "C-c ;") 'endless/comment-line)
@@ -151,7 +150,8 @@
 (use-package let-alist
   :ensure t)
 (use-package magit
-  :ensure t)
+  :ensure t
+  :bind ("C-c gs" . magit-status))
 (use-package magit-find-file
   :ensure t)
 (use-package magit-gitflow
