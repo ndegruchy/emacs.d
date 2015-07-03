@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-03 00:09:49 ndegruchy>
+;; Time-stamp: <2015-07-03 11:19:58 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -272,6 +272,7 @@
 ;; Rainbow Delimiter mode
 (use-package rainbow-delimiters
   :ensure t
+  :diminish rainbow-delimiters-mode
   :config
   (dolist (hook '(lisp-mode))
     (add-hook hook 'rainbow-delimiters-mode)))
