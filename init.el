@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-02 23:58:10 ndegruchy>
+;; Time-stamp: <2015-07-03 00:09:49 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -103,6 +103,7 @@
 (global-set-key (kbd "C-c w") 'mark-word)
 (global-set-key (kbd "C-c C-n") 'xah-new-empty-buffer)
 (global-set-key (kbd "M-/") 'hippie-expand)
+(global-set-key (kbd "C-c C-d") 'ndegruchy-duplicate-line)
 ;; Unbind Pesky Sleep Button
 (global-unset-key [(control z)])
 (global-unset-key [(control x)(control z)])
@@ -600,6 +601,16 @@ Version 2015-06-12"
     (switch-to-buffer ξbuf)
     (funcall (and initial-major-mode))
     (setq buffer-offer-save t)))
+
+(defun ndegruchy-duplicate-line()
+  "Taken from `http://stackoverflow.com/a/88828'"
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
