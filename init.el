@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-02 20:36:59 ndegruchy>
+;; Time-stamp: <2015-07-02 23:58:10 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -111,8 +111,8 @@
 
 (eval-when-compile
   (require 'use-package))
-(require 'diminish)                ;; if you use :diminish
-(require 'bind-key)                ;; if you use any :bind variant
+(require 'diminish)
+(require 'bind-key)
 
 (use-package async)
 ;;(use-package auctex
@@ -199,6 +199,7 @@
 ;; YaSnippet
 (use-package yasnippet
   :ensure t
+  :diminish yas
   :config
   (yas-global-mode 1))
 
