@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-03 11:35:10 ndegruchy>
+;; Time-stamp: <2015-07-03 19:18:40 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -11,11 +11,11 @@
 (add-to-list 'default-frame-alist '(height . 24))
 
 ;; Custom theme "Jazz"
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 ;; Color Scheme
 ;; (load-theme 'jazz t)
-(load-theme 'tango t)
+;; (load-theme 'tango t)
 
 ;; Quiet, please
 (custom-set-variables '(ring-bell-function 'ignore))
@@ -125,6 +125,10 @@
         '((goto-chg . "marmalade"))))
 
 (use-package async)
+(use-package atom-one-dark-theme
+  :ensure t
+  :config
+  (load-theme 'atom-one-dark t))
 ;;(use-package auctex
 ;;  :ensure t
 ;;  :pin gnu)
