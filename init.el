@@ -77,20 +77,20 @@
 ;; Setup Emacs Package Management System
 
 (require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/"))
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
 (require 'use-package)
-
-;; I like having more choices than the in-built GNU repo
-(setq package-archives '(("gnu"         . "http://elpa.gnu.org/packages/")
-                         ("melpa"       . "http://stable.melpa.org/packages/")
-                         ("marmalade"   . "https://marmalade-repo.org/packages/")
-                         ("org"         . "http://orgmode.org/elpa/")
-                         ))
 
 ;; Key Bindings
 (global-set-key (kbd "C-c \\") 'align-regexp)
