@@ -275,7 +275,7 @@
   :ensure t
   :config
   (add-hook 'lisp-mode  'rainbow-delimiters-mode)
-  (add-hook 'elisp-mode 'rainbow-delimiters-mode)
+  (add-hook 'elisp-mode 'rainbow-delimiters-mode))
 
 ;; Smex
 (use-package smex
