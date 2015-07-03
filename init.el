@@ -114,6 +114,10 @@
 (require 'diminish)
 (require 'bind-key)
 
+(when (boundp 'package-pinned-packages)
+  (setq package-pinned-packages
+        '((goto-chg . "marmalade"))))
+
 (use-package async)
 ;;(use-package auctex
 ;;  :ensure t
@@ -151,7 +155,7 @@
   :ensure t)
 (use-package magit
   :ensure t
-  :bind ("C-c gs" . magit-status))
+  :bind ("C-c C-c g s" . magit-status))
 (use-package magit-find-file
   :ensure t)
 (use-package magit-gitflow
