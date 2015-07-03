@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-03 19:18:40 ndegruchy>
+;; Time-stamp: <2015-07-03 19:27:55 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -76,20 +76,34 @@
 
 ;; Setup Emacs Package Management System
 
+;; Package management on
 (require 'package)
+
+;; Make MELPA the default and only
+;; TODO: Add orgmode?
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/"))
+
+;; If we're running less than emacs 24, load the gnu archives as well
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+
+;; Start package system
 (package-initialize)
+
+;; Refresh package contents, so that we don't get the errors of things
+;; not being available. This only happens when we haven't loaded the
+;; package list before
 (unless package-archive-contents
   (package-refresh-contents))
+
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
+;; Start `use-package' for later
 (require 'use-package)
 
 ;; Key Bindings
@@ -119,10 +133,6 @@
   (require 'use-package))
 (require 'diminish)
 (require 'bind-key)
-
-(when (boundp 'package-pinned-packages)
-  (setq package-pinned-packages
-        '((goto-chg . "marmalade"))))
 
 (use-package async)
 (use-package atom-one-dark-theme
@@ -204,9 +214,13 @@
   :config
   (exec-path-from-shell-initialize))
 
-(autoload 'zap-up-to-char "misc"
-  "Kill up to, but not including ARGth occurrence of CHAR." t)
-(global-set-key (kbd "M-z") 'zap-up-to-char)
+(use-package zap-up-to-char
+  :ensure t
+  :bind ("M-z" . zap-up-to-char))
+
+;; (autoload 'zap-up-to-char "misc"
+;;   "Kill up to, but not including ARGth occurrence of CHAR." t)
+;; (global-set-key (kbd "M-z") 'zap-up-to-char)
 
 ;; Electric Pair Mode
 (electric-pair-mode 1)
@@ -225,11 +239,19 @@
   (global-hungry-delete-mode))
 
 ;; IDO
-(require 'ido)
-(ido-mode +1)
-(setq ido-enable-flex-matching +1)
-(setq ido-everywhere +1)
-(setq ido-file-extensions-order '(".org" ".html" ".php" ".tex" ".el" ".js" ".coffee"))
+(use-package ido
+  :ensure t
+  :config
+  (ido-mode +1)
+  (setq ido-enable-flex-matching +1)
+  (setq ido-everywhere +1)
+  (setq ido-file-extensions-order '(".org" ".html" ".php" ".tex" ".el" ".js" ".coffee")))
+
+;; (require 'ido)
+;; (ido-mode +1)
+;; (setq ido-enable-flex-matching +1)
+;; (setq ido-everywhere +1)
+;; (setq ido-file-extensions-order '(".org" ".html" ".php" ".tex" ".el" ".js" ".coffee"))
 
 ;; Emmet
 (use-package emmet-mode
