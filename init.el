@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-03 19:27:55 ndegruchy>
+;; Time-stamp: <2015-07-03 20:50:01 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -139,9 +139,6 @@
   :ensure t
   :config
   (load-theme 'atom-one-dark t))
-;;(use-package auctex
-;;  :ensure t
-;;  :pin gnu)
 (use-package tex-site
   :ensure auctex)
 (use-package browse-kill-ring
@@ -214,13 +211,11 @@
   :config
   (exec-path-from-shell-initialize))
 
-(use-package zap-up-to-char
-  :ensure t
-  :bind ("M-z" . zap-up-to-char))
 
-;; (autoload 'zap-up-to-char "misc"
-;;   "Kill up to, but not including ARGth occurrence of CHAR." t)
-;; (global-set-key (kbd "M-z") 'zap-up-to-char)
+;; Zap to char -- like vim's `d t <foo>'
+(autoload 'zap-up-to-char "misc"
+  "Kill up to, but not including ARGth occurrence of CHAR." t)
+(global-set-key (kbd "M-z") 'zap-up-to-char)
 
 ;; Electric Pair Mode
 (electric-pair-mode 1)
@@ -247,12 +242,6 @@
   (setq ido-everywhere +1)
   (setq ido-file-extensions-order '(".org" ".html" ".php" ".tex" ".el" ".js" ".coffee")))
 
-;; (require 'ido)
-;; (ido-mode +1)
-;; (setq ido-enable-flex-matching +1)
-;; (setq ido-everywhere +1)
-;; (setq ido-file-extensions-order '(".org" ".html" ".php" ".tex" ".el" ".js" ".coffee"))
-
 ;; Emmet
 (use-package emmet-mode
   :ensure t
@@ -266,8 +255,8 @@
 
 
 ;; JavaScript
-(autoload 'js2-mode "js2" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+;; (autoload 'js2-mode "js2" nil t)
+;; (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;; Org Mode
 (require 'org-mouse)
@@ -310,8 +299,8 @@
   :ensure t
   :diminish rainbow-delimiters-mode
   :config
-  (add-hook 'lisp-mode  'rainbow-delimiters-mode)
-  (add-hook 'elisp-mode 'rainbow-delimiters-mode))
+  (add-hook 'lisp-mode       'rainbow-delimiters-mode)
+  (add-hook 'emacs-lisp-mode 'rainbow-delimiters-mode))
 
 ;; Smex
 (use-package smex
