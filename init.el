@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-03 20:50:01 ndegruchy>
+;; Time-stamp: <2015-07-03 20:59:41 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -138,7 +138,8 @@
 (use-package atom-one-dark-theme
   :ensure t
   :config
-  (load-theme 'atom-one-dark t))
+  (load-theme 'atom-one-dark t)
+  '(region ((t (:background "grey70" :foreground "black")))))
 (use-package tex-site
   :ensure auctex)
 (use-package browse-kill-ring
