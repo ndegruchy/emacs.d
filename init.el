@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-05 16:36:37 ndegruchy>
+;; Time-stamp: <2015-07-08 10:43:36 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -9,13 +9,6 @@
 ;; Window Geometry
 (add-to-list 'default-frame-alist '(width  . 80))
 (add-to-list 'default-frame-alist '(height . 24))
-
-;; Custom theme "Jazz"
-;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-
-;; Color Scheme
-;; (load-theme 'jazz t)
-;; (load-theme 'tango t)
 
 ;; Quiet, please
 (custom-set-variables '(ring-bell-function 'ignore))
