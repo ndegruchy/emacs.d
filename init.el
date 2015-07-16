@@ -142,6 +142,8 @@
   :ensure t)
 (use-package csv-mode
   :ensure t)
+(use-package cl
+  :ensure t)
 (use-package dash
   :ensure t)
 (use-package abbrev
@@ -174,8 +176,8 @@
   :ensure t)
 (use-package makey
   :ensure t)
-(use-package pandoc-mode
-  :ensure t)
+;; (use-package pandoc-mode
+;;   :ensure t)
 (use-package paredit
   :ensure t)
 (use-package php-mode
