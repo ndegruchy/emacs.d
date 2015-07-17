@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-08 10:43:36 ndegruchy>
+;; Time-stamp: <2015-07-16 21:41:39 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -167,7 +167,7 @@
   :ensure t)
 (use-package magit
   :ensure t
-  :bind ("C-c C-c g s" . magit-status))
+  :bind ("C-c g s" . magit-status))
 (use-package magit-find-file
   :ensure t)
 (use-package magit-gitflow
