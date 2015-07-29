@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-28 20:24:40 ndegruchy>
+;; Time-stamp: <2015-07-28 22:47:30 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -132,6 +132,8 @@
   :ensure t
   :config
   (load-theme 'atom-one-dark t))
+(use-package bs
+  :ensure t)
 (use-package tex-site
   :ensure auctex)
 (use-package browse-kill-ring
@@ -156,7 +158,10 @@
   :config
   (global-evil-leader-mode)
   (evil-leader/set-leader ",")
-  (evil-leader/set-key "g s" 'magit-status))
+  (evil-leader/set-key
+    "b"   'bs-show
+    "g s" 'magit-status))
+
 (use-package evil
   :ensure t
   :config
@@ -182,6 +187,9 @@
   :ensure t
   :config
   (global-evil-surround-mode 1))
+(use-package undo-tree
+  :ensure t
+  :diminish undo-tree-mode)
 (use-package git-commit
   :ensure t)
 (use-package goto-chg
