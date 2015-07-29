@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-28 20:20:35 ndegruchy>
+;; Time-stamp: <2015-07-28 20:24:40 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -161,6 +161,7 @@
   :ensure t
   :config
   (evil-mode 1)
+  ;; Loop through a list of buffer modes to set their various states
   (loop for (mode . state) in '((shell-mode . insert)
                                 (eshell-mode . emacs)
                                 (git-commit-mode . insert)
@@ -206,8 +207,6 @@
   :ensure t)
 (use-package makey
   :ensure t)
-;; (use-package pandoc-mode
-;;   :ensure t)
 (use-package paredit
   :ensure t)
 (use-package php-mode
@@ -283,10 +282,6 @@
   (add-hook 'sgml-mode-hook 'toggle-truncate-lines)
   (add-hook 'web-mode-hook  'toggle-truncate-lines)
   (add-hook 'php-mode-hook  'toggle-truncate-lines))
-
-;; JavaScript
-;; (autoload 'js2-mode "js2" nil t)
-;; (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;; Org Mode
 (require 'org-mouse)
