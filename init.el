@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-16 21:41:39 ndegruchy>
+;; Time-stamp: <2015-07-28 20:20:35 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -151,6 +151,36 @@
   :config
   (if (file-exists-p abbrev-file-name)
       (quietly-read-abbrev-file)))
+(use-package evil-leader
+  :ensure t
+  :config
+  (global-evil-leader-mode)
+  (evil-leader/set-leader ",")
+  (evil-leader/set-key "g s" 'magit-status))
+(use-package evil
+  :ensure t
+  :config
+  (evil-mode 1)
+  (loop for (mode . state) in '((shell-mode . insert)
+                                (eshell-mode . emacs)
+                                (git-commit-mode . insert)
+                                (git-rebase-mode . emacs)
+                                (help-mode . emacs)
+                                (grep-mode . emacs)
+                                (bc-menu-mode . emacs)
+                                (bs-mode . emacs)
+                                (magit-branch-manager-mode . emacs)
+                                (dired-mode . emacs)
+                                (wdired-mode . normal))
+        do (evil-set-initial-state mode state)))
+(use-package evil-args
+  :ensure t)
+(use-package evil-numbers
+  :ensure t)
+(use-package evil-surround
+  :ensure t
+  :config
+  (global-evil-surround-mode 1))
 (use-package git-commit
   :ensure t)
 (use-package goto-chg
@@ -207,6 +237,12 @@
   (exec-path-from-shell-initialize))
 
 
+;; eshell
+(add-hook 'eshell-mode-hook
+          (lambda ()
+            (setenv "pager" "cat")
+            (setenv "editor" "emacsclient")))
+
 ;; Zap to char -- like vim's `d t <foo>'
 (autoload 'zap-up-to-char "misc"
   "Kill up to, but not including ARGth occurrence of CHAR." t)
@@ -247,7 +283,6 @@
   (add-hook 'sgml-mode-hook 'toggle-truncate-lines)
   (add-hook 'web-mode-hook  'toggle-truncate-lines)
   (add-hook 'php-mode-hook  'toggle-truncate-lines))
-
 
 ;; JavaScript
 ;; (autoload 'js2-mode "js2" nil t)
@@ -403,7 +438,7 @@ that line and setting the indent properly"
   (indent-for-tab-command))
 
 (defun open-line-above ()
-   "Inserts a line above the current line, moving the cursor to
+  "Inserts a line above the current line, moving the cursor to
 that line and setting the indent properly"
   (interactive)
   (beginning-of-line)
@@ -418,10 +453,10 @@ that line and setting the indent properly"
 
 ;; Create parent folder(s) when visiting a non-existant file
 (defun my-create-non-existent-directory ()
-      (let ((parent-directory (file-name-directory buffer-file-name)))
-        (when (and (not (file-exists-p parent-directory))
-                   (y-or-n-p (format "Directory `%s' does not exist! Create it?" parent-directory)))
-          (make-directory parent-directory t))))
+  (let ((parent-directory (file-name-directory buffer-file-name)))
+    (when (and (not (file-exists-p parent-directory))
+               (y-or-n-p (format "Directory `%s' does not exist! Create it?" parent-directory)))
+      (make-directory parent-directory t))))
 
 (add-to-list 'find-file-not-found-functions #'my-create-non-existent-directory)
 
@@ -501,10 +536,10 @@ With negative prefix, apply to -N lines above."
   (back-to-indentation))
 
 (defun my-asciify-string (string)
-"Convert STRING to ASCII string.
+  "Convert STRING to ASCII string.
 For example:
 “passé” becomes “passe”"
-;; Code originally by Teemu Likonen
+  ;; Code originally by Teemu Likonen
   (with-temp-buffer
     (insert string)
     (call-process-region (point-min) (point-max) "iconv" t t nil "--to-code=ASCII//TRANSLIT")
@@ -599,19 +634,19 @@ Version 2015-02-07
   (shell-command "xinput --enable \"AlpsPS\/2 ALPS DualPoint TouchPad\""))
 
 (defun unix-file ()
-      "Change the current buffer to Latin 1 with Unix line-ends."
-      (interactive)
-      (set-buffer-file-coding-system 'iso-latin-1-unix t))
+  "Change the current buffer to Latin 1 with Unix line-ends."
+  (interactive)
+  (set-buffer-file-coding-system 'iso-latin-1-unix t))
 
 (defun dos-file ()
-      "Change the current buffer to Latin 1 with DOS line-ends."
-      (interactive)
-      (set-buffer-file-coding-system 'iso-latin-1-dos t))
+  "Change the current buffer to Latin 1 with DOS line-ends."
+  (interactive)
+  (set-buffer-file-coding-system 'iso-latin-1-dos t))
 
 (defun mac-file ()
-      "Change the current buffer to Latin 1 with Mac line-ends."
-      (interactive)
-      (set-buffer-file-coding-system 'iso-latin-1-mac t))
+  "Change the current buffer to Latin 1 with Mac line-ends."
+  (interactive)
+  (set-buffer-file-coding-system 'iso-latin-1-mac t))
 
 (defun xah-new-empty-buffer ()
   "Open a new empty buffer.
