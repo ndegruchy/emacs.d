@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-28 22:47:30 ndegruchy>
+;; Time-stamp: <2015-07-28 23:30:12 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -627,14 +627,6 @@ Version 2015-02-07
   (interactive)
   (end-of-line)
   (set-mark (line-beginning-position)))
-
-(defun turn-off-mouse (&optional frame)
-  (interactive)
-  (shell-command "xinput --disable \"AlpsPS\/2 ALPS DualPoint TouchPad\""))
-
-(defun turn-on-mouse (&optional frame)
-  (interactive)
-  (shell-command "xinput --enable \"AlpsPS\/2 ALPS DualPoint TouchPad\""))
 
 (defun unix-file ()
   "Change the current buffer to Latin 1 with Unix line-ends."
