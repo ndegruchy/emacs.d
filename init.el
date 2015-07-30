@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-28 23:30:12 ndegruchy>
+;; Time-stamp: <2015-07-29 23:07:34 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -28,7 +28,8 @@
       sentance-end-double-space             t
       completion-ignore-case                t
       read-file-name-completion-ignore-case t
-      initial-major-mode                    (quote text-mode))
+      initial-major-mode                    (quote text-mode)
+      mouse-wheel-progressive-speed         nil)
 
 ;; GUI Features
 
@@ -187,6 +188,10 @@
   :ensure t
   :config
   (global-evil-surround-mode 1))
+(use-package evil-matchit
+  :ensure t
+  :config
+  (global-evil-matchit-mode 1))
 (use-package undo-tree
   :ensure t
   :diminish undo-tree-mode)
