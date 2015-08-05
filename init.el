@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-07-29 23:07:34 ndegruchy>
+;; Time-stamp: <2015-08-05 16:31:40 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -102,18 +102,18 @@
 
 ;; Key Bindings
 (global-set-key (kbd "C-c \\") 'align-regexp)
-(global-set-key (kbd "C-c d")  'insert-date)
-(global-set-key (kbd "C-c b")  'bs-show)
-(global-set-key (kbd "C-c j")  'join-line)
-(global-set-key (kbd "C-c k")  'kill-whole-line)
+;; (global-set-key (kbd "C-c d")  'insert-date)
+;; (global-set-key (kbd "C-c b")  'bs-show)
+;; (global-set-key (kbd "C-c j")  'join-line)
+;; (global-set-key (kbd "C-c k")  'kill-whole-line)
 (global-set-key (kbd "C-c ;") 'endless/comment-line)
 (global-set-key (kbd "C-c <up>") 'text-scale-increase)
 (global-set-key (kbd "C-c <down>") 'text-scale-decrease)
-(global-set-key (kbd "<C-return>") 'open-line-below)
-(global-set-key (kbd "<C-S-return>") 'open-line-above)
-(global-set-key (kbd "C-c l") 'ndegruchy-select-current-line)
-(global-set-key (kbd "C-c q") 'ndegruchy-select-text-in-quote)
-(global-set-key (kbd "C-c w") 'mark-word)
+;; (global-set-key (kbd "<C-return>") 'open-line-below)
+;; (global-set-key (kbd "<C-S-return>") 'open-line-above)
+;; (global-set-key (kbd "C-c l") 'ndegruchy-select-current-line)
+;; (global-set-key (kbd "C-c q") 'ndegruchy-select-text-in-quote)
+;; (global-set-key (kbd "C-c w") 'mark-word)
 (global-set-key (kbd "C-c C-n") 'xah-new-empty-buffer)
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-c C-d") 'ndegruchy-duplicate-line)
@@ -161,7 +161,8 @@
   (evil-leader/set-leader ",")
   (evil-leader/set-key
     "b"   'bs-show
-    "g s" 'magit-status))
+    "g s" 'magit-status
+    "d"   'insert-date))
 
 (use-package evil
   :ensure t
@@ -238,6 +239,17 @@
   :ensure t)
 (use-package with-editor
   :ensure t)
+(use-package web-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 (use-package yaml-mode
   :ensure t)
 
