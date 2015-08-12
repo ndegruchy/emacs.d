@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-11 21:35:29 ndegruchy>
+;; Time-stamp: <2015-08-12 17:50:02 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -679,6 +679,15 @@ Version 2015-06-12"
   (open-line 1)
   (next-line 1)
   (yank))
+
+(defun strip-smart-quotes (rStart rEnd)
+  "Replace smart quotes with plain quotes in text"
+  (interactive "r")
+  (save-restriction (narrow-to-region rStart rEnd)
+                    (goto-char (point-min))
+                    (while (re-search-forward "[“”]" nil t) (replace-match "\"" nil t))
+                    (goto-char (point-min))
+                    (while (re-search-forward "[‘’]" nil t) (replace-match "'" nil t)) 10: ))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
