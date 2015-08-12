@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-05 16:31:40 ndegruchy>
+;; Time-stamp: <2015-08-11 21:35:29 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -102,8 +102,8 @@
 
 ;; Key Bindings
 (global-set-key (kbd "C-c \\") 'align-regexp)
-;; (global-set-key (kbd "C-c d")  'insert-date)
-;; (global-set-key (kbd "C-c b")  'bs-show)
+(global-set-key (kbd "C-c d")  'insert-date)
+(global-set-key (kbd "C-c b")  'bs-show)
 ;; (global-set-key (kbd "C-c j")  'join-line)
 ;; (global-set-key (kbd "C-c k")  'kill-whole-line)
 (global-set-key (kbd "C-c ;") 'endless/comment-line)
