@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-12 17:50:02 ndegruchy>
+;; Time-stamp: <2015-08-12 22:38:40 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -687,7 +687,7 @@ Version 2015-06-12"
                     (goto-char (point-min))
                     (while (re-search-forward "[“”]" nil t) (replace-match "\"" nil t))
                     (goto-char (point-min))
-                    (while (re-search-forward "[‘’]" nil t) (replace-match "'" nil t)) 10: ))
+                    (while (re-search-forward "[‘’]" nil t) (replace-match "'" nil t))))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
