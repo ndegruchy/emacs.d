@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-12 22:38:40 ndegruchy>
+;; Time-stamp: <2015-08-13 08:54:28 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -35,15 +35,17 @@
 
 ;; Font
 ;; My preferred font is Source Code Pro
-(set-face-attribute 'default nil :family "Source Code Pro" :height 140)
-(set-frame-font "Source Code Pro-14")
+(set-face-attribute 'default nil :family "Source Code Pro" :height 130)
+(set-frame-font "Source Code Pro-13")
 (global-font-lock-mode +1)
+;; (load-theme 'misterioso t)
 
 ;; Delete/Overwrite Selection
 (delete-selection-mode t)
 
 ;; Remove some of the window "chrome" like toolbars and scrollbars
 (tool-bar-mode -1)
+(menu-bar-mode -1)
 (scroll-bar-mode -1)
 
 ;; Coding Style
@@ -129,10 +131,6 @@
 (require 'bind-key)
 
 (use-package async)
-(use-package atom-one-dark-theme
-  :ensure t
-  :config
-  (load-theme 'atom-one-dark t))
 (use-package bs
   :ensure t)
 (use-package tex-site
