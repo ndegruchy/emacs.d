@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-13 08:54:28 ndegruchy>
+;; Time-stamp: <2015-08-14 20:02:54 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -44,9 +44,9 @@
 (delete-selection-mode t)
 
 ;; Remove some of the window "chrome" like toolbars and scrollbars
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
+(tool-bar-mode    -1)
+(menu-bar-mode    -1)
+(scroll-bar-mode  -1)
 
 ;; Coding Style
 
@@ -106,16 +106,9 @@
 (global-set-key (kbd "C-c \\") 'align-regexp)
 (global-set-key (kbd "C-c d")  'insert-date)
 (global-set-key (kbd "C-c b")  'bs-show)
-;; (global-set-key (kbd "C-c j")  'join-line)
-;; (global-set-key (kbd "C-c k")  'kill-whole-line)
 (global-set-key (kbd "C-c ;") 'endless/comment-line)
 (global-set-key (kbd "C-c <up>") 'text-scale-increase)
 (global-set-key (kbd "C-c <down>") 'text-scale-decrease)
-;; (global-set-key (kbd "<C-return>") 'open-line-below)
-;; (global-set-key (kbd "<C-S-return>") 'open-line-above)
-;; (global-set-key (kbd "C-c l") 'ndegruchy-select-current-line)
-;; (global-set-key (kbd "C-c q") 'ndegruchy-select-text-in-quote)
-;; (global-set-key (kbd "C-c w") 'mark-word)
 (global-set-key (kbd "C-c C-n") 'xah-new-empty-buffer)
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-c C-d") 'ndegruchy-duplicate-line)
@@ -258,17 +251,11 @@
   :config
   (exec-path-from-shell-initialize))
 
-
 ;; eshell
 (add-hook 'eshell-mode-hook
           (lambda ()
             (setenv "pager" "cat")
             (setenv "editor" "emacsclient")))
-
-;; Zap to char -- like vim's `d t <foo>'
-(autoload 'zap-up-to-char "misc"
-  "Kill up to, but not including ARGth occurrence of CHAR." t)
-(global-set-key (kbd "M-z") 'zap-up-to-char)
 
 ;; Electric Pair Mode
 (electric-pair-mode 1)
@@ -280,11 +267,12 @@
   :config
   (yas-global-mode 1))
 
-;; Hungry like the woooolllffff
-(use-package hungry-delete
-  :ensure t
-  :config
-  (global-hungry-delete-mode))
+;; ;; Hungry like the woooolllffff
+;; Not sure I need this with Evil mode...
+;; (use-package hungry-delete
+;;   :ensure t
+;;   :config
+;;   (global-hungry-delete-mode))
 
 ;; IDO
 (use-package ido
