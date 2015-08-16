@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-14 20:02:54 ndegruchy>
+;; Time-stamp: <2015-08-16 12:29:17 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -153,7 +153,8 @@
   (evil-leader/set-key
     "b"   'bs-show
     "g s" 'magit-status
-    "d"   'insert-date))
+    "d"   'insert-date
+    "w g" 'writegood-mode))
 
 (use-package evil
   :ensure t
@@ -229,6 +230,8 @@
 (use-package systemd
   :ensure t)
 (use-package with-editor
+  :ensure t)
+(use-package writegood-mode
   :ensure t)
 (use-package web-mode
   :ensure t
@@ -327,7 +330,7 @@
 (use-package rainbow-mode
   :ensure t
   :config
-  (dolist (hook '(css-mode-hook html-mode-hook sass-mode-hook))
+  (dolist (hook '(css-mode-hook html-mode-hook sass-mode-hook lisp-mode))
     (add-hook hook 'rainbow-mode)))
 
 ;; Rainbow Delimiter mode
