@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-16 12:29:17 ndegruchy>
+;; Time-stamp: <2015-08-17 15:47:22 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -29,7 +29,8 @@
       completion-ignore-case                t
       read-file-name-completion-ignore-case t
       initial-major-mode                    (quote text-mode)
-      mouse-wheel-progressive-speed         nil)
+      mouse-wheel-progressive-speed         nil
+      load-prefer-newer                     t)
 
 ;; GUI Features
 
@@ -198,6 +199,8 @@
   :ensure t)
 (use-package hydra
   :ensure t)
+(use-package iedit
+  :ensure t)
 (use-package json-mode
   :ensure t)
 (use-package let-alist
@@ -244,6 +247,7 @@
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
+
 (use-package yaml-mode
   :ensure t)
 
@@ -352,9 +356,6 @@
 (use-package expand-region
   :ensure t
   :bind ("M-+" . er/expand-region))
-
-;; Dired
-;;(define-key dired-mode-map (kbd "Z") 'dired-get-size)
 
 ;; Discover
 (use-package discover
@@ -677,6 +678,10 @@ Version 2015-06-12"
                     (while (re-search-forward "[“”]" nil t) (replace-match "\"" nil t))
                     (goto-char (point-min))
                     (while (re-search-forward "[‘’]" nil t) (replace-match "'" nil t))))
+
+(defadvice kill-buffer (around kill-buffer-around-advice
+                               activate) (let ((buffer-to-kill (ad-get-arg 0))) (if (equal
+                                                                                     buffer-to-kill "*scratch*") (bury-buffer) ad-do-it)))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
