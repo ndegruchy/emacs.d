@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-20 18:41:32 ndegruchy>
+;; Time-stamp: <2015-08-20 18:47:20 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -105,14 +105,14 @@
 
 ;; Key Bindings
 (global-set-key (kbd "C-c \\") 'align-regexp)
-(global-set-key (kbd "C-c d")  'insert-date)
+(global-set-key (kbd "C-c d")  'ndegruchy/insert-date)
 (global-set-key (kbd "C-c b")  'bs-show)
-(global-set-key (kbd "C-c ;") 'endless/comment-line)
+(global-set-key (kbd "C-c ;") 'ndegruchy/comment-line)
 (global-set-key (kbd "C-c <up>") 'text-scale-increase)
 (global-set-key (kbd "C-c <down>") 'text-scale-decrease)
-(global-set-key (kbd "C-c C-n") 'xah-new-empty-buffer)
+(global-set-key (kbd "C-c C-n") 'ndegruchy/new-empty-buffer)
 (global-set-key (kbd "M-/") 'hippie-expand)
-(global-set-key (kbd "C-c C-d") 'ndegruchy-duplicate-line)
+(global-set-key (kbd "C-c C-d") 'ndegruchy/duplicate-line)
 ;; Unbind Pesky Sleep Button
 (global-unset-key [(control z)])
 (global-unset-key [(control x)(control z)])
@@ -154,7 +154,7 @@
   (evil-leader/set-key
     "b"   'bs-show
     "g s" 'magit-status
-    "d"   'insert-date
+    "d"   'ndegruchy/insert-date
     "w g" 'writegood-mode))
 (use-package evil
   :ensure t
@@ -373,12 +373,12 @@
 
 ;; Recent Files
 (recentf-mode 1)
-(global-set-key (kbd "C-c f") 'ido-choose-from-recentf)
+(global-set-key (kbd "C-c f") 'ndegruchy/ido-choose-from-recentf)
 
 ;; Custom Functions
 
 ;; Dired DU Function
-(defun dired-get-size ()
+(defun ndegruchy/dired-get-size ()
   (interactive)
   (let ((files (dired-get-marked-files)))
     (with-temp-buffer
@@ -393,29 +393,29 @@
 (defadvice sgml-delete-tag (after reindent activate)
   (indent-region (point-min) (point-max)))
 
-(defun insert-date (format)
+(defun ndegruchy/insert-date (format)
   "Wrapper around format-time-string"
   (interactive "MFormat: ")
   (insert (format-time-string format)))
 
-(defun cleanup-buffer ()
+(defun ndegruchy/cleanup-buffer ()
   "Perform a bunch of operations on the whitespace content of a
-  buffer.  Including indent-buffer, which should not be called
+  buffer.  Including ndegruchy/indent-buffer, which should not be called
   automatically on save."
   (interactive)
-  (untabify-buffer)
+  (ndegruchy/untabify-buffer)
   (delete-trailing-whitespace)
-  (indent-buffer))
+  (ndegruchy/indent-buffer))
 
-(defun untabify-buffer ()
+(defun ndegruchy/untabify-buffer ()
   (interactive)
   (untabify (point-min) (point-max)))
 
-(defun indent-buffer ()
+(defun ndegruchy/indent-buffer ()
   (interactive)
   (indent-region (point-min) (point-max)))
 
-(defun kill-all-dired-buffers ()
+(defun ndegruchy/kill-all-dired-buffers ()
   "Kill all dired buffers."
   (interactive)
   (save-excursion
@@ -427,13 +427,13 @@
           (kill-buffer buffer)))
       (message "Killed %i dired buffer(s)." count ))))
 
-(defun unfill-paragraph ()
+(defun ndegruchy/unfill-paragraph ()
   "Takes a multi-line paragraph and makes it into a single line of text."
   (interactive)
   (let ((fill-column (point-max)))
     (fill-paragraph nil)))
 
-(defun kill-whole-line nil
+(defun ndegruchy/kill-whole-line nil
   "kills the entire line on which the cursor is located, and
 places the cursor as close to its previous position as possible."
   (interactive)
@@ -444,7 +444,7 @@ places the cursor as close to its previous position as possible."
       (kill-region a b)
       (move-to-column y))))
 
-(defun open-line-below ()
+(defun ndegruchy/open-line-below ()
   "Inserts a line below the current line, moving the cursor to
 that line and setting the indent properly"
   (interactive)
@@ -452,7 +452,7 @@ that line and setting the indent properly"
   (newline)
   (indent-for-tab-command))
 
-(defun open-line-above ()
+(defun ndegruchy/open-line-above ()
   "Inserts a line above the current line, moving the cursor to
 that line and setting the indent properly"
   (interactive)
@@ -461,22 +461,22 @@ that line and setting the indent properly"
   (forward-line -1)
   (indent-for-tab-command))
 
-(defun ido-choose-from-recentf ()
+(defun ndegruchy/ido-choose-from-recentf ()
   "Use ido to select a recently visited file from the `recentf-list'"
   (interactive)
   (find-file (ido-completing-read "Open file: " recentf-list nil t)))
 
 ;; Create parent folder(s) when visiting a non-existant file
-(defun my-create-non-existent-directory ()
+(defun ndegruchy/my-create-non-existent-directory ()
   (let ((parent-directory (file-name-directory buffer-file-name)))
     (when (and (not (file-exists-p parent-directory))
                (y-or-n-p (format "Directory `%s' does not exist! Create it?" parent-directory)))
       (make-directory parent-directory t))))
 
-(add-to-list 'find-file-not-found-functions #'my-create-non-existent-directory)
+(add-to-list 'find-file-not-found-functions #'ndegruchy/my-create-non-existent-directory)
 
 ;; Open file in preferred app
-(defun xah-open-in-external-app ()
+(defun ndegruchy/open-in-external-app ()
   "Open the current file or dired marked files in external app.
 The app is chosen from your OS's preference.
 
@@ -506,7 +506,7 @@ URL `http://ergoemacs.org/emacs/emacs_dired_open_file_in_ext_apps.html'"
          (lambda (fPath) (let ((process-connection-type nil)) (start-process "" nil "xdg-open" fPath))) ξfile-list))))))
 
 ;; Open in file manager
-(defun xah-open-in-desktop ()
+(defun ndegruchy/open-in-desktop ()
   "Show current file in desktop (OS's file manager)."
   (interactive)
   (cond
@@ -520,9 +520,9 @@ URL `http://ergoemacs.org/emacs/emacs_dired_open_file_in_ext_apps.html'"
 
 ;; Autocorrect word
 
-(define-key ctl-x-map "\C-i" 'endless/ispell-word-then-abbrev)
+(define-key ctl-x-map "\C-i" 'ndegruchy/ispell-word-then-abbrev)
 
-(defun endless/ispell-word-then-abbrev (p)
+(defun ndegruchy/ispell-word-then-abbrev (p)
   "Call `ispell-word'. Then create an abbrev for the correction made.
 With prefix P, create local abbrev. Otherwise it will be global."
   (interactive "P")
@@ -539,7 +539,7 @@ With prefix P, create local abbrev. Otherwise it will be global."
 (setq save-abbrevs t)
 (setq-default abbrev-mode t)
 
-(defun endless/comment-line (n)
+(defun ndegruchy/comment-line (n)
   "Comment or uncomment current line and leave point after it.
 With positive prefix, apply to N lines including current one.
 With negative prefix, apply to -N lines above."
@@ -550,7 +550,7 @@ With negative prefix, apply to -N lines above."
   (forward-line 1)
   (back-to-indentation))
 
-(defun my-asciify-string (string)
+(defun ndegruchy/my-asciify-string (string)
   "Convert STRING to ASCII string.
 For example:
 “passé” becomes “passe”"
@@ -560,7 +560,7 @@ For example:
     (call-process-region (point-min) (point-max) "iconv" t t nil "--to-code=ASCII//TRANSLIT")
     (buffer-substring-no-properties (point-min) (point-max))))
 
-(defun ndegruchy-title-case-region-or-line (φp1 φp2)
+(defun ndegruchy/title-case-region-or-line (φp1 φp2)
   "Title case text between nearest brackets, or current line, or text selection.
 Capitalize first letter of each word, except words like {to, of, the, a, in, or, and, …}. If a word already contains cap letters such as HTTP, URL, they are left as is.
 
@@ -616,7 +616,7 @@ Version 2015-04-08"
              (replace-match (aref ξx 1) 'FIXEDCASE 'LITERAL)))
          ξstrPairs)))))
 
-(defun ndegruchy-select-text-in-quote ()
+(defun ndegruchy/select-text-in-quote ()
   "Select text between the nearest left and right delimiters.
 Delimiters are paired characters: () [] {} <> «» ‹› “” ‘’ 「」 【】《》〈〉〔〕（）, including \"\".
 
@@ -631,7 +631,7 @@ version 2015-02-07
     (setq p2 (point))
     (set-mark p1)))
 
-(defun ndegruchy-select-current-line ()
+(defun ndegruchy/select-current-line ()
   "Select current line.
 URL `http://ergoemacs.org/emacs/modernization_mark-word.html'
 Version 2015-02-07
@@ -655,7 +655,7 @@ Version 2015-02-07
   (interactive)
   (set-buffer-file-coding-system 'iso-latin-1-mac t))
 
-(defun xah-new-empty-buffer ()
+(defun ndegruchy/new-empty-buffer ()
   "Open a new empty buffer.
 URL `http://ergoemacs.org/emacs/emacs_new_empty_buffer.html'
 Version 2015-06-12"
@@ -665,7 +665,7 @@ Version 2015-06-12"
     (funcall (and initial-major-mode))
     (setq buffer-offer-save t)))
 
-(defun ndegruchy-duplicate-line()
+(defun ndegruchy/duplicate-line()
   "Taken from `http://stackoverflow.com/a/88828'"
   (interactive)
   (move-beginning-of-line 1)
@@ -675,7 +675,7 @@ Version 2015-06-12"
   (next-line 1)
   (yank))
 
-(defun strip-smart-quotes (rStart rEnd)
+(defun ndegruchy/strip-smart-quotes (rStart rEnd)
   "Replace smart quotes with plain quotes in text"
   (interactive "r")
   (save-restriction (narrow-to-region rStart rEnd)
