@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-20 18:47:20 ndegruchy>
+;; Time-stamp: <2015-08-20 18:50:56 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -22,7 +22,7 @@
       delete-auto-save-files                t
       case-fold-search                      t
       tooltip-delay                         1
-      show-trailing-whitespace              1
+      show-trailing-whitespace              t
       initial-scratch-message               ";; Scratch buffer\n"
       visible-bell                          nil
       sentance-end-double-space             t
