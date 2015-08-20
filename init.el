@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-17 15:47:22 ndegruchy>
+;; Time-stamp: <2015-08-20 18:41:32 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -156,7 +156,6 @@
     "g s" 'magit-status
     "d"   'insert-date
     "w g" 'writegood-mode))
-
 (use-package evil
   :ensure t
   :config
@@ -186,9 +185,15 @@
   :ensure t
   :config
   (global-evil-matchit-mode 1))
+(use-package evil-easymotion
+  :ensure t
+  :config
+  (evilem-default-keybindings "SPC"))
 (use-package undo-tree
   :ensure t
   :diminish undo-tree-mode)
+(use-package fish-mode
+  :ensure t)
 (use-package git-commit
   :ensure t)
 (use-package goto-chg
@@ -274,12 +279,12 @@
   :config
   (yas-global-mode 1))
 
-;; ;; Hungry like the woooolllffff
+;; Hungry like the woooolllffff
 ;; Not sure I need this with Evil mode...
-;; (use-package hungry-delete
-;;   :ensure t
-;;   :config
-;;   (global-hungry-delete-mode))
+(use-package hungry-delete
+  :ensure t
+  :config
+  (global-hungry-delete-mode))
 
 ;; IDO
 (use-package ido
