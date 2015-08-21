@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-20 21:56:26 ndegruchy>
+;; Time-stamp: <2015-08-20 22:41:47 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -55,7 +55,7 @@
 (setq sentence-end-double-space t)
 
 ;; Line numbers
-(global-linum-mode nil)
+(global-linum-mode -1)
 
 ;; Indentation
 (setq-default indent-tabs-mode ())
@@ -155,8 +155,7 @@
     "b"   'bs-show
     "g s" 'magit-status
     "d"   'ndegruchy/insert-date
-    "w g" 'writegood-mode
-    "s b" 'switch-to-buffer "*scratch*"))
+    "w g" 'writegood-mode))
 (use-package evil
   :ensure t
   :config
