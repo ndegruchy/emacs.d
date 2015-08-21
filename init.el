@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-20 18:50:56 ndegruchy>
+;; Time-stamp: <2015-08-20 21:56:26 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -55,7 +55,7 @@
 (setq sentence-end-double-space t)
 
 ;; Line numbers
-(global-linum-mode -1)
+(global-linum-mode nil)
 
 ;; Indentation
 (setq-default indent-tabs-mode ())
@@ -103,7 +103,7 @@
 ;; Start `use-package' for later
 (require 'use-package)
 
-;; Key Bindings
+;; General Key Bindings
 (global-set-key (kbd "C-c \\") 'align-regexp)
 (global-set-key (kbd "C-c d")  'ndegruchy/insert-date)
 (global-set-key (kbd "C-c b")  'bs-show)
@@ -155,7 +155,8 @@
     "b"   'bs-show
     "g s" 'magit-status
     "d"   'ndegruchy/insert-date
-    "w g" 'writegood-mode))
+    "w g" 'writegood-mode
+    "s b" 'switch-to-buffer "*scratch*"))
 (use-package evil
   :ensure t
   :config
@@ -171,6 +172,7 @@
                                 (bs-mode . emacs)
                                 (magit-branch-manager-mode . emacs)
                                 (dired-mode . emacs)
+                                (gomoku-mode . emacs)
                                 (wdired-mode . normal))
         do (evil-set-initial-state mode state)))
 (use-package evil-args
