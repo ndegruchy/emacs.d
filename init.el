@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-20 22:41:47 ndegruchy>
+;; Time-stamp: <2015-08-20 22:55:03 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -368,6 +368,11 @@
   :ensure t
   :config
   (global-discover-mode 1))
+
+
+;; Midnight Mode
+(require 'midnight)
+(midnight-delay-set 'midnight-delay "2:00am")
 
 ;; Show battery percentage
 (display-battery-mode +1)
