@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-21 00:25:00 ndegruchy>
+;; Time-stamp: <2015-08-21 00:27:16 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -204,10 +204,6 @@
   :ensure t
   :config
   (global-evil-matchit-mode 1))
-(use-package evil-easymotion
-  :ensure t
-  :config
-  (evilem-default-keybindings "SPC"))
 (use-package undo-tree
   :ensure t
   :diminish undo-tree-mode)
