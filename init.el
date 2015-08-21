@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-20 23:40:23 ndegruchy>
+;; Time-stamp: <2015-08-21 00:00:11 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -39,7 +39,6 @@
 (set-face-attribute 'default nil :family "Source Code Pro" :height 130)
 (set-frame-font "Source Code Pro-13")
 (global-font-lock-mode +1)
-;; (load-theme 'misterioso t)
 
 ;; Delete/Overwrite Selection
 (delete-selection-mode t)
@@ -106,7 +105,7 @@
 ;; General Key Bindings
 (global-set-key (kbd "C-c \\") 'align-regexp)
 (global-set-key (kbd "C-c d")  'ndegruchy/insert-date)
-(global-set-key (kbd "C-c b")  'bs-show)
+;; (global-set-key (kbd "C-c b")  'bs-show)
 (global-set-key (kbd "C-c ;") 'ndegruchy/comment-line)
 (global-set-key (kbd "C-c <up>") 'text-scale-increase)
 (global-set-key (kbd "C-c <down>") 'text-scale-decrease)
@@ -151,8 +150,9 @@
   :config
   (global-evil-leader-mode)
   (evil-leader/set-leader ",")
+  ;; "b"   'bs-show
   (evil-leader/set-key
-    "b"   'bs-show
+    "b"   'helm-buffers-list
     "g s" 'magit-status
     "d"   'ndegruchy/insert-date
     "w g" 'writegood-mode))
@@ -307,6 +307,18 @@
   :ensure t
   :config
   (global-hungry-delete-mode))
+
+(use-package helm
+  :ensure t
+  :bind (("M-x" . helm-M-x)
+         ("C-x C-f" . helm-find-files)
+         ("C-c b" . helm-buffers-list))
+  :config
+  (require 'helm-config)
+  (require 'helm-misc)
+  (setq helm-quick-update t)
+  (setq helm-bookmark-show-location t)
+  (setq helm-buffers-fuzzy-matching t))
 
 ;; IDO
 (use-package ido
