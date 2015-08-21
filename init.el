@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-21 00:27:16 ndegruchy>
+;; Time-stamp: <2015-08-21 00:28:27 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -185,13 +185,7 @@
                                 (artist-mode . emacs)
                                 (makey-key-mode . emacs)
                                 (wdired-mode . normal))
-        do (evil-set-initial-state mode state))
-  (setq evil-emacs-state-cursor '("red" box))
-  (setq evil-normal-state-cursor '("green" box))
-  (setq evil-visual-state-cursor '("orange" box))
-  (setq evil-insert-state-cursor '("red" bar))
-  (setq evil-replace-state-cursor '("red" bar))
-  (setq evil-operator-state-cursor '("red" hollow)))
+        do (evil-set-initial-state mode state)))
 (use-package evil-args
   :ensure t)
 (use-package evil-numbers
