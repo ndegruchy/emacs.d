@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-21 00:20:23 ndegruchy>
+;; Time-stamp: <2015-08-21 00:25:00 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -308,17 +308,6 @@
   :config
   (global-hungry-delete-mode))
 
-(use-package helm
-  :ensure t
-  :bind (("M-x" . helm-M-x)
-         ("C-x C-f" . helm-find-files))
-  :config
-  (require 'helm-config)
-  (require 'helm-misc)
-  (setq helm-quick-update t)
-  (setq helm-bookmark-show-location t)
-  (setq helm-buffers-fuzzy-matching t))
-
 ;; IDO
 (use-package ido
   :ensure t
@@ -384,11 +373,11 @@
   (add-hook 'emacs-lisp-mode 'rainbow-delimiters-mode))
 
 ;; Smex
-;; (use-package smex
-;;   :ensure t
-;;   :bind (("M-x" . smex)
-;;          ("M-X" . smex-major-mode-commands)
-;;          ("C-c C-c M-x" . execute-extended-command)))
+(use-package smex
+  :ensure t
+  :bind (("M-x" . smex)
+         ("M-X" . smex-major-mode-commands)
+         ("C-c C-c M-x" . execute-extended-command)))
 
 ;; Expand Region
 (use-package expand-region
