@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-20 22:55:03 ndegruchy>
+;; Time-stamp: <2015-08-20 23:27:37 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -172,8 +172,24 @@
                                 (magit-branch-manager-mode . emacs)
                                 (dired-mode . emacs)
                                 (gomoku-mode . emacs)
+                                (pong-mode . emacs)
+                                (5x5-mode . emacs)
+                                (blackbox-mode . emacs)
+                                (hanoi-mode . emacs)
+                                (landmark-mode . emacs)
+                                (life-mode . emacs)
+                                (snake-mode . emacs)
+                                (solitaire-mode . emacs)
+                                (tetris-mode . emacs)
+                                (dunnet-mode . emacs)
                                 (wdired-mode . normal))
-        do (evil-set-initial-state mode state)))
+        do (evil-set-initial-state mode state))
+  (setq evil-emacs-state-cursor '("red" box))
+  (setq evil-normal-state-cursor '("green" box))
+  (setq evil-visual-state-cursor '("orange" box))
+  (setq evil-insert-state-cursor '("red" bar))
+  (setq evil-replace-state-cursor '("red" bar))
+  (setq evil-operator-state-cursor '("red" hollow)))
 (use-package evil-args
   :ensure t)
 (use-package evil-numbers
@@ -373,6 +389,10 @@
 ;; Midnight Mode
 (require 'midnight)
 (midnight-delay-set 'midnight-delay "2:00am")
+(add-to-list 'clean-buffer-list-kill-regexps
+             '("\\'\\*magit-diff.*\\*\\'"))
+(add-to-list 'clean-buffer-list-buffer-names
+             '("*Gomoku*"))
 
 ;; Show battery percentage
 (display-battery-mode +1)
