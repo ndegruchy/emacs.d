@@ -105,7 +105,7 @@
 ;; General Key Bindings
 (global-set-key (kbd "C-c \\") 'align-regexp)
 (global-set-key (kbd "C-c d")  'ndegruchy/insert-date)
-;; (global-set-key (kbd "C-c b")  'bs-show)
+(global-set-key (kbd "C-c b")  'bs-show)
 (global-set-key (kbd "C-c ;") 'ndegruchy/comment-line)
 (global-set-key (kbd "C-c <up>") 'text-scale-increase)
 (global-set-key (kbd "C-c <down>") 'text-scale-decrease)
@@ -150,9 +150,8 @@
   :config
   (global-evil-leader-mode)
   (evil-leader/set-leader ",")
-  ;; "b"   'bs-show
   (evil-leader/set-key
-    "b"   'helm-buffers-list
+    "b"   'bs-show
     "g s" 'magit-status
     "d"   'ndegruchy/insert-date
     "w g" 'writegood-mode))
@@ -311,8 +310,7 @@
 (use-package helm
   :ensure t
   :bind (("M-x" . helm-M-x)
-         ("C-x C-f" . helm-find-files)
-         ("C-c b" . helm-buffers-list))
+         ("C-x C-f" . helm-find-files))
   :config
   (require 'helm-config)
   (require 'helm-misc)
@@ -385,11 +383,11 @@
   (add-hook 'emacs-lisp-mode 'rainbow-delimiters-mode))
 
 ;; Smex
-(use-package smex
-  :ensure t
-  :bind (("M-x" . smex)
-         ("M-X" . smex-major-mode-commands)
-         ("C-c C-c M-x" . execute-extended-command)))
+;; (use-package smex
+;;   :ensure t
+;;   :bind (("M-x" . smex)
+;;          ("M-X" . smex-major-mode-commands)
+;;          ("C-c C-c M-x" . execute-extended-command)))
 
 ;; Expand Region
 (use-package expand-region
@@ -408,7 +406,7 @@
 (midnight-delay-set 'midnight-delay "2:00am")
 (add-to-list 'clean-buffer-list-kill-regexps
              '("\\'\\*magit-diff.*\\*\\'"))
-(add-to-list 'clean-buffer-list-buffer-names
+(add-to-list 'clean-buffer-list-kill-buffer-names
              '("*Gomoku*"))
 
 ;; Show battery percentage
