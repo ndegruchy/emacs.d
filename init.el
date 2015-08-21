@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-21 00:00:11 ndegruchy>
+;; Time-stamp: <2015-08-21 00:20:23 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -181,6 +181,7 @@
                                 (solitaire-mode . emacs)
                                 (tetris-mode . emacs)
                                 (dunnet-mode . emacs)
+                                (bubbles-mode . emacs)
                                 (artist-mode . emacs)
                                 (makey-key-mode . emacs)
                                 (wdired-mode . normal))
