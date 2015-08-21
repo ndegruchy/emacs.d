@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-20 23:27:37 ndegruchy>
+;; Time-stamp: <2015-08-20 23:40:23 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -182,6 +182,8 @@
                                 (solitaire-mode . emacs)
                                 (tetris-mode . emacs)
                                 (dunnet-mode . emacs)
+                                (artist-mode . emacs)
+                                (makey-key-mode . emacs)
                                 (wdired-mode . normal))
         do (evil-set-initial-state mode state))
   (setq evil-emacs-state-cursor '("red" box))
@@ -209,6 +211,9 @@
 (use-package undo-tree
   :ensure t
   :diminish undo-tree-mode)
+(use-package discover-my-major
+  :ensure t
+  :bind ("C-h C-m" . discover-my-major))
 (use-package fish-mode
   :ensure t)
 (use-package git-commit
