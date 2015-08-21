@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-21 00:28:27 ndegruchy>
+;; Time-stamp: <2015-08-21 13:00:34 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -116,6 +116,9 @@
 (global-unset-key [(control z)])
 (global-unset-key [(control x)(control z)])
 
+;; Spell checking on
+(add-hook 'text-mode-hook 'flyspell-mode)
+
 ;; ================= Packages
 
 (eval-when-compile
@@ -198,6 +201,10 @@
   :ensure t
   :config
   (global-evil-matchit-mode 1))
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-global-mode))
 (use-package undo-tree
   :ensure t
   :diminish undo-tree-mode)
@@ -299,10 +306,13 @@
   (global-hungry-delete-mode))
 
 ;; IDO
+(use-package ido-vertical-mode
+  :ensure t)
 (use-package ido
   :ensure t
   :config
   (ido-mode +1)
+  (ido-vertical-mode 1)
   (setq ido-enable-flex-matching +1)
   (setq ido-everywhere +1)
   (setq ido-file-extensions-order '(".org" ".html" ".php" ".tex" ".el" ".js" ".coffee")))
@@ -320,7 +330,6 @@
 
 ;; Org Mode
 (require 'org-mouse)
-(add-hook 'org-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'auto-fill-mode)
 (add-hook 'org-mode-hook 'electric-indent-mode)
 (add-hook 'org-mode-hook 'org-display-inline-images)
@@ -332,7 +341,6 @@
 (use-package markdown-mode
   :ensure t
   :config
-  (add-hook 'markdown-mode-hook 'flyspell-mode)
   (autoload 'markdown-mode "markdown-mode"
     "Major mode for editing Markdown files" t)
   (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
