@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-21 13:00:34 ndegruchy>
+;; Time-stamp: <2015-08-21 22:46:55 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -315,6 +315,7 @@
   (ido-vertical-mode 1)
   (setq ido-enable-flex-matching +1)
   (setq ido-everywhere +1)
+  (setq ido-vertical-define-keys 'C-n-C-p-up-and-down)
   (setq ido-file-extensions-order '(".org" ".html" ".php" ".tex" ".el" ".js" ".coffee")))
 
 ;; Emmet
@@ -713,9 +714,10 @@ Version 2015-06-12"
                     (goto-char (point-min))
                     (while (re-search-forward "[‘’]" nil t) (replace-match "'" nil t))))
 
-(defadvice kill-buffer (around kill-buffer-around-advice
-                               activate) (let ((buffer-to-kill (ad-get-arg 0))) (if (equal
-                                                                                     buffer-to-kill "*scratch*") (bury-buffer) ad-do-it)))
+(defadvice kill-buffer (around kill-buffer-around-advice activate)
+  (let ((buffer-to-kill (ad-get-arg 0)))
+    (if (equal buffer-to-kill "*scratch*")
+        (bury-buffer) ad-do-it)))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
