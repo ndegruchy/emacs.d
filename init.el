@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-21 22:46:55 ndegruchy>
+;; Time-stamp: <2015-08-26 11:17:28 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -51,7 +51,7 @@
 ;; Coding Style
 
 ;; Sentences
-(setq sentence-end-double-space t)
+(setq sentence-end-double-space nil)
 
 ;; Line numbers
 (global-linum-mode -1)
