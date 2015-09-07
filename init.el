@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-08-31 12:52:32 ndegruchy>
+;; Time-stamp: <2015-09-03 11:40:30 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -187,11 +187,18 @@
                                 (artist-mode . emacs)
                                 (makey-key-mode . emacs)
                                 (wdired-mode . normal))
-        do (evil-set-initial-state mode state)))
+        do (evil-set-initial-state mode state))
+  ;; Supposed to split lines
+  ;; Doesn't work, yet
+  ;;(define-key evil-normal-state-map S (kbd "i[escape][right]"))
+  )
 (use-package evil-args
   :ensure t)
 (use-package evil-numbers
-  :ensure t)
+  :ensure t
+  :config
+  (define-key evil-normal-state-map (kbd "<kp-add>") 'evil-numbers/inc-at-pt)
+  (define-key evil-normal-state-map (kbd "<kp-subtract>") 'evil-numbers/dec-at-pt))
 (use-package evil-surround
   :ensure t
   :config
