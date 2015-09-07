@@ -8,7 +8,7 @@
     (((output-dvi style-pstricks)
       "dvips and gv")
      (output-dvi "xdvi")
-     (output-pdf "xdg-open")
+     (output-pdf "mupdf")
      (output-html "xdg-open"))))
  '(magit-commit-arguments (quote ("--gpg-sign=nathan@degruchy.org")))
  '(ring-bell-function (quote ignore) t)

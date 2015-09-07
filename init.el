@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-09-03 11:40:30 ndegruchy>
+;; Time-stamp: <2015-09-07 13:05:18 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
