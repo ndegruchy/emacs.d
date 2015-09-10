@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-09-07 13:05:18 ndegruchy>
+;; Time-stamp: <2015-09-10 16:24:26 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -129,7 +129,17 @@
 (use-package bs
   :ensure t)
 (use-package tex-site
-  :ensure auctex)
+  :ensure auctex
+  :config
+  (setq TeX-view-program-list
+        '(("MuPDF" "/usr/bin/mupdf %o")))
+  (setq TeX-view-program-selection
+        (quote
+         (((output-dvi style-pstricks)
+           "dvips and gv")
+          (output-dvi "xdvi")
+          (output-pdf "MuPDF")
+          (output-html "xdg-open")))))
 (use-package browse-kill-ring
   :ensure t)
 (use-package caps-lock
