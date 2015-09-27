@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-09-10 16:24:26 ndegruchy>
+;; Time-stamp: <2015-09-27 16:54:17 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -36,7 +36,8 @@
 
 ;; Font
 ;; My preferred font is Source Code Pro
-(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-14"))
+;; (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-14"))
+(add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
 (global-font-lock-mode +1)
 
 ;; Delete/Overwrite Selection
