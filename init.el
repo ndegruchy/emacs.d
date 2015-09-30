@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-09-27 16:54:17 ndegruchy>
+;; Time-stamp: <2015-09-29 20:16:35 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -158,6 +158,8 @@
   :config
   (if (file-exists-p abbrev-file-name)
       (quietly-read-abbrev-file)))
+(use-package evil-org
+  :ensure t)
 (use-package evil-leader
   :ensure t
   :config
