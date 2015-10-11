@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-09-29 20:16:35 ndegruchy>
+;; Time-stamp: <2015-09-29 22:34:46 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -141,6 +141,15 @@
           (output-dvi "xdvi")
           (output-pdf "MuPDF")
           (output-html "xdg-open")))))
+(use-package mediawiki
+  :ensure t
+  :config
+  (setq mediawiki-mode-hook (lambda ()
+                              (turn-off-auto-fill)
+                              ))
+  (setq mediawiki-site-alist
+      (append '(("PCGamingWiki" "http://www.pcgamingwiki.com/wiki/" "ndegruchy" "" "Main page"))
+              mediawiki-site-alist)))
 (use-package browse-kill-ring
   :ensure t)
 (use-package caps-lock
