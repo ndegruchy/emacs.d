@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-11-27 14:50:45 ndegruchy>
+;; Time-stamp: <2015-11-27 20:14:00 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -155,14 +155,6 @@
 (use-package caps-lock
   :ensure t)
 (use-package coffee-mode
-  :ensure t)
-(use-package company
-  :ensure t
-  :config
-  (add-to-list 'company-backends 'company-tern))
-(use-package company-web
-  :ensure t)
-(use-package company-tern
   :ensure t)
 (use-package csv-mode
   :ensure t)
