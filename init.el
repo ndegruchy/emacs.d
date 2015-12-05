@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-11-27 20:14:00 ndegruchy>
+;; Time-stamp: <2015-12-04 20:03:02 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -128,7 +128,9 @@
 
 (use-package async)
 (use-package bs
-  :ensure t)
+  :ensure t
+  :config
+  (setq bs-must-always-show-regexp "\\*scratch\\*\\|\\*eshell\\*"))
 (use-package tex-site
   :ensure auctex
   :config
@@ -268,8 +270,6 @@
   :ensure t)
 (use-package makey
   :ensure t)
-(use-package paredit
-  :ensure t)
 (use-package php-mode
   :ensure t)
 (use-package pkg-info
@@ -355,7 +355,8 @@
   (add-hook 'css-mode-hook  'emmet-mode)
   (add-hook 'sgml-mode-hook 'toggle-truncate-lines)
   (add-hook 'web-mode-hook  'toggle-truncate-lines)
-  (add-hook 'php-mode-hook  'toggle-truncate-lines))
+  (add-hook 'php-mode-hook  'toggle-truncate-lines)
+  (setq emmet-preview-default t))
 
 ;; Org Mode
 (require 'org-mouse)
