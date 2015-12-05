@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-12-04 20:08:55 ndegruchy>
+;; Time-stamp: <2015-12-04 20:25:09 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -138,7 +138,12 @@
   ;;
   ;; Found from an ancient (2005) mailing list:
   ;; https://lists.gnu.org/archive/html/help-gnu-emacs/2005-10/msg00597.html
-  (setq bs-must-always-show-regexp "\\*scratch\\*\\|\\*eshell\\*"))
+  (add-to-list 'bs-configurations 
+               '("ndegruchy" "\\*scratch\\*\\|\\*eshell\\*" nil
+		 nil
+                 bs-visits-non-file
+                 bs--sort-by-name))
+  (setq bs-default-configuration "ndegruchy"))
 (use-package tex-site
   :ensure auctex
   :config
