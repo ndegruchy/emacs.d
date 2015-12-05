@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-12-04 20:31:19 ndegruchy>
+;; Time-stamp: <2015-12-05 14:45:07 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -60,6 +60,8 @@
 (setq-default indent-tabs-mode ())
 (setq-default tab-width 4)
 (setq-default tab-always-indent t)
+(defvaralias 'c-basic-offset 'tab-width)
+(defvaralias 'cperl-indent-level 'tab-width)
 (electric-indent-mode 1)
 (global-set-key (kbd "<RET>") 'newline-and-indent)
 
@@ -78,7 +80,7 @@
 ;; Make MELPA the default and only
 ;; TODO: Add orgmode?
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/"))
+             '("melpa" . "https://melpa.org/packages/"))
 
 ;; If we're running less than emacs 24, load the gnu archives as well
 (when (< emacs-major-version 24)
@@ -138,7 +140,7 @@
   ;;
   ;; Found from an ancient (2005) mailing list:
   ;; https://lists.gnu.org/archive/html/help-gnu-emacs/2005-10/msg00597.html
-  (add-to-list 'bs-configurations 
+  (add-to-list 'bs-configurations
                '("ndegruchy" "\\*scratch\\*\\|\\*eshell\\*" nil
                  nil
                  bs-visits-non-file
@@ -156,15 +158,6 @@
           (output-dvi "xdvi")
           (output-pdf "MuPDF")
           (output-html "xdg-open")))))
-(use-package mediawiki
-  :ensure t
-  :config
-  (setq mediawiki-mode-hook (lambda ()
-                              (turn-off-auto-fill)
-                              ))
-  (setq mediawiki-site-alist
-      (append '(("PCGamingWiki" "http://www.pcgamingwiki.com/wiki/" "ndegruchy" "" "Main page"))
-              mediawiki-site-alist)))
 (use-package browse-kill-ring
   :ensure t)
 (use-package caps-lock
@@ -354,10 +347,20 @@
   :config
   (ido-mode +1)
   (ido-vertical-mode 1)
-  (setq ido-enable-flex-matching +1)
-  (setq ido-everywhere +1)
-  (setq ido-vertical-define-keys 'C-n-C-p-up-and-down)
-  (setq ido-file-extensions-order '(".org" ".html" ".php" ".tex" ".el" ".js" ".coffee")))
+  (setq ido-ignore-directories '(".git" ".sass-cache" ".idea" "node-modules")
+        ido-enable-flex-matching +1
+        ido-everywhere +1
+        ido-vertical-define-keys 'C-n-C-p-up-and-down
+        ido-file-extensions-order '(".org" ".html" ".php" ".tex" ".el" ".js" ".coffee")))
+
+;; Begrudgingly, because it's easier to edit this document WITH it...
+(use-package paredit-mode
+  :ensure t
+  :config
+  (add-hook 'emacs-lisp-mode-hook       'enable-paredit-mode)
+  (add-hook 'lisp-mode-hook             'enable-paredit-mode)
+  (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+  (add-hook 'scheme-mode-hook           'enable-paredit-mode))
 
 ;; Emmet
 (use-package emmet-mode
@@ -760,6 +763,12 @@ Version 2015-06-12"
   (let ((buffer-to-kill (ad-get-arg 0)))
     (if (equal buffer-to-kill "*scratch*")
         (bury-buffer) ad-do-it)))
+
+(defadvice package-compute-transaction
+    (before package-compute-transaction-reverse (package-list requirements) activate compile)
+  "reverse the requirements"
+  (setq requirements (reverse requirements))
+  (print requirements))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
