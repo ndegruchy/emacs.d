@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-12-04 20:03:02 ndegruchy>
+;; Time-stamp: <2015-12-04 20:08:55 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -130,6 +130,14 @@
 (use-package bs
   :ensure t
   :config
+  ;; Whoo boy, this one was a hard one to track down. Basically I'm
+  ;; telling buffer-show to always show a certain set of buffer names
+  ;; regardless of the configuration (files only). Since I use eshell
+  ;; and the scratch buffer a lot, this is handy for me to have always
+  ;; visible
+  ;;
+  ;; Found from an ancient (2005) mailing list:
+  ;; https://lists.gnu.org/archive/html/help-gnu-emacs/2005-10/msg00597.html
   (setq bs-must-always-show-regexp "\\*scratch\\*\\|\\*eshell\\*"))
 (use-package tex-site
   :ensure auctex
