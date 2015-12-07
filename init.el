@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-12-06 21:58:46 ndegruchy>
+;; Time-stamp: <2015-12-06 22:54:11 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -30,8 +30,10 @@
       read-file-name-completion-ignore-case t
       initial-major-mode                    (quote text-mode)
       mouse-wheel-progressive-speed         nil
-      load-prefer-newer                     t)
+      load-prefer-newer                     t
+      save-abbrevs                          t)
 
+(setq-default abbrev-mode t)
 
 ;; Ignore some files and extensions
 (add-to-list 'completion-ignored-extensions ".sass-cache/")
@@ -304,6 +306,10 @@
 (use-package web-mode
   :ensure t
   :config
+  ;; TODO: add some leader shortcuts for common web functions, like
+  ;; rename and wrap with tag
+  ;; (evil-leader/set-key
+  ;;   "w g" 'writegood-mode) 
   (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
@@ -623,8 +629,6 @@ With prefix P, create local abbrev. Otherwise it will be global."
         (if p local-abbrev-table global-abbrev-table)
         bef aft))))
 
-(setq save-abbrevs t)
-(setq-default abbrev-mode t)
 
 (defun ndegruchy/comment-line (n)
   "Comment or uncomment current line and leave point after it.
