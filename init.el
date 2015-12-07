@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-12-05 14:45:07 ndegruchy>
+;; Time-stamp: <2015-12-06 21:58:46 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -31,6 +31,13 @@
       initial-major-mode                    (quote text-mode)
       mouse-wheel-progressive-speed         nil
       load-prefer-newer                     t)
+
+
+;; Ignore some files and extensions
+(add-to-list 'completion-ignored-extensions ".sass-cache/")
+(add-to-list 'completion-ignored-extensions ".idea/")
+(add-to-list 'completion-ignored-extensions ".git/")
+(add-to-list 'completion-ignored-extensions "node-modules/")
 
 ;; GUI Features
 
@@ -304,7 +311,13 @@
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (defun ndegruchy/indent-for-web-mode
+      "Define indentation for different modes inside of web-mode"
+    (setq web-mode-markup-indent-offset 4
+          web-mode-css-indent-offset    4
+          web-mode-code-indent-offset   4))
+  (add-hook 'web-mode-hook  'ndegruchy/indent-for-web-mode))
 
 (use-package yaml-mode
   :ensure t)
@@ -347,14 +360,13 @@
   :config
   (ido-mode +1)
   (ido-vertical-mode 1)
-  (setq ido-ignore-directories '(".git" ".sass-cache" ".idea" "node-modules")
-        ido-enable-flex-matching +1
+  (setq ido-enable-flex-matching +1
         ido-everywhere +1
         ido-vertical-define-keys 'C-n-C-p-up-and-down
         ido-file-extensions-order '(".org" ".html" ".php" ".tex" ".el" ".js" ".coffee")))
 
 ;; Begrudgingly, because it's easier to edit this document WITH it...
-(use-package paredit-mode
+(use-package paredit
   :ensure t
   :config
   (add-hook 'emacs-lisp-mode-hook       'enable-paredit-mode)
