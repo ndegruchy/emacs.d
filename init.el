@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-12-06 22:54:11 ndegruchy>
+;; Time-stamp: <2015-12-08 21:11:29 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -58,9 +58,6 @@
 (scroll-bar-mode  -1)
 
 ;; Coding Style
-
-;; Sentences
-(setq sentence-end-double-space nil)
 
 ;; Line numbers
 (global-linum-mode -1)
@@ -198,6 +195,7 @@
     "w g" 'writegood-mode))
 (use-package evil
   :ensure t
+  :after evil-leader
   :config
   (evil-mode 1)
   ;; Loop through a list of buffer modes to set their various states
@@ -226,11 +224,7 @@
                                 (artist-mode . emacs)
                                 (makey-key-mode . emacs)
                                 (wdired-mode . normal))
-        do (evil-set-initial-state mode state))
-  ;; Supposed to split lines
-  ;; Doesn't work, yet
-  ;;(define-key evil-normal-state-map S (kbd "i[escape][right]"))
-  )
+        do (evil-set-initial-state mode state)))
 (use-package evil-args
   :ensure t)
 (use-package evil-numbers
@@ -308,8 +302,9 @@
   :config
   ;; TODO: add some leader shortcuts for common web functions, like
   ;; rename and wrap with tag
-  ;; (evil-leader/set-key
-  ;;   "w g" 'writegood-mode) 
+  (evil-leader/set-key
+    "w w" 'web-mode-element-wrap
+    "w r" 'web-mode-element-rename) 
   (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
