@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-12-08 21:11:29 ndegruchy>
+;; Time-stamp: <2015-12-08 21:15:12 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -312,13 +312,7 @@
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-  (defun ndegruchy/indent-for-web-mode
-      "Define indentation for different modes inside of web-mode"
-    (setq web-mode-markup-indent-offset 4
-          web-mode-css-indent-offset    4
-          web-mode-code-indent-offset   4))
-  (add-hook 'web-mode-hook  'ndegruchy/indent-for-web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 
 (use-package yaml-mode
   :ensure t)
@@ -774,12 +768,6 @@ Version 2015-06-12"
   (let ((buffer-to-kill (ad-get-arg 0)))
     (if (equal buffer-to-kill "*scratch*")
         (bury-buffer) ad-do-it)))
-
-(defadvice package-compute-transaction
-    (before package-compute-transaction-reverse (package-list requirements) activate compile)
-  "reverse the requirements"
-  (setq requirements (reverse requirements))
-  (print requirements))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
