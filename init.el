@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-12-08 21:15:12 ndegruchy>
+;; Time-stamp: <2015-12-12 22:08:21 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -240,6 +240,8 @@
   :ensure t
   :config
   (global-evil-matchit-mode 1))
+;; (use-package emacs-firefox-controller
+;;   :ensure t)
 (use-package projectile
   :ensure t
   :config
@@ -292,6 +294,8 @@
 (use-package smartparens
   :ensure t)
 (use-package systemd
+  :ensure t)
+(use-package swiper
   :ensure t)
 (use-package with-editor
   :ensure t)
@@ -763,6 +767,47 @@ Version 2015-06-12"
                     (while (re-search-forward "[“”]" nil t) (replace-match "\"" nil t))
                     (goto-char (point-min))
                     (while (re-search-forward "[‘’]" nil t) (replace-match "'" nil t))))
+
+(defun ndegruchy/rename-current-buffer-file ()
+  "Renames current buffer and file it is visiting."
+  (interactive)
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (error "Buffer '%s' is not visiting a file!" name)
+      (let ((new-name (read-file-name "New name: " filename)))
+        (if (get-buffer new-name)
+            (error "A buffer named '%s' already exists!" new-name)
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)
+          (message "File '%s' successfully renamed to '%s'"
+                   name (file-name-nondirectory new-name)))))))
+
+
+(defun ndegruchy/find-or-create-file-at-point ()
+  "Guesses what parts of the buffer under point is a file name and opens it."
+  (interactive)
+  (find-file (file-name-at-point)))
+
+(defun ndegruchy/find-or-create-file-at-point-other-window ()
+  "Guesses what parts of the buffer under point is a file name and opens it."
+  (interactive)
+  (find-file-other-window (file-name-at-point)))
+
+(defun file-name-at-point ()
+  (save-excursion
+    (let* ((file-name-regexp "[./a-zA-Z0-9\-_~]")
+           (start (progn
+                    (while (looking-back file-name-regexp)
+                      (forward-char -1))
+                    (point)))
+           (end (progn
+                  (while (looking-at file-name-regexp)
+                    (forward-char 1))
+                  (point))))
+      (buffer-substring start end))))
 
 (defadvice kill-buffer (around kill-buffer-around-advice activate)
   (let ((buffer-to-kill (ad-get-arg 0)))
