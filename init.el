@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2015-12-12 22:08:21 ndegruchy>
+;; Time-stamp: <2016-04-11 22:32:41 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -31,7 +31,8 @@
       initial-major-mode                    (quote text-mode)
       mouse-wheel-progressive-speed         nil
       load-prefer-newer                     t
-      save-abbrevs                          t)
+      save-abbrevs                          t
+      confirm-kill-emacs                    'y-or-n-p)
 
 (setq-default abbrev-mode t)
 
@@ -252,6 +253,14 @@
 (use-package discover-my-major
   :ensure t
   :bind ("C-h C-m" . discover-my-major))
+;; (use-package eink-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'eink t))
+(use-package atom-one-dark-theme
+  :ensure t
+  :config
+  (load-theme 'atom-one-dark t))
 (use-package fish-mode
   :ensure t)
 (use-package git-commit
@@ -296,6 +305,8 @@
 (use-package systemd
   :ensure t)
 (use-package swiper
+  :ensure t)
+(use-package sudo-edit
   :ensure t)
 (use-package with-editor
   :ensure t)
