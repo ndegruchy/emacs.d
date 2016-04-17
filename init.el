@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2016-04-11 22:32:41 ndegruchy>
+;; Time-stamp: <2016-04-17 12:16:43 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -167,11 +167,7 @@
           (output-html "xdg-open")))))
 (use-package browse-kill-ring
   :ensure t)
-(use-package caps-lock
-  :ensure t)
 (use-package coffee-mode
-  :ensure t)
-(use-package csv-mode
   :ensure t)
 (use-package cl
   :ensure t)
@@ -182,8 +178,6 @@
   :config
   (if (file-exists-p abbrev-file-name)
       (quietly-read-abbrev-file)))
-(use-package evil-org
-  :ensure t)
 (use-package evil-leader
   :ensure t
   :config
@@ -241,22 +235,9 @@
   :ensure t
   :config
   (global-evil-matchit-mode 1))
-;; (use-package emacs-firefox-controller
-;;   :ensure t)
-(use-package projectile
-  :ensure t
-  :config
-  (projectile-global-mode))
 (use-package undo-tree
   :ensure t
   :diminish undo-tree-mode)
-(use-package discover-my-major
-  :ensure t
-  :bind ("C-h C-m" . discover-my-major))
-;; (use-package eink-theme
-;;   :ensure t
-;;   :config
-;;   (load-theme 'eink t))
 (use-package atom-one-dark-theme
   :ensure t
   :config
@@ -265,19 +246,11 @@
   :ensure t)
 (use-package git-commit
   :ensure t)
-(use-package goto-chg
-  :ensure t)
 (use-package graphviz-dot-mode
-  :ensure t)
-(use-package haml-mode
-  :ensure t)
-(use-package hydra
   :ensure t)
 (use-package iedit
   :ensure t)
 (use-package json-mode
-  :ensure t)
-(use-package let-alist
   :ensure t)
 (use-package magit
   :ensure t
@@ -290,12 +263,6 @@
   :ensure t)
 (use-package makey
   :ensure t)
-(use-package php-mode
-  :ensure t)
-(use-package pkg-info
-  :ensure t)
-(use-package s
-  :ensure t)
 (use-package sass-mode
   :ensure t)
 (use-package scss-mode
@@ -304,13 +271,9 @@
   :ensure t)
 (use-package systemd
   :ensure t)
-(use-package swiper
-  :ensure t)
 (use-package sudo-edit
   :ensure t)
 (use-package with-editor
-  :ensure t)
-(use-package writegood-mode
   :ensure t)
 (use-package web-mode
   :ensure t
@@ -354,13 +317,6 @@
   :diminish yas-minor-mode
   :config
   (yas-global-mode 1))
-
-;; Hungry like the woooolllffff
-;; Not sure I need this with Evil mode...
-(use-package hungry-delete
-  :ensure t
-  :config
-  (global-hungry-delete-mode))
 
 ;; IDO
 (use-package ido-vertical-mode
@@ -430,40 +386,12 @@
   (dolist (hook '(css-mode-hook html-mode-hook sass-mode-hook lisp-mode))
     (add-hook hook 'rainbow-mode)))
 
-;; Rainbow Delimiter mode
-(use-package rainbow-delimiters
-  :ensure t
-  :diminish rainbow-delimiters-mode
-  :config
-  (add-hook 'lisp-mode       'rainbow-delimiters-mode)
-  (add-hook 'emacs-lisp-mode 'rainbow-delimiters-mode))
-
 ;; Smex
 (use-package smex
   :ensure t
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands)
          ("C-c C-c M-x" . execute-extended-command)))
-
-;; Expand Region
-(use-package expand-region
-  :ensure t
-  :bind ("M-+" . er/expand-region))
-
-;; Discover
-(use-package discover
-  :ensure t
-  :config
-  (global-discover-mode 1))
-
-
-;; Midnight Mode
-(require 'midnight)
-(midnight-delay-set 'midnight-delay "2:00am")
-(add-to-list 'clean-buffer-list-kill-regexps
-             '("\\'\\*magit-diff.*\\*\\'"))
-(add-to-list 'clean-buffer-list-kill-buffer-names
-             '("*Gomoku*"))
 
 ;; Show battery percentage
 (display-battery-mode +1)
