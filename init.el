@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2016-04-17 12:16:43 ndegruchy>
+;; Time-stamp: <2016-06-01 21:07:29 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -242,6 +242,10 @@
   :ensure t
   :config
   (load-theme 'atom-one-dark t))
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
 (use-package fish-mode
   :ensure t)
 (use-package git-commit
@@ -451,6 +455,19 @@
           (setq count (1+ count))
           (kill-buffer buffer)))
       (message "Killed %i dired buffer(s)." count ))))
+
+(defun ndegruchy/fill-or-unfill ()
+  "Like `fill-paragraph', but unfill if used twice."
+  (interactive)
+  (let ((fill-column
+         (if (eq last-command 'ndegruchy/fill-or-unfill)
+             (progn (setq this-command nil)
+                    (point-max))
+           fill-column)))
+    (call-interactively #'fill-paragraph)))
+
+(global-set-key [remap fill-paragraph]
+                #'ndegruchy/fill-or-unfill)
 
 (defun ndegruchy/unfill-paragraph ()
   "Takes a multi-line paragraph and makes it into a single line of text."
