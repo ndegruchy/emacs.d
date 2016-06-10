@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2016-06-01 21:07:29 ndegruchy>
+;; Time-stamp: <2016-06-08 20:24:03 ndegruchy>
 
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
@@ -238,10 +238,14 @@
 (use-package undo-tree
   :ensure t
   :diminish undo-tree-mode)
-(use-package atom-one-dark-theme
+;; (use-package atom-one-dark-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'atom-one-dark t))
+(use-package apropospriate-theme
   :ensure t
   :config
-  (load-theme 'atom-one-dark t))
+  (load-theme 'apropospriate-light t))
 (use-package which-key
   :ensure t
   :config
@@ -258,7 +262,10 @@
   :ensure t)
 (use-package magit
   :ensure t
-  :bind ("C-c g s" . magit-status))
+  :bind ("C-c g s" . magit-status)
+  :config
+  (define-key magit-mode-map "e" nil)
+  (define-key magit-mode-map "E" nil))
 (use-package magit-find-file
   :ensure t)
 (use-package magit-gitflow
@@ -405,6 +412,35 @@
 (global-set-key (kbd "C-c f") 'ndegruchy/ido-choose-from-recentf)
 
 ;; Custom Functions
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; insert file name at point                                              ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; https://www.emacswiki.org/emacs/InsertFileName
+(defun ndegruchy/insert-file-name (filename &optional args)
+  "Insert name of file FILENAME into buffer after point.
+
+  Prefixed with \\[universal-argument], expand the file name to
+  its fully canocalized path.  See `expand-file-name'.
+
+  Prefixed with \\[negative-argument], use relative path to file
+  name from current directory, `default-directory'.  See
+  `file-relative-name'.
+
+  The default with no prefix is to insert the file name exactly as
+  it appears in the minibuffer prompt."
+  ;; Based on insert-file in Emacs -- ashawley 20080926
+  (interactive "*fInsert file name: \nP")
+  (cond ((eq '- args)
+         (insert (expand-file-name filename)))
+        ((not (null args))
+         (insert (filename)))
+        (t
+         (insert (file-relative-name filename)))))
+
+;; bind it
+(global-set-key (kbd "C-c b i") 'ndegruchy/insert-file-name)
 
 ;; Dired DU Function
 (defun ndegruchy/dired-get-size ()
