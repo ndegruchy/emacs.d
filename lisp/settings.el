@@ -1,0 +1,84 @@
+;;;;;;;;;;;;;;;;;;;
+;; Settings File ;;
+;;;;;;;;;;;;;;;;;;;
+
+
+;; Me
+(setq user-full-name    "Nathan DeGruchy"
+      user-mail-address "nathan@degruchy.org")
+
+;; Window Geometry
+(add-to-list 'default-frame-alist '(width  . 80))
+(add-to-list 'default-frame-alist '(height . 24))
+
+;; Quiet, please
+(custom-set-variables '(ring-bell-function 'ignore))
+
+;; Some default settings
+(setq inhibit-startup-message               t
+      make-backup-files                     nil
+      auto-save-default                     t
+      auto-save-interval                    50
+      auto-save-timeout                     5
+      delete-auto-save-files                t
+      case-fold-search                      t
+      tooltip-delay                         1
+      show-trailing-whitespace              t
+      initial-scratch-message               ";; Scratch buffer\n"
+      visible-bell                          nil
+      sentance-end-double-space             t
+      completion-ignore-case                t
+      read-file-name-completion-ignore-case t
+      initial-major-mode                    (quote text-mode)
+      mouse-wheel-progressive-speed         nil
+      load-prefer-newer                     t
+      save-abbrevs                          t
+      confirm-kill-emacs                    'y-or-n-p
+      custom-file                           "~/.emacs.d/lisp/custom.el"
+      ls-lisp-use-insert-directory-program  nil
+      dired-use-ls-dired                    nil)
+
+(setq-default abbrev-mode t)
+
+;; Ignore some files and extensions
+(add-to-list 'completion-ignored-extensions ".sass-cache/")
+(add-to-list 'completion-ignored-extensions ".idea/")
+(add-to-list 'completion-ignored-extensions ".git/")
+(add-to-list 'completion-ignored-extensions "node-modules/")
+
+;; GUI Features
+
+;; Font
+;; My preferred font is Source Code Pro
+;; (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-14"))
+(add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
+(global-font-lock-mode +1)
+
+;; Delete/Overwrite Selection
+(delete-selection-mode t)
+
+;; Remove some of the window "chrome" like toolbars and scrollbars
+(tool-bar-mode    -1)
+(menu-bar-mode    -1)
+(scroll-bar-mode  -1)
+
+;; Coding Style
+
+;; Line numbers
+(global-linum-mode -1)
+
+;; Indentation
+(setq-default indent-tabs-mode ())
+(setq-default tab-width 4)
+(setq-default tab-always-indent t)
+(defvaralias 'c-basic-offset 'tab-width)
+(defvaralias 'cperl-indent-level 'tab-width)
+(electric-indent-mode 1)
+(global-set-key (kbd "<RET>") 'newline-and-indent)
+
+;; Yes or no
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; Don't warn
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
