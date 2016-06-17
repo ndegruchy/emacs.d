@@ -1,5 +1,5 @@
 ---
-title:   `Init.el`: The Second Coming of Emacs
+title:   "`Init.el`: The Second Coming of Emacs"
 author:  Nathan DeGruchy
 date:    2014-10-24
 ---
