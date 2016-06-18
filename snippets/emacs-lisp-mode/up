@@ -4,5 +4,6 @@
 # --
 
 (use-package $1
-  :ensure t
+  ${2::ensure t}
+  :config
   $0)
