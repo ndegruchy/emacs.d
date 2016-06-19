@@ -4,6 +4,9 @@
 # --
 
 (use-package $1
-  ${2::ensure t}
-  :config
-  $0)
+  ${2::diminish $1-mode}
+  ${3::if window-system}
+  ${4::ensure t}
+  ${5::config
+  ;; Run the following configuration}$0
+  ${6::bind (("C-c p" . function-name))})
