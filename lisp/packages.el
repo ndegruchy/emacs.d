@@ -52,11 +52,8 @@
   :ensure t
   :config
   (add-hook 'sgml-mode-hook 'emmet-mode)
-  (add-hook 'web-mode-hook  'emmet-mode)
   (add-hook 'css-mode-hook  'emmet-mode)
   (add-hook 'sgml-mode-hook 'toggle-truncate-lines)
-  (add-hook 'web-mode-hook  'toggle-truncate-lines)
-  (add-hook 'php-mode-hook  'toggle-truncate-lines)
   (setq emmet-preview-default t))
 
 (use-package evil-leader
@@ -131,9 +128,6 @@
 (use-package fish-mode
   :ensure t)
 
-(use-package graphviz-dot-mode
-  :ensure t)
-
 (use-package ido-vertical-mode
   :ensure t)
 
@@ -152,13 +146,7 @@
   (setq magit-commit-arguments (quote ("--gpg-sign=nathan@degruchy.org"))))
 
 (use-package markdown-mode
-  :ensure t
-  :config
-  (autoload 'markdown-mode "markdown-mode"
-    "Major mode for editing Markdown files" t)
-  (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+  :ensure t)
 
 (use-package sass-mode
   :ensure t)
@@ -190,21 +178,6 @@
           (output-dvi "xdvi")
           (output-pdf "MuPDF")
           (output-html "xdg-open")))))
-
-(use-package web-mode
-  :ensure t
-  :config
-  (evil-leader/set-key
-    "w w" 'web-mode-element-wrap
-    "w r" 'web-mode-element-rename) 
-  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 
 (use-package which-key
   :ensure t
