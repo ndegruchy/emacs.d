@@ -45,6 +45,12 @@
 (use-package coffee-mode
   :ensure t)
 
+(use-package diminish
+  :ensure t
+  :config
+  (diminish 'auto-revert-mode)
+  (diminish 'flyspell-mode))
+
 (use-package dired+
   :ensure t)
 
@@ -220,9 +226,6 @@
                  bs-visits-non-file
                  bs--sort-by-name))
   (setq bs-default-configuration "ndegruchy"))
-
-(use-package flyspell
-  :diminish flyspell-mode)
 
 (use-package ido
   :config
