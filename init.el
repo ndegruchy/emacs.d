@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2016-06-20 14:00:56 ndegruchy>
+;; Time-stamp: <2016-06-20 14:05:24 ndegruchy>
 
 ;; Load the local lisp directory
 (add-to-list 'load-path "~/.emacs.d/lisp")
@@ -17,14 +17,3 @@
 
 (when (file-exists-p custom-file)
   (load custom-file)) ;; For custom.el
-
-;; Misc
-
-;; Enable automatically pairing of parens, brackets, etc
-(electric-pair-mode 1)
-
-;; I sometimes am on a laptop, show the battery meter
-(display-battery-mode +1)
-
-;; Have IDO/Smex show recent files
-(recentf-mode 1)
