@@ -8,5 +8,4 @@
   ${3::if window-system}
   ${4::ensure t}
   ${5::config
-  ;; Run the following configuration}$0
   ${6::bind (("C-c p" . function-name))})
