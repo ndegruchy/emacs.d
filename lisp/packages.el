@@ -305,6 +305,12 @@
         org-src-tab-acts-natively t
         org-support-shift-select t))
 
+;; Remember
+(use-package remember
+  :config
+  (setq remember-data-directory "~/.emacs.d/etc/remember"
+        remember-data-file      "~/.emacs.d/etc/remember/notes"))
+
 ;; Markdown
 (use-package markdown-mode
   :ensure t
