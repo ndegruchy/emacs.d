@@ -35,23 +35,21 @@
 
 ;; Built In
 
-(require 'diminish)
 
-(require 'bind-key)
+(use-package diminish)
+(use-package bind-key)
 
 (use-package no-littering
   :ensure t)
 
 (use-package saveplace
   ;; Saves your place in a file
-  :ensure t
   :config
   (setq-default save-place t))
 
 (use-package async)
 
 (use-package bs
-  :ensure t
   :config
   ;; Whoo boy, this one was a hard one to track down. Basically I'm
   ;; telling buffer-show to always show a certain set of buffer names
@@ -84,7 +82,7 @@
 (use-package dired+
   :ensure t)
 
-(require 'ls-lisp)
+(use-package ls-lisp)
 
 (use-package browse-kill-ring
   :ensure t)
@@ -297,13 +295,14 @@
   (setq emmet-preview-default t))
 
 ;; Org Mode
-(require 'org-mouse)
-(add-hook 'org-mode-hook 'auto-fill-mode)
-(add-hook 'org-mode-hook 'electric-indent-mode)
-(add-hook 'org-mode-hook 'org-display-inline-images)
-(setq org-src-fontify-natively ())
-(setq org-src-tab-acts-natively t)
-(setq org-support-shift-select t)
+(use-package org-mouse
+  :config
+  (add-hook 'org-mode-hook 'auto-fill-mode)
+  (add-hook 'org-mode-hook 'electric-indent-mode)
+  (add-hook 'org-mode-hook 'org-display-inline-images)
+  (setq org-src-fontify-natively ()
+        org-src-tab-acts-natively t
+        org-support-shift-select t))
 
 ;; Markdown
 (use-package markdown-mode
@@ -318,7 +317,6 @@
 ;; Uniquify
 (use-package uniquify
   :config
-  (require 'uniquify)
   (setq uniquify-buffer-name-style    'reverse
         uniquify-separator            "/"
         uniquify-after-kill-buffer-p  t
@@ -339,6 +337,5 @@
          ("C-c C-c M-x" . execute-extended-command)))
 
 (use-package zone
-  :ensure t
   :config
   (zone-when-idle 120))
