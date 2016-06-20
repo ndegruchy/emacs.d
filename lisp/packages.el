@@ -8,11 +8,9 @@
 ;; Sources ;;
 ;;;;;;;;;;;;;
 
-;; Make MELPA the default and only
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 
-;; If we're running less than emacs 24, load the gnu archives as well
 (when (< emacs-major-version 24)
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
@@ -22,9 +20,6 @@
 
 (package-initialize)
 
-;; Refresh package contents, so that we don't get the errors of things
-;; not being available. This only happens when we haven't loaded the
-;; package list before
 (unless package-archive-contents
   (package-refresh-contents))
 
@@ -80,7 +75,6 @@
   :diminish undo-tree-mode
   :config
   (evil-mode 1)
-  ;; Loop through a list of buffer modes to set their various states
   (loop for (mode . state) in '((shell-mode . insert)
                                 (eshell-mode . emacs)
                                 (git-commit-mode . insert)
@@ -127,9 +121,9 @@
   :config
   (global-evil-matchit-mode 1))
 
-;; Since I use FISH as my preferred shell, I have to
-;; have Emacs parse the $PATH in a different way
 (use-package exec-path-from-shell
+   ;; Since I use FISH as my preferred shell, I have to
+   ;; have Emacs parse the $PATH in a different way
   :ensure t
   :config
   (exec-path-from-shell-initialize))
@@ -200,8 +194,6 @@
 (use-package web-mode
   :ensure t
   :config
-  ;; TODO: add some leader shortcuts for common web functions, like
-  ;; rename and wrap with tag
   (evil-leader/set-key
     "w w" 'web-mode-element-wrap
     "w r" 'web-mode-element-rename) 
@@ -285,7 +277,6 @@
          ("C-c l" . remember-notes)))
 
 (use-package saveplace
-  ;; Saves your place in a file
   :config
   (setq-default save-place t))
 
