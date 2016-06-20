@@ -171,11 +171,6 @@
   :ensure t
   :diminish undo-tree-mode)
 
-(use-package atom-one-dark-theme
-  :ensure t
-  :config
-  (load-theme 'atom-one-dark t))
-
 (use-package which-key
   :ensure t
   :config
@@ -320,13 +315,14 @@
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
 
-
 ;; Uniquify
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'reverse)
-(setq uniquify-separator "/")
-(setq uniquify-after-kill-buffer-p t)
-(setq uniquify-ignore-buffers-re "^\\*")
+(use-package uniquify
+  :config
+  (require 'uniquify)
+  (setq uniquify-buffer-name-style    'reverse
+        uniquify-separator            "/"
+        uniquify-after-kill-buffer-p  t
+        uniquify-ignore-buffers-re    "^\\*"))
 
 ;; Rainbow Mode
 (use-package rainbow-mode
