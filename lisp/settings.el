@@ -68,9 +68,9 @@
 (global-linum-mode -1)
 
 ;; Indentation
-(setq-default indent-tabs-mode ())
-(setq-default tab-width 4)
-(setq-default tab-always-indent t)
+(setq-default indent-tabs-mode nil
+              tab-width 4
+              tab-always-indent t)
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
 (electric-indent-mode 1)

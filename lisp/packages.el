@@ -42,6 +42,12 @@
 (use-package no-littering
   :ensure t)
 
+(use-package saveplace
+  ;; Saves your place in a file
+  :ensure t
+  :config
+  (setq-default save-place t))
+
 (use-package async)
 
 (use-package bs
