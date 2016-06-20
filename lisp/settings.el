@@ -38,7 +38,8 @@
       ls-lisp-use-insert-directory-program  nil
       dired-use-ls-dired                    nil
       ring-bell-function                    (quote ignore)
-      url-cookie-untrusted-urls             (quote (".*")))
+      url-cookie-untrusted-urls             (quote (".*"))
+      ispell-personal-dictionary            "~/.emacs.d/etc/personal_dictionary")
 
 (setq-default abbrev-mode t)
 
