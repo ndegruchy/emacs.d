@@ -36,9 +36,6 @@
 ;; 3rd-party packages ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package no-littering
-  :ensure t)
-
 (use-package async
   :ensure t)
 
@@ -80,6 +77,7 @@
   (evil-mode 1)
   (loop for (mode . state) in '((shell-mode . insert)
                                 (eshell-mode . emacs)
+                                (auto-package-update-mode . emacs)
                                 (git-commit-mode . insert)
                                 (git-rebase-mode . emacs)
                                 (help-mode . emacs)
@@ -152,6 +150,9 @@
   (setq magit-commit-arguments (quote ("--gpg-sign=nathan@degruchy.org"))))
 
 (use-package markdown-mode
+  :ensure t)
+
+(use-package no-littering
   :ensure t)
 
 (use-package sass-mode
