@@ -194,7 +194,8 @@
   :bind ("C-c g s" . magit-status)
   :config
   (define-key magit-mode-map "e" nil)
-  (define-key magit-mode-map "E" nil))
+  (define-key magit-mode-map "E" nil)
+  (setq magit-commit-arguments (quote ("--gpg-sign=nathan@degruchy.org"))))
 
 (use-package magit-find-file
   :ensure t)

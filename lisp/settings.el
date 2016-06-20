@@ -36,7 +36,9 @@
       confirm-kill-emacs                    'y-or-n-p
       custom-file                           "~/.emacs.d/lisp/custom.el"
       ls-lisp-use-insert-directory-program  nil
-      dired-use-ls-dired                    nil)
+      dired-use-ls-dired                    nil
+      ring-bell-function                    (quote ignore)
+      url-cookie-untrusted-urls             (quote (".*")))
 
 (setq-default abbrev-mode t)
 
