@@ -39,6 +39,10 @@
 (use-package async
   :ensure t)
 
+(use-package ace-window
+  :ensure t
+  :bind (("M-p" . ace-window)))
+
 (use-package coffee-mode
   :ensure t)
 
@@ -58,69 +62,6 @@
   (add-hook 'css-mode-hook  'emmet-mode)
   (add-hook 'sgml-mode-hook 'toggle-truncate-lines)
   (setq emmet-preview-default t))
-
-(use-package evil-leader
-  :ensure t
-  :config
-  (global-evil-leader-mode)
-  (evil-leader/set-leader ",")
-  (evil-leader/set-key
-    "b"   'bs-show
-    "g s" 'magit-status
-    "d"   'ndegruchy/insert-date))
-
-(use-package evil
-  :ensure t
-  :after evil-leader
-  :diminish undo-tree-mode
-  :config
-  (evil-mode 1)
-  (loop for (mode . state) in '((shell-mode . insert)
-                                (eshell-mode . emacs)
-                                (auto-package-update-mode . emacs)
-                                (git-commit-mode . insert)
-                                (git-rebase-mode . emacs)
-                                (help-mode . emacs)
-                                (grep-mode . emacs)
-                                (bc-menu-mode . emacs)
-                                (bs-mode . emacs)
-                                (magit-branch-manager-mode . emacs)
-                                (dired-mode . emacs)
-                                (gomoku-mode . emacs)
-                                (pong-mode . emacs)
-                                (5x5-mode . emacs)
-                                (blackbox-mode . emacs)
-                                (hanoi-mode . emacs)
-                                (landmark-mode . emacs)
-                                (life-mode . emacs)
-                                (snake-mode . emacs)
-                                (solitaire-mode . emacs)
-                                (tetris-mode . emacs)
-                                (dunnet-mode . emacs)
-                                (bubbles-mode . emacs)
-                                (artist-mode . emacs)
-                                (makey-key-mode . emacs)
-                                (wdired-mode . normal))
-        do (evil-set-initial-state mode state)))
-
-(use-package evil-args
-  :ensure t)
-
-(use-package evil-numbers
-  :ensure t
-  :config
-  (define-key evil-normal-state-map (kbd "<kp-add>") 'evil-numbers/inc-at-pt)
-  (define-key evil-normal-state-map (kbd "<kp-subtract>") 'evil-numbers/dec-at-pt))
-
-(use-package evil-surround
-  :ensure t
-  :config
-  (global-evil-surround-mode 1))
-
-(use-package evil-matchit
-  :ensure t
-  :config
-  (global-evil-matchit-mode 1))
 
 (use-package exec-path-from-shell
    ;; Since I use FISH as my preferred shell, I have to
@@ -185,6 +126,12 @@
           (output-dvi "xdvi")
           (output-pdf "MuPDF")
           (output-html "xdg-open")))))
+
+(use-package undo-tree
+  :ensure t
+  :diminish undo-tree-mode
+  :config
+  (global-undo-tree-mode))
 
 (use-package which-key
   :ensure t
