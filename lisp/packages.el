@@ -43,6 +43,11 @@
   :ensure t
   :bind (("M-p" . ace-window)))
 
+(use-package avy
+  :ensure t
+  :bind (("C-'" . avy-goto-char-2)
+         ("C-\"" . avy-goto-line)))
+
 (use-package coffee-mode
   :ensure t)
 
