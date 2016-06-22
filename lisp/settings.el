@@ -13,7 +13,7 @@
 ;; Undo some of the default theme settings that are
 ;; defined by GTK, making things across platforms
 ;; slightly more unified
-(set-face-background "light goldenrod")
+(set-face-background 'region "light goldenrod")
 
 ;; Some default settings
 (setq inhibit-startup-message               t
