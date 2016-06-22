@@ -8,8 +8,8 @@
       user-mail-address "nathan@degruchy.org")
 
 ;; Window Geometry
-(add-to-list 'default-frame-alist '(width  . 80))
-(add-to-list 'default-frame-alist '(height . 24))
+(add-to-list 'default-frame-alist '(width  . 100))
+(add-to-list 'default-frame-alist '(height . 34))
 
 ;; Quiet, please
 (custom-set-variables '(ring-bell-function 'ignore))
@@ -53,8 +53,8 @@
 
 ;; Font
 ;; My preferred font is Source Code Pro
-;; (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-14"))
-(add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
+(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-14"))
+;; (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
 (global-font-lock-mode +1)
 
 ;; Delete/Overwrite Selection
