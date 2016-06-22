@@ -10,6 +10,11 @@
 (add-to-list 'default-frame-alist '(width  . 100))
 (add-to-list 'default-frame-alist '(height . 34))
 
+;; Undo some of the default theme settings that are
+;; defined by GTK, making things across platforms
+;; slightly more unified
+(set-face-background "light goldenrod")
+
 ;; Some default settings
 (setq inhibit-startup-message               t
       make-backup-files                     nil
