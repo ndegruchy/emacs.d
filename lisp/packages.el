@@ -81,6 +81,11 @@
   :config
   (exec-path-from-shell-initialize))
 
+(use-package expand-region
+  :ensure t
+  :bind (("C-=" . er/expand-region)
+         ("M-+" . er/contract-region)))
+
 (use-package fish-mode
   :ensure t)
 
