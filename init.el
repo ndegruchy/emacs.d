@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2016-06-21 21:44:16 ndegruchy>
+;; Time-stamp: <2016-06-21 21:50:46 ndegruchy>
 
 ;; Load the local lisp directory
 (add-to-list 'load-path "~/.emacs.d/lisp")
@@ -11,7 +11,6 @@
 (load-library "functions")
 (load-library "keybindings")
 (load-library "hooks")
-(load-library "theme-custom")
 
 (when (eq system-type 'darwin) ;; mac specific settings
   (load-library "mac"))
