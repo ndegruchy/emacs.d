@@ -2,7 +2,6 @@
 ;; Settings File ;;
 ;;;;;;;;;;;;;;;;;;;
 
-
 ;; Me
 (setq user-full-name    "Nathan DeGruchy"
       user-mail-address "nathan@degruchy.org")
@@ -10,9 +9,6 @@
 ;; Window Geometry
 (add-to-list 'default-frame-alist '(width  . 100))
 (add-to-list 'default-frame-alist '(height . 34))
-
-;; Quiet, please
-(custom-set-variables '(ring-bell-function 'ignore))
 
 ;; Some default settings
 (setq inhibit-startup-message               t
@@ -26,6 +22,7 @@
       show-trailing-whitespace              t
       initial-scratch-message               ";; Scratch buffer\n"
       visible-bell                          nil
+      ring-bell-function                    (quote ignore)
       sentance-end-double-space             t
       completion-ignore-case                t
       read-file-name-completion-ignore-case t
@@ -53,8 +50,7 @@
 
 ;; Font
 ;; My preferred font is Source Code Pro
-(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-14"))
-;; (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
+(add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
 (global-font-lock-mode +1)
 
 ;; Delete/Overwrite Selection
