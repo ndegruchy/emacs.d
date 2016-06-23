@@ -51,6 +51,9 @@
 (add-to-list 'completion-ignored-extensions ".git/")
 (add-to-list 'completion-ignored-extensions "node-modules/")
 
+;; Find file creates non-existent folders
+(add-to-list 'find-file-not-found-functions #'ndegruchy/my-create-non-existent-directory)
+
 ;; GUI Features
 
 ;; Font

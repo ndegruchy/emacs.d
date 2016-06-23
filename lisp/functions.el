@@ -2,19 +2,6 @@
 ;; Functions (and advice) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Dired DU Function
-(defun ndegruchy/dired-get-size ()
-  (interactive)
-  (let ((files (dired-get-marked-files)))
-    (with-temp-buffer
-      (apply 'call-process "/usr/bin/du" nil t nil "-sch" files)
-      (message
-       "Size of all marked files: %s"
-       (progn
-         (re-search-backward "\\(^[0-9.,]+[A-Za-z]+\\).*total$")
-         (match-string 1))))))
-
-
 (defun ndegruchy/insert-date (format)
   "Wrapper around format-time-string"
   (interactive "MFormat: ")
@@ -84,8 +71,7 @@ places the cursor as close to its previous position as possible."
    (skip-chars-backward "-_A-Za-z0-9")
    (setq pt (point))
    (skip-chars-forward "-_A-Za-z0-9")
-   (set-mark pt)
- ))
+   (set-mark pt)))
 
 (defun ndegruchy/select-current-line ()
   "Select the current line"
@@ -121,8 +107,6 @@ that line and setting the indent properly"
     (when (and (not (file-exists-p parent-directory))
                (y-or-n-p (format "Directory `%s' does not exist! Create it?" parent-directory)))
       (make-directory parent-directory t))))
-
-(add-to-list 'find-file-not-found-functions #'ndegruchy/my-create-non-existent-directory)
 
 ;; Open file in preferred app
 (defun ndegruchy/open-in-external-app ()
@@ -168,9 +152,6 @@ URL `http://ergoemacs.org/emacs/emacs_dired_open_file_in_ext_apps.html'"
     ) ))
 
 ;; Autocorrect word
-
-(define-key ctl-x-map "\C-i" 'ndegruchy/ispell-word-then-abbrev)
-
 (defun ndegruchy/ispell-word-then-abbrev (p)
   "Call `ispell-word'. Then create an abbrev for the correction made.
 With prefix P, create local abbrev. Otherwise it will be global."
@@ -184,7 +165,6 @@ With prefix P, create local abbrev. Otherwise it will be global."
       (define-abbrev
         (if p local-abbrev-table global-abbrev-table)
         bef aft))))
-
 
 (defun ndegruchy/comment-line (n)
   "Comment or uncomment current line and leave point after it.

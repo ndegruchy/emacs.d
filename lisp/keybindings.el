@@ -23,3 +23,4 @@
 (global-set-key (kbd "C-c w")          #'ndegruchy/select-current-word)
 (global-set-key (kbd "C-c f")          #'ndegruchy/ido-choose-from-recentf)
 (global-set-key [remap fill-paragraph] #'ndegruchy/fill-or-unfill)
+(global-set-key (kbd "C-x C-i")        #'ndegruchy/ispell-word-then-abbrev)
