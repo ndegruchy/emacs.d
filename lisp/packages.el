@@ -89,6 +89,11 @@
 (use-package fish-mode
   :ensure t)
 
+(use-package hungry-delete
+  :ensure t
+  :config
+  (global-hungry-delete-mode))
+
 (use-package ido-vertical-mode
   :ensure t)
 
