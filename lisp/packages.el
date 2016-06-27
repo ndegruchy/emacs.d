@@ -61,7 +61,7 @@
   :ensure t
   :config
   (diminish 'auto-revert-mode)
-  (diminish 'flyspell-mode))
+  (diminish flyspell-mode ""))
 
 (use-package dired+
   :ensure t)
