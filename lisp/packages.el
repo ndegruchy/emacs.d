@@ -83,14 +83,14 @@
 
 (use-package expand-region
   :ensure t
-  :bind (("C-=" . er/expand-region)
-         ("M-+" . er/contract-region)))
+  :bind (("C-=" . er/expand-region)))
 
 (use-package fish-mode
   :ensure t)
 
 (use-package hungry-delete
   :ensure t
+  :diminish hungry-delete-mode
   :config
   (global-hungry-delete-mode))
 
