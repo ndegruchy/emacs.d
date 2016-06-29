@@ -51,10 +51,6 @@
 (use-package coffee-mode
   :ensure t)
 
-(use-package embrace
-  :ensure t
-  :bind (("C-," . embrace-commander)))
-
 (use-package diminish
   :ensure t
   :config
@@ -71,6 +67,10 @@
   (add-hook 'css-mode-hook  'emmet-mode)
   (add-hook 'sgml-mode-hook 'toggle-truncate-lines)
   (setq emmet-preview-default t))
+
+(use-package embrace
+  :ensure t
+  :bind (("C-," . embrace-commander)))
 
 (use-package exec-path-from-shell
   ;; Since I use FISH as my preferred shell, I have to
