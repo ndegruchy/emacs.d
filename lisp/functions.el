@@ -361,7 +361,6 @@ Version 2015-06-12"
     (if (equal buffer-to-kill "*scratch*")
         (bury-buffer) ad-do-it)))
 
-;;;###autoload
 (defun ndegruchy/dired-rsync (dest)
   (interactive
    (list

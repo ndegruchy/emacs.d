@@ -51,11 +51,9 @@
 (use-package coffee-mode
   :ensure t)
 
-(use-package corral
+(use-package embrace
   :ensure t
-  :bind (("M-9" . corral-parentheses-backward)
-         ("M-0" . corral-parentheses-forward)
-         ("M-\"" . corral-double-quotes-backward)))
+  :bind (("C-," . embrace-commander)))
 
 (use-package diminish
   :ensure t
