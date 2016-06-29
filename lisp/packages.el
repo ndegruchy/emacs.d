@@ -75,8 +75,8 @@
   (setq emmet-preview-default t))
 
 (use-package exec-path-from-shell
-   ;; Since I use FISH as my preferred shell, I have to
-   ;; have Emacs parse the $PATH in a different way
+  ;; Since I use FISH as my preferred shell, I have to
+  ;; have Emacs parse the $PATH in a different way
   :ensure t
   :config
   (exec-path-from-shell-initialize))
@@ -105,7 +105,7 @@
 
 (use-package magit
   :ensure t
-  :bind ("C-c g s" . magit-status)
+  :bind ("C-c C-c g" . magit-status)
   :config
   (define-key magit-mode-map "e" nil)
   (define-key magit-mode-map "E" nil)
@@ -116,6 +116,12 @@
 
 (use-package no-littering
   :ensure t)
+
+(use-package osx-pseudo-daemon
+  :if (eq system-type 'darwin)
+  :ensure t
+  :config
+  (setq osx-pseudo-daemon-mode t))
 
 (use-package sass-mode
   :ensure t)
