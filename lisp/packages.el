@@ -115,12 +115,6 @@
 (use-package no-littering
   :ensure t)
 
-(use-package osx-pseudo-daemon
-  :if (eq system-type 'darwin)
-  :ensure t
-  :config
-  (setq osx-pseudo-daemon-mode t))
-
 (use-package sass-mode
   :ensure t)
 
