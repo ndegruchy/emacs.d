@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Wishlist item
+# key: wli
+# --
+{
+    "name": "$1",
+    "price": "$2",
+    "link": "$3",
+    "linkText": "$4",
+    "image": "$5",
+    "preference": 5$0
+}
