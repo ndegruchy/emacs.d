@@ -41,7 +41,10 @@
       dired-use-ls-dired                    nil
       ring-bell-function                    (quote ignore)
       url-cookie-untrusted-urls             (quote (".*"))
-      ispell-personal-dictionary            "~/.emacs.d/etc/personal_dictionary")
+      ispell-personal-dictionary            "~/.emacs.d/etc/personal_dictionary"
+      snake-score-file                      "~/.emacs.d/var/snake-scores"
+      tetris-score-file                     "~/.emacs.d/var/tetris-scores"
+      bubbles-score-file                    "~/.emacs.d/var/bubbles-scores")
 
 (setq-default abbrev-mode t)
 
