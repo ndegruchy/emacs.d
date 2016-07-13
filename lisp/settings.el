@@ -16,35 +16,44 @@
 (set-face-background 'region "light goldenrod")
 
 ;; Some default settings
-(setq inhibit-startup-message               t
-      make-backup-files                     nil
-      auto-save-default                     t
-      auto-save-interval                    50
-      auto-save-timeout                     5
-      delete-auto-save-files                t
-      case-fold-search                      t
-      tooltip-delay                         1
-      show-trailing-whitespace              t
-      initial-scratch-message               ";; Scratch buffer\n"
-      visible-bell                          nil
-      ring-bell-function                    (quote ignore)
-      sentance-end-double-space             t
-      completion-ignore-case                t
-      read-file-name-completion-ignore-case t
-      initial-major-mode                    (quote text-mode)
-      mouse-wheel-progressive-speed         nil
-      load-prefer-newer                     t
-      save-abbrevs                          t
-      confirm-kill-emacs                    'y-or-n-p
-      custom-file                           "~/.emacs.d/lisp/custom.el"
-      ls-lisp-use-insert-directory-program  nil
-      dired-use-ls-dired                    nil
-      ring-bell-function                    (quote ignore)
-      url-cookie-untrusted-urls             (quote (".*"))
-      ispell-personal-dictionary            "~/.emacs.d/etc/personal_dictionary"
-      snake-score-file                      "~/.emacs.d/var/snake-scores"
-      tetris-score-file                     "~/.emacs.d/var/tetris-scores"
-      bubbles-score-file                    "~/.emacs.d/var/bubbles-scores")
+(setq inhibit-startup-message                t
+      initial-scratch-message                ";; Scratch buffer\n"
+      initial-major-mode                     (quote text-mode)
+      ring-bell-function                     (quote ignore)
+      confirm-kill-emacs                     'y-or-n-p
+      save-abbrevs                           t
+      load-prefer-newer                      t
+      mouse-wheel-progressive-speed          nil
+      read-file-name-complection-ignore-case t
+      completion-ignore-case                 t
+      tooltip-delay                          1
+      show-trailing-whitespace               t)
+
+;; Dired
+(setq dired-use-ls-dired                     nil
+      ls-lisp-use-insert-directory-program   nil)
+
+;; Backup file configuration
+(setq backup-directory-alist                 '(("." . "~/.emacs.d/backup"))
+      make-backup-files                      t
+      version-control                        t
+      delete-old-version                     t
+      kept-new-versions                      20
+      kept-old-versions                      5
+      auto-save-default                      t
+      auto-save-interval                     50
+      auto-save-timeout                      5
+      delete-auto-save-files                 t)
+
+;; Various config files
+(setq snake-score-file                       "~/.emacs.d/var/snake-scores"
+      tetris-score-file                      "~/.emacs.d/var/tetris-scores"
+      bubbles-score-file                     "~/.emacs.d/var/bubbles-scores"
+      ispell-personal-dictionary             "~/.emacs.d/etc/personal_dictionary"
+      custom-file                            "~/.emacs.d/lisp/custom.el")
+
+;; URL cookies
+(setq url-cookie-untrusted-urls              (quote (".*")))
 
 (setq-default abbrev-mode t)
 
