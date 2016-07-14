@@ -48,9 +48,6 @@
   :bind (("C-'" . avy-goto-char-2)
          ("C-\"" . avy-goto-line)))
 
-(use-package coffee-mode
-  :ensure t)
-
 (use-package diminish
   :ensure t
   :config
@@ -132,9 +129,6 @@
          ("M-X" . smex-major-mode-commands)
          ("C-c C-c M-x" . execute-extended-command)))
 
-(use-package systemd
-  :ensure t)
-
 (use-package tex-site
   :ensure auctex
   :config
@@ -162,12 +156,6 @@
 
 (use-package yaml-mode
   :ensure t)
-
-(use-package yasnippet
-  :ensure t
-  :diminish yas-minor-mode
-  :config
-  (yas-global-mode 1))
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Built-in packages ;;
