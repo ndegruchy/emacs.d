@@ -70,7 +70,7 @@
   :bind (("C-," . embrace-commander)))
 
 ;; Only run this on Mac and Linux, on Windows it causes errors.
-(when (not (eq system-type 'w32))
+(when (not (eq system-type 'windows-nt))
   (use-package exec-path-from-shell
     :ensure t
     :config
