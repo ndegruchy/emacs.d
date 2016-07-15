@@ -10,6 +10,8 @@
 ;; Unbind Pesky Sleep Button
 (global-unset-key [(control z)])
 (global-unset-key [(control x)(control z)])
+;; Make it useful again!
+(global-set-key (kbd "C-z")         'smex)
 
 ;; Custom function binds
 (global-set-key (kbd "C-c ;")          #'ndegruchy/comment-line)
