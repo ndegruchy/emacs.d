@@ -69,12 +69,12 @@
   :ensure t
   :bind (("C-," . embrace-commander)))
 
-(use-package exec-path-from-shell
-  ;; Since I use FISH as my preferred shell, I have to
-  ;; have Emacs parse the $PATH in a different way
-  :ensure t
-  :config
-  (exec-path-from-shell-initialize))
+;; Only run this on Mac and Linux, on Windows it causes errors.
+(when (not (eq system-type 'w32))
+  (use-package exec-path-from-shell
+    :ensure t
+    :config
+    (exec-path-from-shell-initialize)))
 
 (use-package expand-region
   :ensure t
