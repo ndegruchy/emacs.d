@@ -69,13 +69,6 @@
   :ensure t
   :bind (("C-," . embrace-commander)))
 
-;; Only run this on Mac and Linux, on Windows it causes errors.
-(when (not (eq system-type 'windows-nt))
-  (use-package exec-path-from-shell
-    :ensure t
-    :config
-    (exec-path-from-shell-initialize)))
-
 (use-package expand-region
   :ensure t
   :bind (("C-=" . er/expand-region)))
