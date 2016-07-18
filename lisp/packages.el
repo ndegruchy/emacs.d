@@ -105,6 +105,9 @@
 (use-package no-littering
   :ensure t)
 
+(use-package nyan-mode
+  :ensure t)
+
 (use-package sass-mode
   :ensure t)
 
