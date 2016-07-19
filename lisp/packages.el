@@ -163,9 +163,6 @@
   (if (file-exists-p abbrev-file-name)
       (quietly-read-abbrev-file)))
 
-(use-package auto-revert
-  :diminish auto-revert-mode)
-
 (use-package bs
   :config
   ;; Whoo boy, this one was a hard one to track down. Basically I'm
