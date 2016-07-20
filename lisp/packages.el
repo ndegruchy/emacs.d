@@ -71,7 +71,7 @@
 
 (use-package expand-region
   :ensure t
-  :bind (("C-=" . er/expand-region)))
+  :bind (("C-c =" . er/expand-region)))
 
 (use-package fish-mode
   :ensure t)

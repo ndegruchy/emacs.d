@@ -104,6 +104,7 @@
 
 ;; Enable automatically pairing of parens, brackets, etc
 (electric-pair-mode 1)
+(show-paren-mode 1)
 
 ;; I sometimes am on a laptop, show the battery meter
 (display-battery-mode +1)
