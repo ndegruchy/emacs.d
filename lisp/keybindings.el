@@ -11,7 +11,7 @@
 (global-set-key (kbd "C-c b")         'bs-show)
 (global-set-key (kbd "C-c <up>")      'text-scale-increase)
 (global-set-key (kbd "C-c <down>")    'text-scale-decrease)
-(global-set-key (kbd "C-c f")         'ffap)
+(global-set-key (kbd "C-c C-c f")     'ffap)
 (global-set-key (kbd "C-z")           'smex)
 
 ;; Custom function binds
