@@ -3,7 +3,7 @@
 ;;;;;;;;;;;;;;;;;
 
 ;; Unbind keys (may be useful for later bindings)
-(dolist (key '("\C-\\" "\C-z" "\C-x \C-z"))
+(dolist (key '("\C-\\" "\C-z" "\C-x\C-z"))
   (global-unset-key key))
 
 (global-set-key (kbd "C-c \\")     'align-regexp)
