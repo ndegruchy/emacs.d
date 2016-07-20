@@ -6,13 +6,13 @@
 (dolist (key '("\C-\\" "\C-z" "\C-x\C-z"))
   (global-unset-key key))
 
-(global-set-key (kbd "C-c \\")        'align-regexp)
-(global-set-key (kbd "C-c M-/")       'hippie-expand)
-(global-set-key (kbd "C-c b")         'bs-show)
-(global-set-key (kbd "C-c <up>")      'text-scale-increase)
-(global-set-key (kbd "C-c <down>")    'text-scale-decrease)
-(global-set-key (kbd "C-c C-c f")     'ffap)
-(global-set-key (kbd "C-z")           'smex)
+(global-set-key (kbd "C-c \\")         'align-regexp)
+(global-set-key (kbd "C-c M-/")        'hippie-expand)
+(global-set-key (kbd "C-c b")          'bs-show)
+(global-set-key (kbd "C-c <up>")       'text-scale-increase)
+(global-set-key (kbd "C-c <down>")     'text-scale-decrease)
+(global-set-key (kbd "C-c C-c f")      'ffap)
+(global-set-key (kbd "C-z")            'smex)
 
 ;; Custom function binds
 (global-set-key (kbd "C-c ;")          #'ndegruchy/comment-line)
@@ -26,7 +26,7 @@
 (global-set-key (kbd "C-c d")          #'ndegruchy/insert-date)
 (global-set-key (kbd "C-c f")          #'ndegruchy/ido-choose-from-recentf)
 (global-set-key [remap fill-paragraph] #'ndegruchy/fill-or-unfill)
-(global-set-key (kbd "C-x C-i")        #'ndegruchy/ispell-word-then-abbrev)
+(global-set-key (kbd "C-c C-c i")      #'ndegruchy/ispell-word-then-abbrev)
 
 ;; Dired mode binding
 (define-key dired-mode-map "Y"         #'ndegruchy/dired-rsync)
