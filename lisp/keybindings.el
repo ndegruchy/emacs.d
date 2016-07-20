@@ -2,6 +2,11 @@
 ;; Keybindings ;;
 ;;;;;;;;;;;;;;;;;
 
+;; Unbind keys (may be useful for later bindings)
+;; Currently unbinding C-\ for input methods (useless for me)
+(dolist (key '("\C-\\"))
+  (global-unset-key key))
+
 (global-set-key (kbd "C-c \\")     'align-regexp)
 (global-set-key (kbd "M-/")        'hippie-expand)
 (global-set-key (kbd "C-c b")      'bs-show)
@@ -29,8 +34,3 @@
 
 ;; Dired mode binding
 (define-key dired-mode-map "Y"         #'ndegruchy/dired-rsync)
-
-;; Unbind keys (may be useful for later bindings)
-;; Currently unbinding C-\ for input methods (useless for me)
-(dolist (key '("\C-\\"))
-  (global-unset-key key))
