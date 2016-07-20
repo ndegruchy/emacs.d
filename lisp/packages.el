@@ -181,6 +181,13 @@
                  bs--sort-by-name))
   (setq bs-default-configuration "ndegruchy"))
 
+(use-package eshell
+  :config
+  (add-hook 'eshell-mode-hook
+            (lambda ()
+              (setenv "pager" "cat")
+              (setenv "editor" "emacsclient"))))
+
 (use-package ido
   :config
   (ido-mode +1)

@@ -110,3 +110,6 @@
 
 ;; Have IDO/Smex show recent files
 (recentf-mode 1)
+
+;; Time Stamping
+(add-hook 'before-save-hook 'time-stamp)

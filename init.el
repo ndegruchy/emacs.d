@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2016-07-18 11:06:04 ndegruchy>
+;; Time-stamp: <2016-07-20 14:05:10 ndegruchy>
 
 ;; Load the local lisp directory
 (add-to-list 'load-path "~/.emacs.d/lisp")
@@ -10,7 +10,6 @@
 (load-library "packages")
 (load-library "functions")
 (load-library "keybindings")
-(load-library "hooks")
 
 (when (file-exists-p custom-file)
   (load custom-file)) ;; For custom.el
