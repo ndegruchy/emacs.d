@@ -45,8 +45,8 @@
 
 (use-package avy
   :ensure t
-  :bind (("C-c '" .  avy-goto-char-2)
-         ("C-c \"" . avy-goto-line)))
+  :bind (("C-c \"" .     avy-goto-char-2)
+         ("C-c C-c \"" . avy-goto-line)))
 
 (use-package diminish
   :ensure t
