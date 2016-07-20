@@ -45,8 +45,8 @@
 
 (use-package avy
   :ensure t
-  :bind (("C-'" . avy-goto-char-2)
-         ("C-\"" . avy-goto-line)))
+  :bind (("C-c '" .  avy-goto-char-2)
+         ("C-c \"" . avy-goto-line)))
 
 (use-package diminish
   :ensure t
@@ -67,7 +67,7 @@
 
 (use-package embrace
   :ensure t
-  :bind (("C-," . embrace-commander)))
+  :bind (("C-c ," . embrace-commander)))
 
 (use-package expand-region
   :ensure t
