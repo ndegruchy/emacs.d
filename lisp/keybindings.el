@@ -29,3 +29,8 @@
 
 ;; Dired mode binding
 (define-key dired-mode-map "Y"         #'ndegruchy/dired-rsync)
+
+;; Unbind keys (may be useful for later bindings)
+;; Currently unbinding C-\ for input methods (useless for me)
+(dolist (key '("\C-\\"))
+  (global-unset-key key))
