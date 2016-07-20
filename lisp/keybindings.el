@@ -6,13 +6,13 @@
 (dolist (key '("\C-\\" "\C-z" "\C-x\C-z"))
   (global-unset-key key))
 
-(global-set-key (kbd "C-c \\")     'align-regexp)
-(global-set-key (kbd "C-c M-/")    'hippie-expand)
-(global-set-key (kbd "C-c b")      'bs-show)
-(global-set-key (kbd "C-c <up>")   'text-scale-increase)
-(global-set-key (kbd "C-c <down>") 'text-scale-decrease)
-(global-set-key (kbd "C-c f")      'ffap)
-(global-set-key (kbd "C-z")        'smex)
+(global-set-key (kbd "C-c \\")        'align-regexp)
+(global-set-key (kbd "C-c M-/")       'hippie-expand)
+(global-set-key (kbd "C-c b")         'bs-show)
+(global-set-key (kbd "C-c <up>")      'text-scale-increase)
+(global-set-key (kbd "C-c <down>")    'text-scale-decrease)
+(global-set-key (kbd "C-c f")         'ffap)
+(global-set-key (kbd "C-z")           'smex)
 
 ;; Custom function binds
 (global-set-key (kbd "C-c ;")          #'ndegruchy/comment-line)
