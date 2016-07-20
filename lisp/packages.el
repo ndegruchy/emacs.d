@@ -97,7 +97,8 @@
   :config
   (define-key magit-mode-map "e" nil)
   (define-key magit-mode-map "E" nil)
-  (setq magit-commit-arguments (quote ("--gpg-sign=nathan@degruchy.org"))))
+  (when (file-exists-p "~/.gnupg/seckey.gpg")
+    (setq magit-commit-arguments (quote ("--gpg-sign=nathan@degruchy.org")))))
 
 (use-package markdown-mode
   :ensure t)
