@@ -18,8 +18,6 @@
 ;; Package Fetching ;;
 ;;;;;;;;;;;;;;;;;;;;;;
 
-(package-initialize)
-
 (unless package-archive-contents
   (package-refresh-contents))
 
