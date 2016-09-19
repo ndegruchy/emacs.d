@@ -2,6 +2,12 @@
 ;; Now with less Cider
 ;; Time-stamp: <2016-07-20 14:05:10 ndegruchy>
 
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 ;; Load the local lisp directory
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
