@@ -79,6 +79,17 @@ places the cursor as close to its previous position as possible."
   (end-of-line) ; move to end of line
   (set-mark (line-beginning-position)))
 
+(defun ndegruchy/select-line ()
+  "Select current line. If region is active, extend selection downward by line.
+URL `http://ergoemacs.org/emacs/modernization_mark-word.html'
+Version 2016-07-22"
+  (interactive)
+  (if (region-active-p)
+      (progn
+        (forward-line 1)
+        (end-of-line))
+    (ndegruchy/select-current-line)))
+
 (defun ndegruchy/open-line-below ()
   "Inserts a line below the current line, moving the cursor to
 that line and setting the indent properly"
