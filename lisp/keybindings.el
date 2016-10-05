@@ -21,7 +21,7 @@
 (global-set-key (kbd "C-c o")          #'ndegruchy/open-line-below)
 (global-set-key (kbd "C-c O")          #'ndegruchy/open-line-above)
 (global-set-key (kbd "C-c k")          #'ndegruchy/kill-whole-line)
-(global-set-key (kbd "C-c m")          #'ndegruchy/select-current-line)
+(global-set-key (kbd "C-c m")          #'ndegruchy/select-line)
 (global-set-key (kbd "C-c w")          #'ndegruchy/select-current-word)
 (global-set-key (kbd "C-c d")          #'ndegruchy/insert-date)
 (global-set-key (kbd "C-c f")          #'ndegruchy/ido-choose-from-recentf)
