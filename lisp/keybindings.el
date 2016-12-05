@@ -27,6 +27,7 @@
 (global-set-key (kbd "C-c f")          #'ndegruchy/ido-choose-from-recentf)
 (global-set-key [remap fill-paragraph] #'ndegruchy/fill-or-unfill)
 (global-set-key (kbd "C-c C-c i")      #'ndegruchy/ispell-word-then-abbrev)
+(global-set-key (kbd "C-c C-c m")      #'ndegruchy/move-file)
 
 ;; Dired mode binding
 (define-key dired-mode-map "Y"         #'ndegruchy/dired-rsync)
