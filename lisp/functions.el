@@ -400,3 +400,11 @@ Version 2015-06-12"
     (async-shell-command tmtxt/rsync-command "*rsync*")
     ;; finally, switch to that window
     (other-window 1)))
+
+(defun ndegruchy/move-file ()
+  "Write this file to a new location, and delete the old one."
+  (interactive)
+  (let ((old-location (buffer-file-name)))
+    (call-interactively #'write-file)
+    (when old-location
+      (delete-file old-location))))
