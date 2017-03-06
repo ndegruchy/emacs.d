@@ -95,7 +95,7 @@
   :config
   (define-key magit-mode-map "e" nil)
   (define-key magit-mode-map "E" nil)
-  (when (file-exists-p "~/.gnupg/seckey.gpg")
+  (when (file-exists-p "~/.gnupg/pubring.pbx")
     (setq magit-commit-arguments (quote ("--gpg-sign=nathan@degruchy.org")))))
 
 (use-package markdown-mode
