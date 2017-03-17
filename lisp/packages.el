@@ -74,6 +74,10 @@
 (use-package fish-mode
   :ensure t)
 
+(use-package grunt
+  :ensure t
+  :bind (("C-c g" . grunt-exec)))
+
 (use-package hungry-delete
   :ensure t
   :diminish hungry-delete-mode
