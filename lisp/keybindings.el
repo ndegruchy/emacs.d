@@ -30,4 +30,4 @@
 (global-set-key (kbd "C-c C-c m")      #'ndegruchy/move-file)
 
 ;; Dired mode binding
-(define-key dired-mode-map "Y"         #'ndegruchy/dired-rsync)
+;; (define-key dired-mode-map "Y"         #'ndegruchy/dired-rsync)

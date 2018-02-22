@@ -52,8 +52,8 @@
   (diminish 'auto-revert-mode)
   (diminish flyspell-mode ""))
 
-(use-package dired+
-  :ensure t)
+;;(use-package dired+
+;;  :ensure t)
 
 (use-package emmet-mode
   :ensure t
@@ -78,6 +78,9 @@
   :ensure t
   :bind (("C-c g" . grunt-exec)))
 
+(use-package graphviz-dot-mode
+  :ensure t)
+
 (use-package hungry-delete
   :ensure t
   :diminish hungry-delete-mode
@@ -99,7 +102,7 @@
   :config
   (define-key magit-mode-map "e" nil)
   (define-key magit-mode-map "E" nil)
-  (when (file-exists-p "~/.gnupg/pubring.pbx")
+  (when (file-exists-p "~/.gnupg/pubring.kbx")
     (setq magit-commit-arguments (quote ("--gpg-sign=nathan@degruchy.org")))))
 
 (use-package markdown-mode
