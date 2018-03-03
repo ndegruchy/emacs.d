@@ -28,7 +28,17 @@
       read-file-name-complection-ignore-case t
       completion-ignore-case                 t
       tooltip-delay                          1
-      show-trailing-whitespace               t)
+      show-trailing-whitespace               t
+      view-diary-entries-initially           t
+      mark-diary-entries-in-calendar         t
+      number-of-diary-entries                7)
+
+;; Diary
+(add-hook 'diary-display-hook 'fancy-diary-display)
+(add-hook 'today-visible-calendar-hook 'calendar-mark-today)
+(setq calendar-latitude                      30.33
+      calendar-longitude                     -81.65
+      calendar-location-name                 "Jacksonville, FL")
 
 ;; Dired
 (setq dired-use-ls-dired                     nil
@@ -51,7 +61,8 @@
       tetris-score-file                      "~/.emacs.d/var/tetris-scores"
       bubbles-score-file                     "~/.emacs.d/var/bubbles-scores"
       ispell-personal-dictionary             "~/.emacs.d/etc/personal_dictionary"
-      custom-file                            "~/.emacs.d/lisp/custom.el")
+      custom-file                            "~/.emacs.d/lisp/custom.el"
+      diary-file                             "~/.emacs.d/var/diary")
 
 ;; URL cookies
 (setq url-cookie-untrusted-urls              (quote (".*")))
