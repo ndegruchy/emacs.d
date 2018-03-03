@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2016-07-20 14:05:10 ndegruchy>
+;; Time-stamp: <2018-03-02 23:02:13 ndegruchy>
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -10,6 +10,7 @@
 
 ;; Load the local lisp directory
 (add-to-list 'load-path "~/.emacs.d/lisp")
+(add-to-list 'load-path "~/.emacs.d/custom")
 
 ;; Different config parts
 (load-library "settings")

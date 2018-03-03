@@ -52,8 +52,7 @@
   (diminish 'auto-revert-mode)
   (diminish flyspell-mode ""))
 
-;;(use-package dired+
-;;  :ensure t)
+(use-package dired+)
 
 (use-package emmet-mode
   :ensure t
