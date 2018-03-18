@@ -34,17 +34,23 @@
 ;; 3rd-party packages ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package async
-  :ensure t)
-
 (use-package ace-window
   :ensure t
   :bind (("M-p" . ace-window)))
+
+(use-package async
+  :ensure t)
 
 (use-package avy
   :ensure t
   :bind (("C-c \"" .     avy-goto-char-2)
          ("C-c C-c \"" . avy-goto-line)))
+
+(use-package base16-theme
+  :ensure t
+  :demand
+  :config
+  (load-theme 'base16-tomorrow-night t))
 
 (use-package diminish
   :ensure t
@@ -70,6 +76,9 @@
   :ensure t
   :bind (("C-c =" . er/expand-region)))
 
+(use-package flycheck
+  :ensure t)
+
 (use-package fish-mode
   :ensure t)
 
@@ -85,6 +94,9 @@
   :diminish hungry-delete-mode
   :config
   (global-hungry-delete-mode))
+
+(use-package ido-completing-read+
+  :ensure t)
 
 (use-package ido-vertical-mode
   :ensure t)
@@ -111,6 +123,12 @@
   :ensure t)
 
 (use-package nyan-mode
+  :ensure t)
+
+(use-package olivetti
+  :ensure t)
+
+(use-package pandoc-mode
   :ensure t)
 
 (use-package sass-mode

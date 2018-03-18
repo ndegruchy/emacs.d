@@ -13,8 +13,7 @@
 ;; Undo some of the default theme settings that are
 ;; defined by GTK, making things across platforms
 ;; slightly more unified
-(set-face-background 'region "light goldenrod")
-;; (load-theme 'base16-tomorrow-night t)
+;; (set-face-background 'region "light goldenrod")
 
 ;; Some default settings
 (setq inhibit-startup-message                t
@@ -31,7 +30,8 @@
       show-trailing-whitespace               t
       view-diary-entries-initially           t
       mark-diary-entries-in-calendar         t
-      number-of-diary-entries                7)
+      number-of-diary-entries                7
+      inhibit-x-resources                    t)
 
 ;; Diary
 (add-hook 'diary-display-hook 'fancy-diary-display)
