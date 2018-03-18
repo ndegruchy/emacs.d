@@ -2,6 +2,11 @@
 ;; Functions (and advice) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun ndegruchy/c-mode-keybindings ()
+  "For use in `c-mode-hook'."
+  (local-unset-key (kbd "C-c C-c"))
+  (local-set-key (kbd "C-c C-c g") 'magit-status))
+
 (defun ndegruchy/insert-date (format)
   "Wrapper around format-time-string"
   (interactive "MFormat: ")
