@@ -3,9 +3,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun ndegruchy/c-mode-keybindings ()
-  "For use in `c-mode-hook'."
-  (local-unset-key (kbd "C-c C-c"))
-  (local-set-key (kbd "C-c C-c g") 'magit-status))
+  "For use in `c-mode-hook'. Unbinds some inconvenient keys that
+  are set in C mode"
+  (local-unset-key (kbd "C-c C-c")))
 
 (defun ndegruchy/insert-date (format)
   "Wrapper around format-time-string"
