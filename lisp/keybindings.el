@@ -13,6 +13,7 @@
 (global-set-key (kbd "C-c <down>")     'text-scale-decrease)
 (global-set-key (kbd "C-c C-c f")      'ffap)
 (global-set-key (kbd "C-z")            'smex)
+(global-set-key (kbd "C-c C-c e")      'eshell)
 
 ;; Custom function binds
 (global-set-key (kbd "C-c ;")          #'ndegruchy/comment-line)
