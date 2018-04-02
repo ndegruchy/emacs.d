@@ -126,3 +126,9 @@
 
 ;; Time Stamping
 (add-hook 'before-save-hook 'time-stamp)
+
+;; Calendar stuff
+(setq calendar-date-display-form (quote
+                                  ((format "%s-%.2d-%2d" year
+                                           (string-to-number month)
+                                           (string-to-number day)))))

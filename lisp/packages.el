@@ -60,6 +60,26 @@
 
 (use-package dired+)
 
+(use-package dired-open
+  :ensure t
+  :config
+  (setq dired-open-extensions
+        '(("gif" . "mpv --loop=inf")
+          ("webm" . "mpv --loop=inf")
+          ("mp4" . "mpv --loop=inf")
+          ("jpg" . "feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black")
+          ("jpeg" . "feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black")
+          ("png" . "feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black"))))
+
+(use-package elfeed
+  :ensure t
+  :config
+  (setq elfeed-feeds
+        '(("http://xkcd.com/rss.xml" comics)
+          ("http://www.planet.emacsen.org/atom.xml" emacs)
+          ("https://theintercept.com/feed/?lang=en" news)
+          ("https://genji-cat.tumblr.com/rss" comics))))
+
 (use-package emmet-mode
   :ensure t
   :config
@@ -71,6 +91,17 @@
 (use-package embrace
   :ensure t
   :bind (("C-c ," . embrace-commander)))
+
+;; (use-package erc
+;;   :config
+;;   (require 'tls)
+;;   (erc-tls :server "irc.freenode.net" :port 6697
+;;            :nick "ndegruchy" :full-name "Nathan DeGruchy")
+;;   (setq erc-auto-join-channels-alist '(("frenode.net" "#emacs" "#archlinux" "#firefox"))
+;;         erc-hide-list                '("JOIN" "PART" "QUIT"))
+;;   (require 'erc-services)
+;;   (erc-services-mode 1)
+;;   (erc-spelling-mode 1))
 
 (use-package expand-region
   :ensure t
@@ -84,7 +115,7 @@
 
 (use-package grunt
   :ensure t
-  :bind (("C-c g" . grunt-exec)))
+  :bind (("C-x C-c g" . grunt-exec)))
 
 (use-package graphviz-dot-mode
   :ensure t)
@@ -117,7 +148,9 @@
     (setq magit-commit-arguments (quote ("--gpg-sign=nathan@degruchy.org")))))
 
 (use-package markdown-mode
-  :ensure t)
+  :ensure t
+  :config
+  (setq markdown-command "pandoc"))
 
 (use-package no-littering
   :ensure t)
