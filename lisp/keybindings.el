@@ -30,5 +30,9 @@
 (global-set-key (kbd "C-c C-c i")      #'ndegruchy/ispell-word-then-abbrev)
 (global-set-key (kbd "C-c C-c m")      #'ndegruchy/move-file)
 
+;; Hydras
+(global-set-key (kbd "C-c C-c M")      #'hydra-mpd/body)
+(global-set-key (kbd "C-c C-c w")      #'hydra-window/body)
+
 ;; Dired mode binding
 (define-key dired-mode-map "Y"         #'ndegruchy/dired-rsync)

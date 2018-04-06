@@ -115,6 +115,12 @@
   :config
   (global-hungry-delete-mode))
 
+(use-package hydra
+  :config
+  (winner-mode))
+
+(use-package hydra-examples)
+
 (use-package ido-completing-read+
   :ensure t)
 
@@ -122,6 +128,9 @@
   :ensure t)
 
 (use-package iedit
+  :ensure t)
+
+(use-package ivy
   :ensure t)
 
 (use-package json-mode
@@ -140,6 +149,22 @@
   :ensure t
   :config
   (setq markdown-command "pandoc"))
+
+(use-package mingus
+  :ensure t
+  :config
+  ;; Taken from http://doc.rix.si/cce/cce-music.html
+  (defhydra hydra-mpd (:columns 2)
+    ("p" (progn (save-window-excursion
+                  (async-shell-command "mpc toggle" (get-buffer-create "*tmp*"))))
+     "Play/Pause")
+    ("/" mingus-search "Search")
+    ("s" mingus "Show Mingus")
+    ("<" (progn (require 'mpc) (mpc-prev)) "Previous")
+    (">" (progn (require 'mpc) (mpc-next)) "Next")
+    ("+" (async-shell-command "ponymix -d 0 increase 10") "Louder")
+    ("-" (async-shell-command "ponymix -d 0 decrease 10") "Quieter")
+    ("q" nil "Quit")))
 
 (use-package no-littering
   :ensure t)
@@ -182,6 +207,9 @@
           (output-dvi "xdvi")
           (output-pdf "MuPDF")
           (output-html "xdg-open")))))
+
+(use-package transpose-frame
+  :ensure t)
 
 (use-package undo-tree
   :ensure t

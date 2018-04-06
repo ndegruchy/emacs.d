@@ -436,3 +436,49 @@ Version 2015-06-12"
 (if (not (boundp 'ndegruchy/save-persistent-scratch-timer))
     (setq ndegruchy/save-persistent-scratch-timer
           (run-with-idle-timer 300 t 'ndegruchy/save-persistent-scratch)))
+
+(defhydra hydra-window (:color red :hint nil :columns 6)
+  ("h" windmove-left "Left")
+  ("j" windmove-down "Right")
+  ("k" windmove-up "Up")
+  ("l" windmove-right "Down")
+
+  ("H" hydra-move-splitter-left "Splitter Left")
+  ("J" hydra-move-splitter-down "Splitter Right")
+  ("K" hydra-move-splitter-up "Splitter Up")
+  ("L" hydra-move-splitter-right "Splitter Right")
+  ("|" (lambda ()
+         (interactive)
+         (split-window-right)
+         (windmove-right)) "Split | and Right")
+  ("_" (lambda ()
+         (interactive)
+         (split-window-below)
+         (windmove-down))"Split - and Down")
+  ("v" split-window-right "Split | and Left")
+  ("x" split-window-below "Split - and Up")
+
+  ("u" winner-undo "Undo")
+  ("r" winner-redo "Redo")
+
+  ("o" other-window "Other Window")
+  ("a" ace-window "Select Window" :exit t)
+  ("s" ace-swap-window "Swap Windows")
+
+  ("f" make-frame "New Frame" :exit t)
+
+  ("da" ace-delete-window "Select + Delete Window")
+  ("dw" delete-window "Delete Window")
+  ("db" kill-this-buffer "Kill Buffer")
+  ("df" delete-frame "Delete Frame" :exit t)
+  ("i" ace-maximize-window "Select and Maximize")
+  ("b" ido-switch-buffer "Buffer")
+  ("t" transpose-frame "Transpose")
+
+  ("wi" ivy-push-view "Push View")
+  ("wo" ivy-pop-view "Pop View")
+
+  ("p" previous-buffer "Previous Buffer")
+  ("n" next-buffer "Next Buffer")
+
+  ("q" nil))
