@@ -78,7 +78,8 @@
         '(("http://xkcd.com/rss.xml" comics)
           ("http://www.planet.emacsen.org/atom.xml" emacs)
           ("https://theintercept.com/feed/?lang=en" news)
-          ("https://genji-cat.tumblr.com/rss" comics))))
+          ("https://genji-cat.tumblr.com/rss" comics)
+          ("http://feeds.arstechnica.com/arstechnica/index" news))))
 
 (use-package emmet-mode
   :ensure t
@@ -92,17 +93,6 @@
   :ensure t
   :bind (("C-c ," . embrace-commander)))
 
-;; (use-package erc
-;;   :config
-;;   (require 'tls)
-;;   (erc-tls :server "irc.freenode.net" :port 6697
-;;            :nick "ndegruchy" :full-name "Nathan DeGruchy")
-;;   (setq erc-auto-join-channels-alist '(("frenode.net" "#emacs" "#archlinux" "#firefox"))
-;;         erc-hide-list                '("JOIN" "PART" "QUIT"))
-;;   (require 'erc-services)
-;;   (erc-services-mode 1)
-;;   (erc-spelling-mode 1))
-
 (use-package expand-region
   :ensure t
   :bind (("C-c =" . er/expand-region)))
@@ -114,8 +104,7 @@
   :ensure t)
 
 (use-package grunt
-  :ensure t
-  :bind (("C-x C-c g" . grunt-exec)))
+  :ensure t)
 
 (use-package graphviz-dot-mode
   :ensure t)

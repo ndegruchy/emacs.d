@@ -413,3 +413,26 @@ Version 2015-06-12"
     (call-interactively #'write-file)
     (when old-location
       (delete-file old-location))))
+
+;;; Persistent scratch
+;;; Stolen from CCE - http://doc.rix.si/cce/cce.html
+(defun ndegruchy/save-persistent-scratch ()
+  "Write the contents of *scratch* to the file name
+`persistent-scratch-file-name'."
+  (with-current-buffer (get-buffer-create "*scratch*")
+    (write-region (point-min) (point-max) "~/.emacs.d/var/persistent-scratch")))
+
+(defun ndegruchy/load-persistent-scratch ()
+  "Load the contents of `persistent-scratch-file-name' into the
+  scratch buffer, clearing its contents first."
+  (if (file-exists-p "~/.emacs.d/var/persistent-scratch")
+      (with-current-buffer (get-buffer "*scratch*")
+        (delete-region (point-min) (point-max))
+        (insert-file-contents "~/.emacs.d/persistent-scratch"))))
+
+(add-hook 'after-init-hook 'ndegruchy/load-persistent-scratch)
+(add-hook 'kill-emacs-hook 'ndegruchy/save-persistent-scratch)
+
+(if (not (boundp 'ndegruchy/save-persistent-scratch-timer))
+    (setq ndegruchy/save-persistent-scratch-timer
+          (run-with-idle-timer 300 t 'ndegruchy/save-persistent-scratch)))
