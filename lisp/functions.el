@@ -428,57 +428,59 @@ Version 2015-06-12"
   (if (file-exists-p "~/.emacs.d/var/persistent-scratch")
       (with-current-buffer (get-buffer "*scratch*")
         (delete-region (point-min) (point-max))
-        (insert-file-contents "~/.emacs.d/persistent-scratch"))))
+        (insert-file-contents "~/.emacs.d/var/persistent-scratch"))))
 
 (add-hook 'after-init-hook 'ndegruchy/load-persistent-scratch)
 (add-hook 'kill-emacs-hook 'ndegruchy/save-persistent-scratch)
 
 (if (not (boundp 'ndegruchy/save-persistent-scratch-timer))
     (setq ndegruchy/save-persistent-scratch-timer
-          (run-with-idle-timer 300 t 'ndegruchy/save-persistent-scratch)))
+          (run-with-idle-timer 300 t 'ndegruchy/load-persistent-scratch)))
 
-(defhydra hydra-window (:color red :hint nil :columns 6)
-  ("h" windmove-left "Left")
-  ("j" windmove-down "Right")
-  ("k" windmove-up "Up")
-  ("l" windmove-right "Down")
+(defhydra hydra-window (:color red :hint nil)
+  "
+Move        Split        Windows        Misc
+-------------------------------------------------------
+_h_: Left   _|_: VSplit   _s_: Swap     _i_: Maximize
+_j_: Right  ___: HSplit   _dw_: Delete  _t_: Transpose
+_k_: Up     _v_: VSplit*              _u_: Undo
+_l_: Down   _x_: HSplit*              _r_: Redo
+                                  _q_: Close
 
-  ("H" hydra-move-splitter-left "Splitter Left")
-  ("J" hydra-move-splitter-down "Splitter Right")
-  ("K" hydra-move-splitter-up "Splitter Up")
-  ("L" hydra-move-splitter-right "Splitter Right")
+Dividers
+-------------------------------------------------------
+_H_: Divider Left
+_J_: Divider Right
+_K_: Divider Up
+_L_: Divider Down
+  "
+  ("h" windmove-left)
+  ("j" windmove-down)
+  ("k" windmove-up)
+  ("l" windmove-right)
+
+  ("H" hydra-move-splitter-left)
+  ("J" hydra-move-splitter-down)
+  ("K" hydra-move-splitter-up)
+  ("L" hydra-move-splitter-right)
   ("|" (lambda ()
          (interactive)
          (split-window-right)
-         (windmove-right)) "Split | and Right")
+         (windmove-right)))
   ("_" (lambda ()
          (interactive)
          (split-window-below)
-         (windmove-down))"Split - and Down")
-  ("v" split-window-right "Split | and Left")
-  ("x" split-window-below "Split - and Up")
+         (windmove-down)))
+  ("v" split-window-right)
+  ("x" split-window-below)
 
-  ("u" winner-undo "Undo")
-  ("r" winner-redo "Redo")
+  ("u" winner-undo)
+  ("r" winner-redo)
 
-  ("o" other-window "Other Window")
-  ("a" ace-window "Select Window" :exit t)
-  ("s" ace-swap-window "Swap Windows")
+  ("s" ace-swap-window)
 
-  ("f" make-frame "New Frame" :exit t)
-
-  ("da" ace-delete-window "Select + Delete Window")
-  ("dw" delete-window "Delete Window")
-  ("db" kill-this-buffer "Kill Buffer")
-  ("df" delete-frame "Delete Frame" :exit t)
-  ("i" ace-maximize-window "Select and Maximize")
-  ("b" ido-switch-buffer "Buffer")
-  ("t" transpose-frame "Transpose")
-
-  ("wi" ivy-push-view "Push View")
-  ("wo" ivy-pop-view "Pop View")
-
-  ("p" previous-buffer "Previous Buffer")
-  ("n" next-buffer "Next Buffer")
+  ("dw" delete-window)
+  ("i" ace-delete-other-windows)
+  ("t" transpose-frame)
 
   ("q" nil))
