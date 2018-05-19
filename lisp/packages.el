@@ -46,17 +46,15 @@
   :bind (("C-c \"" .     avy-goto-char-2)
          ("C-c C-c \"" . avy-goto-line)))
 
-(use-package base16-theme
-  :ensure t
-  :demand
-  :config
-  (load-theme 'base16-tomorrow-night t))
-
 (use-package diminish
   :ensure t
   :config
   (diminish 'auto-revert-mode)
   (diminish flyspell-mode ""))
+
+(use-package dired
+  :config
+  (setq dired-listing-switches "-aBhl  --group-directories-first"))
 
 (use-package dired+)
 
@@ -71,15 +69,10 @@
           ("jpeg" . "feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black")
           ("png" . "feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black"))))
 
-(use-package elfeed
+(use-package editorconfig
   :ensure t
   :config
-  (setq elfeed-feeds
-        '(("http://xkcd.com/rss.xml" comics)
-          ("http://www.planet.emacsen.org/atom.xml" emacs)
-          ("https://theintercept.com/feed/?lang=en" news)
-          ("https://genji-cat.tumblr.com/rss" comics)
-          ("http://feeds.arstechnica.com/arstechnica/index" news))))
+  (editorconfig-mode 1))
 
 (use-package emmet-mode
   :ensure t
@@ -120,6 +113,8 @@
   (winner-mode))
 
 (use-package hydra-examples)
+
+(use-package ibs)
 
 (use-package ido-completing-read+
   :ensure t)

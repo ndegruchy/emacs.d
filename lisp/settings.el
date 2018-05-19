@@ -99,7 +99,7 @@
 (global-linum-mode -1)
 
 ;; Indentation
-(setq-default indent-tabs-mode nil
+(setq-default indent-tabs-mode t
               tab-width 4
               tab-always-indent t)
 (defvaralias 'c-basic-offset 'tab-width)
