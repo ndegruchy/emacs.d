@@ -145,27 +145,7 @@
   :config
   (setq markdown-command "pandoc"))
 
-(use-package mingus
-  :ensure t
-  :config
-  ;; Taken from http://doc.rix.si/cce/cce-music.html
-  (defhydra hydra-mpd (:columns 2)
-    ("p" (progn (save-window-excursion
-                  (async-shell-command "mpc toggle" (get-buffer-create "*tmp*"))))
-     "Play/Pause")
-    ("/" mingus-search "Search")
-    ("s" mingus "Show Mingus")
-    ("<" (progn (require 'mpc) (mpc-prev)) "Previous")
-    (">" (progn (require 'mpc) (mpc-next)) "Next")
-    ("+" (async-shell-command "ponymix -d 0 increase 10") "Louder")
-    ("-" (async-shell-command "ponymix -d 0 decrease 10") "Quieter")
-    ("b" mingus-browse "Browse music")
-    ("q" nil "Quit")))
-
 (use-package no-littering
-  :ensure t)
-
-(use-package nyan-mode
   :ensure t)
 
 (use-package olivetti
