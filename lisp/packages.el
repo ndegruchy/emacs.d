@@ -46,6 +46,11 @@
   :bind (("C-c \"" .     avy-goto-char-2)
          ("C-c C-c \"" . avy-goto-line)))
 
+(use-package base16-theme
+  :ensure t
+  :config
+  (load-theme 'base16-tomorrow-night 1))
+
 (use-package diminish
   :ensure t
   :config
@@ -62,12 +67,14 @@
   :ensure t
   :config
   (setq dired-open-extensions
-        '(("gif" . "mpv --loop=inf")
-          ("webm" . "mpv --loop=inf")
-          ("mp4" . "mpv --loop=inf")
-          ("jpg" . "feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black")
-          ("jpeg" . "feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black")
-          ("png" . "feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black"))))
+        '(("gif"	.	"mpv --loop=inf")
+          ("webm"	.	"mpv --loop=inf")
+          ("mp4"	.	"mpv --loop=inf")
+		  ("mkv"    .   "mpv --loop=inf")
+		  ("pdf"	.	"zathura")
+          ("jpg"	.	"feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black")
+          ("jpeg"	.	"feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black")
+          ("png"	.	"feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black"))))
 
 (use-package editorconfig
   :ensure t
@@ -145,6 +152,9 @@
   :config
   (setq markdown-command "pandoc"))
 
+(use-package mingus
+  :ensure t)
+
 (use-package no-littering
   :ensure t)
 
@@ -175,13 +185,13 @@
   :ensure auctex
   :config
   (setq TeX-view-program-list
-        '(("MuPDF" "/usr/bin/mupdf %o")))
+        '(("Zathura" "/usr/bin/zathura %o")))
   (setq TeX-view-program-selection
         (quote
          (((output-dvi style-pstricks)
            "dvips and gv")
           (output-dvi "xdvi")
-          (output-pdf "MuPDF")
+          (output-pdf "Zathura")
           (output-html "xdg-open")))))
 
 (use-package transpose-frame

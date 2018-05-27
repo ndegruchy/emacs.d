@@ -33,6 +33,7 @@
 ;; Hydras
 (global-set-key (kbd "C-c C-c M")      #'hydra-mpd/body)
 (global-set-key (kbd "C-c C-c w")      #'hydra-window/body)
+(global-set-key (kbd "C-c C-c b")      #'hydra-rectangle/body)
 
 ;; Dired mode binding
 (define-key dired-mode-map "Y"         #'ndegruchy/dired-rsync)
