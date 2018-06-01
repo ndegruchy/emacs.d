@@ -168,19 +168,19 @@ URL `http://ergoemacs.org/emacs/emacs_dired_open_file_in_ext_apps.html'"
     ) ))
 
 ;; Autocorrect word
-(defun ndegruchy/ispell-word-then-abbrev (p)
-  "Call `ispell-word'. Then create an abbrev for the correction made.
-With prefix P, create local abbrev. Otherwise it will be global."
-  (interactive "P")
-  (let ((bef (downcase (or (thing-at-point 'word) ""))) aft)
-    (call-interactively 'ispell-word)
-    (setq aft (downcase (or (thing-at-point 'word) "")))
-    (unless (string= aft bef)
-      (message "\"%s\" now expands to \"%s\" %sally"
-               bef aft (if p "loc" "glob"))
-      (define-abbrev
-        (if p local-abbrev-table global-abbrev-table)
-        bef aft))))
+;; (defun ndegruchy/ispell-word-then-abbrev (p)
+;;   "Call `ispell-word'. Then create an abbrev for the correction made.
+;; With prefix P, create local abbrev. Otherwise it will be global."
+;;   (interactive "P")
+;;   (let ((bef (downcase (or (thing-at-point 'word) ""))) aft)
+;;     (call-interactively 'ispell-word)
+;;     (setq aft (downcase (or (thing-at-point 'word) "")))
+;;     (unless (string= aft bef)
+;;       (message "\"%s\" now expands to \"%s\" %sally"
+;;                bef aft (if p "loc" "glob"))
+;;       (define-abbrev
+;;         (if p local-abbrev-table global-abbrev-table)
+;;         bef aft))))
 
 (defun ndegruchy/comment-line (n)
   "Comment or uncomment current line and leave point after it.
@@ -413,26 +413,3 @@ Version 2015-06-12"
     (call-interactively #'write-file)
     (when old-location
       (delete-file old-location))))
-
-;;; Persistent scratch
-;;; Stolen from CCE - http://doc.rix.si/cce/cce.html
-(defun ndegruchy/save-persistent-scratch ()
-  "Write the contents of *scratch* to the file name
-`persistent-scratch-file-name'."
-  (with-current-buffer (get-buffer-create "*scratch*")
-    (write-region (point-min) (point-max) "~/.emacs.d/var/persistent-scratch")))
-
-(defun ndegruchy/load-persistent-scratch ()
-  "Load the contents of `persistent-scratch-file-name' into the
-  scratch buffer, clearing its contents first."
-  (if (file-exists-p "~/.emacs.d/var/persistent-scratch")
-      (with-current-buffer (get-buffer "*scratch*")
-        (delete-region (point-min) (point-max))
-        (insert-file-contents "~/.emacs.d/var/persistent-scratch"))))
-
-(add-hook 'after-init-hook 'ndegruchy/load-persistent-scratch)
-(add-hook 'kill-emacs-hook 'ndegruchy/save-persistent-scratch)
-
-(if (not (boundp 'ndegruchy/save-persistent-scratch-timer))
-    (setq ndegruchy/save-persistent-scratch-timer
-          (run-with-idle-timer 300 t 'ndegruchy/load-persistent-scratch)))

@@ -41,6 +41,11 @@
 (use-package async
   :ensure t)
 
+(use-package auto-correct
+  :ensure t
+  :config
+  (auto-correct-mode t))
+
 (use-package avy
   :ensure t
   :bind (("C-c \"" .     avy-goto-char-2)
