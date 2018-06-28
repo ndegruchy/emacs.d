@@ -189,14 +189,16 @@
 (use-package tex-site
   :ensure auctex
   :config
+  ;; (setq TeX-view-program-list
+  ;;      '(("Zathura" "/usr/bin/zathura %o")))
   (setq TeX-view-program-list
-        '(("Zathura" "/usr/bin/zathura %o")))
+        '(("Okular" "/usr/bin/okular %o")))
   (setq TeX-view-program-selection
         (quote
          (((output-dvi style-pstricks)
            "dvips and gv")
           (output-dvi "xdvi")
-          (output-pdf "Zathura")
+          (output-pdf "Okular")
           (output-html "xdg-open")))))
 
 (use-package transpose-frame
