@@ -189,10 +189,10 @@
 (use-package tex-site
   :ensure auctex
   :config
-  ;; (setq TeX-view-program-list
-  ;;      '(("Zathura" "/usr/bin/zathura %o")))
   (setq TeX-view-program-list
-        '(("Okular" "/usr/bin/okular %o")))
+        '(("Zathura" "/usr/bin/zathura %o")))
+  ;; (setq TeX-view-program-list
+  ;;       '(("Okular" "/usr/bin/okular %o")))
   (setq TeX-view-program-selection
         (quote
          (((output-dvi style-pstricks)
