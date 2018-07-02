@@ -79,9 +79,9 @@
           ("mp4"	.	"mpv --loop=inf")
 		  ("mkv"    .   "mpv --loop=inf")
 		  ("pdf"	.	"zathura")
-          ("jpg"	.	"feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black")
-          ("jpeg"	.	"feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black")
-          ("png"	.	"feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black"))))
+          ("jpg"	.	"feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black --auto-rotate --draw-filename --no-menus")
+          ("jpeg"	.	"feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black --auto-rotate --draw-filename --no-menus")
+          ("png"	.	"feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black --auto-rotate --draw-filename --no-menus"))))
 
 (use-package editorconfig
   :ensure t
