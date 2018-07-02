@@ -128,7 +128,8 @@
 
 (use-package hydra-examples)
 
-(use-package ibs)
+;; When did I pick this guy up... I've never used it ....
+;; (use-package ibs)
 
 (use-package ido-completing-read+
   :ensure t)
