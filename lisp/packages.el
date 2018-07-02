@@ -10,6 +10,8 @@
 
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives
+			 '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
 (when (< emacs-major-version 24)
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
@@ -145,6 +147,7 @@
 
 (use-package magit
   :ensure t
+  :pin melpa-stable
   :bind ("C-c C-c g" . magit-status)
   :config
   (define-key magit-mode-map "e" nil)
