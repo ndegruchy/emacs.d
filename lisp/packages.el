@@ -128,9 +128,6 @@
 
 (use-package hydra-examples)
 
-;; When did I pick this guy up... I've never used it ....
-;; (use-package ibs)
-
 (use-package ido-completing-read+
   :ensure t)
 
@@ -189,6 +186,10 @@
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands)
          ("C-c C-c M-x" . execute-extended-command)))
+
+(use-package systemd
+  :ensure t
+  :pin melpa-stable)
 
 (use-package tex-site
   :ensure auctex
@@ -259,25 +260,12 @@
         ido-vertical-define-keys 'C-n-C-p-up-and-down
         ido-file-extensions-order '(".org" ".html" ".php" ".tex" ".el" ".js" ".coffee")))
 
-(use-package org-mouse
-  :config
-  (add-hook 'org-mode-hook 'auto-fill-mode)
-  (add-hook 'org-mode-hook 'electric-indent-mode)
-  (add-hook 'org-mode-hook 'org-display-inline-images)
-  (setq org-src-fontify-natively ()
-        org-src-tab-acts-natively t
-        org-support-shift-select t))
-
 (use-package remember
   :config
   (setq remember-data-directory "~/.emacs.d/etc/remember"
         remember-data-file      "~/.emacs.d/etc/remember/notes")
   :bind (("C-c r" . remember)
          ("C-c l" . remember-notes)))
-
-(use-package saveplace
-  :config
-  (setq-default save-place t))
 
 (use-package uniquify
   :config
