@@ -196,14 +196,12 @@
   :config
   (setq TeX-view-program-list
         '(("Zathura" "/usr/bin/zathura %o")))
-  ;; (setq TeX-view-program-list
-  ;;       '(("Okular" "/usr/bin/okular %o")))
   (setq TeX-view-program-selection
         (quote
          (((output-dvi style-pstricks)
            "dvips and gv")
           (output-dvi "xdvi")
-          (output-pdf "Okular")
+          (output-pdf "Zathura")
           (output-html "xdg-open")))))
 
 (use-package transpose-frame
