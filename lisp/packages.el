@@ -43,11 +43,6 @@
 (use-package async
   :ensure t)
 
-(use-package auto-correct
-  :ensure t
-  :config
-  (auto-correct-mode t))
-
 (use-package avy
   :ensure t
   :bind (("C-c \"" .     avy-goto-char-2)
@@ -82,6 +77,16 @@
           ("jpg"	.	"feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black --auto-rotate --draw-filename --no-menus")
           ("jpeg"	.	"feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black --auto-rotate --draw-filename --no-menus")
           ("png"	.	"feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black --auto-rotate --draw-filename --no-menus"))))
+
+(use-package dired-single
+  :ensure t)
+
+(use-package dired-atool
+  :ensure t
+  :config
+  (dired-atool-setup)
+  (define-key dired-mode-map "z" #'dired-atool-do-unpack)
+  (define-key dired-mode-map "Z" #'dired-atool-do-pack))
 
 (use-package editorconfig
   :ensure t
@@ -243,11 +248,22 @@
   ;; Found from an ancient (2005) mailing list:
   ;; https://lists.gnu.org/archive/html/help-gnu-emacs/2005-10/msg00597.html
   (add-to-list 'bs-configurations
-               '("ndegruchy" "\\*scratch\\*\\|\\*eshell\\*" nil
+               '("ndegruchy" "\\*scratch\\*\\|\\*eshell\\*"
+				 nil
                  nil
                  bs-visits-non-file
                  bs--sort-by-name))
+  (add-to-list 'bs-configurations
+			   '("dired" nil nil nil
+				 (lambda (buf)
+				   (with-current-buffer buf
+					 (not (eq major-mode 'dired-mode))))
+				 bs--sort-by-name))
   (setq bs-default-configuration "ndegruchy"))
+
+(use-package bs-ext
+  ;; A surprise find of an *extension* to BS. People, other than myself, actually use BS!
+  )
 
 (use-package ido
   :config

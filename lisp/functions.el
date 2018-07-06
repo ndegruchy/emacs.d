@@ -7,6 +7,11 @@
   are set in C mode"
   (local-unset-key (kbd "C-c C-c")))
 
+(defun ndegruchy/config-mode-keybindings
+	"For use in `config-mode-hook'. Unbinds some inconvenient
+	keys that are set in the Config major mode"
+  (local-unset-key (kbd "C-c C-c")))
+
 (defun ndegruchy/insert-date (format)
   "Wrapper around format-time-string"
   (interactive "MFormat: ")
