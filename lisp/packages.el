@@ -69,15 +69,15 @@
           ("jpeg"	.	"feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black --auto-rotate --draw-filename --no-menus")
           ("png"	.	"feh --auto-zoom --fullscreen --borderless --geometry 1920x1080 --image-bg black --auto-rotate --draw-filename --no-menus"))))
 
-(use-package dired-single
-  :ensure t)
-
 (use-package dired-atool
   :ensure t
   :config
   (dired-atool-setup)
   (define-key dired-mode-map "z" #'dired-atool-do-unpack)
   (define-key dired-mode-map "Z" #'dired-atool-do-pack))
+
+(use-package dired-narrow
+  :ensure t)
 
 (use-package editorconfig
   :ensure t
