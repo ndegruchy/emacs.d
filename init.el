@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2018-07-02 15:53:38 ndegruchy>
+;; Time-stamp: <2018-07-06 19:28:08 ndegruchy>
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -18,7 +18,6 @@
 (load-library "functions")
 (load-library "keybindings")
 (load-library "hooks")
-(load-library "hydras")
 
 (when (file-exists-p custom-file)
   (load custom-file)) ;; For custom.el

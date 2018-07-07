@@ -7,11 +7,6 @@
   are set in C mode"
   (local-unset-key (kbd "C-c C-c")))
 
-(defun ndegruchy/config-mode-keybindings
-	"For use in `config-mode-hook'. Unbinds some inconvenient
-	keys that are set in the Config major mode"
-  (local-unset-key (kbd "C-c C-c")))
-
 (defun ndegruchy/insert-date (format)
   "Wrapper around format-time-string"
   (interactive "MFormat: ")
@@ -171,21 +166,6 @@ URL `http://ergoemacs.org/emacs/emacs_dired_open_file_in_ext_apps.html'"
     (let ((process-connection-type nil)) (start-process "" nil "xdg-open" "."))
     ;; (shell-command "xdg-open .") ;; 2013-02-10 this sometimes froze emacs till the folder is closed. ⁖ with nautilus
     ) ))
-
-;; Autocorrect word
-;; (defun ndegruchy/ispell-word-then-abbrev (p)
-;;   "Call `ispell-word'. Then create an abbrev for the correction made.
-;; With prefix P, create local abbrev. Otherwise it will be global."
-;;   (interactive "P")
-;;   (let ((bef (downcase (or (thing-at-point 'word) ""))) aft)
-;;     (call-interactively 'ispell-word)
-;;     (setq aft (downcase (or (thing-at-point 'word) "")))
-;;     (unless (string= aft bef)
-;;       (message "\"%s\" now expands to \"%s\" %sally"
-;;                bef aft (if p "loc" "glob"))
-;;       (define-abbrev
-;;         (if p local-abbrev-table global-abbrev-table)
-;;         bef aft))))
 
 (defun ndegruchy/comment-line (n)
   "Comment or uncomment current line and leave point after it.

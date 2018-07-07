@@ -36,17 +36,8 @@
 ;; 3rd-party packages ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package ace-window
-  :ensure t
-  :bind (("M-p" . ace-window)))
-
 (use-package async
   :ensure t)
-
-(use-package avy
-  :ensure t
-  :bind (("C-c \"" .     avy-goto-char-2)
-         ("C-c C-c \"" . avy-goto-line)))
 
 (use-package base16-theme
   :ensure t
@@ -118,20 +109,11 @@
 (use-package grunt
   :ensure t)
 
-(use-package graphviz-dot-mode
-  :ensure t)
-
 (use-package hungry-delete
   :ensure t
   :diminish hungry-delete-mode
   :config
   (global-hungry-delete-mode))
-
-(use-package hydra
-  :config
-  (winner-mode))
-
-(use-package hydra-examples)
 
 (use-package ido-completing-read+
   :ensure t)
@@ -140,9 +122,6 @@
   :ensure t)
 
 (use-package iedit
-  :ensure t)
-
-(use-package ivy
   :ensure t)
 
 (use-package json-mode
@@ -163,16 +142,10 @@
   :config
   (setq markdown-command "pandoc"))
 
-(use-package mingus
-  :ensure t)
-
 (use-package no-littering
   :ensure t)
 
 (use-package olivetti
-  :ensure t)
-
-(use-package pandoc-mode
   :ensure t)
 
 (use-package sass-mode
@@ -209,9 +182,6 @@
           (output-pdf "Zathura")
           (output-html "xdg-open")))))
 
-(use-package transpose-frame
-  :ensure t)
-
 (use-package undo-tree
   :ensure t
   :diminish undo-tree-mode
@@ -231,39 +201,31 @@
 ;; Built-in packages ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package abbrev
-  :diminish abbrev-mode
-  :config
-  (if (file-exists-p abbrev-file-name)
-      (quietly-read-abbrev-file)))
-
-(use-package bs
-  :config
-  ;; Whoo boy, this one was a hard one to track down. Basically I'm
-  ;; telling buffer-show to always show a certain set of buffer names
-  ;; regardless of the configuration (files only). Since I use eshell
-  ;; and the scratch buffer a lot, this is handy for me to have always
-  ;; visible
-  ;;
-  ;; Found from an ancient (2005) mailing list:
-  ;; https://lists.gnu.org/archive/html/help-gnu-emacs/2005-10/msg00597.html
-  (add-to-list 'bs-configurations
-               '("ndegruchy" "\\*scratch\\*\\|\\*eshell\\*"
-				 nil
-                 nil
-                 bs-visits-non-file
-                 bs--sort-by-name))
-  (add-to-list 'bs-configurations
-			   '("dired" nil nil nil
-				 (lambda (buf)
-				   (with-current-buffer buf
-					 (not (eq major-mode 'dired-mode))))
-				 bs--sort-by-name))
-  (setq bs-default-configuration "ndegruchy"))
-
-(use-package bs-ext
-  ;; A surprise find of an *extension* to BS. People, other than myself, actually use BS!
-  )
+;; Using Ido-Switch-Buffers for now, seems less complicated.
+;; (use-package bs
+;;   :bind (("C-c b" . bs-show))
+;;   :config
+;;   ;; Whoo boy, this one was a hard one to track down. Basically I'm
+;;   ;; telling buffer-show to always show a certain set of buffer names
+;;   ;; regardless of the configuration (files only). Since I use eshell
+;;   ;; and the scratch buffer a lot, this is handy for me to have always
+;;   ;; visible
+;;   ;;
+;;   ;; Found from an ancient (2005) mailing list:
+;;   ;; https://lists.gnu.org/archive/html/help-gnu-emacs/2005-10/msg00597.html
+;;   (add-to-list 'bs-configurations
+;;                '("ndegruchy" "\\*scratch\\*\\|\\*eshell\\*"
+;; 				 nil
+;;                  nil
+;;                  bs-visits-non-file
+;;                  bs--sort-by-name))
+;;   (add-to-list 'bs-configurations
+;; 			   '("dired" nil nil nil
+;; 				 (lambda (buf)
+;; 				   (with-current-buffer buf
+;; 					 (not (eq major-mode 'dired-mode))))
+;; 				 bs--sort-by-name))
+;;   (setq bs-default-configuration "ndegruchy"))
 
 (use-package ido
   :config

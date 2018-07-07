@@ -8,7 +8,7 @@
 
 (global-set-key (kbd "C-c \\")         'align-regexp)
 (global-set-key (kbd "C-c M-/")        'hippie-expand)
-(global-set-key (kbd "C-c b")          'bs-show)
+(global-set-key (kbd "C-c b")          'ido-switch-buffer)
 (global-set-key (kbd "C-c <up>")       'text-scale-increase)
 (global-set-key (kbd "C-c <down>")     'text-scale-decrease)
 (global-set-key (kbd "C-c C-c f")      'ffap)
@@ -27,13 +27,7 @@
 (global-set-key (kbd "C-c d")          #'ndegruchy/insert-date)
 (global-set-key (kbd "C-c f")          #'ndegruchy/ido-choose-from-recentf)
 (global-set-key [remap fill-paragraph] #'ndegruchy/fill-or-unfill)
-(global-set-key (kbd "C-c C-c i")      #'ndegruchy/ispell-word-then-abbrev)
 (global-set-key (kbd "C-c C-c m")      #'ndegruchy/move-file)
-
-;; Hydras
-(global-set-key (kbd "C-c C-c M")      #'hydra-mpd/body)
-(global-set-key (kbd "C-c C-c w")      #'hydra-window/body)
-(global-set-key (kbd "C-c C-c b")      #'hydra-rectangle/body)
 
 ;; Dired mode binding
 (define-key dired-mode-map "Y"         #'ndegruchy/dired-rsync)
