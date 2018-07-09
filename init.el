@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2018-07-09 19:13:08 ndegruchy>
+;; Time-stamp: <2018-07-09 19:30:21 ndegruchy>
 
 ;; Initialize the package manager
 (package-initialize)
@@ -16,6 +16,9 @@
 (load-library "custom-keybindings")
 (load-library "custom-hooks")
 
+;; Set custom file
+(setq custom-file "~/.emacs.d/custom-lisp.d/emacs-customize.el")
+
 ;; Load platform-specific customizations
 
 (when (eq system-type 'darwin)
@@ -29,17 +32,3 @@
 
 (when (string-equal system-name "degruchy-chrbk")
   (load-library "chromebook-settings"))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (exec-path-from-shell undo-tree auctex magit base16-theme avy use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
