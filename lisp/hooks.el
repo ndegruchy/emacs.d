@@ -7,4 +7,4 @@
 ;; set this in all c-based programming modes
 (add-hook 'c-mode-common-hook
           (lambda ()
-             (c-set-offset 'case-label '+)))
+			(c-set-offset 'case-label '+)))
