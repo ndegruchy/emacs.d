@@ -5,14 +5,14 @@
 (dolist (key '("\C-\\"
 	       "\C-z"
 	       "\C-x\C-z"
-	       "\C-c\C-c\m"))
+	       "\C-c\C-c m"))
   (global-unset-key key))
 
 (global-set-key (kbd "C-c \\")		'align-regexp)
 (global-set-key (kbd "C-c C-c f")	'ffap)
 (global-set-key (kbd "C-c C-c e")	'eshell)
 (global-set-key (kbd "C-c b")		'ibuffer)
-(global-set-key (kbd "C-z C-z")         'repeat)
+(global-set-key (kbd "C-c /")           'repeat)
 
 ;; Custom function binds
 (global-set-key (kbd "C-c o")          #'ndegruchy/open-line-below)
