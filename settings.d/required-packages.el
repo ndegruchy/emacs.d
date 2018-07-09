@@ -38,7 +38,6 @@
 
 (use-package magit
   :ensure t
-  :pin melpa-stable
   :bind ("C-c C-c m s" . magit-status)
   :config
   (define-key magit-mode-map "e" nil)
