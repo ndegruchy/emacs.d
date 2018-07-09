@@ -1,0 +1,5 @@
+2018-07-09  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* CHANGELOG: Version 3.0 - Complete overhaul. Removed lots of
+	packages and am transitioning to a simpler, lighter and more
+	coherent Emacs setup.

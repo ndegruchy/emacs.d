@@ -1,4 +1,5 @@
-;; Linux customizations
+;; linux-platform-settings.el
+;; Set linux-specific settings here
 
 (use-package exec-path-from-shell
   :ensure t

@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2018-07-06 19:28:08 ndegruchy>
+;; Time-stamp: <2018-07-09 15:24:32 ndegruchy>
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -9,29 +9,26 @@
 (package-initialize)
 
 ;; Load the local lisp directory
-(add-to-list 'load-path "~/.emacs.d/lisp")
-(add-to-list 'load-path "~/.emacs.d/custom")
+(add-to-list 'load-path "~/.emacs.d/settings.d/")
+(add-to-list 'load-path "~/.emacs.d/custom-lisp.d/")
 
 ;; Different config parts
-(load-library "settings")
-(load-library "packages")
-(load-library "functions")
-(load-library "keybindings")
-(load-library "hooks")
-
-(when (file-exists-p custom-file)
-  (load custom-file)) ;; For custom.el
+(load-library "general-settings")
+(load-library "required-packages")
+(load-library "custom-functions")
+(load-library "custom-keybindings")
+(load-library "custom-hooks")
 
 ;; Load platform-specific customizations
 
 (when (eq system-type 'darwin)
-  (load-library "mac"))
+  (load-library "macos-platform-settings"))
 
 (when (eq system-type 'windows-nt)
-  (load-library "windows"))
+  (load-library "windows-platform-settings"))
 
 (when (eq system-type 'gnu/linux)
-  (load-library "linux"))
+  (load-library "linux-platform-settings"))
 
 (when (string-equal system-name "degruchy-chrbk")
-  (load-library "chromebook"))
+  (load-library "chromebook-settings"))

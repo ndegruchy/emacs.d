@@ -1,4 +1,5 @@
-;; Mac customizations
+;; macos-platform-settings.el
+;; Set mac plaform specific settings here
 
 ;; Unbind
 (global-unset-key (kbd "s-x"))
