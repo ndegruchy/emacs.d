@@ -8,9 +8,10 @@
 	       "\C-c\C-c\m"))
   (global-unset-key key))
 
-(global-set-key (kbd "C-c \\")         'align-regexp)
-(global-set-key (kbd "C-c C-c f")      'ffap)
-(global-set-key (kbd "C-c C-c e")      'eshell)
+(global-set-key (kbd "C-c \\")		'align-regexp)
+(global-set-key (kbd "C-c C-c f")	'ffap)
+(global-set-key (kbd "C-c C-c e")	'eshell)
+(global-set-key (kbd "C-c b")		'ibuffer)
 
 ;; Custom function binds
 (global-set-key (kbd "C-c o")          #'ndegruchy/open-line-below)

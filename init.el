@@ -1,11 +1,8 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2018-07-09 15:24:32 ndegruchy>
+;; Time-stamp: <2018-07-09 16:48:18 ndegruchy>
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
+;; Initialize the package manager
 (package-initialize)
 
 ;; Load the local lisp directory
