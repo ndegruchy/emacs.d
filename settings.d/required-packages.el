@@ -24,6 +24,10 @@
 
 ;; Package list
 
+(use-package ace-window
+  :ensure t
+  :bind ("M-o" . ace-window))
+
 (use-package avy
   :ensure t
   :bind (("C-:"		. avy-goto-char)
@@ -38,7 +42,25 @@
 
 (use-package elfeed
   :ensure t
-  ;; Feeds stored in `elfeed-settings.el')
+  ;; Feeds stored in `elfeed-settings.el'
+  )
+
+(use-package embrace
+  :ensure t
+  :bind ("C-," . embrace-commander))
+
+(use-package expand-region
+  :ensure t
+  :bind ("C-=" . er/expand-region))
+
+(use-package fish-mode
+  :ensure t)
+
+(use-package ido-vertical-mode
+  :ensure t)
+
+(use-package iedit
+  :ensure t)
 
 (use-package magit
   :ensure t
@@ -48,6 +70,14 @@
   (define-key magit-mode-map "E" nil)
   (when (file-exists-p "~/.gnupg/pubring.kbx")
     (setq magit-commit-arguments (quote ("--gpg-sign=nathan@degruchy.org")))))
+
+(use-package smex
+  :ensure t
+  :bind (("M-x" . smex)
+	 ("M-X" . smex-major-mode-commands)
+	 ("C-c C-c M-x" . execute-extended-command))
+  :config
+  (smex-initalize))
 
 (use-package tex-site
   :ensure auctex
@@ -67,3 +97,9 @@
   :diminish undo-tree-mode
   :config
   (global-undo-tree-mode))
+
+(use-package which-key
+  :ensure t
+  :diminish which-key-mode
+  :config
+  (which-key-mode))
