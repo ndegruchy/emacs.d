@@ -16,7 +16,6 @@
       confirm-kill-emacs                     'y-or-n-p
       load-prefer-newer                      t)
 
-
 ;; Mouse
 (setq mouse-wheel-progressive-speed          nil)
 
@@ -39,3 +38,10 @@
 (fset 'yes-or-no-p                          'y-or-n-p)
 
 (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
+
+;; Editing - Pairs
+(electric-pair-mode 1)
+(show-paren-mode    1)
+
+;; Editing - selection
+(delete-selection-mode t)

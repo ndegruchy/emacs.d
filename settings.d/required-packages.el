@@ -36,6 +36,10 @@
   :config
   (load-theme 'base16-tomorrow-night 1))
 
+(use-package elfeed
+  :ensure t
+  ;; Feeds stored in `elfeed-settings.el')
+
 (use-package magit
   :ensure t
   :bind ("C-c C-c m s" . magit-status)
