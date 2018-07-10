@@ -75,9 +75,7 @@
   :ensure t
   :bind (("M-x" . smex)
 	 ("M-X" . smex-major-mode-commands)
-	 ("C-c C-c M-x" . execute-extended-command))
-  :config
-  (smex-initalize))
+	 ("C-c C-c M-x" . execute-extended-command)))
 
 (use-package tex-site
   :ensure auctex
