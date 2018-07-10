@@ -13,4 +13,4 @@
       ("http://krebsonsecurity.com/feed" news)
       ("http://www.planet.emacsen.org/atom.xml" emacs)
       ("http://www.harkavagrant.com/rssfeed.php" comics)
-      ("http://xkcd.com/rss.xml" comics)))q
+      ("http://xkcd.com/rss.xml" comics)))

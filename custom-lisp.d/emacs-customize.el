@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (elfeed use-package undo-tree magit exec-path-from-shell base16-theme avy auctex))))
+    (exec-path-from-shell which-key undo-tree auctex smex no-littering magit iedit ido-vertical-mode fish-mode embrace elfeed base16-theme ace-window use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -43,7 +43,8 @@
 (use-package elfeed
   :ensure t
   ;; Feeds stored in `elfeed-settings.el'
-  )
+  :config
+  (load-library "elfeed-settings.el"))
 
 (use-package embrace
   :ensure t
@@ -70,6 +71,14 @@
   (define-key magit-mode-map "E" nil)
   (when (file-exists-p "~/.gnupg/pubring.kbx")
     (setq magit-commit-arguments (quote ("--gpg-sign=nathan@degruchy.org")))))
+
+(use-package no-littering
+  :ensure t
+  :config
+  (setq no-littering-etc-directory
+	(expand-file-name "etc.d/" user-emacs-directory)
+	no-littering-etc-directory
+	(expand-file-name "var.d/" user-emacs-directory)))
 
 (use-package smex
   :ensure t
