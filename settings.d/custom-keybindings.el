@@ -11,7 +11,7 @@
 (global-set-key (kbd "C-c \\")		'align-regexp)
 (global-set-key (kbd "C-c C-c f")	'ffap)
 (global-set-key (kbd "C-c C-c e")	'eshell)
-(global-set-key (kbd "C-c b")		'ibuffer)
+(global-set-key (kbd "C-c b")		'ido-switch-buffer)
 (global-set-key (kbd "C-c /")           'repeat)
 
 ;; Custom function binds
