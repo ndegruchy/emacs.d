@@ -49,4 +49,4 @@ games
 var/*
 etc/remember*
 newsticker/*
-emacs-customize.el
+settings.d/emacs-customize.el
