@@ -30,10 +30,9 @@
 
 (use-package avy
   :ensure t
-  :bind (("C-:"		. avy-goto-char)
-	 ("M-g g"	. avy-goto-line)
-	 ("C-`"		. avy-isearch)
-	 ("C-z"		. avy-zap-to-char)))
+  :bind (:map ndegruchy-map
+	      (":" . avy-goto-char))
+  :bind ("M-g g" . avy-goto-line))
 
 (use-package base16-theme
   :ensure t
@@ -48,11 +47,14 @@
 
 (use-package embrace
   :ensure t
-  :bind ("C-," . embrace-commander))
+  :bind (:map ndegruchy-map
+	      ("," . embrace-commander)
+	      ("+" . embrace-add)))
 
 (use-package expand-region
   :ensure t
-  :bind ("C-=" . er/expand-region))
+  :bind (:map ndegruchy-map
+	      ("=" . er/expand-region)))
 
 (use-package fish-mode
   :ensure t)
@@ -65,7 +67,7 @@
 
 (use-package magit
   :ensure t
-  :bind ("C-c C-c m s" . magit-status)
+  :bind (:map ndegruchy-map ("m" . magit-status))
   :config
   (define-key magit-mode-map "e" nil)
   (define-key magit-mode-map "E" nil)
@@ -83,8 +85,9 @@
 (use-package smex
   :ensure t
   :bind (("M-x" . smex)
-	 ("M-X" . smex-major-mode-commands)
-	 ("C-c C-c M-x" . execute-extended-command)))
+	 ("M-X" . smex-major-mode-commands))
+  :bind (:map ndegruchy-map
+	      ("M-x" . execute-extended-command)))
 
 (use-package tex-site
   :ensure auctex
