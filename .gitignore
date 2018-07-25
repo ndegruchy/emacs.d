@@ -49,5 +49,4 @@ games
 var/*
 etc/remember*
 newsticker/*
-settings.d/emacs-customize.el
-custom-lisp.d/emacs-customize.el
+custom-lisp.d/*

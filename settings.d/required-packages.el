@@ -67,7 +67,8 @@
 
 (use-package magit
   :ensure t
-  :bind (:map ndegruchy-map ("m" . magit-status))
+  :bind (:map ndegruchy-map
+	      ("m" . magit-status))
   :config
   (define-key magit-mode-map "e" nil)
   (define-key magit-mode-map "E" nil)
