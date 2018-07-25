@@ -8,14 +8,16 @@
 	       "\C-c\C-c m"))
   (global-unset-key key))
 
-;; Custom function binds
+(global-set-key (kbd "C-c \\")		'align-regexp)
+(global-set-key (kbd "C-c C-c f")	'ffap)
+(global-set-key (kbd "C-c C-c e")	'eshell)
+(global-set-key (kbd "C-c b")		'ido-switch-buffer)
+(global-set-key (kbd "C-c /")           'repeat)
 
-(bind-keys
- :prefix-map ndegruchy-map
- :prefix-docstring "My Keymappings"
- :prefix "C-c C-,"
- ("o" . ndegruchy/open-line-below)
- ("O" . ndegruchy/open-line-above)
- ("k" . ndegruchy/kill-whole-line)
- ("w" . ndegruchy/select-current-word)
- ("d" . ndegruchy/insert-date))
+;; Custom function binds
+(global-set-key (kbd "C-c o")          #'ndegruchy/open-line-below)
+(global-set-key (kbd "C-c O")          #'ndegruchy/open-line-above)
+(global-set-key (kbd "C-c k")          #'ndegruchy/kill-whole-line)
+(global-set-key (kbd "C-c m")          #'ndegruchy/select-line)
+(global-set-key (kbd "C-c w")          #'ndegruchy/select-current-word)
+(global-set-key (kbd "C-c d")          #'ndegruchy/insert-date)

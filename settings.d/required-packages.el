@@ -30,31 +30,22 @@
 
 (use-package avy
   :ensure t
-  :bind (:map ndegruchy-map
-	      (":" . avy-goto-char))
-  :bind ("M-g g" . avy-goto-line))
+  :bind (("C-c C-c :" . avy-goto-char)
+	 ("M-g g" . avy-goto-line)))
 
 (use-package base16-theme
   :ensure t
   :config
   (load-theme 'base16-tomorrow-night 1))
 
-(use-package elfeed
-  :ensure t
-  ;; Feeds stored in `elfeed-settings.el'
-  :config
-  (load-library "elfeed-settings.el"))
-
 (use-package embrace
   :ensure t
-  :bind (:map ndegruchy-map
-	      ("," . embrace-commander)
-	      ("+" . embrace-add)))
+  :bind (("C-c C-c ," . embrace-commander)
+	 ("C-c C-c +" . embrace-add)))
 
 (use-package expand-region
   :ensure t
-  :bind (:map ndegruchy-map
-	      ("=" . er/expand-region)))
+  :bind (("C-c =" . er/expand-region)))
 
 (use-package fish-mode
   :ensure t)
@@ -67,8 +58,7 @@
 
 (use-package magit
   :ensure t
-  :bind (:map ndegruchy-map
-	      ("m" . magit-status))
+  :bind (("C-c C-c m" . magit-status))
   :config
   (define-key magit-mode-map "e" nil)
   (define-key magit-mode-map "E" nil)
@@ -86,9 +76,8 @@
 (use-package smex
   :ensure t
   :bind (("M-x" . smex)
-	 ("M-X" . smex-major-mode-commands))
-  :bind (:map ndegruchy-map
-	      ("M-x" . execute-extended-command)))
+	 ("M-X" . smex-major-mode-commands)
+	 ("C-c C-c M-x" . execute-extended-command)))
 
 (use-package tex-site
   :ensure auctex
