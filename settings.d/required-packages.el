@@ -25,13 +25,10 @@
 ;; Package list
 
 (use-package ace-window
-  :ensure t
-  :bind ("M-o" . ace-window))
+  :ensure t)
 
 (use-package avy
-  :ensure t
-  :bind (("C-c C-c :" . avy-goto-char)
-	 ("M-g g" . avy-goto-line)))
+  :ensure t)
 
 (use-package base16-theme
   :ensure t
@@ -39,13 +36,10 @@
   (load-theme 'base16-tomorrow-night 1))
 
 (use-package embrace
-  :ensure t
-  :bind (("C-c C-c ," . embrace-commander)
-	 ("C-c C-c +" . embrace-add)))
+  :ensure t)
 
 (use-package expand-region
-  :ensure t
-  :bind (("C-c =" . er/expand-region)))
+  :ensure t)
 
 (use-package fish-mode
   :ensure t)
@@ -58,7 +52,6 @@
 
 (use-package magit
   :ensure t
-  :bind (("C-c C-c m" . magit-status))
   :config
   (define-key magit-mode-map "e" nil)
   (define-key magit-mode-map "E" nil)
@@ -74,10 +67,7 @@
 	(expand-file-name "var.d/" user-emacs-directory)))
 
 (use-package smex
-  :ensure t
-  :bind (("M-x" . smex)
-	 ("M-X" . smex-major-mode-commands)
-	 ("C-c C-c M-x" . execute-extended-command)))
+  :ensure t)
 
 (use-package tex-site
   :ensure auctex
