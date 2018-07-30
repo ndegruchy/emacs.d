@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2018-07-10 09:13:13 ndegruchy>
+;; Time-stamp: <2018-07-30 19:32:20 ndegruchy>
 
 ;; Initialize the package manager
 (package-initialize)
@@ -30,6 +30,3 @@
 
 (when (eq system-type 'gnu/linux)
   (load-library "linux-platform-settings"))
-
-(when (string-equal system-name "degruchy-chrbk")
-  (load-library "chromebook-settings"))
