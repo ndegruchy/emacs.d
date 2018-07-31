@@ -58,6 +58,13 @@
   (when (file-exists-p "~/.gnupg/pubring.kbx")
     (setq magit-commit-arguments (quote ("--gpg-sign=nathan@degruchy.org")))))
 
+(use-package markdown-mode
+  :ensure t
+  :mode (("README\\.md\\'" . gfm-mode)
+	 ("\\.md\\'" . markdown-mode)
+	 ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "pandoc"))
+
 (use-package no-littering
   :ensure t
   :config
