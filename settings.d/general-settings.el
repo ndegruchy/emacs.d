@@ -45,3 +45,8 @@
 
 ;; Editing - selection
 (delete-selection-mode t)
+
+;; Enable narrowing
+(put 'narrow-to-region 'disabled nil)
+(put 'narrow-to-page   'disabled nil)
+(put 'narrow-to-defun  'disabled nil)
