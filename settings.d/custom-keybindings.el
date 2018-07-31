@@ -14,7 +14,7 @@
  ("C-c e"	. eshell)
  ("C-c b"	. ido-switch-buffer)
  ("C-c /"	. repeat)
- ("C-c :"	. avy-goto-word-1)
+ ("C-c :"	. avy-goto-word-0)
  ("M-g g"	. avy-goto-line)
  ("M-o"		. ace-window)
  ("C-c ,"	. embrace-commander)
