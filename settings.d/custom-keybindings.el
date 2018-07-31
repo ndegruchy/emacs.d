@@ -10,12 +10,10 @@
 
 (bind-keys*
  ("C-c \\"  . align-regexp)
- ("C-c f"   . ffap)
- ("C-c e"   . eshell)
  ("C-c b"   . ido-switch-buffer)
  ("C-c :"   . avy-goto-word-0)
- ("M-g g"   . avy-goto-line)
- ("M-o"	    . ace-window)
+ ("C-c g"   . avy-goto-line)
+ ("C-c W"   . ace-window)
  ("C-c ,"   . embrace-commander)
  ("C-c +"   . embrace-add)
  ("C-c ="   . er/expand-region)
