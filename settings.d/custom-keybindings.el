@@ -10,13 +10,12 @@
 
 (bind-keys*
  ("C-c \\"  . align-regexp)
- ("C-c b"   . ido-switch-buffer)
- ("C-c :"   . avy-goto-word-0)
+ ("C-c G"   . avy-goto-word-0)
  ("C-c g"   . avy-goto-line)
  ("C-c W"   . ace-window)
- ("C-c ,"   . embrace-commander)
- ("C-c +"   . embrace-add)
- ("C-c ="   . er/expand-region)
+ ("C-c e"   . embrace-commander)
+ ("C-c E"   . embrace-add)
+ ("C-c s"   . er/expand-region)
  ("C-c M"   . magit-status)
  ("M-x"	    . smex)
  ("M-X"	    . smex-major-mode-commands)
