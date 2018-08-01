@@ -33,15 +33,6 @@ places the cursor as close to its previous position as possible."
       (move-to-column y))))
 
 ;; Various selection functions
-(defun ndegruchy/select-current-word ()
-"Select the word under cursor."
- (interactive)
- (let (pt)
-   (skip-chars-backward "-_A-Za-z0-9")
-   (setq pt (point))
-   (skip-chars-forward "-_A-Za-z0-9")
-   (set-mark pt)))
-
 (defun ndegruchy/select-current-line ()
   "Select the current line"
   (interactive)
