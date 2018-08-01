@@ -27,5 +27,4 @@
  ("C-c L"   . ndegruchy/open-line-above)
  ("C-c k"   . ndegruchy/kill-whole-line)
  ("C-c m"   . ndegruchy/select-line)
- ("C-c w"   . ndegruchy/select-current-word)
  ("C-c d"   . ndegruchy/insert-date))
