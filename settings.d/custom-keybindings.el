@@ -2,10 +2,8 @@
 ;; Set custom keybindings here
 
 ;; Unbind keys (may be useful for later bindings)
-(dolist (key '("\C-\\"
-	       "\C-z"
-	       "\C-x\C-z"
-	       "\C-c\C-c m"))
+(dolist (key '("\C-z"
+	       "\C-x\C-z"))
   (global-unset-key key))
 
 (bind-keys*
