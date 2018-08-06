@@ -12,8 +12,8 @@
  ("C-c G"   . avy-goto-word-0)
  ("C-c g"   . avy-goto-line)
  ("C-c W"   . ace-window)
- ("C-c e"   . embrace-commander)
- ("C-c E"   . embrace-add)
+ ("C-c E"   . embrace-commander)
+ ("C-c e"   . embrace-add)
  ("C-c s"   . er/expand-region)
  ("C-c M"   . magit-status)
  ;; Smex
