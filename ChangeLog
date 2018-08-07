@@ -1,3 +1,12 @@
+2018-08-07  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* settings.d/required-packages.el (magit): Remove `iedit`. I tried
+	this and multiple cursors. Not appreciably better than something
+	like regexp replace. At least not for my usage.
+
+	* Misc: Fix some keybindings. Going to start using the changelog
+	more as Emacs makes it super easy to do so.
+
 2018-07-09  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* CHANGELOG: Version 3.0 - Complete overhaul. Removed lots of

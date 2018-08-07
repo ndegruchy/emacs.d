@@ -47,9 +47,6 @@
 (use-package ido-vertical-mode
   :ensure t)
 
-(use-package iedit
-  :ensure t)
-
 (use-package magit
   :ensure t
   :config
