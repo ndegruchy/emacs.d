@@ -25,6 +25,5 @@
 (bind-keys*
  ("C-c l"   . ndegruchy/open-line-below)
  ("C-c L"   . ndegruchy/open-line-above)
- ("C-c k"   . ndegruchy/kill-whole-line)
- ("C-c m"   . ndegruchy/select-line)
+ ("C-c m"   . ndegruchy/select-current-line-dwim)
  ("C-c d"   . ndegruchy/insert-date))

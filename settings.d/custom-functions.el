@@ -20,18 +20,6 @@
           (kill-buffer buffer)))
       (message "Killed %i dired buffer(s)." count ))))
 
-;; Delete (kill) whole line
-(defun ndegruchy/kill-whole-line nil
-  "kills the entire line on which the cursor is located, and
-places the cursor as close to its previous position as possible."
-  (interactive)
-  (progn
-    (let ((y (current-column))
-          (a (progn (beginning-of-line) (point)))
-          (b (progn (forward-line 1) (point))))
-      (kill-region a b)
-      (move-to-column y))))
-
 ;; Various selection functions
 (defun ndegruchy/select-current-line ()
   "Select the current line"
@@ -39,16 +27,19 @@ places the cursor as close to its previous position as possible."
   (end-of-line) ; move to end of line
   (set-mark (line-beginning-position)))
 
-(defun ndegruchy/select-line ()
-  "Select current line. If region is active, extend selection downward by line.
-URL `http://ergoemacs.org/emacs/modernization_mark-word.html'
-Version 2016-07-22"
-  (interactive)
-  (if (region-active-p)
-      (progn
-        (forward-line 1)
-        (end-of-line))
-    (ndegruchy/select-current-line)))
+(defun ndegruchy/select-current-line-dwim (arg)
+  ;; Retrieved from https://emacs.stackexchange.com/questions/15033/how-to-mark-current-line-and-move-cursor-to-next-line
+  ;; on 2018-08-07
+  "Select the current line and move the cursor by ARG lines IF
+no region is selected.
+
+If a region is already selected when calling this command, only move
+the cursor by ARG lines."
+  (interactive "p")
+  (when (not (use-region-p))
+    (forward-line 0)
+    (set-mark-command nil))
+  (forward-line arg))
 
 ;; Mirror vim's "open" lines above and below
 (defun ndegruchy/open-line-below ()
