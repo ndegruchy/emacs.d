@@ -20,13 +20,6 @@
           (kill-buffer buffer)))
       (message "Killed %i dired buffer(s)." count ))))
 
-;; Various selection functions
-(defun ndegruchy/select-current-line ()
-  "Select the current line"
-  (interactive)
-  (end-of-line) ; move to end of line
-  (set-mark (line-beginning-position)))
-
 (defun ndegruchy/select-current-line-dwim (arg)
   ;; Retrieved from https://emacs.stackexchange.com/questions/15033/how-to-mark-current-line-and-move-cursor-to-next-line
   ;; on 2018-08-07
