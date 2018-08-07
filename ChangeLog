@@ -1,5 +1,8 @@
 2018-08-07  Nathan DeGruchy  <nathan@degruchy.org>
 
+	* settings.d/custom-keybindings.el: Add new keymap for
+	`avy-goto-char`. Sometimes a word is not enough.
+
 	* settings.d/included-packages.el: Unwrap configurations from
 	`use-package`. Not really required, as they're included with
 	Emacs, and it only adds overhead as it filters through the lisp
