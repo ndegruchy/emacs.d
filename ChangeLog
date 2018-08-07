@@ -1,5 +1,10 @@
 2018-08-07  Nathan DeGruchy  <nathan@degruchy.org>
 
+	* settings.d/included-packages.el: Unwrap configurations from
+	`use-package`. Not really required, as they're included with
+	Emacs, and it only adds overhead as it filters through the lisp
+	wrapping it.
+
 	* settings.d/custom-keybindings.el ("C-c l"): Modify keybinding to
 	use new select function.
 
