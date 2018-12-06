@@ -18,8 +18,8 @@
  ("C-c s"   . er/expand-region)
  ("C-c M"   . magit-status)
  ;; Smex
- ("M-x"	    . smex)
- ("M-X"	    . smex-major-mode-commands)
+ ("M-x"	    . amx)
+ ("M-X"	    . amx-major-mode-commands)
  ("C-c M-x" . execute-extended-command))
 
 ;; Custom functions

@@ -27,6 +27,9 @@
 (use-package ace-window
   :ensure t)
 
+(use-package amx
+  :ensure t)
+
 (use-package avy
   :ensure t)
 
@@ -69,9 +72,6 @@
 	(expand-file-name "etc.d/" user-emacs-directory)
 	no-littering-etc-directory
 	(expand-file-name "var.d/" user-emacs-directory)))
-
-(use-package smex
-  :ensure t)
 
 (use-package tex-site
   :ensure auctex
