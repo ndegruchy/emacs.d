@@ -38,7 +38,7 @@
 
 (fset 'yes-or-no-p                          'y-or-n-p)
 
-;;(add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
+;; (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
 (add-to-list 'default-frame-alist '(font . "Fira Code-14"))
 
 ;; Editing - Pairs
