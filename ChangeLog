@@ -1,3 +1,8 @@
+2018-12-08  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* custom-lisp.d/emacs-customize.el: Remove Magit packages (and
+	friends) due to the built in VC being good enough for my purposes.
+
 2018-08-07  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* settings.d/custom-keybindings.el: Add new keymap for
