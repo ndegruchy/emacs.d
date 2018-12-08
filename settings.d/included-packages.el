@@ -13,3 +13,6 @@
       uniquify-separator            "/"
       uniquify-after-kill-buffer-p  t
       uniquify-ignore-buffers-re    "^\\*")
+
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))

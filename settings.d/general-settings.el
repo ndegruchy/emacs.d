@@ -14,7 +14,8 @@
 ;; Misc
 (setq ring-bell-function                     (quote ignore)
       confirm-kill-emacs                     'y-or-n-p
-      load-prefer-newer                      t)
+      load-prefer-newer                      t
+      enable-local-variables                 :safe)
 
 ;; Mouse
 (setq mouse-wheel-progressive-speed          nil)
