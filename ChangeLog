@@ -1,5 +1,9 @@
 2018-12-17  Nathan DeGruchy  <nathan@degruchy.org>
 
+	* Midnight-mode: Enable midnight mode for cleaning up buffers when
+	I leave my PC on overnight. Actually runs at 04:30, in case I'm up
+	late.
+
 	* Dired-hacks: Add a number of dired-hacks files to emacs for cool
 	narrowing and filtering in dired.
 
