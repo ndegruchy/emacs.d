@@ -8,6 +8,9 @@
 (ido-mode 1)
 (ido-vertical-mode 1)
 
+(require 'midnight)
+(midnight-delay-set 'midnight-delay 16200)
+
 ;; Uniquify
 (setq uniquify-buffer-name-style    'reverse
       uniquify-separator            "/"
