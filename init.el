@@ -8,6 +8,7 @@
 ;; Load the local lisp directory
 (add-to-list 'load-path "~/.emacs.d/settings.d/")
 (add-to-list 'load-path "~/.emacs.d/custom-lisp.d/")
+(add-to-list 'load-path "~/.emacs.d/custom-lisp.d/dired-hacks")
 
 ;; Different config parts
 (load-library "general-settings")
