@@ -50,5 +50,5 @@ games
 var/*
 etc/remember*
 newsticker/*
-custom-lisp.d/*
+custom-lisp.d/emacs-customize.el
 /async-bytecomp.log
