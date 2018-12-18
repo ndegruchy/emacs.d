@@ -7,4 +7,5 @@
  ("C-c o l" . org-store-link)
  ("C-c o b" . org-iswitchb))
 
-(setq org-agenda-files (quote ("~/Documents/Notes")))
+(setq org-agenda-files (quote ("~/Documents/Notes"))
+      org-blank-before-new-entry t)
