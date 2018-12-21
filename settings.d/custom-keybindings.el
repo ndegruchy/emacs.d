@@ -15,11 +15,7 @@
  ("C-c W"   . ace-window)
  ("C-c E"   . embrace-commander)
  ("C-c e"   . embrace-add)
- ("C-c s"   . er/expand-region)
- ;; AMX
- ("M-x"	    . amx)
- ("M-X"	    . amx-major-mode-commands)
- ("C-c M-x" . execute-extended-command))
+ ("C-c s"   . er/expand-region))
 
 ;; Custom functions
 (bind-keys*

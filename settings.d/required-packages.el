@@ -24,12 +24,6 @@
 
 ;; Package list
 
-(use-package ace-window
-  :ensure t)
-
-(use-package amx
-  :ensure t)
-
 (use-package avy
   :ensure t)
 
