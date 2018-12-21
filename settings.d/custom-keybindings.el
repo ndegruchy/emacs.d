@@ -8,11 +8,6 @@
 
 (bind-keys*
  ;; Personal map for packages
- ("C-c a"   . align-regexp)
- ("C-c G"   . avy-goto-word-0)
- ("C-c g"   . avy-goto-line)
- ("C-c c"   . avy-goto-char)
- ("C-c W"   . ace-window)
  ("C-c E"   . embrace-commander)
  ("C-c e"   . embrace-add)
  ("C-c s"   . er/expand-region))
