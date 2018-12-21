@@ -54,14 +54,6 @@
 (use-package ido-vertical-mode
   :ensure t)
 
-(use-package magit
-  :ensure t
-  :config
-  (define-key magit-mode-map "e" nil)
-  (define-key magit-mode-map "E" nil)
-  (when (file-exists-p "~/.gnupg/pubring.kbx")
-    (setq magit-commit-arguments (quote ("--gpg-sign=nathan@degruchy.org")))))
-
 (use-package markdown-mode
   :ensure t
   :mode (("README\\.md\\'" . gfm-mode)
@@ -97,7 +89,4 @@
   (global-undo-tree-mode))
 
 (use-package which-key
-  :ensure t
-  :diminish which-key-mode
-  :config
-  (which-key-mode))
+  :ensure t)

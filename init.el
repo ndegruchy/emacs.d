@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2018-07-31 16:49:31 ndegruchy>
+;; Time-stamp: <2018-12-20 19:10:07 ndegruchy>
 
 ;; Initialize the package manager
 (package-initialize)
@@ -17,7 +17,7 @@
 (load-library "custom-functions")
 (load-library "custom-keybindings")
 (load-library "custom-hooks")
-(load-library "org-mode.el")
+(load-library "org-mode")
 
 ;; Set custom file
 (setq custom-file "~/.emacs.d/custom-lisp.d/emacs-customize.el")
