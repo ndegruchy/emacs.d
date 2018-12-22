@@ -16,7 +16,6 @@
 (load-library "custom-functions")
 (load-library "custom-keybindings")
 (load-library "custom-hooks")
-(load-library "org-mode")
 
 ;; Set custom file
 (setq custom-file "~/.emacs.d/custom-lisp.d/emacs-customize.el")

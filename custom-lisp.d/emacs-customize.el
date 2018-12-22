@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (avy which-key use-package undo-tree no-littering markdown-mode ido-vertical-mode fish-mode f exec-path-from-shell embrace base16-theme auctex))))
+    (exec-path-from-shell which-key undo-tree auctex no-littering markdown-mode ido-vertical-mode fish-mode embrace base16-theme avy use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

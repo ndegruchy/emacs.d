@@ -24,18 +24,6 @@
 
 ;; Package list
 
-(use-package avy
-  :ensure t)
-
-(use-package base16-theme
-  :ensure t
-  :config
-  (load-theme 'base16-tomorrow-night 1))
-
-(require 'dired-hacks-utils)
-(require 'dired-narrow)
-(require 'dired-filter)
-
 (use-package embrace
   :ensure t)
 
