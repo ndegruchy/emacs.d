@@ -39,6 +39,7 @@
 (fset 'yes-or-no-p                          'y-or-n-p)
 
 (add-to-list 'default-frame-alist '(font . "Fira Code-14"))
+(set-face-attribute 'region nil :background "light goldenrod")
 
 ;; Editing - Pairs
 (electric-pair-mode 1)
