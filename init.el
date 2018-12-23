@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2018-12-20 20:38:43 ndegruchy>
+;; Time-stamp: <2018-12-22 21:41:18 ndegruchy>
 
 ;; Initialize the package manager
 (package-initialize)

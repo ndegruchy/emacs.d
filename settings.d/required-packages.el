@@ -47,9 +47,7 @@
   :ensure t
   :config
   (setq no-littering-etc-directory
-	(expand-file-name "etc.d/" user-emacs-directory)
-	no-littering-etc-directory
-	(expand-file-name "var.d/" user-emacs-directory)))
+	(expand-file-name "etc.d/" user-emacs-directory)))
 
 (use-package tex-site
   :ensure auctex

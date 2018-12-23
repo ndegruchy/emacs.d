@@ -34,24 +34,6 @@ the cursor by ARG lines."
     (set-mark-command nil))
   (forward-line arg))
 
-;; Mirror vim's "open" lines above and below
-(defun ndegruchy/open-line-below ()
-  "Inserts a line below the current line, moving the cursor to
-that line and setting the indent properly"
-  (interactive)
-  (end-of-line)
-  (newline)
-  (indent-for-tab-command))
-
-(defun ndegruchy/open-line-above ()
-  "Inserts a line above the current line, moving the cursor to
-that line and setting the indent properly"
-  (interactive)
-  (beginning-of-line)
-  (newline)
-  (forward-line -1)
-  (indent-for-tab-command))
-
 ;; Create parent folder(s) when visiting a non-existant file
 (defun ndegruchy/my-create-non-existent-directory ()
   (let ((parent-directory (file-name-directory buffer-file-name)))
@@ -135,3 +117,20 @@ Version 2017-01-11"
                  (search-forward (aref $x 0) nil t)
                (replace-match (aref $x 1) "FIXEDCASE" "LITERAL")))
            $strPairs))))))
+
+(defun ndegruchy/smart-open-line ()
+  "Insert an empty line after the current line.
+Position the cursor at its beginning, according to the current mode.
+Retrieved from: https://emacsredux.com/blog/2013/03/26/smarter-open-line/ (2018-12-22)"
+  (interactive)
+  (move-end-of-line nil)
+  (newline-and-indent))
+
+(defun ndegruchy/smart-open-line-above ()
+  "Inserts a line above the current line, moving the cursor to
+that line and setting the indent properly"
+  (interactive)
+  (beginning-of-line)
+  (newline)
+  (forward-line -1)
+  (indent-for-tab-command))

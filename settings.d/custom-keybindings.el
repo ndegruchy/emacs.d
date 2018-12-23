@@ -8,13 +8,13 @@
 
 (bind-keys*
  ;; Personal map for packages
- ("C-c E"   . embrace-commander)
- ("C-c e"   . embrace-add)
- ("C-c s"   . er/expand-region))
+ ("C-c E"  . embrace-commander)
+ ("C-c e"  . embrace-add)
+ ("C-c s"  . er/expand-region))
 
 ;; Custom functions
 (bind-keys*
- ("C-c l"   . ndegruchy/open-line-below)
- ("C-c L"   . ndegruchy/open-line-above)
- ("C-c m"   . ndegruchy/select-current-line-dwim)
- ("C-c d"   . ndegruchy/insert-date))
+ ("S-<return>"	.  ndegruchy/smart-open-line)
+ ("C-S-<return>".  ndegruchy/open-line-above)
+ ("C-c m"	.  ndegruchy/select-current-line-dwim)
+ ("C-c d"	.  ndegruchy/insert-date))
