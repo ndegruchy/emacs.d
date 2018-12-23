@@ -24,6 +24,9 @@
 
 ;; Package list
 
+(use-package ace-jump-mode
+  :ensure t)
+
 (use-package embrace
   :ensure t)
 
@@ -73,4 +76,6 @@
   (global-undo-tree-mode))
 
 (use-package which-key
-  :ensure t)
+  :ensure t
+  :config
+  (which-key-mode))

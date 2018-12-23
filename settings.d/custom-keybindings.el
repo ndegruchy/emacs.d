@@ -10,7 +10,8 @@
  ;; Personal map for packages
  ("C-c E"  . embrace-commander)
  ("C-c e"  . embrace-add)
- ("C-c s"  . er/expand-region))
+ ("C-c s"  . er/expand-region)
+ ("C-c j"  . ace-jump-mode))
 
 ;; Custom functions
 (bind-keys*
