@@ -30,6 +30,10 @@
 (use-package expand-region
   :ensure t)
 
+;; Joke package, especially for the holidays...
+(use-package fireplace
+  :ensure t)
+
 (use-package fish-mode
   :ensure t)
 
