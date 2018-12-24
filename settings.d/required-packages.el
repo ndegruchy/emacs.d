@@ -80,3 +80,7 @@
   :ensure t
   :config
   (which-key-mode))
+
+(use-package windresize
+  :ensure t
+  :bind ("C-c ;" . windresize))

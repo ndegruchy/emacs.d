@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ace-jump-mode ace-jump bind-key expand-region fireplace which-key use-package undo-tree no-littering markdown-mode ido-vertical-mode fish-mode exec-path-from-shell embrace auctex))))
+    (windresize which-key use-package undo-tree no-littering markdown-mode ido-vertical-mode fish-mode fireplace exec-path-from-shell embrace auctex ace-jump-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
