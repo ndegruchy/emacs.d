@@ -11,7 +11,9 @@
  ("C-c E"  . embrace-commander)
  ("C-c e"  . embrace-add)
  ("C-c s"  . er/expand-region)
- ("C-c j"  . ace-jump-mode))
+ ("C-c j"  . ace-jump-mode)
+ ("C-c -"  . split-window-vertically)
+ ("C-c |"  . split-window-horizontally))
 
 ;; Custom functions
 (bind-keys*
