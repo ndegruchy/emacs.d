@@ -25,7 +25,7 @@
 
 ;; Package list
 
-(use-package ace-jump-mode
+(use-package avy
   :ensure t)
 
 (use-package embrace
