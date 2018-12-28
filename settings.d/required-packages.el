@@ -41,6 +41,20 @@
 (use-package fish-mode
   :ensure t)
 
+(use-package flycheck
+  :ensure t
+  :config
+  (flycheck-define-checker proselint
+    "A linter for prose."
+    :command ("proselint" source-inplace)
+    :error-patterns
+    ((warning line-start (file-name) ":" line ":" column ": "
+              (id (one-or-more (not (any " "))))
+              (message) line-end))
+    :modes (text-mode markdown-mode gfm-mode message-mode latex-mode))
+  
+  (add-to-list 'flycheck-checkers 'proselint))
+
 (use-package ido-vertical-mode
   :ensure t)
 
