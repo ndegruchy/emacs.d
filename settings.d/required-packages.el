@@ -74,7 +74,7 @@
 (use-package pdf-tools
   :ensure t
   :config
-  (pdf-loader-install))
+  (pdf-tools-install))
 
 (use-package tex-site
   :ensure auctex
