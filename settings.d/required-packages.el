@@ -29,19 +29,19 @@
   :ensure t)
 
 (use-package dired-atool
-  :ensure t)
+  :ensure t
+  :config
+  (dired-atool-setup))
 
 (use-package dired-rsync
-  :ensure t)
+  :ensure t
+  :config
+  (bind-key "y" 'dired-rsync dired-mode-map))
 
 (use-package embrace
   :ensure t)
 
 (use-package expand-region
-  :ensure t)
-
-;; Joke package, especially for the holidays...
-(use-package fireplace
   :ensure t)
 
 (use-package fish-mode
