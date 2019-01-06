@@ -28,6 +28,12 @@
 (use-package avy
   :ensure t)
 
+(use-package dired-atool
+  :ensure t)
+
+(use-package dired-rsync
+  :ensure t)
+
 (use-package embrace
   :ensure t)
 
