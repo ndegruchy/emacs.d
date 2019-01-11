@@ -41,6 +41,21 @@
 (use-package embrace
   :ensure t)
 
+(use-package emms
+  :config
+  (require 'emms-setup)
+  (require 'emms-player-mpd)
+  (require 'emms-mark)
+  (emms-all)
+  (setq emms-player-mpd-server-name "localhost"
+	emms-player-mpd-server-port "6600"
+	emms-player-mpd-music-directory "/mnt/ndegruchy/Music"
+	emms-source-file-default-directory "/mnt/ndegruchy/Music"
+	emms-info-functions '(emms-info-mpd))
+  (emms-player-mpd-connect)
+  (add-to-list 'emms-info-functions 'emms-info-mpd)
+  (add-to-list 'emms-player-list 'emms-player-mpd))
+
 (use-package expand-region
   :ensure t)
 
@@ -80,7 +95,13 @@
 (use-package pdf-tools
   :ensure t
   :config
-  (pdf-tools-install))
+  (pdf-tools-install)
+  ;; use isearch instead of swiper
+  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
+  ;; keyboard shortcuts
+  (define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)
+  (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
+  (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete))
 
 (use-package tex-site
   :ensure auctex
