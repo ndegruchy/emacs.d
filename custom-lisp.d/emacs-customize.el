@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (expand-region windresize which-key use-package undo-tree pdf-tools no-littering markdown-mode ido-vertical-mode flycheck fish-mode exec-path-from-shell embrace dired-rsync dired-atool avy auctex))))
+    (emms windresize which-key use-package undo-tree pdf-tools no-littering markdown-mode ido-vertical-mode flycheck fish-mode exec-path-from-shell embrace dired-rsync dired-atool avy auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
