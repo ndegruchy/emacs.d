@@ -1,3 +1,10 @@
+2019-01-11  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* EMMS: Added emms to my config so I can play my music from within
+	emacs. One more step to full emacs-dom!
+	* PDF-tools: Added some shortcuts for annotating in PDFs in
+	PDF-tools, that way I can add notes and highlights.
+
 2018-12-22  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* Changes: Some packages removed, some added, a little
