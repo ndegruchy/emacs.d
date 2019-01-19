@@ -1,3 +1,17 @@
+2019-01-19  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* settings.d/included-packages.el: Changed dired to use the ls
+	option to group directories first in a listing. What can I say, I
+	like it better.
+
+	* ndegruchy/duplicate-line: New function duplicates the current
+	line, useful if you need to make a list of directories, or other
+	repetitive tasks. C-S-Backspace C-y C-y works, too, but this is
+	sexier.
+
+	* YAML-Mode: New package: YAML mode, because all the cool kids
+	seem to be using YAML for configuration, so we have this.
+
 2019-01-11  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* EMMS: Added emms to my config so I can play my music from within
