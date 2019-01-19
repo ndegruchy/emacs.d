@@ -145,3 +145,14 @@ that line and setting the indent properly"
                  (org-match-string-no-properties 1))))
     (apply 'delete-region remove)
     (insert description))))
+
+(defun ndegruchy/duplicate-line ()
+    "Makes a copy of the current line after the current
+    line. Useful for listing directories, etc."
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank))

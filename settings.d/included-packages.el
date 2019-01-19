@@ -1,6 +1,10 @@
 ;; included-packages.el
 ;; Configure packages distributed with Emacs
 
+;; Dired
+
+(setq dired-listing-switches "--group-directories-first -alh")
+
 ;; Ido
 (setq ido-enable-flex-matching t
       ido-everywhere t

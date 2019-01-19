@@ -22,4 +22,5 @@
  ("S-<return>"	.  ndegruchy/smart-open-line)
  ("C-S-<return>".  ndegruchy/open-line-above)
  ("C-c m"	.  ndegruchy/select-current-line-dwim)
- ("C-c d"	.  ndegruchy/insert-date))
+ ("C-c d"	.  ndegruchy/insert-date)
+ ("C-c a"       .  ndegruchy/duplicate-line))

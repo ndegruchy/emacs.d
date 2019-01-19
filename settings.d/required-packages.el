@@ -92,31 +92,18 @@
   (setq no-littering-etc-directory
 	(expand-file-name "etc.d/" user-emacs-directory)))
 
-(use-package pdf-tools
-  :ensure t
-  :config
-  (pdf-tools-install)
-  ;; use isearch instead of swiper
-  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
-  ;; keyboard shortcuts
-  (define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)
-  (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
-  (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete))
-
 (use-package tex-site
   :ensure auctex
   :config
-  (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer))
-  ;; :config
-  ;; (setq TeX-view-program-list
-  ;; 	'(("Okular" "/usr/bin/okular %o")))
-  ;; (setq TeX-view-program-selection
-  ;;       (quote
-  ;;        (((output-dvi style-pstricks)
-  ;;          "dvips and gv")
-  ;;         (output-dvi "xdvi")
-  ;;         (output-pdf "Okular")
-  ;;         (output-html "xdg-open")))))
+  (setq TeX-view-program-list
+  	'(("Zathura" "/usr/bin/zathura %o")))
+  (setq TeX-view-program-selection
+        (quote
+         (((output-dvi style-pstricks)
+           "dvips and gv")
+          (output-dvi "xdvi")
+          (output-pdf "Zathura")
+          (output-html "xdg-open")))))
   
 
 (use-package undo-tree
@@ -133,3 +120,6 @@
 (use-package windresize
   :ensure t
   :bind ("C-c ;" . windresize))
+
+(use-package yaml-mode
+  :ensure t)
