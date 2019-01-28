@@ -53,19 +53,6 @@
   (setq no-littering-etc-directory
 	(expand-file-name "etc.d/" user-emacs-directory)))
 
-(use-package tex-site
-  :ensure auctex
-  :config
-  (setq TeX-view-program-list
-  	'(("Zathura" "/usr/bin/zathura %o")))
-  (setq TeX-view-program-selection
-        (quote
-         (((output-dvi style-pstricks)
-           "dvips and gv")
-          (output-dvi "xdvi")
-          (output-pdf "Zathura")
-          (output-html "xdg-open")))))
-  
 (use-package which-key
   :ensure t
   :config
