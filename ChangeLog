@@ -1,5 +1,9 @@
 2019-01-28  Nathan DeGruchy  <nathan@degruchy.org>
 
+	* settings.d/linux-settings.el: Move auctex to this file and put
+	it behind an if statement to narrow it's install my desktop, where
+	TeXLive will be installed.
+
 	* settings.d/required-packages.el (windresize): Remove some
 	packages that I don't tend to use anymore. Not that they're not
 	good, I just don't find they get used.
