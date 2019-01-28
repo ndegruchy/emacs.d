@@ -1,3 +1,9 @@
+2019-01-28  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* settings.d/required-packages.el (windresize): Remove some
+	packages that I don't tend to use anymore. Not that they're not
+	good, I just don't find they get used.
+
 2019-01-19  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* settings.d/included-packages.el: Changed dired to use the ls
