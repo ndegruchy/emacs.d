@@ -25,9 +25,6 @@
 
 ;; Package list
 
-(use-package avy
-  :ensure t)
-
 (use-package dired-atool
   :ensure t
   :config
@@ -47,18 +44,8 @@
 (use-package fish-mode
   :ensure t)
 
-(use-package flycheck
-  :ensure t)
-
 (use-package ido-vertical-mode
   :ensure t)
-
-(use-package markdown-mode
-  :ensure t
-  :mode (("README\\.md\\'" . gfm-mode)
-	 ("\\.md\\'" . markdown-mode)
-	 ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "pandoc"))
 
 (use-package no-littering
   :ensure t
@@ -79,13 +66,6 @@
           (output-pdf "Zathura")
           (output-html "xdg-open")))))
   
-
-(use-package undo-tree
-  :ensure t
-  :diminish undo-tree-mode
-  :config
-  (global-undo-tree-mode))
-
 (use-package which-key
   :ensure t
   :config
@@ -94,6 +74,3 @@
 (use-package windresize
   :ensure t
   :bind ("C-c ;" . windresize))
-
-(use-package yaml-mode
-  :ensure t)
