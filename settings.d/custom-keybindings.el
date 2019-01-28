@@ -11,9 +11,6 @@
  ("C-c E"  . embrace-commander)
  ("C-c e"  . embrace-add)
  ("C-c s"  . er/expand-region)
- ("C-c j"  . avy-goto-char)
- ("C-c J"  . avy-goto-word-0)
- ("C-c l"  . avy-goto-line)
  ("C-c -"  . split-window-vertically)
  ("C-c |"  . split-window-horizontally))
 
