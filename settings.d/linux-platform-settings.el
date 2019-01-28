@@ -6,9 +6,10 @@
   :config
   (exec-path-from-shell-initialize))
 
-(use-package tex-site
+(when (string= (system-name) "ndegruchy-dt.degruchy.org")
+  ;; Only load on my desktop, please.
+  (use-package tex-site
   :ensure auctex
-  :if (eq system-name "ndegruchy-dt.degruchy.org")
   :config
   (setq TeX-view-program-list
   	'(("Zathura" "/usr/bin/zathura %o")))
@@ -18,4 +19,4 @@
            "dvips and gv")
           (output-dvi "xdvi")
           (output-pdf "Zathura")
-          (output-html "xdg-open")))))
+          (output-html "xdg-open"))))))
