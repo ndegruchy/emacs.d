@@ -25,23 +25,10 @@
 
 ;; Package list
 
-(use-package dired-atool
-  :ensure t
-  :config
-  (dired-atool-setup))
-
-(use-package dired-rsync
-  :ensure t
-  :config
-  (bind-key "y" 'dired-rsync dired-mode-map))
-
 (use-package embrace
   :ensure t)
 
 (use-package expand-region
-  :ensure t)
-
-(use-package fish-mode
   :ensure t)
 
 (use-package ido-vertical-mode
