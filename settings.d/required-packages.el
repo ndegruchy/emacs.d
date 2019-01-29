@@ -26,10 +26,13 @@
 ;; Package list
 
 (use-package embrace
-  :ensure t)
+  :ensure t
+  :bind (("C-c E" . embrace-commander)
+	 ("C-c e" . embrace-add)))
 
 (use-package expand-region
-  :ensure t)
+  :ensure t
+  :bind ("C-c s" . er/expand-region))
 
 (use-package ido-vertical-mode
   :ensure t)

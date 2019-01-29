@@ -8,9 +8,6 @@
 
 (bind-keys*
  ;; Personal map for packages
- ("C-c E"  . embrace-commander)
- ("C-c e"  . embrace-add)
- ("C-c s"  . er/expand-region)
  ("C-c -"  . split-window-vertically)
  ("C-c |"  . split-window-horizontally))
 
