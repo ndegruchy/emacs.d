@@ -1,19 +1,21 @@
 ;; included-packages.el
 ;; Configure packages distributed with Emacs
 
-;; Dired
+(use-package dired
+  :config
+  (setq dired-listing-switches "--group-directories-first -alh"))
 
-(setq dired-listing-switches "--group-directories-first -alh")
+(use-package ido
+  :config
+  (setq ido-enable-flex-matching t
+	ido-everywhere t
+	ido-vertical-define-keys 'C-n-C-p-up-and-down)
+  (ido-mode 1)
+  (ido-vertical-mode 1))
 
-;; Ido
-(setq ido-enable-flex-matching t
-      ido-everywhere t
-      ido-vertical-define-keys 'C-n-C-p-up-and-down)
-(ido-mode 1)
-(ido-vertical-mode 1)
-
-(require 'midnight)
-(midnight-delay-set 'midnight-delay 16200)
+(use-package midnight
+  :config
+  (midnight-delay-set 'midnight-delay 16200))
 
 (use-package org
   :bind
@@ -25,5 +27,6 @@
       uniquify-after-kill-buffer-p  t
       uniquify-ignore-buffers-re    "^\\*")
 
+;; Window moving keybindings
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
