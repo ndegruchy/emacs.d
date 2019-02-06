@@ -18,10 +18,6 @@
   :config
   (midnight-delay-set 'midnight-delay 16200))
 
-(use-package org
-  :bind
-  ("C-c R" . ndegruchy/org-replace-link-by-link-description))
-
 ;; Uniquify
 (setq uniquify-buffer-name-style    'reverse
       uniquify-separator            "/"
