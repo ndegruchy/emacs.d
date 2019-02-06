@@ -27,13 +27,10 @@
 
 (use-package embrace
   :ensure t
-  :after (expand-region)
-  :bind (("C-c E" . embrace-commander)
-	 ("C-c e" . embrace-add)))
+  :after (expand-region))
 
 (use-package expand-region
-  :ensure t
-  :bind ("C-c s" . er/expand-region))
+  :ensure t)
 
 (use-package ido-vertical-mode
   :ensure t)
@@ -44,11 +41,13 @@
   (setq no-littering-etc-directory
 	(expand-file-name "etc.d/" user-emacs-directory)))
 
+(use-package unfill
+  :ensure t)
+
 (use-package which-key
   :ensure t
   :config
   (which-key-mode))
 
 (use-package windresize
-  :ensure t
-  :bind ("C-c ;" . windresize))
+  :ensure t)
