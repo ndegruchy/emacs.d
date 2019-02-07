@@ -1,3 +1,8 @@
+2019-02-06  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* Cleanup: remove old functions and keybindings, finally, actually
+	ignore the emacs-customize file.
+
 2019-01-28  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* settings.d/linux-settings.el: Move auctex to this file and put
