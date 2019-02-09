@@ -19,6 +19,9 @@
 (use-package fish-mode
   :ensure t)
 
+(when (string= (system-name) "ndegruchy-chbk.degruchy.org")
+  (setq default-frame-alist '(font . "Fira Mono-14")))
+
 (when (string= (system-name) "ndegruchy-dt.degruchy.org")
   ;; Only load on my desktop, please.
   (use-package tex-site
