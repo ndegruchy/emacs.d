@@ -1,3 +1,9 @@
+2019-02-11  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* settings.d/general-settings.el (delete-by-moving-to-trash): Add
+	option to send files to the trash (as specified by the XDG spec)
+	instead of straight-up deleting them.
+
 2019-02-06  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* Cleanup: remove old functions and keybindings, finally, actually
