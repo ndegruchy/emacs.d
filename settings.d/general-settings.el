@@ -22,7 +22,7 @@
 (setq mouse-wheel-progressive-speed          nil)
 
 ;; Case sensitivity
-(setq read-file-name-complection-ignore-case t
+(setq read-file-name-completion-ignore-case  t
       completion-ignore-case                 t)
 
 ;; UI
