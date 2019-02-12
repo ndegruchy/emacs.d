@@ -78,3 +78,16 @@ that line and setting the indent properly"
   (open-line 1)
   (next-line 1)
   (yank))
+
+(defun ndegruchy/sudo-save ()
+  "Save the buffer using sudo.
+   Shamelessly stolen from: https://www.reddit.com/r/emacs/comments/aoqcyl/third_trial_for_a_weekly_tipstricksetc_thread/eg9n7wp/"
+  (interactive)
+  (let* ((split (cl-subseq (split-string (buffer-file-name (current-buffer)) "/") 1))
+         (split2 (split-string (first split) ":"))
+         (has-colons (= 3 (length split2))))
+    (if has-colons
+        (write-file (concat "/" (s-join ":" (append (list "sudo") (cl-subseq split2 1))) "/" (s-join "/" (cl-subseq split 1))))
+      (if (not buffer-file-name)
+          (write-file (concat "/sudo::" (read-file-name "File:")))
+        (write-file (concat "/sudo::" buffer-file-name))))))
