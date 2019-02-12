@@ -12,12 +12,12 @@
  ("C-c |"		. split-window-horizontally)
  ("C-S-z"		. bury-buffer)
  ;; Custom functions
- ("C-c R"		.  ndegruchy/rename-file-and-buffer)
- ("S-<return>"		.  ndegruchy/smart-open-line)
- ("C-S-<return>"	.  ndegruchy/smart-open-line-above)
- ("C-c m"		.  ndegruchy/select-current-line-dwim)
- ("C-c d"		.  ndegruchy/insert-date)
- ("C-c a"		.  ndegruchy/duplicate-line)
+ ("C-c R"		. ndegruchy/rename-file-and-buffer)
+ ("S-<return>"		. ndegruchy/smart-open-line)
+ ("C-S-<return>"	. ndegruchy/smart-open-line-above)
+ ("C-c m"		. ndegruchy/select-current-line-dwim)
+ ("C-c d"		. ndegruchy/insert-date)
+ ("C-c a"		. ndegruchy/duplicate-line)
  ;; Package keybinds
  ("C-c E"		. embrace-commander)
  ("C-c e"		. embrace-add)
