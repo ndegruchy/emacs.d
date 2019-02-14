@@ -22,5 +22,7 @@
  ("C-c E"		. embrace-commander)
  ("C-c e"		. embrace-add)
  ("C-c s"		. er/expand-region)
+ ("C-c k"               . browse-kill-ring)
+ ([remap kill-ring-save]. easy-kill)
  ("C-z"			. unfill-toggle)
  ("C-c ;"		. windresize))
