@@ -1,3 +1,11 @@
+2019-02-14  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* settings.d/required-packages.el: Add new packages:
+	browse-kill-ring and easy-kill.
+
+	* settings.d/custom-keybindings.el: New keybindings for easy-kill
+	and browse-kill-ring packages.
+
 2019-02-11  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* settings.d/general-settings.el (delete-by-moving-to-trash): Add
