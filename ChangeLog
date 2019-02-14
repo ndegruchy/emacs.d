@@ -1,10 +1,6 @@
 2019-02-14  Nathan DeGruchy  <nathan@degruchy.org>
 
-	* settings.d/required-packages.el: Add new packages:
-	browse-kill-ring and easy-kill.
-
-	* settings.d/custom-keybindings.el: New keybindings for easy-kill
-	and browse-kill-ring packages.
+	* settings.d/required-packages.el: Install Helm
 
 2019-02-11  Nathan DeGruchy  <nathan@degruchy.org>
 
