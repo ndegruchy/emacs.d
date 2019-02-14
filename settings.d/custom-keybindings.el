@@ -26,5 +26,4 @@
  ("C-x C-f"             . helm-find-files)
  ("C-x r b"             . helm-filtered-bookmarks)
  ("C-x b"               . helm-buffers-list)
- ("C-z"			. unfill-toggle)
  ("C-c ;"		. windresize))
