@@ -25,6 +25,9 @@
 
 ;; Package list
 
+(use-package browse-kill-ring
+  :ensure t)
+
 (use-package embrace
   :ensure t
   :after (expand-region))
@@ -32,13 +35,8 @@
 (use-package expand-region
   :ensure t)
 
-(use-package helm
-  :ensure t
-  :config
-  (require 'helm-config)
-  (helm-mode 1)
-  (when (string= (system-name) "ndegruchy-dt-.degruchy.org")
-    (add-to-list 'helm-locate-project-list "~/Documents/Projects/degruchy.org")))
+(use-package ido-vertical-mode
+  :ensure t)
 
 (use-package no-littering
   :ensure t

@@ -21,9 +21,6 @@
  ;; Package keybinds
  ("C-c E"		. embrace-commander)
  ("C-c e"		. embrace-add)
+ ("C-c k"               . browse-kill-ring)
  ("C-c s"		. er/expand-region)
- ("M-x"                 . helm-M-x)
- ("C-x C-f"             . helm-find-files)
- ("C-x r b"             . helm-filtered-bookmarks)
- ("C-x b"               . helm-buffers-list)
  ("C-c ;"		. windresize))
