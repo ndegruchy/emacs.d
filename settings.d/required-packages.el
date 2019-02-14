@@ -46,9 +46,6 @@
   (setq no-littering-etc-directory
 	(expand-file-name "etc.d/" user-emacs-directory)))
 
-(use-package unfill
-  :ensure t)
-
 (use-package which-key
   :ensure t
   :config
