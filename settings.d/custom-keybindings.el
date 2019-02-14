@@ -8,8 +8,8 @@
 
 (bind-keys*
  ;; Personal map for packages
- ("C-c -"		. split-window-vertically)
- ("C-c |"		. split-window-horizontally)
+ ("C-c h"		. split-window-vertically)
+ ("C-c v"		. split-window-horizontally)
  ("C-S-z"		. bury-buffer)
  ;; Custom functions
  ("C-c R"		. ndegruchy/rename-file-and-buffer)
@@ -23,4 +23,4 @@
  ("C-c e"		. embrace-add)
  ("C-c k"               . browse-kill-ring)
  ("C-c s"		. er/expand-region)
- ("C-c ;"		. windresize))
+ ("C-c r"		. windresize))
