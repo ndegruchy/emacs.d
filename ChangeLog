@@ -1,3 +1,10 @@
+2019-03-13  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* settings.d/linux-platform-settings.el (use-package emms): Re-add
+	emms to emacs. I ditched mpd because it wasn't proving as useful
+	to me. I use borg to organize music and so I didn't need another
+	layer on top of that. Emms -> files -> play in VLC (nox)
+
 2019-02-14  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* settings.d/required-packages.el: Install Helm
