@@ -44,6 +44,10 @@
   (setq no-littering-etc-directory
 	(expand-file-name "etc.d/" user-emacs-directory)))
 
+(use-package rotate
+  :load-path "custom-lisp.d/emacs-rotate/"
+  :bind ("C-c w" . rotate-window))
+
 (use-package which-key
   :ensure t
   :config
