@@ -29,12 +29,14 @@
 (setq inhibit-x-resources                    t
       global-font-lock-mode                  t
       delete-selection-mode                  t
+      tooltip-mode                           nil
       show-paren-mode                        t)
 
 (tool-bar-mode       -1)
 (menu-bar-mode       -1)
 (scroll-bar-mode     -1)
 (display-battery-mode t)
+(tooltip-mode        -1)
 (global-linum-mode   -1)
 
 (fset 'yes-or-no-p                          'y-or-n-p)

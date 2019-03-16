@@ -1,6 +1,8 @@
 ;; linux-platform-settings.el
 ;; Set linux-specific settings here
 
+(setq x-gtk-use-system-tooltips nil)
+
 (use-package dired-atool
   :ensure t
   :config
@@ -25,6 +27,11 @@
 (when (string= (system-name) "ndegruchy-dt.degruchy.org")
   ;; Only load on my desktop, please.
 
+  (use-package pdf-tools
+    :ensure t
+    :config
+    (pdf-tools-install))
+  
   (use-package emms
     :config
     (require 'emms-setup)
