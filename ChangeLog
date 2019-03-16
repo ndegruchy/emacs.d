@@ -1,3 +1,8 @@
+2019-03-16  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* settings.d/linux-platform-settings.el: Add base16 theme back in,
+	cleanup font.
+
 2019-03-15  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* settings.d/required-packages.el (rotate): Add package 'rotate',
