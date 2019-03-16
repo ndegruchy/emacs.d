@@ -1,3 +1,9 @@
+2019-03-15  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* settings.d/required-packages.el (rotate): Add package 'rotate',
+	to required packages. Allows me to rotate windows around without
+	having to manually juggle buffers.
+
 2019-03-13  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* settings.d/linux-platform-settings.el (use-package emms): Re-add
