@@ -28,7 +28,6 @@
   (use-package emms
     :config
     (require 'emms-setup)
-    (require 'emms-mark)
     (require 'emms-info-libtag)
     (require 'emms-source-file)
     (emms-all)
@@ -42,8 +41,7 @@
 	  emms-info-auto-update                    t
 	  emms-info-asynchronously                 t
 	  emms-browser-covers                      'emms-browser-cache-thumbnail-async
-	  emms-player-list                         '(emms-player-vlc)
-	  emms-playlist-default-major-mode         'emms-mark-mode))
+	  emms-player-list                         '(emms-player-vlc)))
   
   (use-package tex-site
     :ensure auctex
