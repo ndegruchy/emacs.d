@@ -3,6 +3,11 @@
 
 (setq x-gtk-use-system-tooltips nil)
 
+(use-package base16-theme
+  :ensure t
+  :config
+  (load-theme 'base16-tomorrow-night t t))
+
 (use-package dired-atool
   :ensure t
   :config
@@ -20,9 +25,6 @@
 
 (use-package fish-mode
   :ensure t)
-
-(when (string= (system-name) "ndegruchy-chbk.degruchy.org")
-  (add-to-list 'default-frame-alist '(font . "Fira Mono-14")))
 
 (when (string= (system-name) "ndegruchy-dt.degruchy.org")
   ;; Only load on my desktop, please.
