@@ -38,6 +38,17 @@
 (use-package ido-vertical-mode
   :ensure t)
 
+(use-package muse
+  :ensure t
+  :config
+  (require 'muse-mode)     ; load authoring mode
+     
+  (require 'muse-html)     ; load publishing styles I use
+  (require 'muse-latex)
+  (require 'muse-context)
+  
+  (require 'muse-project))
+
 (use-package no-littering
   :ensure t
   :config

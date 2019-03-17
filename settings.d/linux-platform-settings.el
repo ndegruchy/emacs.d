@@ -6,7 +6,7 @@
 (use-package base16-theme
   :ensure t
   :config
-  (load-theme 'base16-tomorrow-night t t))
+  (load-theme 'base16-tomorrow-night t))
 
 (use-package dired-atool
   :ensure t
