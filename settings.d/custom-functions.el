@@ -91,3 +91,9 @@ that line and setting the indent properly"
       (if (not buffer-file-name)
           (write-file (concat "/sudo::" (read-file-name "File:")))
         (write-file (concat "/sudo::" buffer-file-name))))))
+
+(defun protect-buffers ()
+  (let ((protected '("*scratch*" "*Messages*")))
+    (dolist (buf protected)
+      (with-current-buffer buf
+        (emacs-lock-mode 'kill)))))

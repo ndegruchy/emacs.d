@@ -3,3 +3,6 @@
 
 ;; Timestamps
 (add-hook 'before-save-hook 'time-stamp)
+
+;; Protect buffers
+(add-hook 'after-init-hook #'protect-buffers)
