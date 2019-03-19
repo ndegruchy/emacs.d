@@ -16,7 +16,7 @@
 
 (use-package midnight
   :config
-  (midnight-delay-set 'midnight-delay 16200))
+  (midnight-delay-set 'midnight-delay "02:00am"))
 
 ;; Uniquify
 (setq uniquify-buffer-name-style    'reverse
