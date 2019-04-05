@@ -25,9 +25,6 @@
 
 ;; Package list
 
-(use-package browse-kill-ring
-  :ensure t)
-
 (use-package embrace
   :ensure t
   :after (expand-region))

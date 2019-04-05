@@ -30,7 +30,8 @@
       global-font-lock-mode                  t
       delete-selection-mode                  t
       tooltip-mode                           nil
-      show-paren-mode                        t)
+      show-paren-mode                        t
+      default-tab-width                      4)
 
 (tool-bar-mode       -1)
 (menu-bar-mode       -1)
@@ -58,3 +59,12 @@
 (put 'narrow-to-region 'disabled nil)
 (put 'narrow-to-page   'disabled nil)
 (put 'narrow-to-defun  'disabled nil)
+
+;; Birthday
+
+(when (string= "12-21" (format-time-string "%m-%d"))
+  (run-with-idle-timer
+   1 nil
+   (lambda ()
+     (let (cursor-type)
+       (animate-birthday-present user-full-name)))))
