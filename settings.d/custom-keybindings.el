@@ -21,6 +21,5 @@
  ;; Package keybinds
  ("C-c E"		. embrace-commander)
  ("C-c e"		. embrace-add)
- ("C-c k"               . browse-kill-ring)
  ("C-c s"		. er/expand-region)
  ("C-c r"		. windresize))
