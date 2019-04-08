@@ -26,6 +26,10 @@
 (use-package fish-mode
   :ensure t)
 
+(when (string= (system-name) "ndegruchy-chbk.degruchy.org")
+  ;; Chromebook
+  (add-to-list 'default-frame-alist '(font . "Fira Mono-16"))
+
 (when (string= (system-name) "ndegruchy-dt.degruchy.org")
   ;; Only load on my desktop, please.
 
