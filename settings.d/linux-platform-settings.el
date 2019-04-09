@@ -33,6 +33,8 @@
 (when (string= (system-name) "ndegruchy-dt.degruchy.org")
   ;; Only load on my desktop, please.
 
+  (add-to-list 'default-frame-alist '(font . "Fira Code-14"))
+  
   (use-package pdf-tools
     :ensure t
     :config
