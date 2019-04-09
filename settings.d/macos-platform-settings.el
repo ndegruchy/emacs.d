@@ -6,7 +6,6 @@
 
 ;; Binding
 (global-set-key   (kbd "s-s") 'save-buffer)
-(global-set-key   (kbd "s-x") 'smex)
 
 ;; Packages
 (use-package exec-path-from-shell
