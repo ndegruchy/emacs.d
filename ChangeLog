@@ -1,3 +1,13 @@
+2019-04-08  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* settings.d/general-settings.el: Remove font definition in the
+	general settings, changed to per-platform
+
+	* settings.d/linux-platform-settings.el: Add font for linux
+	desktop
+
+	* settings.d/macos-platform-settings.el: Remove smex keybinding
+
 2019-03-19  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* settings.d/custom-functions.el (protect-buffers): Protect
