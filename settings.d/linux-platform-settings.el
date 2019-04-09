@@ -8,16 +8,6 @@
   :config
   (load-theme 'base16-tomorrow-night t))
 
-(use-package dired-atool
-  :ensure t
-  :config
-  (dired-atool-setup))
-
-(use-package dired-rsync
-  :ensure t
-  :config
-  (bind-key "y" 'dired-rsync dired-mode-map))
-
 (use-package exec-path-from-shell
   :ensure t
   :config
