@@ -1,3 +1,11 @@
+2019-06-23  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* settings.d/general-settings.el (default-frame-alist): Change the
+	way the font was defined
+
+	* settings.d/linux-platform-settings.el (material-theme): Change
+	to material theme to match my desktop
+
 2019-04-08  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* settings.d/linux-platform-settings.el: Remove dired-atool and

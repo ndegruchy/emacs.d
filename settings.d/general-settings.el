@@ -42,6 +42,11 @@
 
 (fset 'yes-or-no-p                          'y-or-n-p)
 
+;; Fonts
+(add-to-list 'default-frame-alist
+	     '(font . "Fira Mono-14"))
+
+;; Needed if using the default theme
 ;; (set-face-attribute 'region nil :background "light goldenrod")
 
 ;; Editing - Pairs
