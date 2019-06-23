@@ -6,7 +6,7 @@
 (use-package material-theme
   :ensure t
   :config
-  (load-theme 'material t))
+  (load-theme 'material t nil))
 
 ;; (use-package base16-theme
 ;;   :ensure t

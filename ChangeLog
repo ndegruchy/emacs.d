@@ -1,5 +1,8 @@
 2019-06-23  Nathan DeGruchy  <nathan@degruchy.org>
 
+	* settings.d/custom-hooks.el: Add a custom hook to fix material
+	theme with my emacs, as I run it in daemon mode
+
 	* settings.d/general-settings.el (default-frame-alist): Change the
 	way the font was defined
 
