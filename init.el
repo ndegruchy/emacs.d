@@ -1,13 +1,12 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2018-12-22 21:41:18 ndegruchy>
+;; Time-stamp: <2019-07-03 17:18:33 ndegruchy>
 
 ;; Initialize the package manager
 (package-initialize)
 
 ;; Load the local lisp directory
 (add-to-list 'load-path "~/.emacs.d/settings.d/")
-(add-to-list 'load-path "~/.emacs.d/custom-lisp.d/")
 
 ;; Different config parts
 (load-library "general-settings")

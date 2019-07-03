@@ -92,6 +92,21 @@ that line and setting the indent properly"
           (write-file (concat "/sudo::" (read-file-name "File:")))
         (write-file (concat "/sudo::" buffer-file-name))))))
 
+(defun ndegruchy/move-line-up()
+  "Move the line up by one"
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2)
+  (indent-according-to-mode))
+
+(defun ndegruchy/move-line-down()
+  "Move the line down by one"
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1)
+  (indent-according-to-mode))
+
 (defun protect-buffers ()
   (let ((protected '("*scratch*" "*Messages*")))
     (dolist (buf protected)

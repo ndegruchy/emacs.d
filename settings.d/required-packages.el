@@ -26,14 +26,24 @@
 ;; Package list
 
 (use-package avy
-  :ensure t)
+  :ensure t
+  :bind (("M-g M-g" . avy-goto-line)
+	 ("M-g c"   . avy-goto-char)
+	 ("M-g w"   . avy-goto-word-0)))
+
+(use-package bind-key
+  :ensure t
+  :after (use-package))
 
 (use-package embrace
   :ensure t
-  :after (expand-region))
+  :after (expand-region)
+  :bind (("C-c E" . embrace-commander)
+	 ("C-c e" . embrace-add)))
 
 (use-package expand-region
-  :ensure t)
+  :ensure t
+  :bind ("C-c s" . er/expand-region))
 
 (use-package ido-vertical-mode
   :ensure t)
@@ -50,4 +60,5 @@
   (which-key-mode))
 
 (use-package windresize
-  :ensure t)
+  :ensure t
+  :bind ("C-c r" . windresize))
