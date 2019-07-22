@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2019-07-03 17:18:33 ndegruchy>
+;; Time-stamp: <2019-07-21 21:21:04 ndegruchy>
 
 ;; Initialize the package manager
 (package-initialize)
@@ -29,3 +29,4 @@
 
 (when (eq system-type 'gnu/linux)
   (load-library "linux-platform-settings"))
+(put 'dired-find-alternate-file 'disabled nil)

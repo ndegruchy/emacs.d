@@ -2,8 +2,18 @@
 ;; Configure packages distributed with Emacs
 
 (use-package dired
+  :bind (:map dired-mode-map
+	      ("RET" . dired-find-alternate-file)
+	      ("^"   . (lambda()
+			 (interactive)
+			 (find-alternate-file "..")))
+	      ("E"   . ndegruchy/open-in-external-app)
+	      ("; q" . delete-frame))
   :config
-  (setq dired-listing-switches "--group-directories-first -alh"))
+  (setq dired-listing-switches "--group-directories-first -alh"
+	dired-dwim-target      t)
+  (require 'dired-x)
+  :hook (dired-mode . dired-hide-details-mode))
 
 (use-package ido
   :config

@@ -49,10 +49,7 @@
   :ensure t)
 
 (use-package no-littering
-  :ensure t
-  :config
-  (setq no-littering-etc-directory
-	(expand-file-name "etc.d/" user-emacs-directory)))
+  :ensure t)
 
 (use-package which-key
   :ensure t
