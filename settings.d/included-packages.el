@@ -3,11 +3,14 @@
 
 (use-package dired
   :bind (:map dired-mode-map
+	      ;; Reuse the same dired window
 	      ("RET" . dired-find-alternate-file)
 	      ("^"   . (lambda()
 			 (interactive)
 			 (find-alternate-file "..")))
+	      ;; Use 'open' to open the file with the user's choice
 	      ("E"   . ndegruchy/open-in-external-app)
+	      ;; Close the frame, useful when using dired by itself
 	      ("; q" . delete-frame))
   :config
   (setq dired-listing-switches "--group-directories-first -alh"

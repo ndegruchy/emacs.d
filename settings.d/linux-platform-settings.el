@@ -3,15 +3,10 @@
 
 (setq x-gtk-use-system-tooltips nil)
 
-(use-package material-theme
+(use-package base16-theme
   :ensure t
   :config
-  (load-theme 'material t nil))
-
-;; (use-package base16-theme
-;;   :ensure t
-;;   :config
-;;   (load-theme 'base16-tomorrow-night t))
+  (load-theme 'base16-tomorrow-night t))
 
 (use-package exec-path-from-shell
   :ensure t
