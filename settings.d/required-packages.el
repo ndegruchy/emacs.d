@@ -35,6 +35,12 @@
   :ensure t
   :after (use-package))
 
+(use-package dired+
+  :after dired
+  :load-path "~/.emacs.d/non-package.d/"
+  :config
+  (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$")))
+
 (use-package elfeed
   :ensure t
   :bind (("C-c f" . elfeed)
