@@ -16,6 +16,7 @@
   (setq dired-listing-switches "--group-directories-first -alh"
 	dired-dwim-target      t)
   (require 'dired-x)
+  (require 'dired+)
   :hook (dired-mode . dired-hide-details-mode))
 
 (use-package ido
