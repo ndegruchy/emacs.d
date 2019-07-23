@@ -37,7 +37,9 @@
 
 (use-package elfeed
   :ensure t
-  :bind ("C-c f" . elfeed)
+  :bind (("C-c f" . elfeed)
+	 :map elfeed-search-mode-map
+	 ("; q" . delete-frame))
   :config
   (setq elfeed-feeds
 	'("http://feeds.arstechnica.com/arstechnica/index"
