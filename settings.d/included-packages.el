@@ -15,6 +15,7 @@
   :config
   (setq dired-listing-switches "--group-directories-first -alh"
 	dired-dwim-target      t)
+  (setq-default dired-omit-files-p t)
   (require 'dired-x)
   (require 'dired+)
   :hook (dired-mode . dired-hide-details-mode))
