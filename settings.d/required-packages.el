@@ -63,19 +63,10 @@
   :bind (("C-c E" . embrace-commander)
 	 ("C-c e" . embrace-add)))
 
-(use-package emms
-  :load-path "site-lisp/emms"
-  :bind ("C-c M" . emms-smart-browse)
+(use-package exec-path-from-shell
+  :ensure t
   :config
-  (require 'emms-setup)
-  (emms-standard)
-  (emms-default-players)
-  (emms-cache 1)
-  (emms-cache-restore)
-  (require 'emms-info-libtag)
-  (setq emms-info-functions '(emms-info-libtag)
-	emms-source-file-default-directory "/mnt/ndegruchy/Music"
-        emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find))
+  (exec-path-from-shell-initialize))
 
 (use-package expand-region
   :ensure t
@@ -86,12 +77,6 @@
 
 (use-package no-littering
   :ensure t)
-
-(use-package pdf-tools
-  :load-path "site-lisp/pdf-tools"
-  :magic ("%PDF" . pdf-view-mode)
-  :config
-  (pdf-tools-install :no-query))
 
 (use-package which-key
   :ensure t

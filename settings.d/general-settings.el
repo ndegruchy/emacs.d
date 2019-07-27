@@ -49,6 +49,8 @@
 ;; Needed if using the default theme
 ;; (set-face-attribute 'region nil :background "light goldenrod")
 
+(load-theme 'deeper-blue)
+
 ;; Editing - Pairs
 (electric-pair-mode 1)
 (show-paren-mode    1)
