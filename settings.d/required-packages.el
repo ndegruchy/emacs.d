@@ -9,6 +9,8 @@
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
 ;; (add-to-list 'package-archives '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
 
+;; Fix for 26.2 elpa 'bad request' issue
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 ;; Fetch packages
 
 (unless package-archive-contents
@@ -25,6 +27,20 @@
 
 ;; Package list
 
+(use-package auctex
+  :ensure t
+  :defer t
+  :config
+  (TeX-view-program-selection
+   (quote
+    (((output-dvi has-no-display-manager)
+      "dvi2tty")
+     ((output-dvi style-pstricks)
+      "dvips and gv")
+     (output-dvi "xdvi")
+     (output-pdf "Zathura")
+     (output-html "xdg-open")))))
+
 (use-package avy
   :ensure t
   :bind (("M-g M-g" . avy-goto-line)
@@ -37,25 +53,9 @@
 
 (use-package dired+
   :after dired
-  :load-path "~/.emacs.d/non-package.d/"
+  :load-path "~/.emacs.d/site-lisp.d/"
   :config
   (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$")))
-
-(use-package elfeed
-  :ensure t
-  :bind (("C-c f" . elfeed)
-	 :map elfeed-search-mode-map
-	 ("; q" . delete-frame))
-  :config
-  (setq elfeed-feeds
-	'("http://feeds.arstechnica.com/arstechnica/index"
-	  "https://www.npr.org/rss/rss.php?id=1001"
-	  "https://xkcd.com/atom.xml"
-	  "https://planet.emacslife.com/atom.xml"
-	  "https://www.archlinux.org/feeds/news/"
-	  "https://www.linuxjournal.com/node/feed"
-	  "https://www.phoronix.com/rss.php"
-	  "https://www.gamingonlinux.com/article_rss.php")))
 
 (use-package embrace
   :ensure t
