@@ -75,7 +75,17 @@
 (use-package ido-vertical-mode
   :ensure t)
 
+(use-package markdown-mode
+  :ensure t
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "cmark"))
+
 (use-package no-littering
+  :ensure t)
+
+(use-package systemd
   :ensure t)
 
 (use-package which-key
