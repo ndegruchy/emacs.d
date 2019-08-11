@@ -63,6 +63,9 @@
   :bind (("C-c E" . embrace-commander)
 	 ("C-c e" . embrace-add)))
 
+(use-package emmet-mode
+  :ensure t)
+
 (use-package exec-path-from-shell
   :ensure t
   :config
@@ -81,6 +84,9 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "cmark"))
+
+(use-package muse
+  :ensure t)
 
 (use-package no-littering
   :ensure t)
