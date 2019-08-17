@@ -75,6 +75,9 @@
   :ensure t
   :bind ("C-c s" . er/expand-region))
 
+(use-package fish-mode
+  :ensure t)
+
 (use-package ido-vertical-mode
   :ensure t)
 
