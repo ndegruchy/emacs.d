@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2019-07-21 21:21:04 ndegruchy>
+;; Time-stamp: <2019-08-17 13:37:14 ndegruchy>
 
 ;; Initialize the package manager
 (package-initialize)
@@ -18,15 +18,3 @@
 
 ;; Set custom file
 (setq custom-file "~/.emacs.d/custom-lisp.d/emacs-customize.el")
-
-;; Load platform-specific customizations
-
-(when (eq system-type 'darwin)
-  (load-library "macos-platform-settings"))
-
-(when (eq system-type 'windows-nt)
-  (load-library "windows-platform-settings"))
-
-(when (eq system-type 'gnu/linux)
-  (load-library "linux-platform-settings"))
-(put 'dired-find-alternate-file 'disabled nil)
