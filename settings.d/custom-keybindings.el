@@ -7,7 +7,7 @@
 	       "\C-x\C-d"				; List directory is dumb, use dired
 	       "\M-o"					; ??
 	       "\C-x\C-r"				; Ditto
-	       "s-x"))                                  ; macOS remove Super-X combo
+	       "\S-x"))                                 ; macOS remove Super-X combo
   (global-unset-key key))
 
 (bind-keys*
