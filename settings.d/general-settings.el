@@ -18,6 +18,10 @@
       enable-local-variables                 :safe
       delete-by-moving-to-trash              t)
 
+;; Abbreviations
+(setq-default abbrev-mode t)
+(setq save-abbrevs 'silently)
+
 ;; Mouse
 (setq mouse-wheel-progressive-speed          nil)
 
