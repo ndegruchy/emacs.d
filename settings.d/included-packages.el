@@ -18,6 +18,7 @@
   (setq-default dired-omit-files-p t)
   (require 'dired-x)
   (require 'dired+)
+  (put 'dired-find-alternate-file 'disabled nil)
   :hook (dired-mode . dired-hide-details-mode))
 
 (use-package ido
