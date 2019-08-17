@@ -1,5 +1,7 @@
 2019-08-17  Nathan DeGruchy  <nathan@degruchy.org>
 
+	* site-lisp.d/dired+.el: Add dired+
+
 	* settings.d/: Remove custom platform settings, I don't use much
 	in the way of custom settings, so strip all that out, too.
 
