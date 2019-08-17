@@ -1,3 +1,8 @@
+2019-08-17  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* settings.d/: Remove custom platform settings, I don't use much
+	in the way of custom settings, so strip all that out, too.
+
 2019-06-23  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* settings.d/custom-hooks.el: Add a custom hook to fix material
