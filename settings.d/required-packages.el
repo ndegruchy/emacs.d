@@ -87,6 +87,9 @@
 (use-package no-littering
   :ensure t)
 
+(use-package php-mode
+  :ensure t)
+
 (use-package systemd
   :ensure t)
 
