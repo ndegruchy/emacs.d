@@ -71,6 +71,9 @@
 (put 'narrow-to-page   'disabled nil)
 (put 'narrow-to-defun  'disabled nil)
 
+;; Upcasing
+(put 'upcase-region 'disabled nil)
+
 ;; Birthday
 
 (when (string= "12-21" (format-time-string "%m-%d"))
