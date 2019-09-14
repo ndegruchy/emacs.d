@@ -49,7 +49,7 @@
 
 ;; Fonts
 (add-to-list 'default-frame-alist
-	     '(font . "Fira Mono-14"))
+	     '(font . "Fira Code-14"))
 
 ;; Needed if using the default theme
 ;; (set-face-attribute 'region nil :background "light goldenrod")
