@@ -10,7 +10,7 @@
 ;; (add-to-list 'package-archives '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
 
 ;; Fix for 26.2 elpa 'bad request' issue
-(if (version<= emacs-version "26")
+(if (version<= emacs-version "26.2")
     (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
 
 ;; Fetch packages
