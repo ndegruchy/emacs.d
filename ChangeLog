@@ -1,3 +1,7 @@
+2019-09-15  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* settings.d/custom-aliases.el (mpd): New alias for make-directory
+
 2019-08-17  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* site-lisp.d/dired+.el: Add dired+
