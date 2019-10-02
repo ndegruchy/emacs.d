@@ -74,6 +74,9 @@
 ;; Upcasing
 (put 'upcase-region 'disabled nil)
 
+;; Battery
+(setq-default battery-mode-line-format "[%b%p%%]")
+
 ;; Birthday
 
 (when (string= "12-21" (format-time-string "%m-%d"))
