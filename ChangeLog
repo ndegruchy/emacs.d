@@ -1,3 +1,8 @@
+2019-10-01  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* settings.d/general-settings.el (battery-mode-line-format):
+	Update format to hide non-functional temp gauge.
+
 2019-09-15  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* settings.d/custom-aliases.el (mpd): New alias for make-directory
