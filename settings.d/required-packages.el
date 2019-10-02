@@ -59,6 +59,11 @@
   :config
   (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$")))
 
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
 (use-package embrace
   :ensure t
   :after (expand-region)
@@ -89,11 +94,22 @@
 (use-package no-littering
   :ensure t)
 
-(use-package php-mode
-  :ensure t)
-
 (use-package systemd
   :ensure t)
+
+(use-package web-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.sass?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.scss?\\'" . web-mode))
+
+  (setq web-mode-markup-indent-offset 4
+	web-mode-css-indent-offset 4
+	web-mode-code-indent-offset 4
+	web-mode-enable-auto-pairing t
+	web-mode-enable-css-colorization t))
 
 (use-package which-key
   :ensure t

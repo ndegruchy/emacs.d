@@ -34,6 +34,11 @@
   :config
   (midnight-delay-set 'midnight-delay "02:00am"))
 
+(use-package sgml-mode
+  :config
+  ;; Discovered it here https://stackoverflow.com/questions/1666513/how-to-indent-4-spaces-under-sgml-mode
+  (setq sgml-basic-offset 4))
+
 ;; Uniquify
 (setq uniquify-buffer-name-style    'reverse
       uniquify-separator            "/"

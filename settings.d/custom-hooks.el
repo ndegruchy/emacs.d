@@ -6,3 +6,7 @@
 
 ;; Protect buffers
 (add-hook 'after-init-hook #'protect-buffers)
+
+;; Emmet
+(add-hook 'sgml-mode-hook 'emmet-mode)
+(add-hook 'css-mode-hook 'emmet-mode)
