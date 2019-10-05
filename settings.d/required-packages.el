@@ -104,6 +104,7 @@
   (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.sass?\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.scss?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))
 
   (setq web-mode-markup-indent-offset 4
 	web-mode-css-indent-offset 4
