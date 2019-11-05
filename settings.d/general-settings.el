@@ -49,12 +49,12 @@
 
 ;; Fonts
 (add-to-list 'default-frame-alist
-	     '(font . "Hack-14"))
+	     '(font . "IBM Plex Mono-18"))
 
 ;; Needed if using the default theme
-;; (set-face-attribute 'region nil :background "light goldenrod")
+(set-face-attribute 'region nil :background "light goldenrod")
 
-(load-theme 'deeper-blue)
+(load-theme 'tango)
 
 ;; Editing - Pairs
 (electric-pair-mode 1)
