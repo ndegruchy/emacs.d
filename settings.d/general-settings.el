@@ -52,9 +52,9 @@
 	     '(font . "IBM Plex Mono-18"))
 
 ;; Needed if using the default theme
-(set-face-attribute 'region nil :background "light goldenrod")
+;; (set-face-attribute 'region nil :background "light goldenrod")
 
-(load-theme 'tango)
+;; (load-theme 'tango)
 
 ;; Editing - Pairs
 (electric-pair-mode 1)

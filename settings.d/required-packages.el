@@ -29,19 +29,24 @@
 
 ;; Package list
 
-(use-package auctex
+(use-package base16-theme
   :ensure t
-  :defer t
   :config
-  (TeX-view-program-selection
-   (quote
-    (((output-dvi has-no-display-manager)
-      "dvi2tty")
-     ((output-dvi style-pstricks)
-      "dvips and gv")
-     (output-dvi "xdvi")
-     (output-pdf "Zathura")
-     (output-html "xdg-open")))))
+  (load-theme 'base16-tomorrow-night t))
+
+;; (use-package auctex
+;;   :ensure t
+;;   :defer t
+;;   :config
+;;   (TeX-view-program-selection
+;;    (quote
+;;     (((output-dvi has-no-display-manager)
+;;       "dvi2tty")
+;;      ((output-dvi style-pstricks)
+;;       "dvips and gv")
+;;      (output-dvi "xdvi")
+;;      (output-pdf "Zathura")
+;;      (output-html "xdg-open")))))
 
 (use-package avy
   :ensure t
