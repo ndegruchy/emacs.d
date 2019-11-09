@@ -10,3 +10,7 @@
 ;; Emmet
 (add-hook 'sgml-mode-hook 'emmet-mode)
 (add-hook 'css-mode-hook 'emmet-mode)
+
+;; Markdown mode
+(add-hook 'markdown-mode 'flyspell-mode)
+(add-hook 'markdown-mode 'auto-fill-mode)
