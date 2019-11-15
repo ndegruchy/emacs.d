@@ -101,11 +101,13 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
-(use-package muse
-  :ensure t)
-
 (use-package no-littering
   :ensure t)
+
+(use-package nov
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
 
 (use-package systemd
   :ensure t)
@@ -133,3 +135,6 @@
 (use-package windresize
   :ensure t
   :bind ("C-c r" . windresize))
+
+(use-package yaml-mode
+  :ensure t)
