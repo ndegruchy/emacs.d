@@ -150,3 +150,17 @@ Version 2019-01-18"
     (dolist (buf protected)
       (with-current-buffer buf
         (emacs-lock-mode 'kill)))))
+
+;; Copied from: https://oremacs.com/2015/01/12/dired-file-size/
+(defun dired-get-size ()
+  "Use the `du' shell command to calculate the size of the marked
+files."
+  (interactive)
+  (let ((files (dired-get-marked-files)))
+    (with-temp-buffer
+      (apply 'call-process "/usr/bin/du" nil t nil "-sch" files)
+      (message
+       "Size of all marked files: %s"
+       (progn
+         (re-search-backward "\\(^[ 0-9.,]+[A-Za-z]+\\).*total$")
+         (match-string 1))))))
