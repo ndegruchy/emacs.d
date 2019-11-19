@@ -10,6 +10,7 @@
 			 (find-alternate-file "..")))
 	      ;; Use 'open' to open the file with the user's choice
 	      ("E"   . ndegruchy/open-in-external-app)
+	      ("; d" . dired-get-size)
 	      ;; Close the frame, useful when using dired by itself
 	      ("; q" . delete-frame))
   :config
