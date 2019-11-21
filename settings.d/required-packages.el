@@ -29,6 +29,12 @@
 
 ;; Package list
 
+(use-package async
+  :ensure t
+  :pin gnu
+  :config
+  (dired-async-mode 1))
+
 (use-package base16-theme
   :ensure t
   :config
