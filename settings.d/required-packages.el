@@ -109,6 +109,10 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
 
+(use-package olivetti
+  :ensure t
+  :pin gnu)
+
 (use-package systemd
   :ensure t)
 
