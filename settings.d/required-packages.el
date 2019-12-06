@@ -40,20 +40,6 @@
   :config
   (load-theme 'base16-tomorrow-night t))
 
-;; (use-package auctex
-;;   :ensure t
-;;   :defer t
-;;   :config
-;;   (TeX-view-program-selection
-;;    (quote
-;;     (((output-dvi has-no-display-manager)
-;;       "dvi2tty")
-;;      ((output-dvi style-pstricks)
-;;       "dvips and gv")
-;;      (output-dvi "xdvi")
-;;      (output-pdf "Zathura")
-;;      (output-html "xdg-open")))))
-
 (use-package avy
   :ensure t
   :bind (("M-g M-g" . avy-goto-line)
@@ -93,9 +79,6 @@
   :ensure t
   :bind ("C-c s" . er/expand-region))
 
-(use-package fish-mode
-  :ensure t)
-
 (use-package ido-vertical-mode
   :ensure t)
 
@@ -108,7 +91,11 @@
   :init (setq markdown-command "multimarkdown"))
 
 (use-package no-littering
-  :ensure t)
+  :ensure t
+  :config
+  (require 'recentf)
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory))
 
 (use-package nov
   :ensure t
