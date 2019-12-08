@@ -14,3 +14,8 @@
 ;; Markdown mode
 (add-hook 'markdown-mode 'flyspell-mode)
 (add-hook 'markdown-mode 'auto-fill-mode)
+
+;; Org mode
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
+(add-hook 'org-mode-hook 'olivetti-mode)
+(add-hook 'org-mode-hook 'flyspell-mode)
