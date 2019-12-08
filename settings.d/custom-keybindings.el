@@ -2,10 +2,10 @@
 ;; Set custom keybindings here
 
 ;; Unbind keys (may be useful for later bindings)
-(dolist (key '("\C-z"					; Don't suspend the frame
-	       "\C-x\C-z"				; Ditto
-	       "\C-x\C-d"				; List directory is dumb, use dired
-	       "\M-o"					; ??
+(dolist (key '("\C-z"		; Don't suspend the frame
+	       "\C-x\C-z"	; Ditto
+	       "\C-x\C-d"	; List directory is dumb, use dired
+	       "\M-o"		; ??
 	       "\C-x\C-r"))
   (global-unset-key key))
 
@@ -23,5 +23,8 @@
  ("C-c a"		. ndegruchy/duplicate-line)
  ("M-<up>"              . ndegruchy/move-line-up)
  ("M-<down>"            . ndegruchy/move-line-down)
+ ("M-Q"                 . unfill-paragraph)
  ;; Replacement keys
+ ("M-z"                 . zap-up-to-char)
+ ("M-Z"                 . zap-to-char)
  ("C-x C-d"             . ido-dired))		; Replacing the directory list with dired
