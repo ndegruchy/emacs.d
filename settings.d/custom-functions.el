@@ -142,7 +142,7 @@ Version 2019-01-18"
        ((string-equal system-type "gnu/linux")
         (mapc
          (lambda ($fpath) (let ((process-connection-type nil))
-                            (start-process "" nil "xdg-open" $fpath)))
+                            (start-process "" nil "mimeo" $fpath)))
 	 $file-list))))))
 
 (defun protect-buffers ()
@@ -164,3 +164,12 @@ files."
        (progn
          (re-search-backward "\\(^[ 0-9.,]+[A-Za-z]+\\).*total$")
          (match-string 1))))))
+
+;;; Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph    
+(defun unfill-paragraph (&optional region)
+  "Takes a multi-line paragraph and makes it into a single line of text."
+  (interactive (progn (barf-if-buffer-read-only) '(t)))
+  (let ((fill-column (point-max))
+	;; This would override `fill-column' if it's an integer.
+	(emacs-lisp-docstring-fill-column t))
+    (fill-paragraph nil region)))
