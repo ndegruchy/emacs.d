@@ -73,8 +73,7 @@
 (use-package expand-region
   :bind ("C-c s" . er/expand-region))
 
-(use-package ido-vertical-mode
-  :ensure t)
+(use-package ido-vertical-mode)
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
@@ -119,5 +118,4 @@
   :ensure t
   :bind ("C-c r" . windresize))
 
-(use-package yaml-mode
-  :ensure t)
+(use-package yaml-mode)
