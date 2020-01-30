@@ -142,7 +142,7 @@ Version 2019-01-18"
        ((string-equal system-type "gnu/linux")
         (mapc
          (lambda ($fpath) (let ((process-connection-type nil))
-                            (start-process "" nil "mimeo" $fpath)))
+                            (start-process "" nil "mimeopen" $fpath)))
 	 $file-list))))))
 
 (defun protect-buffers ()
