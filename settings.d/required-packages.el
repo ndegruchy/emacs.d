@@ -30,8 +30,6 @@
 ;; Package list
 
 (use-package async
-  :ensure t
-  :pin gnu
   :config
   (dired-async-mode 1))
 
@@ -41,13 +39,11 @@
   (load-theme 'base16-tomorrow-night t))
 
 (use-package avy
-  :ensure t
   :bind (("M-g M-g" . avy-goto-line)
 	 ("M-g c"   . avy-goto-char)
 	 ("M-g w"   . avy-goto-word-0)))
 
 (use-package bind-key
-  :ensure t
   :after (use-package))
 
 (use-package dired+
@@ -57,7 +53,6 @@
   (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$")))
 
 (use-package editorconfig
-  :ensure t
   :config
   (editorconfig-mode 1))
 
@@ -76,14 +71,12 @@
   (exec-path-from-shell-initialize))
 
 (use-package expand-region
-  :ensure t
   :bind ("C-c s" . er/expand-region))
 
 (use-package ido-vertical-mode
   :ensure t)
 
 (use-package markdown-mode
-  :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
@@ -91,26 +84,20 @@
   :init (setq markdown-command "multimarkdown"))
 
 (use-package no-littering
-  :ensure t
   :config
   (require 'recentf)
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
 (use-package nov
-  :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
 
-(use-package olivetti
-  :ensure t
-  :pin gnu)
+(use-package olivetti)
 
-(use-package systemd
-  :ensure t)
+(use-package systemd)
 
 (use-package web-mode
-  :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
@@ -125,7 +112,6 @@
 	web-mode-enable-css-colorization t))
 
 (use-package which-key
-  :ensure t
   :config
   (which-key-mode))
 
