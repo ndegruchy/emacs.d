@@ -16,7 +16,8 @@
       confirm-kill-emacs                     'y-or-n-p
       load-prefer-newer                      t
       enable-local-variables                 :safe
-      delete-by-moving-to-trash              t)
+      delete-by-moving-to-trash              t
+      suggest-key-bindings                   t)
 
 ;; Abbreviations
 (setq-default abbrev-mode t)
