@@ -1,3 +1,11 @@
+2020-02-11  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* settings.d/required-packages.el (ivy): Configure
+	ivy-extra-directories to nil, this hides "." and ".." from ivy's
+	minibuffers.
+	(ivy): Move ivy-minibuffer-maps into use-package (bind-key) bind
+	map
+
 2020-02-10  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* settings.d/required-packages.el, settings.d/included-packages.el:
