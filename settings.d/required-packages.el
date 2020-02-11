@@ -46,6 +46,8 @@
 (use-package bind-key
   :after (use-package))
 
+(use-package counsel)
+
 (use-package dired+
   :after dired
   :load-path "~/.emacs.d/site-lisp.d/"
@@ -73,7 +75,19 @@
 (use-package expand-region
   :bind ("C-c s" . er/expand-region))
 
-(use-package ido-vertical-mode)
+(use-package ivy
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t
+	enable-recursive-minibuffers t)
+  (define-key ivy-minibuffer-map (kbd "C-j") #'ivy-immediate-done)
+  (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
+  :bind (("M-x" . counsel-M-x)
+	 ("C-x C-f" . counsel-find-file)
+	 ("<f1> f" . counsel-describe-function)
+	 ("<f1> v" . counsel-describe-variable)
+	 ("C-s" . swiper)
+	 ("C-c C-r" . ivy-resume)))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
