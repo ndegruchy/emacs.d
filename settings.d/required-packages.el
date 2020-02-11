@@ -82,6 +82,9 @@
   (setq ivy-use-virtual-buffers t
 	ivy-wrap t
 	ivy-extra-directories nil
+	ivy-count-format ""
+	ivy-initial-inputs-alist nil
+	ivy-re-builders-alist '((t . ivy--regex-ignore-order))
 	enable-recursive-minibuffers t)
   :bind (("M-x" . counsel-M-x)
 	 ("C-x C-f" . counsel-find-file)
