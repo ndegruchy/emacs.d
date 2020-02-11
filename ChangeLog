@@ -1,3 +1,8 @@
+2020-02-10  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* settings.d/required-packages.el, settings.d/included-packages.el:
+	  Remove Ido functions, install and configure Ivy, Counsel and Swiper
+
 2019-10-01  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* settings.d/general-settings.el (battery-mode-line-format):
