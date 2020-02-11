@@ -76,20 +76,22 @@
   :bind ("C-c s" . er/expand-region))
 
 (use-package ivy
+  :diminish ivy-mode
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t
 	ivy-wrap t
 	ivy-extra-directories nil
 	enable-recursive-minibuffers t)
-  (define-key ivy-minibuffer-map (kbd "C-j") #'ivy-immediate-done)
-  (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
   :bind (("M-x" . counsel-M-x)
 	 ("C-x C-f" . counsel-find-file)
 	 ("<f1> f" . counsel-describe-function)
 	 ("<f1> v" . counsel-describe-variable)
 	 ("C-s" . swiper)
-	 ("C-c C-r" . ivy-resume)))
+	 ("C-c C-r" . ivy-resume)
+	 :map ivy-minibuffer-map
+	 ("C-j" . ivy-immediate-done)
+	 ("RET" . ivy-alt-done)))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
