@@ -79,6 +79,8 @@
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t
+	ivy-wrap t
+	ivy-extra-directories nil
 	enable-recursive-minibuffers t)
   (define-key ivy-minibuffer-map (kbd "C-j") #'ivy-immediate-done)
   (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
