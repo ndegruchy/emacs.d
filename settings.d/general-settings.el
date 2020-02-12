@@ -37,8 +37,7 @@
       tooltip-mode                           nil
       show-paren-mode                        t
       default-tab-width                      4
-      x-gtk-use-system-tooltips              nil
-      savehist-mode                          1)
+      x-gtk-use-system-tooltips              nil)
 
 (tool-bar-mode       -1)
 (menu-bar-mode       -1)

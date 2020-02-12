@@ -46,8 +46,6 @@
 (use-package bind-key
   :after (use-package))
 
-(use-package counsel)
-
 (use-package dired+
   :after dired
   :load-path "~/.emacs.d/site-lisp.d/"
@@ -55,6 +53,7 @@
   (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$")))
 
 (use-package editorconfig
+  :diminish editorconfig-mode
   :config
   (editorconfig-mode 1))
 
@@ -74,27 +73,6 @@
 
 (use-package expand-region
   :bind ("C-c s" . er/expand-region))
-
-(use-package ivy
-  :diminish ivy-mode
-  :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t
-	ivy-wrap t
-	ivy-extra-directories nil
-	ivy-count-format ""
-	ivy-initial-inputs-alist nil
-	ivy-re-builders-alist '((t . ivy--regex-ignore-order))
-	enable-recursive-minibuffers t)
-  :bind (("M-x" . counsel-M-x)
-	 ("C-x C-f" . counsel-find-file)
-	 ("<f1> f" . counsel-describe-function)
-	 ("<f1> v" . counsel-describe-variable)
-	 ("C-s" . swiper)
-	 ("C-c C-r" . ivy-resume)
-	 :map ivy-minibuffer-map
-	 ("C-j" . ivy-immediate-done)
-	 ("RET" . ivy-alt-done)))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
@@ -132,6 +110,7 @@
 	web-mode-enable-css-colorization t))
 
 (use-package which-key
+  :diminish which-key-mode
   :config
   (which-key-mode))
 
