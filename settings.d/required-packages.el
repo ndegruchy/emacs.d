@@ -46,6 +46,11 @@
 (use-package bind-key
   :after (use-package))
 
+(use-package counsel
+  :diminish counsel-mode
+  :bind (("M-x" . counsel-M-x)
+	 ("C-x C-f" . counsel-find-file)))
+
 (use-package dired+
   :after dired
   :load-path "~/.emacs.d/site-lisp.d/"
@@ -74,11 +79,26 @@
 (use-package expand-region
   :bind ("C-c s" . er/expand-region))
 
+(use-package ivy
+  :diminish ivy-mode
+  :config
+  (ivy-mode 1)
+  (setq enable-recursive-minibuffers 1
+	ivy-wrap t
+  	ivy-extra-directories nil
+  	ivy-count-format ""
+  	ivy-initial-inputs-alist nil
+  	ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
+  :bind (("C-c C-r" . ivy-resume)
+	 (:map ivy-minibuffer-map
+	       ("C-j" . ivy-immediate-done)
+	       ("RET" . ivy-alt-done))))
+
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
+  :mode ("README\\.md\\'" . gfm-mode)
+  :mode ("\\.md?\\'")
+  :mode ("\\.markdown?\\'")
   :init (setq markdown-command "multimarkdown"))
 
 (use-package no-littering
@@ -93,16 +113,24 @@
 
 (use-package olivetti)
 
+(use-package paredit
+  :ensure t
+  :diminish paredit-mode
+  :hook ((emacs-lisp-mode)
+	 (eval-expression-minibuffer-setup)))
+
+(use-package swiper
+  :bind (("C-s" . swiper)))
+
 (use-package systemd)
 
 (use-package web-mode
+  :mode ("\\.html?\\'")
+  :mode ("\\.css?\\'")
+  :mode ("\\.sass?\\'")
+  :mode ("\\.scss?\\'")
+  :mode ("\\.php?\\'")
   :config
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.sass?\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.scss?\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))
-
   (setq web-mode-markup-indent-offset 4
 	web-mode-css-indent-offset 4
 	web-mode-code-indent-offset 4
