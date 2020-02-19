@@ -97,8 +97,8 @@
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
   :mode ("README\\.md\\'" . gfm-mode)
-  :mode ("\\.md?\\'")
-  :mode ("\\.markdown?\\'")
+  :mode "\\.md?\\'"
+  :mode "\\.markdown?\\'"
   :init (setq markdown-command "multimarkdown"))
 
 (use-package no-littering
@@ -125,11 +125,11 @@
 (use-package systemd)
 
 (use-package web-mode
-  :mode ("\\.html?\\'")
-  :mode ("\\.css?\\'")
-  :mode ("\\.sass?\\'")
-  :mode ("\\.scss?\\'")
-  :mode ("\\.php?\\'")
+  :mode "\\.html?\\'"
+  :mode "\\.css?\\'"
+  :mode "\\.sass?\\'"
+  :mode "\\.scss?\\'"
+  :mode "\\.php?\\'"
   :config
   (setq web-mode-markup-indent-offset 4
 	web-mode-css-indent-offset 4
