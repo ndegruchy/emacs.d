@@ -10,7 +10,7 @@
   (global-unset-key key))
 
 (bind-keys*
- ;; Personal map for packages
+ ;; Personal map for commands
  ("C-c h"		. split-window-vertically)
  ("C-c v"		. split-window-horizontally)
  ("C-S-z"		. bury-buffer)
