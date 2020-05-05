@@ -50,7 +50,7 @@
 
 ;; Fonts
 (add-to-list 'default-frame-alist
-	     '(font . "IBM Plex Mono-18"))
+	     '(font . "Hack-18"))
 
 ;; Needed if using the default theme
 ;; (set-face-attribute 'region nil :background "light goldenrod")

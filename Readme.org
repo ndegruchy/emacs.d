@@ -1,7 +1,7 @@
 #+TITLE Nathan's Personal Emacs Configuration
 #+AUTHOR Nathan DeGruchy
 #+DATE 2014-10-24
-#+Time-stamp: <2018-07-31 11:54:17 ndegruchy>
+#+Time-stamp: <2020-05-05 09:38:46 nathan>
 
 * Emacs Configuration
 
@@ -11,3 +11,26 @@ configuration that can be tweaked per-platform.
 
 Most of it should be fairly self-explanatory, as I've taken the time
 to redo some of the file layout and give them useful names.
+
+** Packages
+
+   Many of the required packages are not triggered with 'ensure',
+   that's because I use Debian, and many of them are in the package
+   manager. That means you'll need to get or mark these packages:
+
+     - async :: packaged as elpa-async
+     - avy :: packaged as elpa-avy
+     - bind-key :: packaged as elpa-bind-key
+     - counsel :: packaged as elpa-counsel
+     - diminish :: packaged as elpa-diminish
+     - editorconfig :: packaged as elpa-editoconfig
+     - expand-region :: packaged as elpa-expand-region
+     - ivy :: packaged as elpa-ivy
+     - markdown-mode :: packaged as elpa-markdown-mode
+     - no-littering :: packaged as elpa-no-littering
+     - nov :: packaged as elpa-nov
+     - olivetti :: packaged elpa-olivetti
+     - systemd :: packaged as elpa-systemd
+     - web-mode :: packaged as elpa-web-mode
+     - which-key :: packaged as elpa-which-key
+     - yaml-mode :: packaged as elpa-yaml-mode
