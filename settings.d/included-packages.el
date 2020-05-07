@@ -28,14 +28,14 @@
   (put 'dired-find-alternate-file 'disabled nil)
   :hook (dired-mode . dired-hide-details-mode))
 
-;; (use-package ido
-;;   :config
-;;   (setq ido-enable-flex-matching t
-;; 	ido-everywhere t
-;; 	ido-vertical-define-keys 'C-n-C-p-up-and-down
-;; 	ido-auto-merge-work-directories-length -1)
-;;   (ido-mode 1)
-;;   (ido-vertical-mode 1))
+(use-package ido
+  :config
+  (setq ido-enable-flex-matching t
+	ido-everywhere t
+	ido-vertical-define-keys 'C-n-C-p-up-and-down
+	ido-auto-merge-work-directories-length -1)
+  (ido-mode 1)
+  (ido-vertical-mode 1))
 
 (use-package ispell
   :config
