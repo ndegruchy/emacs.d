@@ -36,6 +36,9 @@
 (use-package bind-key
   :after (use-package))
 
+(use-package crontab-mode
+  :load-path "~/.emacs.d/site-lisp.d")
+
 (use-package dired+
   :after dired
   :load-path "~/.emacs.d/site-lisp.d/"
@@ -76,6 +79,11 @@
   :bind (("M-x" . smex)
 	 ("M-X" . smex-major-mode-commands)
 	 ("C-c ; M-x" . execute-extended-command)))
+
+(use-package solarized-theme
+  :ensure t
+  :config
+  (load-theme 'solarized-light t nil))
 
 (use-package systemd)
 
