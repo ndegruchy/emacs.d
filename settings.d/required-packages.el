@@ -80,12 +80,12 @@
 	 ("M-X" . smex-major-mode-commands)
 	 ("C-c ; M-x" . execute-extended-command)))
 
-(use-package solarized-theme
-  :ensure t
-  :config
-  (load-theme 'solarized-light t nil))
-
 (use-package systemd)
+
+(use-package web-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 
 (use-package which-key
   :diminish which-key-mode
