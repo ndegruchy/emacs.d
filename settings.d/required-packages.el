@@ -37,7 +37,7 @@
   :after (use-package))
 
 (use-package crontab-mode
-  :load-path "~/.emacs.d/site-lisp.d")
+  :load-path "~/.emacs.d/site-lisp.d/")
 
 (use-package dired+
   :after dired
@@ -57,6 +57,9 @@
 	 ("C-c e" . embrace-add)))
 
 (use-package emmet-mode
+  :after web-mode
+  :after sgml-mode
+  :after css-mode
   :ensure t)
 
 (use-package exec-path-from-shell
@@ -85,7 +88,12 @@
 (use-package web-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (setq web-mode-markup-indent-offset    4
+	web-mode-css-indent-offset       4
+	web-mode-code-indent-offset      4
+	web-mode-enable-auto-pairing     t
+	web-mode-enable-css-colorization t))
 
 (use-package which-key
   :diminish which-key-mode
