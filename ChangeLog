@@ -1,3 +1,8 @@
+2020-05-23  Nathan DeGruchy  <nathan@degruchy.org>
+
+	* settings.d/required-packages.el (web-mode): Add modes to
+	highlight on, and add some default options
+
 2020-02-11  Nathan DeGruchy  <nathan@degruchy.org>
 
 	* settings.d/required-packages.el (ivy): Configure
