@@ -87,6 +87,7 @@
 
 (use-package web-mode
   :config
+  (emmet-mode 1)
   (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (setq web-mode-markup-indent-offset    4
