@@ -6,8 +6,8 @@
 	       "\C-x\C-z"	; Ditto
 	       "\C-x\C-d"	; List directory is dumb, use dired
 	       "\M-o"		; ??
-	       "\M-z"            ; I hit this way too often
-	       "\M-Z"            ; For completion sake
+	       "\M-z"           ; I hit this way too often
+	       "\M-Z"           ; For completion sake
 	       "\C-x\C-r"))
   (global-unset-key key))
 
