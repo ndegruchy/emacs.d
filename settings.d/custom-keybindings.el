@@ -6,6 +6,8 @@
 	       "\C-x\C-z"	; Ditto
 	       "\C-x\C-d"	; List directory is dumb, use dired
 	       "\M-o"		; ??
+	       "\M-z"            ; I hit this way too often
+	       "\M-Z"            ; For completion sake
 	       "\C-x\C-r"))
   (global-unset-key key))
 
@@ -25,6 +27,4 @@
  ("M-<down>"            . ndegruchy/move-line-down)
  ("M-Q"                 . unfill-paragraph)
  ;; Replacement keys
- ("M-z"                 . zap-up-to-char)
- ("M-Z"                 . zap-to-char)
  ("C-x C-d"             . ido-dired))		; Replacing the directory list with dired
