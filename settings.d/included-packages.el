@@ -46,6 +46,26 @@
   :config
   (midnight-delay-set 'midnight-delay "02:00am"))
 
+(use-package org
+  :defer t
+  :config
+  (setq org-directory          "~/Documents/Notes/"
+	org-agenda-files       org-directory
+	org-default-notes-file (concat org-directory "unsorted.org")
+	org-capture-templates  (quote
+				(("t" "todo" entry (file "todo.org")
+				  "* TODO %?\n%U\n%a\n")
+				 ("n" "notes" entry (file "unsorted.org")
+				  "* %? :NOTE:\n%U")
+				 ("r" "read-later" entry (file "unsorted.org")
+				  "* %? :READ:\n%U")))
+	org-completion-use-ido t
+	org-outline-path-complete-in-steps nil
+	org-outline-use-outline-path 'file)
+
+  :bind (("C-c o" . org-capture)
+	 ("C-c l" . org-store-link)))
+
 (use-package sgml-mode
   :config
   ;; Discovered it here https://stackoverflow.com/questions/1666513/how-to-indent-4-spaces-under-sgml-mode
