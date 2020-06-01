@@ -50,18 +50,25 @@
   :defer t
   :config
   (setq org-directory          "~/Documents/Notes/"
-	org-agenda-files       org-directory
+	org-agenda-files       (list "index.org" "todo.org" "unsorted.org")
+	org-archive-location   "archive.org"
 	org-default-notes-file (concat org-directory "unsorted.org")
 	org-capture-templates  (quote
+				;; Create a new todo entry
 				(("t" "todo" entry (file "todo.org")
 				  "* TODO %?\n%U\n%a\n")
+				;; Create a new generic note
 				 ("n" "notes" entry (file "unsorted.org")
 				  "* %? :NOTE:\n%U")
+				;; Create a new read later entry
 				 ("r" "read-later" entry (file "unsorted.org")
-				  "* %? :READ:\n%U")))
-	org-completion-use-ido t
+				  "** %? :READ:\n%U")))
 	org-outline-path-complete-in-steps nil
-	org-outline-use-outline-path 'file)
+	org-outline-use-outline-path 'file
+	;; Figured out how to allow refile across files from this post:
+	;; https://stackoverflow.com/questions/22200312/refile-from-one-file-to-other#22200624
+	org-refile-targets      '((nil :maxlevel . 3)
+				  (org-agenda-files :maxlevel . 3)))
 
   :bind (("C-c o" . org-capture)
 	 ("C-c l" . org-store-link)))
