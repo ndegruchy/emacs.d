@@ -51,7 +51,7 @@
   :config
   (setq org-directory          "~/Documents/Notes/"
 	org-agenda-files       (list "index.org" "todo.org" "unsorted.org")
-	org-archive-location   "archive.org"
+	org-archive-location   "%s_done::"
 	org-default-notes-file (concat org-directory "unsorted.org")
 	org-capture-templates  (quote
 				;; Create a new todo entry
