@@ -16,6 +16,7 @@
  ("C-c h"		. split-window-vertically)
  ("C-c v"		. split-window-horizontally)
  ("C-S-z"		. bury-buffer)
+ ("<f5>"                . toggle-truncate-lines)
  ;; Custom functions
  ("C-c R"		. ndegruchy/rename-file-and-buffer)
  ("S-<return>"		. ndegruchy/smart-open-line)
