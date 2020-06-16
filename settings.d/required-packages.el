@@ -33,6 +33,17 @@
   :config
   (dired-async-mode 1))
 
+(use-package auto-complete
+  ;; :ensure t
+  :diminish auto-complete-mode
+  :config
+  (ac-config-default)
+  (setq ac-dwim t
+		ac-sources '(ac-source-yasnippet
+					 ac-source-abbrev
+					 ac-source-words-in-same-mode-buffers)
+		ac-delay 0.5))
+
 (use-package bind-key
   :after (use-package))
 
@@ -70,6 +81,10 @@
 (use-package expand-region
   :bind ("C-c s" . er/expand-region))
 
+(use-package muse
+  ;; Installed via apt
+  )
+
 (use-package no-littering
   :config
   (require 'recentf)
@@ -85,16 +100,24 @@
 
 (use-package systemd)
 
+(use-package solarized-theme
+  :ensure t
+  :config
+  (load-theme 'solarized-light t nil))
+
 (use-package web-mode
   :config
   (emmet-mode 1)
   (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (setq web-mode-markup-indent-offset    4
-	web-mode-css-indent-offset       4
-	web-mode-code-indent-offset      4
-	web-mode-enable-auto-pairing     t
-	web-mode-enable-css-colorization t))
+		web-mode-css-indent-offset       4
+		web-mode-code-indent-offset      4
+		web-mode-enable-auto-pairing     t
+		web-mode-enable-css-colorization t
+		web-mode-ac-sources-alist        '(("php" . (ac-source-yasnippet ac-source-php-auto-yasnippets))
+										   ("html" . (ac-source-emmet-html-aliases ac-source-emmet-html-snippets))
+										   ("css" . (ac-source-css-property ac-source-emmet-css-snippets)))))
 
 (use-package which-key
   :diminish which-key-mode
@@ -104,3 +127,11 @@
 (use-package windresize
   :ensure t
   :bind ("C-c r" . windresize))
+
+(use-package yasnippet
+  ;; ensure t ; enabled through package manager
+  :diminish yas-minor-mode
+  :config
+  (yas-global-mode 1)
+  (setq yas-snippet-dirs '("/usr/share/yasnippet-snippets/"))
+  (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand))
