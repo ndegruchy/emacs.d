@@ -1,7 +1,7 @@
 #+TITLE Nathan's Personal Emacs Configuration
 #+AUTHOR Nathan DeGruchy
 #+DATE 2014-10-24
-#+Time-stamp: <2020-05-05 09:38:46 nathan>
+#+Time-stamp: <2020-06-03 15:13:19 nathan>
 
 * Emacs Configuration
 
@@ -21,15 +21,13 @@ to redo some of the file layout and give them useful names.
      - async :: packaged as elpa-async
      - avy :: packaged as elpa-avy
      - bind-key :: packaged as elpa-bind-key
-     - counsel :: packaged as elpa-counsel
+     - dictionary :: packaged as =elpa-dictionary=
      - diminish :: packaged as elpa-diminish
      - editorconfig :: packaged as elpa-editoconfig
      - expand-region :: packaged as elpa-expand-region
-     - ivy :: packaged as elpa-ivy
      - markdown-mode :: packaged as elpa-markdown-mode
      - no-littering :: packaged as elpa-no-littering
-     - nov :: packaged as elpa-nov
-     - olivetti :: packaged elpa-olivetti
+     - smex :: packaged as =elpa-smex=
      - systemd :: packaged as elpa-systemd
      - web-mode :: packaged as elpa-web-mode
      - which-key :: packaged as elpa-which-key
