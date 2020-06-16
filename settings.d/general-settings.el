@@ -54,8 +54,7 @@
 
 ;; Needed if using the default theme
 ;; (set-face-attribute 'region nil :background "light goldenrod")
-
-(load-theme 'tango)
+;; (load-theme 'tango)
 
 ;; Editing - Pairs
 (electric-pair-mode 1)
@@ -66,6 +65,10 @@
 ;; Use a more Emacs style mark mode
 (transient-mark-mode 1)
 (setq shift-select-mode nil)
+
+;; Editing - Indentation
+(setq-default tab-always-indent 'complete
+	      tab-width         4)
 
 ;; Enable narrowing
 (put 'narrow-to-region 'disabled nil)
