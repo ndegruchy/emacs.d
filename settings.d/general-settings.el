@@ -50,7 +50,7 @@
 
 ;; Fonts
 (add-to-list 'default-frame-alist
-	     '(font . "Hack-16"))
+			 '(font . "Hack-16"))
 
 ;; Needed if using the default theme
 ;; (set-face-attribute 'region nil :background "light goldenrod")
@@ -68,7 +68,7 @@
 
 ;; Editing - Indentation
 (setq-default tab-always-indent 'complete
-	      tab-width         4)
+			  tab-width         4)
 
 ;; Enable narrowing
 (put 'narrow-to-region 'disabled nil)

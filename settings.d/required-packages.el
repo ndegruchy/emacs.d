@@ -33,17 +33,6 @@
   :config
   (dired-async-mode 1))
 
-(use-package auto-complete
-  ;; :ensure t
-  :diminish auto-complete-mode
-  :config
-  (ac-config-default)
-  (setq ac-dwim t
-		ac-sources '(ac-source-yasnippet
-					 ac-source-abbrev
-					 ac-source-words-in-same-mode-buffers)
-		ac-delay 0.5))
-
 (use-package bind-key
   :after (use-package))
 
@@ -65,7 +54,7 @@
   :ensure t
   :after (expand-region)
   :bind (("C-c E" . embrace-commander)
-	 ("C-c e" . embrace-add)))
+		 ("C-c e" . embrace-add)))
 
 (use-package emmet-mode
   :after web-mode
@@ -81,10 +70,6 @@
 (use-package expand-region
   :bind ("C-c s" . er/expand-region))
 
-(use-package muse
-  ;; Installed via apt
-  )
-
 (use-package no-littering
   :config
   (require 'recentf)
@@ -94,9 +79,9 @@
 (use-package smex
   :config
   (smex-initialize)
-  :bind (("M-x" . smex)
-	 ("M-X" . smex-major-mode-commands)
-	 ("C-c ; M-x" . execute-extended-command)))
+  :bind (("M-x"			.	smex)
+		 ("M-X"			.	smex-major-mode-commands)
+		 ("C-c ; M-x"	.	execute-extended-command)))
 
 (use-package systemd)
 
@@ -114,10 +99,7 @@
 		web-mode-css-indent-offset       4
 		web-mode-code-indent-offset      4
 		web-mode-enable-auto-pairing     t
-		web-mode-enable-css-colorization t
-		web-mode-ac-sources-alist        '(("php" . (ac-source-yasnippet ac-source-php-auto-yasnippets))
-										   ("html" . (ac-source-emmet-html-aliases ac-source-emmet-html-snippets))
-										   ("css" . (ac-source-css-property ac-source-emmet-css-snippets)))))
+		web-mode-enable-css-colorization t))
 
 (use-package which-key
   :diminish which-key-mode
@@ -127,11 +109,3 @@
 (use-package windresize
   :ensure t
   :bind ("C-c r" . windresize))
-
-(use-package yasnippet
-  ;; ensure t ; enabled through package manager
-  :diminish yas-minor-mode
-  :config
-  (yas-global-mode 1)
-  (setq yas-snippet-dirs '("/usr/share/yasnippet-snippets/"))
-  (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand))
