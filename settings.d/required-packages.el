@@ -76,6 +76,17 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
+(use-package magit
+  :bind (("C-c g" . 'magit-status)))
+
+(use-package markdown-mode
+  :init (setq markdown-command "pandoc")
+  :mode (("README\\.md"    . gfm-mode)
+		 ("\\.md\\'"       . markdown-mode)
+		 ("\\.markdown\\'" . markdown-mode))
+  :hook ((markdown-mode . auto-fill-mode)
+		 (markdown-mode . flyspell-mode)))
+
 (use-package smex
   :config
   (smex-initialize)
