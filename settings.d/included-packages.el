@@ -28,6 +28,11 @@
   (put 'dired-find-alternate-file 'disabled nil)
   :hook (dired-mode . dired-hide-details-mode))
 
+(use-package eshell
+  :config
+  (setq eshell-visual-commands '("less" "tmux" "htop" "top" "bash" "fish" "zsh")
+		eshell-visual-subcommands '(("git" "log" "l" "diff" "show"))))
+
 (use-package ido
   :config
   (setq ido-enable-flex-matching t
