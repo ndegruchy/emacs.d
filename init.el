@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2020-06-07 00:00:49 nathan>
+;; Time-stamp: <2020-08-12 12:16:04 nathan>
 
 ;; Initialize the package manager
 (package-initialize)
@@ -19,4 +19,7 @@
 (load-library "custom-skeletons")
 
 ;; Set custom file
-(setq custom-file "~/.emacs.d/custom-lisp.d/emacs-customize.el")
+;; Brilliant hack to effectively discard this file
+;; Found on 2020-08-12
+;; at: https://github.com/cmacrae/.emacs.d#discard-customizations
+(setq custom-file (make-temp-file ""))

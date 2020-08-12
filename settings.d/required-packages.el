@@ -41,14 +41,13 @@
   :after ivy
   :diminish
   :bind ("M-x" . counsel-M-x)
-  :custom
+  :config
   (setq counsel-find-file-ignore-regexp
         (concat
          ;; File names beginning with # or .
          "\\(?:\\`[#.]\\)"
          ;; File names ending with # or ~
          "\\|\\(?:\\`.+?[#~]\\'\\)"))
-  :config
   (counsel-mode))
 
 (use-package crontab-mode
@@ -94,13 +93,10 @@
 		 :map ivy-minibuffer-map
 		 ("C-j" . ivy-immediate-done)
 		 ("RET" . ivy-alt-done))
-  :custom
+  :config
   (setq ivy-use-virtual-buffers t
 		enable-recursive-minibuffers t
-		ivy-re-builders-alist '((t . ivy--regex-fuzzy))
-		ivy-count-format ""
-		ivy-extra-directories '(""))
-  :config
+		ivy-extra-directories ())
   (ivy-mode 1))
 
 (use-package no-littering
