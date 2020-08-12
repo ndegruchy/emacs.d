@@ -50,7 +50,7 @@
 
 ;; Fonts
 (add-to-list 'default-frame-alist
-			 '(font . "Fira Code-16"))
+			 '(font . "Iosevka SS14-16"))
 
 ;; Needed if using the default theme
 ;; (set-face-attribute 'region nil :background "light goldenrod")

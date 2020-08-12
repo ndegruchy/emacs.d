@@ -36,6 +36,21 @@
 (use-package bind-key
   :after (use-package))
 
+(use-package counsel
+  :ensure t
+  :after ivy
+  :diminish
+  :bind ("M-x" . counsel-M-x)
+  :custom
+  (setq counsel-find-file-ignore-regexp
+        (concat
+         ;; File names beginning with # or .
+         "\\(?:\\`[#.]\\)"
+         ;; File names ending with # or ~
+         "\\|\\(?:\\`.+?[#~]\\'\\)"))
+  :config
+  (counsel-mode))
+
 (use-package crontab-mode
   :load-path "~/.emacs.d/site-lisp.d/")
 
@@ -70,14 +85,31 @@
 (use-package expand-region
   :bind ("C-c s" . er/expand-region))
 
+(use-package ivy
+  :ensure t
+  :diminish
+  :defer 0.1
+  :bind (("C-x b" . ivy-switch-buffer)
+		 ("C-x C-f" . counsel-find-file)
+		 :map ivy-minibuffer-map
+		 ("C-j" . ivy-immediate-done)
+		 ("RET" . ivy-alt-done))
+  :custom
+  (setq ivy-use-virtual-buffers t
+		enable-recursive-minibuffers t
+		ivy-re-builders-alist '((t . ivy--regex-fuzzy))
+		ivy-count-format ""
+		ivy-extra-directories '(""))
+  :config
+  (ivy-mode 1))
+
 (use-package no-littering
   :config
   (require 'recentf)
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
-(use-package magit
-  :bind (("C-c g" . 'magit-status)))
+(use-package magit)
 
 (use-package markdown-mode
   :init (setq markdown-command "pandoc")
@@ -87,12 +119,11 @@
   :hook ((markdown-mode . auto-fill-mode)
 		 (markdown-mode . flyspell-mode)))
 
-(use-package smex
-  :config
-  (smex-initialize)
-  :bind (("M-x"			.	smex)
-		 ("M-X"			.	smex-major-mode-commands)
-		 ("C-c ; M-x"	.	execute-extended-command)))
+(use-package swiper
+  :ensure t
+  :after ivy
+  :bind (("C-s" . swiper)
+		 ("C-r" . swiper)))
 
 (use-package systemd)
 

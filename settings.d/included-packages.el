@@ -1,6 +1,8 @@
 ;; included-packages.el
 ;; Configure packages distributed with Emacs
 
+(diminish 'auto-revert-mode)
+
 (use-package abbrev
   :diminish abbrev-mode)
 
@@ -32,15 +34,6 @@
   :config
   (setq eshell-visual-commands '("less" "tmux" "htop" "top" "bash" "fish" "zsh")
 		eshell-visual-subcommands '(("git" "log" "l" "diff" "show"))))
-
-(use-package ido
-  :config
-  (setq ido-enable-flex-matching t
-		ido-everywhere t
-		ido-vertical-define-keys 'C-n-C-p-up-and-down
-		ido-auto-merge-work-directories-length -1)
-  (ido-mode 1)
-  (ido-vertical-mode 1))
 
 (use-package ispell
   :config
