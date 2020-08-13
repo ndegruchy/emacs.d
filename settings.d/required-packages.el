@@ -66,7 +66,6 @@
 
 (use-package embrace
   :ensure t
-  :after (expand-region)
   :bind (("C-c E" . embrace-commander)
 		 ("C-c e" . embrace-add)))
 
