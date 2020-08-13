@@ -70,9 +70,7 @@
 		 ("C-c e" . embrace-add)))
 
 (use-package emmet-mode
-  :after web-mode
-  :after sgml-mode
-  :after css-mode
+  :hook (web-mode css-mode sgml-mode)
   :ensure t)
 
 (use-package exec-path-from-shell
