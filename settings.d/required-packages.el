@@ -102,7 +102,8 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
-(use-package magit)
+(use-package magit
+  :bind ("C-x g" . magit-status))
 
 (use-package markdown-mode
   :init (setq markdown-command "pandoc")
