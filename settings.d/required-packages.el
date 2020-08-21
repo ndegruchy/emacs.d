@@ -8,6 +8,7 @@
 
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
 ;; (add-to-list 'package-archives '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
 ;; Fix for 26.2 elpa 'bad request' issue
 (if (version<= emacs-version "26.2")
@@ -36,20 +37,6 @@
 (use-package bind-key
   :after (use-package))
 
-(use-package counsel
-  :ensure t
-  :after ivy
-  :diminish
-  :bind ("M-x" . counsel-M-x)
-  :config
-  (setq counsel-find-file-ignore-regexp
-        (concat
-         ;; File names beginning with # or .
-         "\\(?:\\`[#.]\\)"
-         ;; File names ending with # or ~
-         "\\|\\(?:\\`.+?[#~]\\'\\)"))
-  (counsel-mode))
-
 (use-package crontab-mode
   :load-path "~/.emacs.d/site-lisp.d/")
 
@@ -58,11 +45,6 @@
   :load-path "~/.emacs.d/site-lisp.d/"
   :config
   (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$")))
-
-(use-package editorconfig
-  :diminish editorconfig-mode
-  :config
-  (editorconfig-mode 1))
 
 (use-package embrace
   :ensure t
@@ -81,29 +63,11 @@
 (use-package expand-region
   :bind ("C-c s" . er/expand-region))
 
-(use-package ivy
-  :ensure t
-  :diminish
-  :defer 0.1
-  :bind (("C-x b" . ivy-switch-buffer)
-		 ("C-x C-f" . counsel-find-file)
-		 :map ivy-minibuffer-map
-		 ("C-j" . ivy-immediate-done)
-		 ("RET" . ivy-alt-done))
-  :config
-  (setq ivy-use-virtual-buffers t
-		enable-recursive-minibuffers t
-		ivy-extra-directories ())
-  (ivy-mode 1))
-
 (use-package no-littering
   :config
   (require 'recentf)
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
-
-(use-package magit
-  :bind ("C-x g" . magit-status))
 
 (use-package markdown-mode
   :init (setq markdown-command "pandoc")
@@ -113,18 +77,7 @@
   :hook ((markdown-mode . auto-fill-mode)
 		 (markdown-mode . flyspell-mode)))
 
-(use-package swiper
-  :ensure t
-  :after ivy
-  :bind (("C-s" . swiper)
-		 ("C-r" . swiper)))
-
 (use-package systemd)
-
-(use-package solarized-theme
-  :ensure t
-  :config
-  (load-theme 'solarized-light t nil))
 
 (use-package web-mode
   :config

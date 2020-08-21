@@ -53,8 +53,8 @@
 			 '(font . "Iosevka SS14-16"))
 
 ;; Needed if using the default theme
-;; (set-face-attribute 'region nil :background "light goldenrod")
-;; (load-theme 'tango)
+(set-face-attribute 'region nil :background "light goldenrod")
+(load-theme 'tango)
 
 ;; Editing - Pairs
 (electric-pair-mode 1)

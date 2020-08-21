@@ -22,7 +22,7 @@
  ("M-<down>"        .	ndegruchy/move-line-down)
  ("M-Q"             .	unfill-paragraph)
  ("C-c i"           .   ndegruchy/insert-file-name)
- ("C-c q"           .   endless/ispell-word-then-abbrev))
+ ("C-c q"           .   endless/ispell-word-then-abbrev)
  ;; Replacement keys
  ;; Replacing the directory list with dired
- ;;("C-x C-d"         .	ido-dired))
+ ("C-x C-d"         .	ido-dired))
