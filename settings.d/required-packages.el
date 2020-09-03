@@ -8,7 +8,6 @@
 
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
 ;; (add-to-list 'package-archives '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
 ;; Fix for 26.2 elpa 'bad request' issue
 (if (version<= emacs-version "26.2")
@@ -63,6 +62,14 @@
 (use-package expand-region
   :bind ("C-c s" . er/expand-region))
 
+(use-package hide-lines
+  :load-path "~/.emacs.d/site-lisp.d/"
+  :config
+  (defadvice hide-lines-matching (around hide-line-clear activate)
+    (if (equal search-text "")
+		(hide-lines-show-all)
+      ad-do-it)))
+
 (use-package no-littering
   :config
   (require 'recentf)
@@ -88,7 +95,9 @@
 		web-mode-css-indent-offset       4
 		web-mode-code-indent-offset      4
 		web-mode-enable-auto-pairing     t
-		web-mode-enable-css-colorization t))
+		web-mode-enable-css-colorization t
+		indent-tabs-mode                 t
+		tab-width                        4))
 
 (use-package which-key
   :diminish which-key-mode
