@@ -44,6 +44,15 @@
   :config
   (midnight-delay-set 'midnight-delay "02:00am"))
 
+(use-package org-mode
+  :config
+  (setq org-publish-project-alist
+	  '(("n.d.o"
+		 :base-directory "~/Documents/Notes"
+		 :recursive t
+		 :publishing-directory "~/Documents/Notes/.www/"
+		 :publishing-function org-html-publish-to-html))))
+
 (use-package sgml-mode
   :config
   ;; Discovered it here https://stackoverflow.com/questions/1666513/how-to-indent-4-spaces-under-sgml-mode
