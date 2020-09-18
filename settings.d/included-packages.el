@@ -44,14 +44,15 @@
   :config
   (midnight-delay-set 'midnight-delay "02:00am"))
 
-(use-package org-mode
+(use-package org
   :config
   (setq org-publish-project-alist
-	  '(("n.d.o"
-		 :base-directory "~/Documents/Notes"
-		 :recursive t
-		 :publishing-directory "~/Documents/Notes/.www/"
-		 :publishing-function org-html-publish-to-html))))
+		'(("n.d.o"
+		   :base-directory "~/Documents/Notes"
+		   :recursive t
+		   :publishing-directory "~/Documents/Notes/.www/"
+		   :publishing-function org-html-publish-to-html))
+		org-publish-use-timestamps-flag nil))
 
 (use-package sgml-mode
   :config

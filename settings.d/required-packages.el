@@ -84,6 +84,8 @@
   :hook ((markdown-mode . auto-fill-mode)
 		 (markdown-mode . flyspell-mode)))
 
+(use-package notmuch)
+
 (use-package systemd)
 
 (use-package web-mode

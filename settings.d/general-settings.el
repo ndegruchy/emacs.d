@@ -50,7 +50,7 @@
 
 ;; Fonts
 (add-to-list 'default-frame-alist
-			 '(font . "Iosevka SS14-16"))
+			 '(font . "Fira Code-16"))
 
 ;; Needed if using the default theme
 (set-face-attribute 'region nil :background "light goldenrod")
@@ -80,6 +80,11 @@
 
 ;; Battery
 (setq-default battery-mode-line-format "[%b%p%%]")
+
+;; Email
+(setq mail-specify-envelope-from t
+	  message-sendmail-envelope-from 'header
+	  mail-envelope-from 'header)
 
 ;; Birthday
 
