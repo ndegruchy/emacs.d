@@ -76,6 +76,17 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
+(use-package magit
+  :ensure t)
+
+(use-package magit-gitflow
+  :ensure t
+  :after magit)
+
+(use-package magit-lfs
+  :ensure t
+  :after magit)
+
 (use-package markdown-mode
   :init (setq markdown-command "pandoc")
   :mode (("README\\.md"    . gfm-mode)
