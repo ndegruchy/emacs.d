@@ -33,6 +33,8 @@
   :config
   (dired-async-mode 1))
 
+(use-package bbdb)
+
 (use-package bind-key
   :after (use-package))
 
@@ -44,6 +46,8 @@
   :load-path "~/.emacs.d/site-lisp.d/"
   :config
   (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$")))
+
+(use-package elfeed)
 
 (use-package embrace
   :ensure t
@@ -96,15 +100,16 @@
 		 (markdown-mode . flyspell-mode)))
 
 (use-package notmuch
+  :bind ("C-c n" . notmuch)
   :config
   (setq mail-specify-envelope-from t
 		message-sendmail-envelope-from 'header
 		mail-envelope-from 'header
 		notmuch-crypto-process-mime t
 		sendmail-program "/usr/sbin/sendmail"
-		message-sendmail-function 'message-send-mail-with-sendmail
-		message-directory "/home/nathan/.local/share/mail/drafts/"
-		notmuch-fcc-dirs "/home/nathan/.local/share/mail/sent")
+		message-send-mail-function 'message-send-mail-with-sendmail
+		message-directory "~/.local/share/mail/drafts/"
+		notmuch-fcc-dirs "~/.local/share/mail/sent/")
   (add-hook 'message-setup-hook 'mml-secure-sign-pgpmime))
 
 (use-package systemd)

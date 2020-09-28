@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2020-08-12 12:16:04 nathan>
+;; Time-stamp: <2020-09-28 12:55:57 nathan>
 
 ;; Initialize the package manager
 (package-initialize)
@@ -17,6 +17,7 @@
 (load-library "custom-hooks")
 (load-library "custom-aliases")
 (load-library "custom-skeletons")
+(load-library "elfeed-list")
 
 ;; Set custom file
 ;; Brilliant hack to effectively discard this file
