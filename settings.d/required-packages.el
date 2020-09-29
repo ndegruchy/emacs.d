@@ -47,7 +47,8 @@
   :config
   (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$")))
 
-(use-package elfeed)
+(use-package elfeed
+  :bind ("C-c l" . elfeed))
 
 (use-package embrace
   :ensure t
@@ -101,6 +102,7 @@
 
 (use-package notmuch
   :bind ("C-c n" . notmuch)
+  :hook (message-send-hook . message-sign-encrypt-if-all-keys-available)
   :config
   (setq mail-specify-envelope-from t
 		message-sendmail-envelope-from 'header
