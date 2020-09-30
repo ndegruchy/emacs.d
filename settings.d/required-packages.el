@@ -107,21 +107,8 @@
 
 (use-package notmuch
   :bind ("C-c n" . notmuch)
-  :init
-  (eval-after-load 'notmuch-show
-	'(define-key notmuch-show-mode-map "`" 'notmuch-show-apply-tag-macro))
-  (defun notmuch-show-apply-tag-macro (key)
-	(interactive "k")
-	(let ((macro (assoc key notmuch-show-tag-macro-alist)))
-      (apply 'notmuch-show-tag-message (cdr macro))))
   :hook (message-send-hook . message-sign-encrypt-if-all-keys-available)
   :config
-  (setq notmuch-show-tag-macro-alist
-		(list
-		 '("s-m r" "-unread")
-		 '("s-m s" "+sent -inbox -unread")
-		 '("s-m d" "+delete +deleted -unread")
-		 '("s-m i" "+important")))
   (setq mail-specify-envelope-from t
 		message-sendmail-envelope-from 'header
 		mail-envelope-from 'header

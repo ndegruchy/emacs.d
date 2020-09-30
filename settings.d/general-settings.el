@@ -2,8 +2,10 @@
 ;; Basic setup and configuration
 
 ;; Me
-(setq user-full-name    "Nathan DeGruchy"
-      user-mail-address "nathan@degruchy.org")
+(setq user-full-name         "Nathan DeGruchy"
+      user-mail-address      "nathan@degruchy.org"
+	  message-signature      t
+	  message-signature-file "~/.config/signature.txt")
 
 ;; Startup
 ;; Some default settings
