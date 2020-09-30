@@ -33,7 +33,12 @@
   :config
   (dired-async-mode 1))
 
-(use-package bbdb)
+(use-package bbdb
+  :init
+  (bbdb-initialize)
+  (bbdb-mua-auto-update-init)
+  :config
+  (setq bbdb-mua-pop-up t))
 
 (use-package bind-key
   :after (use-package))
@@ -75,12 +80,6 @@
 		(hide-lines-show-all)
       ad-do-it)))
 
-(use-package no-littering
-  :config
-  (require 'recentf)
-  (add-to-list 'recentf-exclude no-littering-var-directory)
-  (add-to-list 'recentf-exclude no-littering-etc-directory))
-
 (use-package magit
   :ensure t)
 
@@ -100,18 +99,65 @@
   :hook ((markdown-mode . auto-fill-mode)
 		 (markdown-mode . flyspell-mode)))
 
+(use-package no-littering
+  :config
+  (require 'recentf)
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory))
+
 (use-package notmuch
   :bind ("C-c n" . notmuch)
+  :init
+  (eval-after-load 'notmuch-show
+	'(define-key notmuch-show-mode-map "`" 'notmuch-show-apply-tag-macro))
+  (defun notmuch-show-apply-tag-macro (key)
+	(interactive "k")
+	(let ((macro (assoc key notmuch-show-tag-macro-alist)))
+      (apply 'notmuch-show-tag-message (cdr macro))))
   :hook (message-send-hook . message-sign-encrypt-if-all-keys-available)
   :config
+  (setq notmuch-show-tag-macro-alist
+		(list
+		 '("s-m r" "-unread")
+		 '("s-m s" "+sent -inbox -unread")
+		 '("s-m d" "+delete +deleted -unread")
+		 '("s-m i" "+important")))
   (setq mail-specify-envelope-from t
 		message-sendmail-envelope-from 'header
 		mail-envelope-from 'header
-		notmuch-crypto-process-mime t
 		sendmail-program "/usr/sbin/sendmail"
 		message-send-mail-function 'message-send-mail-with-sendmail
 		message-directory "~/.local/share/mail/drafts/"
-		notmuch-fcc-dirs "~/.local/share/mail/sent/")
+		notmuch-fcc-dirs "~/.local/share/mail/sent/"
+		notmuch-crypto-process-mime t
+		notmuch-saved-searches '((:name "inbox"
+										:key "i"
+										:query "tag:inbox"
+										:count-query "tag:inbox"
+										:sort-order newest-first
+										:search-type tree)
+								 (:name "unread"
+										:key "u"
+										:query "tag:unread"
+										:count-query "tag:unread"
+										:sort-order oldest-first)
+								 (:name "sent"
+										:key "s"
+										:query "tag:sent"
+										:count-query "tag:sent"
+										:sort-order newest-first
+										:search-type tree)
+								 (:name "all"
+										:key "a"
+										:query "*"
+										:count-query "*"
+										:sort-order newest-first
+										:search-type tree)
+								 (:name "important"
+										:key "p"
+										:query "tag:important"
+										:count-query "tag:important"
+										:sort-order newest-first)))
   (add-hook 'message-setup-hook 'mml-secure-sign-pgpmime))
 
 (use-package systemd)
