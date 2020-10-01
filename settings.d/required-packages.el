@@ -48,7 +48,8 @@
   :bind ("C-c k" . circe)
   :init
   (load-file "~/.emacs.d/settings.d/irc-passwords.el")
-  (setq circe-network-options '(("Freenode"
+  (setq circe-reduce-lurker-spam t
+		circe-network-options '(("Freenode"
 								 :tls t
 								 :nick "ndegruchy"
 								 :sasl-username "ndegruchy"
@@ -96,10 +97,6 @@
   :ensure t)
 
 (use-package magit-gitflow
-  :ensure t
-  :after magit)
-
-(use-package magit-lfs
   :ensure t
   :after magit)
 

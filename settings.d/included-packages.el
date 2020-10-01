@@ -35,6 +35,32 @@
   (setq eshell-visual-commands '("less" "tmux" "htop" "top" "bash" "fish" "zsh")
 		eshell-visual-subcommands '(("git" "log" "l" "diff" "show"))))
 
+(use-package ibuffer
+  :bind ("C-x C-b" . ibuffer)
+  :config
+  (setq ibuffer-saved-filter-groups
+          (quote (("default"
+                   ("dired" (mode . dired-mode))
+                   ("perl" (mode . cperl-mode))
+                   ("erc" (mode . erc-mode))
+				   ("rooms" (mode . circe-chat-mode))
+                   ("planner" (or
+                               (name . "^\\*Calendar\\*$")
+                               (name . "^diary$")
+                               (mode . muse-mode)))
+                   ("emacs" (or
+                             (name . "^\\*scratch\\*$")
+                             (name . "^\\*Messages\\*$")))
+                   ("gnus" (or
+                            (mode . message-mode-)
+                            (mode . bbdb-mode)
+                            (mode . mail-mode)
+                            (mode . gnus-group-mode)
+                            (mode . gnus-summary-mode)
+                            (mode . gnus-article-mode-)
+                            (name . "^\\.bbdb$")
+                            (name . "^\\.newsrc-dribble"))))))))
+
 (use-package ispell
   :config
   (setq ispell-program-name "aspell"
