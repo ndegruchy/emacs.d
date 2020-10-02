@@ -34,6 +34,7 @@
   (dired-async-mode 1))
 
 (use-package bbdb
+  :bind ("C-c b" . bbdb)
   :init
   (bbdb-initialize)
   (bbdb-mua-auto-update-init)
@@ -43,17 +44,17 @@
 (use-package bind-key
   :after (use-package))
 
+
 (use-package circe
   :ensure t
   :bind ("C-c k" . circe)
   :init
-  (load-file "~/.emacs.d/settings.d/irc-passwords.el")
   (setq circe-reduce-lurker-spam t
 		circe-network-options '(("Freenode"
 								 :tls t
 								 :nick "ndegruchy"
 								 :sasl-username "ndegruchy"
-								 :sasl-password ,freenode-password
+								 :sasl-password freenode-password
 								 :channels ("#emacs" "#debian" "#indieweb" "#indieweb-chat")))))
 
 (use-package crontab-mode

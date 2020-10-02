@@ -96,3 +96,6 @@
    (lambda ()
      (let (cursor-type)
        (animate-birthday-present user-full-name)))))
+
+;; Private settings
+(load-file "~/.emacs.d/settings.d/private.el")
