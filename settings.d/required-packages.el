@@ -165,8 +165,8 @@
 		mail-envelope-from 'header
 		sendmail-program "/usr/sbin/sendmail"
 		message-send-mail-function 'message-send-mail-with-sendmail
-		message-directory "~/.local/share/mail/drafts/"
-		notmuch-fcc-dirs "~/.local/share/mail/sent/"
+		message-directory "~/.local/share/mail/"
+		notmuch-fcc-dirs ". -inbox -unread +sent"
 		notmuch-mua-compose-in 'new-frame
 		message-kill-buffer-on-exit t
 		notmuch-crypto-process-mime t
