@@ -143,6 +143,8 @@
 		 ("d" . nm/search-delete)
 		 ("s" . nm/search-sent))
   :hook (message-send-hook . message-sign-encrypt-if-all-keys-available)
+  :init
+  (load-file "~/.emacs.d/site-lisp.d/notmuch-calendar-patch.el")
   :config
   (defun nm/tree-delete()
 	"Deletes a message from tree view"
@@ -170,6 +172,7 @@
 		notmuch-mua-compose-in 'new-frame
 		message-kill-buffer-on-exit t
 		notmuch-crypto-process-mime t
+		notmuch-show-logo nil
 		notmuch-saved-searches '((:name "inbox"
 										:key "i"
 										:query "tag:inbox"
@@ -187,6 +190,11 @@
 										:count-query "tag:sent"
 										:sort-order newest-first
 										:search-type tree)
+								 (:name "deleted"
+										:key "d"
+										:query "tag:deleted OR tag:delete"
+										:count-query "tag:deleted OR tag:delete"
+										:sort-order newest-first)
 								 (:name "all"
 										:key "a"
 										:query "*"
