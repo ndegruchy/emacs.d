@@ -44,24 +44,6 @@
 (use-package bind-key
   :after (use-package))
 
-(use-package circe
-  :ensure t
-  :bind ("C-c k" . circe)
-  :config
-  (setq circe-reduce-lurker-spam t
-		circe-default-directory "~/.cache/logs/"
-		circe-default-part-message "Goodbye"
-		circe-default-quit-message "Goodbye"
-		circe-network-options '(("Freenode"
-								 :host "chat.freenode.net"
-								 :port 7000
-								 :use-tls t
-								 :nick "ndegruchy"
-								 :sasl-username "ndegruchy"
-								 :sasl-password ,freenode-password
-								 :channels ("#emacs" "#debian" "#indieweb" "#indieweb-chat"
-											"#kde" "#firefox")))))
-
 (use-package crontab-mode
   :load-path "~/.emacs.d/site-lisp.d/")
 
