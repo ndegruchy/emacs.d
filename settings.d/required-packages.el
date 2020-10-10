@@ -53,9 +53,6 @@
   :config
   (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$")))
 
-(use-package elfeed
-  :bind ("C-c l" . elfeed))
-
 (use-package embrace
   :ensure t
   :bind (("C-c E" . embrace-commander)
@@ -66,6 +63,11 @@
   :ensure t)
 
 (use-package emms
+  :bind (("C-c x b" . emms-smart-browse)
+		 ("C-c x p" . emms-pause)
+		 ("C-c x N" . emms-next)
+		 ("C-c x P" . emms-previous)
+		 ("C-c x s" . emms-stop))
   :init
   (require 'emms-setup)
   (require 'emms-info-libtag)
