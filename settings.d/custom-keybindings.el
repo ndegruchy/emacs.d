@@ -23,4 +23,6 @@
  ("M-<down>"        .	ndegruchy/move-line-down)
  ("M-Q"             .	unfill-paragraph)
  ("C-c i"           .   ndegruchy/insert-file-name)
- ("C-c q"           .   endless/ispell-word-then-abbrev))
+ ("C-c q"           .   endless/ispell-word-then-abbrev)
+ ("C-c 0"           .   ndegruchy/insert-name)
+ ("C-c 9"           .   ndegruchy/insert-email))
