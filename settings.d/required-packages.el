@@ -137,14 +137,14 @@
   (load-file "~/.emacs.d/site-lisp.d/notmuch-functions.el")
   :config
   (setq mail-specify-envelope-from t
-		message-sendmail-envelope-from 'header
 		mail-envelope-from 'header
+		message-directory "~/.local/share/mail/"
+		message-sendmail-envelope-from 'header
 		sendmail-program "~/.local/bin/msmtpq"
 		message-send-mail-function 'message-send-mail-with-sendmail
-		message-directory "~/.local/share/mail/"
-		notmuch-fcc-dirs ". -inbox -unread +sent"
-		notmuch-mua-compose-in 'new-frame
 		message-kill-buffer-on-exit t
+		notmuch-fcc-dirs "sent +sent -inbox -unread"
+		notmuch-mua-compose-in 'new-frame
 		notmuch-crypto-process-mime t
 		notmuch-show-logo nil
 		notmuch-saved-searches '((:name "inbox"
@@ -164,6 +164,11 @@
 										:count-query "tag:sent"
 										:sort-order newest-first
 										:search-type tree)
+								 (:name "school"
+										:key "c"
+										:query "tag:school"
+										:count-query "tag:school"
+										:sort-order newest-first)
 								 (:name "deleted"
 										:key "d"
 										:query "tag:delete"
@@ -189,7 +194,19 @@
 										:key "p"
 										:query "tag:important"
 										:count-query "tag:important"
-										:sort-order newest-first))))
+										:sort-order newest-first)
+								 (:name "holiday"
+										:query "tag:holiday"
+										:count-query "tag:holiday"
+										:sort-order newest-first)
+								 (:name "events"
+										:query "tag:event"
+										:count-query "tag:event"
+										:sort-order newest-first)
+								 (:name "drafts"
+										:query "tag:draft"
+										:count-query "tag:draft"
+										:sort-order oldest-first))))
 
 (use-package systemd)
 
