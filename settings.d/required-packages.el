@@ -46,8 +46,9 @@
 (use-package bind-key
   :after (use-package))
 
-(use-package crontab-mode
-  :load-path "~/.emacs.d/site-lisp.d/")
+(use-package browse-kill-ring
+  :ensure t
+  :bind ("C-c k" . browse-kill-ring))
 
 (use-package dired+
   :after dired
@@ -64,25 +65,6 @@
   :hook (web-mode css-mode sgml-mode)
   :ensure t)
 
-(use-package emms
-  :bind (("C-c x b" . emms-smart-browse)
-		 ("C-c x p" . emms-pause)
-		 ("C-c x N" . emms-next)
-		 ("C-c x P" . emms-previous)
-		 ("C-c x s" . emms-stop))
-  :init
-  (require 'emms-setup)
-  (require 'emms-info-libtag)
-  (emms-all)
-  :config
-  (setq emms-source-file-default-directory "~/Music"
-		emms-info-asynchronously t
-		emms-info-functions '(emms-info-libtag)
-		emms-show-format "♪ %s")
-  (if (executable-find "cvlc")
-	  (setq emms-player-list '(emms-player-vlc))
-	(emms-default-players)))
-
 (use-package exec-path-from-shell
   :ensure t
   :config
@@ -90,21 +72,6 @@
 
 (use-package expand-region
   :bind ("C-c s" . er/expand-region))
-
-(use-package hide-lines
-  :load-path "~/.emacs.d/site-lisp.d/"
-  :config
-  (defadvice hide-lines-matching (around hide-line-clear activate)
-    (if (equal search-text "")
-		(hide-lines-show-all)
-      ad-do-it)))
-
-(use-package magit
-  :ensure t)
-
-(use-package magit-gitflow
-  :ensure t
-  :after magit)
 
 (use-package markdown-mode
   :init (setq markdown-command "pandoc")
