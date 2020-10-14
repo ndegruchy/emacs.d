@@ -37,11 +37,14 @@
   :bind ("C-c b" . bbdb)
   :init
   (bbdb-initialize 'message)
-  (bbdb-insinuate-message)
-  (bbdb-mua-auto-update-init)
+  (bbdb-mua-auto-update-init 'message)
   :config
   (setq bbdb-mua-pop-up t
-		bbdb-complete-mail-allow-cycling t))
+		bbdb-mua-update-interactive-p '(query . create)
+		bbdb-complete-mail-allow-cycling t
+		bbdb-completion-display-record t
+		bbdb-message-all-addresses t
+		bbdb-default-country "United States of America"))
 
 (use-package bind-key
   :after (use-package))
@@ -51,10 +54,11 @@
   :bind ("C-c k" . browse-kill-ring))
 
 (use-package dired+
-  :after dired
   :load-path "~/.emacs.d/site-lisp.d/"
-  :config
-  (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$")))
+  :after dired)
+
+(use-package dired-x
+  :after dired)
 
 (use-package embrace
   :ensure t
@@ -155,7 +159,7 @@
 										:search-type tree)
 								 (:name "trash"
 										:query "tag:trash OR tag:delete"
-										:count-query "tag:trash OR tag:delete"
+										:count-query "tag:trash OR tag:delete OR tag:spam"
 										:sort-order oldest-first)
 								 (:name "important"
 										:key "p"
