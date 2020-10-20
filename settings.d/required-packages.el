@@ -33,19 +33,6 @@
   :config
   (dired-async-mode 1))
 
-(use-package bbdb
-  :bind ("C-c b" . bbdb)
-  :init
-  (bbdb-initialize 'message)
-  (bbdb-mua-auto-update-init 'message)
-  :config
-  (setq bbdb-mua-pop-up t
-		bbdb-mua-update-interactive-p '(query . create)
-		bbdb-complete-mail-allow-cycling t
-		bbdb-completion-display-record t
-		bbdb-message-all-addresses t
-		bbdb-default-country "United States of America"))
-
 (use-package bind-key
   :after (use-package))
 
@@ -59,6 +46,14 @@
 
 (use-package dired-x
   :after dired)
+
+(use-package ebdb
+  :ensure t
+  :init
+  (require 'ebdb-message)
+  (require 'ebdb-notmuch)
+  :config
+  (setq ebdb-notmuch-auto-update-p 'existing))
 
 (use-package embrace
   :ensure t
@@ -106,6 +101,7 @@
   :init
   (load-file "~/.emacs.d/site-lisp.d/notmuch-calendar-patch.el")
   (load-file "~/.emacs.d/site-lisp.d/notmuch-functions.el")
+  (load-file "~/.emacs.d/site-lisp.d/notmuch-saved.el")
   :config
   (setq mail-specify-envelope-from t
 		mail-envelope-from 'header
@@ -117,67 +113,7 @@
 		notmuch-fcc-dirs "sent +sent -inbox -unread"
 		notmuch-mua-compose-in 'new-frame
 		notmuch-crypto-process-mime t
-		notmuch-show-logo nil
-		notmuch-saved-searches '((:name "inbox"
-										:key "i"
-										:query "tag:inbox"
-										:count-query "tag:inbox"
-										:sort-order newest-first
-										:search-type tree)
-								 (:name "unread"
-										:key "u"
-										:query "tag:unread"
-										:count-query "tag:unread"
-										:sort-order oldest-first)
-								 (:name "sent"
-										:key "s"
-										:query "tag:sent"
-										:count-query "tag:sent"
-										:sort-order newest-first
-										:search-type tree)
-								 (:name "school"
-										:key "c"
-										:query "tag:school"
-										:count-query "tag:school"
-										:sort-order newest-first)
-								 (:name "deleted"
-										:key "d"
-										:query "tag:delete"
-										:count-query "tag:delete"
-										:sort-order newest-first)
-								 (:name "all"
-										:key "a"
-										:query "*"
-										:count-query "*"
-										:sort-order newest-first
-										:search-type tree)
-								 (:name "receipts"
-										:key "r"
-										:query "tag:receipt"
-										:count-query "tag:receipt"
-										:sort-order newest-first
-										:search-type tree)
-								 (:name "trash"
-										:query "tag:trash OR tag:delete"
-										:count-query "tag:trash OR tag:delete OR tag:spam"
-										:sort-order oldest-first)
-								 (:name "important"
-										:key "p"
-										:query "tag:important"
-										:count-query "tag:important"
-										:sort-order newest-first)
-								 (:name "holiday"
-										:query "tag:holiday"
-										:count-query "tag:holiday"
-										:sort-order newest-first)
-								 (:name "events"
-										:query "tag:event"
-										:count-query "tag:event"
-										:sort-order newest-first)
-								 (:name "drafts"
-										:query "tag:draft"
-										:count-query "tag:draft"
-										:sort-order oldest-first))))
+		notmuch-show-logo nil))
 
 (use-package systemd)
 
