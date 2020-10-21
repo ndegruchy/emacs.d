@@ -55,8 +55,9 @@
 			 '(font . "Fira Code-16"))
 
 ;; Needed if using the default theme
-(set-face-attribute 'region nil :background "light goldenrod")
-(load-theme 'tango)
+;; (set-face-attribute 'region nil :background "light goldenrod")
+;; (load-theme 'tango)
+(load-theme 'leuven)
 
 ;; Editing - Pairs
 (electric-pair-mode 1)
