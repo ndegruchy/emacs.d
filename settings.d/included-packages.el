@@ -80,6 +80,7 @@
                            (name . "^\\*Completions\\*$")
                            (name . "^\\*Help\\*$")
 						   (name . "^\\*Backtrace\\*$")))
+				 ("org" (mode . org-mode))
 				 ("web" (mode . web-mode))
 				 ("shell" (or
 						   (mode . eshell-mode)
