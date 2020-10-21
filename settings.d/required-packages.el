@@ -72,14 +72,6 @@
 (use-package expand-region
   :bind ("C-c s" . er/expand-region))
 
-(use-package markdown-mode
-  :init (setq markdown-command "pandoc")
-  :mode (("README\\.md"    . gfm-mode)
-		 ("\\.md\\'"       . markdown-mode)
-		 ("\\.markdown\\'" . markdown-mode))
-  :hook ((markdown-mode . auto-fill-mode)
-		 (markdown-mode . flyspell-mode)))
-
 (use-package no-littering
   :config
   (require 'recentf)
