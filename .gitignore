@@ -13,6 +13,9 @@ auto-save-list
 tramp
 .\#*
 
+# Ebdb
+*ebdb*
+
 # Org-mode
 .org-id-locations
 *_archive
