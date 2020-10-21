@@ -6,10 +6,20 @@
 (use-package abbrev
   :diminish abbrev-mode)
 
+(use-package appt
+  :config
+  (setq appt-audible t
+		appt-display-mode-line t
+		appt-display-format 'window)
+  (appt-activate 1))
+
+(use-package diary
+  :hook (diary-list-entries-hook . (diary-sort-entries t)))
+
 (use-package dired
   :bind (:map dired-mode-map
 			  ;; Reuse the same dired window
-			  ("RET" . dired-find-alternate-file)
+			  ;; ("RET" . dired-find-alternate-file)
 			  ("^"   . (lambda()
 						 (interactive)
 						 (find-alternate-file "..")))
@@ -21,14 +31,15 @@
 			  ("; o" . dired-omit-mode)
 			  ;; Close the frame, useful when using dired by itself
 			  ("; q" . delete-frame))
+  :hook (dired-mode . dired-hide-details-mode)
+  :init
+  (diredp-toggle-find-file-reuse-dir t)
   :config
-  (setq dired-listing-switches "--group-directories-first -alh"
-		dired-dwim-target      t)
   (setq-default dired-omit-files-p t)
-  (require 'dired-x)
-  (require 'dired+)
-  (put 'dired-find-alternate-file 'disabled nil)
-  :hook (dired-mode . dired-hide-details-mode))
+  (setq dired-listing-switches "--group-directories-first -alh"
+		dired-dwim-target t
+		dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
+  (put 'dired-find-alternate-file 'disabled nil))
 
 (use-package eshell
   :config
@@ -36,30 +47,49 @@
 		eshell-visual-subcommands '(("git" "log" "l" "diff" "show"))))
 
 (use-package ibuffer
-  :bind ("C-x C-b" . ibuffer)
+  :bind (("C-x C-b" . ibuffer)
+		 ("C-x b"   . ibuffer))
+  :init
+  (add-hook 'ibuffer-hook #'ib-switch-to-saved-hook)
+  (defun ib-switch-to-saved-hook ()
+	(interactive)
+	(ibuffer-auto-mode 1)
+	(ibuffer-switch-to-saved-filter-groups "nathans"))
   :config
-  (setq ibuffer-saved-filter-groups
-          (quote (("default"
-                   ("dired" (mode . dired-mode))
-                   ("perl" (mode . cperl-mode))
-                   ("erc" (mode . erc-mode))
-				   ("rooms" (mode . circe-chat-mode))
-                   ("planner" (or
-                               (name . "^\\*Calendar\\*$")
-                               (name . "^diary$")
-                               (mode . muse-mode)))
-                   ("emacs" (or
-                             (name . "^\\*scratch\\*$")
-                             (name . "^\\*Messages\\*$")))
-                   ("gnus" (or
-                            (mode . message-mode-)
-                            (mode . bbdb-mode)
-                            (mode . mail-mode)
-                            (mode . gnus-group-mode)
-                            (mode . gnus-summary-mode)
-                            (mode . gnus-article-mode-)
-                            (name . "^\\.bbdb$")
-                            (name . "^\\.newsrc-dribble"))))))))
+  (setq ibuffer-hidden-filter-groups (list "emacs" "dired" "default")
+		ibuffer-default-sorting-mode 'filename/process
+		ibuffer-show-empty-filter-groups nil
+		ibuffer-saved-filter-groups
+        (quote (("nathans"
+                 ("dired" (mode . dired-mode))
+                 ("planner" (or
+                             (name . "^\\*Calendar\\*$")
+                             (name . "^diary$")
+							 (name . "^appt")
+							 (mode . diary-fancy-display-mode)
+                             (mode . muse-mode)))
+                 ("emacs" (or
+						   (mode . emacs-lisp-mode)
+                           (name . "^\\*scratch\\*$")
+                           (name . "^\\*Messages\\*$")
+                           (name . "^\\*Warnings\\*$")
+                           (name . "^\\*Completions\\*$")
+                           (name . "^\\*Help\\*$")
+						   (name . "^\\*Backtrace\\*$")))
+				 ("web" (mode . web-mode))
+				 ("shell" (or
+						   (mode . eshell-mode)
+						   (mode . term-mode)
+						   (mode . shell-mode)))
+                 ("email" (or
+                           (mode . notmuch-hello-mode)
+                           (mode . notmuch-show)
+                           (mode . notmuch-tree)
+                           (mode . notmuch-search)
+                           (mode . bbdb-mode)
+                           (mode . ebdb-mode)
+                           (mode . mail-mode)
+                           (name . "^\\.ebdb$"))))))))
 
 (use-package ispell
   :config
