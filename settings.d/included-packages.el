@@ -56,7 +56,7 @@
 	(ibuffer-auto-mode 1)
 	(ibuffer-switch-to-saved-filter-groups "nathans"))
   :config
-  (setq ibuffer-hidden-filter-groups (list "emacs" "dired" "default")
+  (setq ibuffer-hidden-filter-groups (list "emacs" "dired" "default" "vcs")
 		ibuffer-default-sorting-mode 'filename/process
 		ibuffer-show-empty-filter-groups nil
 		ibuffer-saved-filter-groups
@@ -68,6 +68,10 @@
 							 (name . "^appt")
 							 (mode . diary-fancy-display-mode)
                              (mode . muse-mode)))
+				 ("vcs" (or
+						 (mode . vc-dir-mode)
+						 (name . "^\\*vc")
+						 (name . "^\\*log-edit-files\\*$")))
                  ("emacs" (or
 						   (mode . emacs-lisp-mode)
                            (name . "^\\*scratch\\*$")
