@@ -174,28 +174,6 @@ files."
 	(emacs-lisp-docstring-fill-column t))
     (fill-paragraph nil region)))
 
-(defun ndegruchy/insert-file-name (filename &optional args)
-  "Insert name of file FILENAME into buffer after point.
-
-  Prefixed with \\[universal-argument], expand the file name to
-  its fully canocalized path.  See `expand-file-name'.
-
-  Prefixed with \\[negative-argument], use relative path to file
-  name from current directory, `default-directory'.  See
-  `file-relative-name'.
-
-  The default with no prefix is to insert the file name exactly as
-  it appears in the minibuffer prompt."
-  ;; Based on insert-file in Emacs -- ashawley 20080926
-  (interactive `(,(ido-read-file-name "File Name: ")
-                 ,current-prefix-arg))
-  (cond ((eq '- args)
-         (insert (expand-file-name filename)))
-        ((not (null args))
-         (insert filename))
-        (t
-         (insert (file-relative-name filename)))))
-
 (defun endless/ispell-word-then-abbrev (p)
   "Call `ispell-word'. Then create an abbrev for the correction made.
 With prefix P, create local abbrev. Otherwise it will be global."
@@ -226,8 +204,3 @@ With prefix P, create local abbrev. Otherwise it will be global."
 (defun ndegruchy/insert-email ()
   (interactive)
   (insert user-mail-address))
-
-(defun ndegruchy/elfeed-mark-all-read ()
-  (interactive)
-  (elfeed-untag elfeed-search-entries 'unread)
-  (elfeed-search-update :force))

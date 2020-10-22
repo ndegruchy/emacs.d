@@ -84,13 +84,7 @@
 ;; Battery
 (setq-default battery-mode-line-format "[%b%p%%]")
 
-;; Email
-(setq mail-specify-envelope-from t
-	  message-sendmail-envelope-from 'header
-	  mail-envelope-from 'header)
-
 ;; Birthday
-
 (when (string= "12-21" (format-time-string "%m-%d"))
   (run-with-idle-timer
    1 nil

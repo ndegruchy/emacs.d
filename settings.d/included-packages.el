@@ -44,7 +44,8 @@
 (use-package eshell
   :config
   (setq eshell-visual-commands '("less" "tmux" "htop" "top" "bash" "fish" "zsh")
-		eshell-visual-subcommands '(("git" "log" "l" "diff" "show"))))
+		eshell-visual-subcommands '(("git" "log" "l" "diff" "show"))
+		eshell-ls-initial-args "-alh"))
 
 (use-package ibuffer
   :bind (("C-x C-b" . ibuffer)

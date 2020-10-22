@@ -57,3 +57,4 @@ newsticker/*
 /async-bytecomp.log
 
 emacs-customize.el
+required-packages.el
