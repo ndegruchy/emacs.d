@@ -1,12 +1,15 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2020-10-02 08:50:53 nathan>
+;; Time-stamp: <2020-10-27 18:42:28 nathan>
 
 ;; Initialize the package manager
 (package-initialize)
 
 ;; Load the local lisp directory
 (add-to-list 'load-path "~/.emacs.d/settings.d/")
+
+;; Load Private Variables
+(load-file "~/.emacs.d/site-lisp.d/private.el")
 
 ;; Different config parts
 (load-library "general-settings")

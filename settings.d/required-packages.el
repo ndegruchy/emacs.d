@@ -47,6 +47,9 @@
 (use-package dired-x
   :after dired)
 
+(use-package elfeed
+  :bind ("C-c f" . elfeed))
+
 (use-package ebdb
   :ensure t
   :init
@@ -54,7 +57,9 @@
   (require 'ebdb-notmuch)
   :config
   (setq ebdb-notmuch-auto-update-p 'existing
-		ebdb-default-country "United States"))
+		ebdb-default-country "United States"
+		ebdb-use-diary t
+		ebdb-completion-display-record nil))
 
 (use-package elpher
   :load-path "~/.emacs.d/site-lisp.d/elpher/")
