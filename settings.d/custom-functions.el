@@ -70,7 +70,7 @@ that line and setting the indent properly"
 
 (defun ndegruchy/duplicate-line ()
     "Makes a copy of the current line after the current
-    line. Useful for listing directories, etc."
+line. Useful for listing directories, etc."
   (interactive)
   (move-beginning-of-line 1)
   (kill-line)
@@ -81,7 +81,9 @@ that line and setting the indent properly"
 
 (defun ndegruchy/sudo-save ()
   "Save the buffer using sudo.
-   Shamelessly stolen from: https://www.reddit.com/r/emacs/comments/aoqcyl/third_trial_for_a_weekly_tipstricksetc_thread/eg9n7wp/"
+
+Shamelessly stolen from:
+https://www.reddit.com/r/emacs/comments/aoqcyl/third_trial_for_a_weekly_tipstricksetc_thread/eg9n7wp/"
   (interactive)
   (let* ((split (cl-subseq (split-string (buffer-file-name (current-buffer)) "/") 1))
          (split2 (split-string (first split) ":"))
@@ -109,6 +111,7 @@ that line and setting the indent properly"
 
 (defun ndegruchy/open-in-external-app (&optional @fname)
   "Open the current file or dired marked files in external app.
+
 The app is chosen from your OS's preference.
 
 When called in emacs lisp, if @fname is given, open that.
@@ -204,3 +207,64 @@ With prefix P, create local abbrev. Otherwise it will be global."
 (defun ndegruchy/insert-email ()
   (interactive)
   (insert user-mail-address))
+
+(defun ndegruchy/insert-file-name (filename &optional args)
+  "Insert name of file FILENAME into buffer after point.
+  
+  Prefixed with \\[universal-argument], expand the file name to
+  its fully canocalized path.  See `expand-file-name'.
+  
+  Prefixed with \\[negative-argument], use relative path to file
+  name from current directory, `default-directory'.  See
+  `file-relative-name'.
+  
+  The default with no prefix is to insert the file name exactly as
+  it appears in the minibuffer prompt."
+  ;; Based on insert-file in Emacs -- ashawley 20080926
+  (interactive "*fInsert file name: \nP")
+  (cond ((eq '- args)
+         (insert (file-relative-name filename)))
+        ((not (null args))
+         (insert (expand-file-name filename)))
+        (t
+         (insert filename))))
+
+(defun ndegruchy/dired-convert-image (&optional arg)
+  "Convert image files to other formats.
+Retrieved on 2020-10-27 from http://xenodium.com/enrich-your-dired-batching-toolbox/"
+  (interactive "P")
+  (assert (or (executable-find "convert") (executable-find "magick.exe")) nil "Install imagemagick")
+  (let* ((dst-fpath)
+         (src-fpath)
+         (src-ext)
+         (last-ext)
+         (dst-ext))
+    (mapc
+     (lambda (fpath)
+       (setq src-fpath fpath)
+       (setq src-ext (downcase (file-name-extension src-fpath)))
+       (when (or (null dst-ext)
+                 (not (string-equal dst-ext last-ext)))
+         (setq dst-ext (completing-read "to format: "
+                                        (seq-remove (lambda (format)
+                                                      (string-equal format src-ext))
+                                                    '("jpg" "png")))))
+       (setq last-ext dst-ext)
+       (setq dst-fpath (format "%s.%s" (file-name-sans-extension src-fpath) dst-ext))
+       (message "convert %s to %s ..." (file-name-nondirectory dst-fpath) dst-ext)
+       (set-process-sentinel
+        (if (string-equal system-type "windows-nt")
+            (start-process "convert"
+                           (generate-new-buffer (format "*convert %s*" (file-name-nondirectory src-fpath)))
+                           "magick.exe" "convert" src-fpath dst-fpath)
+          (start-process "convert"
+                         (generate-new-buffer (format "*convert %s*" (file-name-nondirectory src-fpath)))
+                         "convert" src-fpath dst-fpath))
+        (lambda (process state)
+          (if (= (process-exit-status process) 0)
+              (message "convert %s ✔" (file-name-nondirectory dst-fpath))
+            (message "convert %s ❌" (file-name-nondirectory dst-fpath))
+            (message (with-current-buffer (process-buffer process)
+                       (buffer-string))))
+          (kill-buffer (process-buffer process)))))
+     (dired-map-over-marks (dired-get-filename) arg))))
