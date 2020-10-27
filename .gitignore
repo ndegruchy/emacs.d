@@ -20,7 +20,7 @@ tramp
 site-lisp.d/private.el
 
 # Elpher is pulled in via git
-site-lisp./elpher/
+site-lisp.d/elpher/
 
 # Org-mode
 .org-id-locations
