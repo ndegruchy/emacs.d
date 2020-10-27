@@ -16,6 +16,12 @@ tramp
 # Ebdb
 *ebdb*
 
+# Private stuff
+site-lisp.d/private.el
+
+# Elpher is pulled in via git
+site-lisp./elpher/
+
 # Org-mode
 .org-id-locations
 *_archive
