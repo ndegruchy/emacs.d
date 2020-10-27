@@ -53,7 +53,11 @@
   (require 'ebdb-message)
   (require 'ebdb-notmuch)
   :config
-  (setq ebdb-notmuch-auto-update-p 'existing))
+  (setq ebdb-notmuch-auto-update-p 'existing
+		ebdb-default-country "United States"))
+
+(use-package elpher
+  :load-path "~/.emacs.d/site-lisp.d/elpher/")
 
 (use-package embrace
   :ensure t
