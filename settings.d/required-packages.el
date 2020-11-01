@@ -29,6 +29,12 @@
 
 ;; Package list
 
+(use-package amx
+  :ensure t
+  :config
+  (amx-initialize)
+  (amx-mode t))
+
 (use-package async
   :config
   (dired-async-mode 1))
@@ -41,14 +47,11 @@
   :bind ("C-c k" . browse-kill-ring))
 
 (use-package dired+
-  :load-path "~/.emacs.d/site-lisp.d/"
+  :load-path "~/.emacs.d/site-lisp.d"
   :after dired)
 
 (use-package dired-x
   :after dired)
-
-(use-package elfeed
-  :bind ("C-c f" . elfeed))
 
 (use-package ebdb
   :ensure t
@@ -60,6 +63,11 @@
 		ebdb-default-country "United States"
 		ebdb-use-diary t
 		ebdb-completion-display-record nil))
+
+(use-package elfeed
+  :bind ("C-c f" . elfeed)
+  :config
+  (set-face-attribute 'elfeed-search-filter-face nil :inherit 'header-line))
 
 (use-package elpher
   :load-path "~/.emacs.d/site-lisp.d/elpher/")
@@ -73,6 +81,23 @@
   :hook (web-mode css-mode sgml-mode)
   :ensure t)
 
+(use-package emms
+  :bind (("C-c b b" . emms-smart-browse)
+		 ("C-c b l" . emms-pause)
+		 ("C-c b s" . emms-stop)
+		 ("C-c b n" . emms-next-noerror)
+		 ("C-c b p" . emms-previous))
+  :init
+  (emms-all)
+  (emms-standard)
+  (require 'emms-info-libtag)
+  :config
+  (setq	emms-directory "~/Music"
+		emms-source-file-default-directory "~/Music"
+		emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find
+		emms-player-list '(emms-player-vlc)
+		emms-info-auto-update t))
+
 (use-package exec-path-from-shell
   :ensure t
   :config
@@ -80,6 +105,17 @@
 
 (use-package expand-region
   :bind ("C-c s" . er/expand-region))
+
+(use-package ido-completing-read+
+  :ensure t
+  :config
+  (ido-ubiquitous-mode t)
+  (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right))
+
+(use-package ido-vertical-mode
+  :ensure t
+  :config
+  (ido-vertical-mode t))
 
 (use-package no-littering
   :config
@@ -139,3 +175,7 @@
 (use-package windresize
   :ensure t
   :bind ("C-c r" . windresize))
+
+(use-package with-editor
+  :ensure t
+  :hook ('eshell-mode-hook . 'with-editor-export-editor))
