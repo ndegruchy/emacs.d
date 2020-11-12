@@ -82,6 +82,8 @@
   (midnight-delay-set 'midnight-delay "02:00am"))
 
 (use-package org
+  :hook 'turn-on-auto-fill
+  :hook 'flyspell-mode
   :config
   (setq org-publish-project-alist
 		'(("n.d.o"
@@ -99,6 +101,7 @@
 		history-length 20))
 
 (use-package sgml-mode
+  :hook 'emmet-mode
   :config
   ;; Discovered it here https://stackoverflow.com/questions/1666513/how-to-indent-4-spaces-under-sgml-mode
   (setq sgml-basic-offset 4))
