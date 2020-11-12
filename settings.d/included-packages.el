@@ -13,6 +13,11 @@
 		appt-display-format 'window)
   (appt-activate 1))
 
+(use-package auth-source-pass
+  :config
+  (require 'auth-source-pass)
+  (auth-source-pass-enable))
+
 (use-package diary
   :hook (diary-list-entries-hook . (diary-sort-entries t)))
 
@@ -41,64 +46,31 @@
 		dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
   (put 'dired-find-alternate-file 'disabled nil))
 
+(use-package erc
+  :bind ("C-c c" . start-irc)
+  :defer t
+  :init
+  (erc-autojoin-mode 1)
+  (erc-fill-mode 1)
+  (erc-services-mode 1)
+  (erc-nickserv-identify-mode 1)
+  :config
+  (defun start-irc ()
+	"Connect to IRC"
+	(interactive)
+	(erc-tls :server "chat.freenode.net" :port 6697 :nick "ndegruchy" :full-name user-full-name :password "Sandurz*Freenode2020"))
+  (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs" "#debian" "#erc" "#notmuch"))
+		erc-prompt-for-nickserv-password nil
+		erc-lurker-hide-list '("JOIN" "PART" "QUIT")
+		erc-kill-buffer-on-part t
+		erc-kill-queries-on-quit t
+		erc-kill-server-buffer-on-quit t))
+
 (use-package eshell
   :config
   (setq eshell-visual-commands '("less" "tmux" "htop" "top" "bash" "fish" "zsh")
 		eshell-visual-subcommands '(("git" "log" "l" "diff" "show"))
 		eshell-ls-initial-args "-alh"))
-
-(use-package ibuffer
-  :bind (("C-x C-b" . ibuffer)
-		 ("C-x b"   . ibuffer))
-  :init
-  (add-hook 'ibuffer-hook #'ib-switch-to-saved-hook)
-  (defun ib-switch-to-saved-hook ()
-	(interactive)
-	(ibuffer-auto-mode 1)
-	(ibuffer-switch-to-saved-filter-groups "nathans"))
-  :config
-  (setq ibuffer-hidden-filter-groups (list "emacs" "dired" "default" "vcs")
-		ibuffer-default-sorting-mode 'filename/process
-		ibuffer-show-empty-filter-groups nil
-		ibuffer-saved-filter-groups
-        (quote (("nathans"
-                 ("dired" (mode . dired-mode))
-                 ("planner" (or
-                             (name . "^\\*Calendar\\*$")
-                             (name . "^diary$")
-							 (name . "^appt")
-							 (mode . diary-fancy-display-mode)
-                             (mode . muse-mode)))
-				 ("vcs" (or
-						 (mode . vc-dir-mode)
-						 (name . "^\\*vc")
-						 (name . "^\\*log-edit-files\\*$")))
-                 ("emacs" (or
-						   (mode . emacs-lisp-mode)
-                           (name . "^\\*scratch\\*$")
-                           (name . "^\\*Messages\\*$")
-                           (name . "^\\*Warnings\\*$")
-                           (name . "^\\*Completions\\*$")
-                           (name . "^\\*Help\\*$")
-						   (name . "^\\*Backtrace\\*$")))
-				 ("web" (mode . web-mode))
-				 ("shell" (or
-						   (mode . eshell-mode)
-						   (mode . term-mode)
-						   (mode . shell-mode)))
-				 ("docs" (or
-						  (name . "^\\*Info\\*$")
-						  (mode . info)
-						  (name . "\\*WoMan")))
-                 ("email" (or
-                           (mode . notmuch-hello-mode)
-                           (mode . notmuch-show-mode)
-                           (mode . notmuch-tree-mode)
-                           (mode . notmuch-search-mode)
-                           (mode . bbdb-mode)
-                           (mode . ebdb-mode)
-                           (mode . mail-mode)
-                           (name . "^\\.ebdb$"))))))))
 
 (use-package ispell
   :config
@@ -117,12 +89,23 @@
 		   :recursive t
 		   :publishing-directory "~/Documents/Notes/.www/"
 		   :publishing-function org-html-publish-to-html))
-		org-publish-use-timestamps-flag nil))
+		org-publish-use-timestamps-flag nil
+		org-html-validation-link nil))
+
+(use-package savehist
+  :config
+  (savehist-mode 1)
+  (setq history-delete-duplicates t
+		history-length 20))
 
 (use-package sgml-mode
   :config
   ;; Discovered it here https://stackoverflow.com/questions/1666513/how-to-indent-4-spaces-under-sgml-mode
   (setq sgml-basic-offset 4))
+
+(use-package winner
+  :config
+  (winner-mode t))
 
 ;; Uniquify
 (setq uniquify-buffer-name-style    'reverse

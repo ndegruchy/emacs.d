@@ -29,12 +29,6 @@
 
 ;; Package list
 
-(use-package amx
-  :ensure t
-  :config
-  (amx-initialize)
-  (amx-mode t))
-
 (use-package async
   :config
   (dired-async-mode 1))
@@ -42,12 +36,8 @@
 (use-package bind-key
   :after (use-package))
 
-(use-package browse-kill-ring
-  :ensure t
-  :bind ("C-c k" . browse-kill-ring))
-
 (use-package dired+
-  :load-path "~/.emacs.d/site-lisp.d"
+  :load-path "~/.emacs.d/site-lisp.d/"
   :after dired)
 
 (use-package dired-x
@@ -70,6 +60,7 @@
   (set-face-attribute 'elfeed-search-filter-face nil :inherit 'header-line))
 
 (use-package elpher
+  :bind ("C-c ," . elpher)
   :load-path "~/.emacs.d/site-lisp.d/elpher/")
 
 (use-package embrace
@@ -85,18 +76,28 @@
   :bind (("C-c b b" . emms-smart-browse)
 		 ("C-c b l" . emms-pause)
 		 ("C-c b s" . emms-stop)
-		 ("C-c b n" . emms-next-noerror)
-		 ("C-c b p" . emms-previous))
-  :init
+		 ("C-c b n" . emms-next)
+		 ("C-c b p" . emms-previous)
+		 ("C-c b +" . emms-volume-mode-plus)
+		 ("C-c b -" . emms-volume-mode-minus))
+  :defer t
+  :config
   (emms-all)
   (emms-standard)
+  (emms-mode-line 1)
+  (emms-playing-time-disable-display)
   (require 'emms-info-libtag)
-  :config
+  (setq emms-info-functions '(emms-info-libtag))
   (setq	emms-directory "~/Music"
 		emms-source-file-default-directory "~/Music"
 		emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find
+		emms-cache-file "~/.emacs.d/var/emms/cache"
 		emms-player-list '(emms-player-vlc)
-		emms-info-auto-update t))
+		emms-volume-change-function 'emms-volume-pulse-change
+		emms-info-auto-update t
+		emms-librefm-scrobbler-enable t
+		emms-librefm-scrobbler-username "ndegruchy"
+		emms-librefm-scrobbler-password "unleash-zestfully-wasabi"))
 
 (use-package exec-path-from-shell
   :ensure t
@@ -105,17 +106,6 @@
 
 (use-package expand-region
   :bind ("C-c s" . er/expand-region))
-
-(use-package ido-completing-read+
-  :ensure t
-  :config
-  (ido-ubiquitous-mode t)
-  (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right))
-
-(use-package ido-vertical-mode
-  :ensure t
-  :config
-  (ido-vertical-mode t))
 
 (use-package no-littering
   :config
@@ -136,9 +126,9 @@
   :hook (message-send-hook . message-sign-encrypt-if-all-keys-available)
   :hook (message-setup-hook . mml-secure-sign-pgpmime)
   :init
-  (load-file "~/.emacs.d/site-lisp.d/notmuch-calendar-patch.el")
-  (load-file "~/.emacs.d/site-lisp.d/notmuch-functions.el")
-  (load-file "~/.emacs.d/site-lisp.d/notmuch-saved.el")
+  (load-file "~/.emacs.d/site-lisp.d/notmuch/notmuch-calendar-patch.el")
+  (load-file "~/.emacs.d/site-lisp.d/notmuch/notmuch-functions.el")
+  (load-file "~/.emacs.d/site-lisp.d/notmuch/notmuch-saved.el")
   :config
   (setq mail-specify-envelope-from t
 		mail-envelope-from 'header
@@ -175,7 +165,3 @@
 (use-package windresize
   :ensure t
   :bind ("C-c r" . windresize))
-
-(use-package with-editor
-  :ensure t
-  :hook ('eshell-mode-hook . 'with-editor-export-editor))

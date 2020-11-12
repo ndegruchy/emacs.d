@@ -64,7 +64,7 @@
 (show-paren-mode    1)
 
 ;; Editing - selection
-;; (delete-selection-mode t)
+(delete-selection-mode t)
 ;; Use a more Emacs style mark mode
 (transient-mark-mode 1)
 (setq shift-select-mode nil)
@@ -84,6 +84,9 @@
 ;; Battery
 (setq-default battery-mode-line-format "[%b%p%%]")
 
+;; Browsing
+(setq browse-url-firefox-program "/opt/firefox/firefox")
+
 ;; Birthday
 (when (string= "12-21" (format-time-string "%m-%d"))
   (run-with-idle-timer
@@ -92,5 +95,3 @@
      (let (cursor-type)
        (animate-birthday-present user-full-name)))))
 
-;; Private settings
-(load-file "~/.emacs.d/settings.d/private.el")
