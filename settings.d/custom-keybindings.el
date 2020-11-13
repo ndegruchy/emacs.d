@@ -2,7 +2,7 @@
 ;; Set custom keybindings here
 
 ;; Unbind keys (may be useful for later bindings)
-(dolist (key '("\C-z" "\C-x\C-z" "\C-x\C-d" "\M-o" "\M-z" "\M-Z" "\C-x\C-r"))
+(dolist (key '("\C-z" "\C-xc" "\C-x\C-z" "\C-x\C-d" "\M-o" "\M-z" "\M-Z" "\C-x\C-r"))
   (global-unset-key key))
 
 (bind-keys*
@@ -12,7 +12,6 @@
  ("C-S-z"			.	bury-buffer)
  ("<f5>"            .	toggle-truncate-lines)
  ("s-<backspace>"   .   kill-this-buffer)
- ("s-<tab>"         .   ido-switch-buffer)
  ("C-<tab>"			.	bs-show)
  ;; Custom functions
  ("C-c R"			.	ndegruchy/rename-file-and-buffer)

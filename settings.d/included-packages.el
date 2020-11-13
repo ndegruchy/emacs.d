@@ -18,8 +18,6 @@
   (require 'auth-source-pass)
   (auth-source-pass-enable))
 
-
-
 (use-package diary
   :hook (diary-list-entries-hook . (diary-sort-entries t)))
 
@@ -60,7 +58,7 @@
   (defun start-irc ()
 	"Connect to IRC"
 	(interactive)
-	(erc-tls :server "chat.freenode.net" :port 6697 :nick "ndegruchy" :full-name user-full-name :password "Sandurz*Freenode2020"))
+	(erc-tls :server "chat.freenode.net" :port 6697 :nick "ndegruchy" :full-name user-full-name :password erc-freenode-password))
   (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs" "#debian" "#erc" "#notmuch"))
 		erc-prompt-for-nickserv-password nil
 		erc-lurker-hide-list '("JOIN" "PART" "QUIT")
@@ -103,14 +101,9 @@
 		history-length 20))
 
 (use-package sgml-mode
-  :hook 'emmet-mode
   :config
   ;; Discovered it here https://stackoverflow.com/questions/1666513/how-to-indent-4-spaces-under-sgml-mode
   (setq sgml-basic-offset 4))
-
-(use-package winner
-  :config
-  (winner-mode t))
 
 ;; Uniquify
 (setq uniquify-buffer-name-style    'reverse

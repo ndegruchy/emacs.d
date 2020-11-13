@@ -57,6 +57,7 @@
 (use-package elfeed
   :bind ("C-c f" . elfeed)
   :config
+  ;; Cleanup for current theme
   (set-face-attribute 'elfeed-search-filter-face nil :inherit 'header-line))
 
 (use-package elpher
@@ -96,8 +97,7 @@
 		emms-volume-change-function 'emms-volume-pulse-change
 		emms-info-auto-update t
 		emms-librefm-scrobbler-enable t
-		emms-librefm-scrobbler-username "ndegruchy"
-		emms-librefm-scrobbler-password "unleash-zestfully-wasabi"))
+		emms-librefm-scrobbler-username "ndegruchy"))
 
 (use-package exec-path-from-shell
   :ensure t
@@ -144,9 +144,14 @@
 
 (use-package systemd)
 
+(use-package undo-tree
+  :ensure t
+  :diminish
+  :config
+  (global-undo-tree-mode t))
+
 (use-package web-mode
   :config
-  (emmet-mode 1)
   (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (setq web-mode-markup-indent-offset    4
