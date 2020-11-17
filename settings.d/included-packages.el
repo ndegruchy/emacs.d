@@ -82,9 +82,9 @@
   (midnight-delay-set 'midnight-delay "02:00am"))
 
 (use-package org
-  :hook 'turn-on-auto-fill
-  :hook 'flyspell-mode
   :config
+  (add-hook 'org-mode-hook #'auto-fill-mode)
+  (add-hook 'org-mode-hook #'flyspell-mode)
   (setq org-publish-project-alist
 		'(("n.d.o"
 		   :base-directory "~/Documents/Notes"

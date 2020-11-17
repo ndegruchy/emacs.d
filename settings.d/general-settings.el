@@ -4,8 +4,8 @@
 ;; Me
 (setq user-full-name         "Nathan DeGruchy"
       user-mail-address      "nathan@degruchy.org"
-	  message-signature      t
-	  message-signature-file "~/.config/signature.txt")
+      message-signature      t
+      message-signature-file "~/.config/signature.txt")
 
 ;; Startup
 ;; Some default settings
@@ -43,7 +43,7 @@
 
 (tool-bar-mode       -1)
 (menu-bar-mode       -1)
-(scroll-bar-mode     -1)
+;; (scroll-bar-mode     -1)
 (display-battery-mode t)
 (tooltip-mode        -1)
 (global-linum-mode   -1)

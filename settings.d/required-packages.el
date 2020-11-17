@@ -29,7 +29,12 @@
 
 ;; Package list
 
+(use-package ace-window
+  :ensure t
+  :bind ("C-x o" . ace-window))
+
 (use-package async
+  :ensure t
   :config
   (dired-async-mode 1))
 
@@ -43,18 +48,8 @@
 (use-package dired-x
   :after dired)
 
-(use-package ebdb
-  :ensure t
-  :init
-  (require 'ebdb-message)
-  (require 'ebdb-notmuch)
-  :config
-  (setq ebdb-notmuch-auto-update-p 'existing
-		ebdb-default-country "United States"
-		ebdb-use-diary t
-		ebdb-completion-display-record nil))
-
 (use-package elfeed
+  :ensure t
   :bind ("C-c f" . elfeed)
   :config
   ;; Cleanup for current theme
@@ -105,9 +100,11 @@
   (exec-path-from-shell-initialize))
 
 (use-package expand-region
+  :ensure t
   :bind ("C-c s" . er/expand-region))
 
 (use-package no-littering
+  :ensure t
   :config
   (require 'recentf)
   (add-to-list 'recentf-exclude no-littering-var-directory)
@@ -138,11 +135,12 @@
 		message-send-mail-function 'message-send-mail-with-sendmail
 		message-kill-buffer-on-exit t
 		notmuch-fcc-dirs "sent +sent -inbox -unread"
-		notmuch-mua-compose-in 'new-frame
 		notmuch-crypto-process-mime t
+		notmuch-address-command "~/.local/bin/abook-query"
 		notmuch-show-logo nil))
 
-(use-package systemd)
+(use-package systemd
+  :ensure t)
 
 (use-package undo-tree
   :ensure t
@@ -151,6 +149,7 @@
   (global-undo-tree-mode t))
 
 (use-package web-mode
+  :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
@@ -163,6 +162,7 @@
 		tab-width                        4))
 
 (use-package which-key
+  :ensure t
   :diminish which-key-mode
   :config
   (which-key-mode))
