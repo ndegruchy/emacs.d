@@ -29,24 +29,19 @@
 
 ;; Package list
 
-(use-package ace-window
-  :ensure t
-  :bind ("C-x o" . ace-window))
-
 (use-package async
   :ensure t
+  :diminish
   :config
-  (dired-async-mode 1))
+  (setq dired-async-mode t))
 
 (use-package bind-key
-  :after (use-package))
+  :ensure t
+  :after use-package)
 
-(use-package dired+
-  :load-path "~/.emacs.d/site-lisp.d/"
-  :after dired)
-
-(use-package dired-x
-  :after dired)
+(use-package diminish
+  :ensure t
+  :after use-package)
 
 (use-package elfeed
   :ensure t
@@ -55,18 +50,10 @@
   ;; Cleanup for current theme
   (set-face-attribute 'elfeed-search-filter-face nil :inherit 'header-line))
 
-(use-package elpher
-  :bind ("C-c ," . elpher)
-  :load-path "~/.emacs.d/site-lisp.d/elpher/")
-
 (use-package embrace
   :ensure t
   :bind (("C-c E" . embrace-commander)
 		 ("C-c e" . embrace-add)))
-
-(use-package emmet-mode
-  :hook (web-mode css-mode sgml-mode)
-  :ensure t)
 
 (use-package emms
   :bind (("C-c b b" . emms-smart-browse)
@@ -88,20 +75,18 @@
 		emms-source-file-default-directory "~/Music"
 		emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find
 		emms-cache-file "~/.emacs.d/var/emms/cache"
-		emms-player-list '(emms-player-vlc)
+		emms-player-list '(emms-player-mpv)
 		emms-volume-change-function 'emms-volume-pulse-change
 		emms-info-auto-update t
 		emms-librefm-scrobbler-enable t
 		emms-librefm-scrobbler-username "ndegruchy"))
 
-(use-package exec-path-from-shell
-  :ensure t
-  :config
-  (exec-path-from-shell-initialize))
-
 (use-package expand-region
   :ensure t
   :bind ("C-c s" . er/expand-region))
+
+(use-package htmlize
+  :ensure t)
 
 (use-package no-littering
   :ensure t
@@ -139,6 +124,11 @@
 		notmuch-address-command "~/.local/bin/abook-query"
 		notmuch-show-logo nil))
 
+(use-package nov
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+
 (use-package systemd
   :ensure t)
 
@@ -147,19 +137,6 @@
   :diminish
   :config
   (global-undo-tree-mode t))
-
-(use-package web-mode
-  :ensure t
-  :config
-  (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-  (setq web-mode-markup-indent-offset    4
-		web-mode-css-indent-offset       4
-		web-mode-code-indent-offset      4
-		web-mode-enable-auto-pairing     t
-		web-mode-enable-css-colorization t
-		indent-tabs-mode                 t
-		tab-width                        4))
 
 (use-package which-key
   :ensure t

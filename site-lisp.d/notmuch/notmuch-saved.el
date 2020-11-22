@@ -37,10 +37,6 @@
 										:count-query "tag:receipt"
 										:sort-order newest-first
 										:search-type tree)
-								 (:name "trash"
-										:query "tag:trash OR tag:delete"
-										:count-query "tag:trash OR tag:delete OR tag:spam"
-										:sort-order oldest-first)
 								 (:name "important"
 										:key "p"
 										:query "tag:important"

@@ -11,7 +11,7 @@
 ;; Some default settings
 (setq inhibit-startup-message                t
       initial-scratch-message                ";; Scratch buffer\n"
-      initial-major-mode                     (quote text-mode))
+      initial-major-mode                     (quote fundamental-mode))
 
 ;; Misc
 (setq ring-bell-function                     (quote ignore)
@@ -43,7 +43,7 @@
 
 (tool-bar-mode       -1)
 (menu-bar-mode       -1)
-;; (scroll-bar-mode     -1)
+(scroll-bar-mode     -1)
 (display-battery-mode t)
 (tooltip-mode        -1)
 (global-linum-mode   -1)
@@ -95,3 +95,8 @@
      (let (cursor-type)
        (animate-birthday-present user-full-name)))))
 
+;; Timestamps
+(add-hook 'before-save-hook 'time-stamp)
+
+;; Protect buffers
+(add-hook 'after-init-hook #'protect-buffers)

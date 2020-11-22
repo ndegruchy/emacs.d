@@ -145,7 +145,7 @@ Version 2019-01-18"
        ((string-equal system-type "gnu/linux")
         (mapc
          (lambda ($fpath) (let ((process-connection-type nil))
-                            (start-process "" nil "mimeopen" $fpath)))
+                            (start-process "" nil "xdg-open" $fpath)))
 	 $file-list))))))
 
 (defun protect-buffers ()

@@ -11,8 +11,6 @@
  ("C-c v"			.	split-window-horizontally)
  ("C-S-z"			.	bury-buffer)
  ("<f5>"            .	toggle-truncate-lines)
- ("s-<backspace>"   .   kill-this-buffer)
- ("C-<tab>"			.	bs-show)
  ;; Custom functions
  ("C-c R"			.	ndegruchy/rename-file-and-buffer)
  ("S-<return>"		.	ndegruchy/smart-open-line)
@@ -23,7 +21,6 @@
  ("M-<up>"          .	ndegruchy/move-line-up)
  ("M-<down>"        .	ndegruchy/move-line-down)
  ("M-Q"             .	unfill-paragraph)
- ("C-c i"           .   ndegruchy/insert-file-name)
- ("C-c q"           .   endless/ispell-word-then-abbrev)
+ ;; ("C-c q"           .   endless/ispell-word-then-abbrev)
  ("C-c 0"           .   ndegruchy/insert-name)
  ("C-c 9"           .   ndegruchy/insert-email))
