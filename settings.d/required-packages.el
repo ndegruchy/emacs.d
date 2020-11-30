@@ -35,6 +35,11 @@
   :config
   (setq dired-async-mode t))
 
+(use-package avy
+  :ensure t
+  :bind (([remap goto-line] . avy-goto-line)
+		 ("M-g g" . avy-goto-word-0)))
+
 (use-package bind-key
   :ensure t
   :after use-package)
@@ -88,6 +93,12 @@
 (use-package htmlize
   :ensure t)
 
+(use-package ivy
+  :ensure t
+  :diminish
+  :config
+  (ivy-mode t))
+
 (use-package no-littering
   :ensure t
   :config
@@ -128,6 +139,20 @@
   :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+
+(use-package magit
+  :ensure t
+  :bind ("C-c g" . magit-status))
+
+(use-package swiper
+  :ensure t
+  :bind ([remap isearch-forward] . swiper)
+  :config
+  (defun ivy-swiper-recenter (&rest args)
+	"Recenter the display after swiper is done"
+	(recenter))
+  (advice-add 'swiper :after #'ivy-swiper-recenter)
+  (setq ivy-display-style 'fancy))
 
 (use-package systemd
   :ensure t)
