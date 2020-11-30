@@ -44,6 +44,18 @@
   :ensure t
   :after use-package)
 
+(use-package counsel
+  :ensure t
+  :diminish
+  :bind ([remap execute-extended-command] . counsel-M-x)
+  :config
+  (counsel-mode t))
+
+(use-package counsel-tramp
+  :after counsel
+  :ensure t
+  :bind ("C-c G" . counsel-tramp))
+
 (use-package diminish
   :ensure t
   :after use-package)
@@ -61,13 +73,9 @@
 		 ("C-c e" . embrace-add)))
 
 (use-package emms
-  :bind (("C-c b b" . emms-smart-browse)
-		 ("C-c b l" . emms-pause)
-		 ("C-c b s" . emms-stop)
-		 ("C-c b n" . emms-next)
-		 ("C-c b p" . emms-previous)
-		 ("C-c b +" . emms-volume-mode-plus)
-		 ("C-c b -" . emms-volume-mode-minus))
+  :bind (("C-c b +" . emms-volume-mode-plus)
+		 ("C-c b -" . emms-volume-mode-minus)
+		 ("C-c b h" . hydra-emms/body))
   :defer t
   :config
   (emms-all)
@@ -84,20 +92,46 @@
 		emms-volume-change-function 'emms-volume-pulse-change
 		emms-info-auto-update t
 		emms-librefm-scrobbler-enable t
-		emms-librefm-scrobbler-username "ndegruchy"))
+		emms-librefm-scrobbler-username "ndegruchy")
+  :hydra (hydra-emms (:color teal :hint nil)
+  "
+
+	_>_:play/pause  _s_:top    _._:next   _,_:prev
+	_p_:laylist     _b_:rowse  _r_:eload  _q_:uit
+  
+  "
+  ("q" nil)
+  ("p" emms)
+  ("b" emms-smart-browse)
+  ("r" (emms-add-directory-tree "~/Music"))
+  (">" emms-pause)
+  ("s" emms-stop)
+  ("." emms-next)
+  ("," emms-previous)))
 
 (use-package expand-region
   :ensure t
   :bind ("C-c s" . er/expand-region))
 
+(use-package flx
+  :ensure t)
+
 (use-package htmlize
+  :ensure t)
+
+(use-package hydra
   :ensure t)
 
 (use-package ivy
   :ensure t
   :diminish
   :config
-  (ivy-mode t))
+  (ivy-mode t)
+  (setq ivy-wrap t
+		ivy-count-format ""
+		ivy-display-style 'fancy
+		ivy-initial-inputs-alist nil
+		ivy-extra-directories nil))
 
 (use-package no-littering
   :ensure t
@@ -146,13 +180,7 @@
 
 (use-package swiper
   :ensure t
-  :bind ([remap isearch-forward] . swiper)
-  :config
-  (defun ivy-swiper-recenter (&rest args)
-	"Recenter the display after swiper is done"
-	(recenter))
-  (advice-add 'swiper :after #'ivy-swiper-recenter)
-  (setq ivy-display-style 'fancy))
+  :bind ([remap isearch-forward] . swiper))
 
 (use-package systemd
   :ensure t)
@@ -162,6 +190,9 @@
   :diminish
   :config
   (global-undo-tree-mode t))
+
+(use-package use-package-hydra
+  :ensure t)
 
 (use-package which-key
   :ensure t
