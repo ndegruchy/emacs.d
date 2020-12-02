@@ -29,32 +29,9 @@
 
 ;; Package list
 
-(use-package async
-  :ensure t
-  :diminish
-  :config
-  (setq dired-async-mode t))
-
-(use-package avy
-  :ensure t
-  :bind (([remap goto-line] . avy-goto-line)
-		 ("M-g g" . avy-goto-word-0)))
-
 (use-package bind-key
   :ensure t
   :after use-package)
-
-(use-package counsel
-  :ensure t
-  :diminish
-  :bind ([remap execute-extended-command] . counsel-M-x)
-  :config
-  (counsel-mode t))
-
-(use-package counsel-tramp
-  :after counsel
-  :ensure t
-  :bind ("C-c G" . counsel-tramp))
 
 (use-package diminish
   :ensure t
@@ -73,9 +50,11 @@
 		 ("C-c e" . embrace-add)))
 
 (use-package emms
-  :bind (("C-c b +" . emms-volume-mode-plus)
-		 ("C-c b -" . emms-volume-mode-minus)
-		 ("C-c b h" . hydra-emms/body))
+  :ensure t
+  :bind (("C-c b p" . emms-pause)
+		 ("C-c b s" . emms-stop)
+		 ("C-c b +" . emms-volume-mode-plus)
+		 ("C-c b -" . emms-volume-mode-minus))
   :defer t
   :config
   (emms-all)
@@ -92,46 +71,14 @@
 		emms-volume-change-function 'emms-volume-pulse-change
 		emms-info-auto-update t
 		emms-librefm-scrobbler-enable t
-		emms-librefm-scrobbler-username "ndegruchy")
-  :hydra (hydra-emms (:color teal :hint nil)
-  "
-
-	_>_:play/pause  _s_:top    _._:next   _,_:prev
-	_p_:laylist     _b_:rowse  _r_:eload  _q_:uit
-  
-  "
-  ("q" nil)
-  ("p" emms)
-  ("b" emms-smart-browse)
-  ("r" (emms-add-directory-tree "~/Music"))
-  (">" emms-pause)
-  ("s" emms-stop)
-  ("." emms-next)
-  ("," emms-previous)))
+		emms-librefm-scrobbler-username "ndegruchy"))
 
 (use-package expand-region
   :ensure t
   :bind ("C-c s" . er/expand-region))
 
-(use-package flx
-  :ensure t)
-
 (use-package htmlize
   :ensure t)
-
-(use-package hydra
-  :ensure t)
-
-(use-package ivy
-  :ensure t
-  :diminish
-  :config
-  (ivy-mode t)
-  (setq ivy-wrap t
-		ivy-count-format ""
-		ivy-display-style 'fancy
-		ivy-initial-inputs-alist nil
-		ivy-extra-directories nil))
 
 (use-package no-littering
   :ensure t
@@ -169,29 +116,7 @@
 		notmuch-address-command "~/.local/bin/abook-query"
 		notmuch-show-logo nil))
 
-(use-package nov
-  :ensure t
-  :config
-  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
-
-(use-package magit
-  :ensure t
-  :bind ("C-c g" . magit-status))
-
-(use-package swiper
-  :ensure t
-  :bind ([remap isearch-forward] . swiper))
-
 (use-package systemd
-  :ensure t)
-
-(use-package undo-tree
-  :ensure t
-  :diminish
-  :config
-  (global-undo-tree-mode t))
-
-(use-package use-package-hydra
   :ensure t)
 
 (use-package which-key

@@ -47,30 +47,6 @@
 		dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
   (put 'dired-find-alternate-file 'disabled nil))
 
-(use-package erc
-  :bind ("C-c c" . start-irc)
-  :defer t
-  :init
-  (erc-autojoin-mode 1)
-  (erc-fill-mode 1)
-  (erc-services-mode 1)
-  (erc-nickserv-identify-mode 1)
-  :config
-  (load-file "~/.emacs.d/site-lisp.d/private.el")
-  (load-file "~/.emacs.d/site-lisp.d/znc.el")
-  (defun start-irc ()
-	"Connect to IRC"
-	(interactive)
-	(znc-all))
-	;; (erc-tls :server "degruchy.org" :port 1025 :nick "nathan" :full-name user-full-name :password erc-degruchy-password))
-	;; (erc-tls :server "chat.freenode.net" :port 6697 :nick "ndegruchy" :full-name user-full-name :password erc-freenode-password))
-  (setq erc-prompt-for-nickserv-password nil
-		erc-lurker-hide-list '("JOIN" "PART" "QUIT")
-		erc-kill-buffer-on-part t
-		erc-kill-queries-on-quit t
-		erc-kill-server-buffer-on-quit t))
-	 ;;erc-autojoin-channels-alist '(("freenode.net" "#emacs" "#debian" "#erc" "#notmuch" "#fsf" "#indiweb"))
-
 (use-package eshell
   :config
   (setq eshell-visual-commands '("less" "tmux" "htop" "top" "bash" "fish" "zsh")
