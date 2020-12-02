@@ -1,7 +1,0 @@
-; Elpher bookmarks file
-
-; Bookmarks are stored as a list of (label URL) items.
-; Feel free to edit by hand, but take care to ensure
-; the list structure remains intact.
-
-(("My Site" "gemini://degruchy.org/"))
