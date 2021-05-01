@@ -36,7 +36,6 @@
 (setq inhibit-x-resources                    t
       global-font-lock-mode                  t
       delete-selection-mode                  t
-      tooltip-mode                           nil
       show-paren-mode                        t
       default-tab-width                      4
       x-gtk-use-system-tooltips              nil)
@@ -45,14 +44,18 @@
 (menu-bar-mode       -1)
 (scroll-bar-mode     -1)
 (display-battery-mode t)
-(tooltip-mode        -1)
+(tooltip-mode         t)
 (global-linum-mode   -1)
 
 (fset 'yes-or-no-p                          'y-or-n-p)
 
 ;; Fonts
-(add-to-list 'default-frame-alist
-			 '(font . "Fira Code-16"))
+(add-to-list 'default-frame-alist '(font . "Fixedsys-16"))
+
+;; Frame
+(setq frame-resize-pixelwise nil)
+(add-to-list 'default-frame-alist '(height . 24))
+(add-to-list 'default-frame-alist '(width . 80))
 
 ;; Needed if using the default theme
 ;; (set-face-attribute 'region nil :background "light goldenrod")
@@ -83,6 +86,9 @@
 
 ;; Battery
 (setq-default battery-mode-line-format "[%b%p%%]")
+
+;; Default directory
+(setq default-directory "C:\\Users\\natha\\")
 
 ;; Browsing
 (setq browse-url-firefox-program "/opt/firefox/firefox")

@@ -23,4 +23,8 @@
  ("M-Q"             .	unfill-paragraph)
  ;; ("C-c q"           .   endless/ispell-word-then-abbrev)
  ("C-c 0"           .   ndegruchy/insert-name)
- ("C-c 9"           .   ndegruchy/insert-email))
+ ("C-c 9"           .   ndegruchy/insert-email)
+ ;; Some future bindings
+ ("C-x x g"         .   revert-buffer)
+ ("C-x x u"         .   rename-uniquely)
+ ("C-x x t"         .   toggle-truncate-lines))
