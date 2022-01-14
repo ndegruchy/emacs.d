@@ -50,7 +50,7 @@
 (fset 'yes-or-no-p                          'y-or-n-p)
 
 ;; Fonts
-(add-to-list 'default-frame-alist '(font . "Fixedsys-16"))
+;;(add-to-list 'default-frame-alist '(font . "Fixedsys-16"))
 
 ;; Frame
 (setq frame-resize-pixelwise nil)
@@ -88,10 +88,10 @@
 (setq-default battery-mode-line-format "[%b%p%%]")
 
 ;; Default directory
-(setq default-directory "C:\\Users\\natha\\")
+;;(setq default-directory "C:\\Users\\natha\\")
 
 ;; Browsing
-(setq browse-url-firefox-program "/opt/firefox/firefox")
+;;(setq browse-url-firefox-program "/opt/firefox/firefox")
 
 ;; Birthday
 (when (string= "12-21" (format-time-string "%m-%d"))

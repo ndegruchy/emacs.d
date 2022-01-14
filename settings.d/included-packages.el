@@ -38,7 +38,7 @@
 			  ("; q" . delete-frame))
   :hook (dired-mode . dired-hide-details-mode)
   :init
-  (load-file "~/.emacs.d/site-lisp.d/dired+.el")
+  (load-file "~/.config/emacs/site-lisp.d/dired+.el")
   (diredp-toggle-find-file-reuse-dir t)
   :config
   (setq-default dired-omit-files-p t)

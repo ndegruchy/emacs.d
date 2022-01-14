@@ -6,10 +6,10 @@
 (package-initialize)
 
 ;; Load the local lisp directory
-(add-to-list 'load-path "~/.emacs.d/settings.d/")
+(add-to-list 'load-path "~/.config/emacs/settings.d/")
 
 ;; Load Private Variables
-(load-file "~/.emacs.d/site-lisp.d/private.el")
+(load-file "~/.config/emacs/site-lisp.d/private.el")
 
 ;; Different config parts
 (load-library "general-settings")
