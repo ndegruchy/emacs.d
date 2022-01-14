@@ -38,7 +38,7 @@
 			  ("; q" . delete-frame))
   :hook (dired-mode . dired-hide-details-mode)
   :init
-  (load-file "~/.config/emacs/site-lisp.d/dired+.el")
+  (load-file (concat user-emacs-directory "site-lisp.d/dired+.el"))
   (diredp-toggle-find-file-reuse-dir t)
   :config
   (setq-default dired-omit-files-p t)
@@ -60,15 +60,7 @@
 (use-package org
   :config
   (add-hook 'org-mode-hook #'auto-fill-mode)
-  (add-hook 'org-mode-hook #'flyspell-mode)
-  (setq org-publish-project-alist
-		'(("n.d.o"
-		   :base-directory "~/Documents/Notes"
-		   :recursive t
-		   :publishing-directory "~/Documents/Notes/.www/"
-		   :publishing-function org-html-publish-to-html))
-		org-publish-use-timestamps-flag nil
-		org-html-validation-link nil))
+  (add-hook 'org-mode-hook #'flyspell-mode))
 
 (use-package savehist
   :config
