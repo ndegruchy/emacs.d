@@ -56,6 +56,8 @@
 (setq frame-resize-pixelwise nil)
 (add-to-list 'default-frame-alist '(height . 24))
 (add-to-list 'default-frame-alist '(width . 80))
+(setq-default frame-title-format '("%b [%m]"))
+
 
 ;; Needed if using the default theme
 ;; (set-face-attribute 'region nil :background "light goldenrod")
