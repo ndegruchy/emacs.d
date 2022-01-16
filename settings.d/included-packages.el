@@ -13,6 +13,11 @@
 		appt-display-format 'window)
   (appt-activate 1))
 
+(use-package ispell
+  :config
+  (setq ispell-program-name "aspell"
+		ispell-extra-args '("--sug-mode=ultra")))
+
 (use-package auth-source-pass
   :config
   (require 'auth-source-pass)
