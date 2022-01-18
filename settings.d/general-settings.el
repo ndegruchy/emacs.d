@@ -87,7 +87,21 @@
 (put 'upcase-region 'disabled nil)
 
 ;; Battery
-(setq-default battery-mode-line-format "[%b%p%%]")
+;;(setq-default battery-mode-line-format "[%b%p%%]")
+;;(display-battery-mode 1)
+
+;; Hide modeline
+;; (setq-default mode-line-format nil)
+
+;; Custom modeline
+(setq-default mode-line-format
+	  (list
+	   ;; Dirty flag
+	   "[%+] %n"
+	   ;; Buffer name
+	   "%b "
+	   ;; Dashes
+	   "%-"))
 
 ;; Birthday
 (when (string= "12-21" (format-time-string "%m-%d"))
