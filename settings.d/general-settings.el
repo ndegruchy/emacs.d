@@ -19,7 +19,8 @@
       load-prefer-newer                      t
       enable-local-variables                 :safe
       delete-by-moving-to-trash              t
-      suggest-key-bindings                   t)
+      suggest-key-bindings                   t
+	  display-time-24hr-format	             t)
 
 ;; Abbreviations
 (setq-default abbrev-mode t)
@@ -97,7 +98,9 @@
 (setq-default mode-line-format
 	  (list
 	   ;; Dirty flag
-	   "[%+] %n"
+	   "[%+] "
+	   ;; Narrowing enabled?
+	   "%n "
 	   ;; Buffer name
 	   "%b "
 	   ;; Dashes
