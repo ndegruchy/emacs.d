@@ -13,6 +13,10 @@
 		appt-display-format 'window)
   (appt-activate 1))
 
+(use-package hide-lines
+  :init
+  (load-file (concat user-emacs-directory "site-lisp.d/hide-lines.el")))
+
 (use-package ispell
   :config
   (setq ispell-program-name "aspell"
