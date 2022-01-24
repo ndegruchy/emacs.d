@@ -42,7 +42,7 @@
       x-gtk-use-system-tooltips              nil)
 
 (tool-bar-mode       -1)
-(menu-bar-mode       -1)
+(menu-bar-mode        1)
 (scroll-bar-mode     -1)
 (display-battery-mode t)
 (tooltip-mode         t)
