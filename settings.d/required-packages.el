@@ -53,8 +53,15 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
+(use-package php-mode
+  :ensure t)
+
 (use-package systemd
   :ensure t)
+
+(use-package tex-mode
+  :ensure auctex
+  :defer t)
 
 (use-package which-key
   :ensure t
