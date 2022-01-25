@@ -61,7 +61,11 @@
 
 (use-package tex-mode
   :ensure auctex
-  :defer t)
+  :defer t
+  :config
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq-default TeX-master nil))
 
 (use-package which-key
   :ensure t
