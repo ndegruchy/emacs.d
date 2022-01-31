@@ -42,6 +42,12 @@
   :bind (("C-c E" . embrace-commander)
 		 ("C-c e" . embrace-add)))
 
+(use-package emmet-mode
+  :ensure t
+  :hook ((sgml-mode . emmet-mode)
+		 (css-mode . emmet-mode)
+		 (php-mode . emmet-mode)))
+
 (use-package expand-region
   :ensure t
   :bind ("C-c s" . er/expand-region))
