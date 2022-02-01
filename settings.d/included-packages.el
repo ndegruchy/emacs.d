@@ -69,7 +69,8 @@
 (use-package org
   :config
   (add-hook 'org-mode-hook #'auto-fill-mode)
-  (add-hook 'org-mode-hook #'flyspell-mode))
+  (add-hook 'org-mode-hook #'flyspell-mode)
+  (require 'org-mouse))
 
 (use-package savehist
   :config
