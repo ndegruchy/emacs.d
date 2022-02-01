@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2022-01-14 14:12:21 ndegruchy>
+;; Time-stamp: <2022-01-24 16:24:42 NathanRDeGruchy>
 
 ;; Initialize the package manager
 (package-initialize)
@@ -17,6 +17,12 @@
 (load-library "included-packages")
 (load-library "custom-functions")
 (load-library "custom-keybindings")
+
+;; Load Windows-specific stuff
+(cond
+ ((string-equal system-type "windows-nt")
+  (load-library "win32-settings")))
+
 
 ;; Set custom file
 ;; Brilliant hack to effectively discard this file

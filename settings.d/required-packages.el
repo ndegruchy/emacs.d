@@ -42,6 +42,12 @@
   :bind (("C-c E" . embrace-commander)
 		 ("C-c e" . embrace-add)))
 
+(use-package emmet-mode
+  :ensure t
+  :hook ((sgml-mode . emmet-mode)
+		 (css-mode . emmet-mode)
+		 (php-mode . emmet-mode)))
+
 (use-package expand-region
   :ensure t
   :bind ("C-c s" . er/expand-region))
@@ -53,8 +59,19 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
+(use-package php-mode
+  :ensure t)
+
 (use-package systemd
   :ensure t)
+
+(use-package tex-mode
+  :ensure auctex
+  :defer t
+  :config
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq-default TeX-master nil))
 
 (use-package which-key
   :ensure t
