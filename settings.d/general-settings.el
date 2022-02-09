@@ -51,7 +51,7 @@
 (fset 'yes-or-no-p                          'y-or-n-p)
 
 ;; Fonts
-(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-16"))
+(add-to-list 'default-frame-alist '(font . "Cascadia Code-16"))
 
 ;; Frame
 (setq frame-resize-pixelwise nil)
