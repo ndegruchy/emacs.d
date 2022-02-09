@@ -52,6 +52,9 @@
   :ensure t
   :bind ("C-c s" . er/expand-region))
 
+(use-package exec-path-from-shell
+  :ensure t)
+
 (use-package no-littering
   :ensure t
   :config
@@ -69,8 +72,12 @@
   :ensure auctex
   :defer t
   :config
-  (setq TeX-auto-save t)
-  (setq TeX-parse-self t)
+  (setq TeX-auto-save t
+		TeX-parse-self t
+		TeX-source-correlate-mode t
+		TeX-source-correlate-start-server t
+		TeX-view-program-selection '((output-pdf "Okular"))
+		TeX-view-program-list '(("Okular" "okular --unique %o")))
   (setq-default TeX-master nil))
 
 (use-package which-key
