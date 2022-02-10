@@ -55,12 +55,37 @@
 (use-package exec-path-from-shell
   :ensure t)
 
+(use-package helm
+  :ensure t
+  :demand t
+  :bind (("M-x" . helm-M-x)
+		 ("C-x C-f" . helm-find-files)
+		 ("C-x b" . helm-buffers-list)
+		 ("M-y" . helm-show-kill-ring))
+  :config
+  (helm-mode 1))
+
+(use-package magit
+  :ensure t)
+
 (use-package no-littering
   :ensure t
   :config
   (require 'recentf)
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
+
+(use-package org-roam
+  :ensure t
+  :init
+  (setq org-roam-v2-ack t)
+  :custom
+  (org-roam-directory "~/OneDrive/Documents/Notes")
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+		 ("C-c n f" . org-roam-node-find)
+		 ("C-c n i" . org-roam-node-insert))
+  :config
+  (org-roam-setup))
 
 (use-package php-mode
   :ensure t)
