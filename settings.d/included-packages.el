@@ -70,7 +70,7 @@
   :config
   (add-hook 'org-mode-hook #'auto-fill-mode)
   (add-hook 'org-mode-hook #'flyspell-mode)
-  (setq org-startup-folded 'overview)
+  (setq org-startup-folded t)
   (require 'org-mouse))
 
 (use-package savehist
