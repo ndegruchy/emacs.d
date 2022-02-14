@@ -65,10 +65,6 @@
   :config
   (helm-mode 1))
 
-(use-package helm-projectile
-  :ensure t
-  :after helm)
-
 (use-package magit
   :ensure t)
 
@@ -96,21 +92,6 @@
 
 (use-package php-mode
   :ensure t)
-
-(use-package projectile
-  :ensure t
-  :after helm
-  :init
-  (projectile-mode +1)
-  :bind (:map projectile-mode-map
-              ("s-p" . projectile-command-map)
-              ("C-c p" . projectile-command-map))
-  :config
-  (projectile-global-mode)
-  (setq projectile-completion-system 'helm)
-  (helm-projectile-on)
-  (setq projectile-project-search-path
-		'("~/Projects/")))
 
 (use-package systemd
   :ensure t)
