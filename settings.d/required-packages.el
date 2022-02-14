@@ -79,6 +79,9 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
+(use-package olivetti
+  :ensure t)
+
 (use-package org-roam
   :ensure t
   :init
