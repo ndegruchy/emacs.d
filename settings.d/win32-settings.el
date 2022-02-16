@@ -5,8 +5,5 @@
 	  ls-lisp-dirs-first t
 	  ls-lisp-use-insert-directory-program nil)
 
-(use-package files+
-  :load (concat user-emacs-directory "site-lisp.d/files+.el"))
-
-(use-package ls-lisp+
-  :load (concat user-emacs-directory "site-lisp.d/ls-lisp+.el"))
+(add-to-list 'load-path (concat user-emacs-directory "site-lisp.d/"))
+(require 'ls-lisp+)
