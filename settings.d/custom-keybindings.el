@@ -21,7 +21,6 @@
  ("M-<up>"          .	ndegruchy/move-line-up)
  ("M-<down>"        .	ndegruchy/move-line-down)
  ("M-Q"             .	unfill-paragraph)
- ;; ("C-c q"           .   endless/ispell-word-then-abbrev)
  ("C-c 0"           .   ndegruchy/insert-name)
  ("C-c 9"           .   ndegruchy/insert-email)
  ;; Some future bindings
