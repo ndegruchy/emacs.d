@@ -75,38 +75,11 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
-(use-package olivetti
-  :ensure t)
-
-(use-package org-roam
-  :ensure t
-  :init
-  (setq org-roam-v2-ack t)
-  :custom
-  (org-roam-directory "~/OneDrive/Documents/Notes")
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-		 ("C-c n f" . org-roam-node-find)
-		 ("C-c n i" . org-roam-node-insert))
-  :config
-  (org-roam-setup))
-
 (use-package php-mode
   :ensure t)
 
 (use-package systemd
   :ensure t)
-
-(use-package tex-mode
-  :ensure auctex
-  :defer t
-  :config
-  (setq TeX-auto-save t
-		TeX-parse-self t
-		TeX-source-correlate-mode t
-		TeX-source-correlate-start-server t
-		TeX-view-program-selection '((output-pdf "Okular"))
-		TeX-view-program-list '(("Okular" "okular --unique %o")))
-  (setq-default TeX-master nil))
 
 (use-package which-key
   :ensure t
