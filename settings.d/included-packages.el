@@ -84,6 +84,22 @@
   ;; Discovered it here https://stackoverflow.com/questions/1666513/how-to-indent-4-spaces-under-sgml-mode
   (setq sgml-basic-offset 4))
 
+(use-package tramp
+  :config
+  (with-eval-after-load "tramp"
+  (setq vc-ignore-dir-regexp
+        (rx (seq bos
+                 (or (seq (any "/\\") (any "/\\")
+                          (one-or-more (not (any "/\\")))
+                          (any "/\\"))
+                     (seq "/" (or "net" "afs" "...") "/")
+                     ;; Ignore all tramp paths.
+                     (seq "/"
+                          (eval (cons 'or (mapcar #'car tramp-methods)))
+                          ":"
+                          (zero-or-more anything)))
+                 eos)))))
+
 ;; Uniquify
 (setq uniquify-buffer-name-style    'reverse
       uniquify-separator            "/"

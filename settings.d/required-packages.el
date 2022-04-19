@@ -6,7 +6,9 @@
 ;; Package sources
 ;; List repositories to download files from
 
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
+(add-to-list 'package-archives
+			 '("melpa-stable" . "https://stable.melpa.org/packages/")
+			 '("nongnu" . "https://elpa.nongnu.org/nongnu/"))
 ;; (add-to-list 'package-archives '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
 
 ;; Fix for 26.2 elpa 'bad request' issue
@@ -64,9 +66,6 @@
 		 ("M-y" . helm-show-kill-ring))
   :config
   (helm-mode 1))
-
-(use-package magit
-  :ensure t)
 
 (use-package no-littering
   :ensure t
