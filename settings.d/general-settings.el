@@ -119,3 +119,6 @@
 
 ;; Protect buffers
 (add-hook 'after-init-hook #'protect-buffers)
+
+;; Removes weird characters in the title of a frame
+(setq frame-title-format "%b")
