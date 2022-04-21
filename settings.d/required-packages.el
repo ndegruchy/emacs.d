@@ -7,7 +7,8 @@
 ;; List repositories to download files from
 
 (add-to-list 'package-archives
-			 '("melpa-stable" . "https://stable.melpa.org/packages/")
+			 '("melpa-stable" . "https://stable.melpa.org/packages/"))
+(add-to-list 'package-archives
 			 '("nongnu" . "https://elpa.nongnu.org/nongnu/"))
 ;; (add-to-list 'package-archives '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
 
