@@ -73,6 +73,12 @@
   :config
   (helm-mode 1))
 
+(use-package helm-c-yasnippet
+  :ensure t
+  :bind ("C-c y" . helm-yas-complete)
+  :config
+  (setq helm-yas-space-match-any-greedy t))
+
 (use-package no-littering
   :ensure t
   :config
