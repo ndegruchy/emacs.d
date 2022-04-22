@@ -40,6 +40,11 @@
   :ensure t
   :after use-package)
 
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
 (use-package embrace
   :ensure t
   :bind (("C-c E" . embrace-commander)
@@ -90,3 +95,8 @@
 (use-package windresize
   :ensure t
   :bind ("C-c r" . windresize))
+
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode 1))
