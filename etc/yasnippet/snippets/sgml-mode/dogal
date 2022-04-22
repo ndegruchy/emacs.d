@@ -4,8 +4,8 @@
 # key: dogal
 # --
 <section class="gallery">
-    <ul>
-        <li>
+	<ul>
+		<li>
             <a href="${1:imgpath}">
                 <figure>
                     <picture>
