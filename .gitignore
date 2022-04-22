@@ -65,4 +65,4 @@ newsticker/*
 emacs-customize.el
 required-packages.el
 /etc/
-!/etc/yasnippets/**
+!/etc/yasnippet
