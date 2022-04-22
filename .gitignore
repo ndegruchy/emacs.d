@@ -58,11 +58,7 @@ games
 /projectile-bookmarks.eld
 var/*
 !var/abbrevs.el
-etc/remember*
 newsticker/*
 /async-bytecomp.log
-
-emacs-customize.el
-required-packages.el
-etc/
-!etc/yasnippet/**
+etc/*
+!etc/yasnippet
