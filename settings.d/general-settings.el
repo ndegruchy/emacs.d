@@ -122,3 +122,6 @@
 
 ;; Removes weird characters in the title of a frame
 (setq frame-title-format "%b")
+
+;; Save minibuffer history
+(savehist-mode 1)
