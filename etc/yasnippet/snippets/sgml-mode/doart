@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: DeGruchy.org Article Snippet
-# group : meta
+# group: degruchy-org
+# key: doart
 # --
 <article class="hentry h-entry" id="${1:date}-${2:anchor}">
 	<header>
@@ -17,4 +18,4 @@
             <a href="/" class="u-url">Nathan DeGruchy</a>
         </address>
     </footer>
-</article>"
+</article>
