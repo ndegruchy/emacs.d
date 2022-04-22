@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: DeGruchy.org Gallery Snippet
+# group: degruchy-org
+# key: dogal
+# --
+<section class="gallery">
+    <ul>
+        <li>
+            <a href="${1:imgpath}">
+                <figure>
+                    <picture>
+                        <source srcset="${1:imgpath}_thumb.avic" type="image/avic">
+                        <source srcset="${1:imgpath}_thumb.webp" type="image/webp">
+                        <img src="${1:imgpath}_thumb.jpg" alt="" loading="lazy">
+                    </picture>
+                    <figcaption>$0</figcaption>
+                </figure>
+            </a>
+        </li>
+    </ul>
+</section>
