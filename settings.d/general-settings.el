@@ -48,11 +48,12 @@
 (tooltip-mode         t)
 (global-linum-mode   -1)
 
-(fset 'yes-or-no-p                          'y-or-n-p)
+(fset 'yes-or-no-p   'y-or-n-p)
 
 ;; Fonts
-(add-to-list 'default-frame-alist '(font . "Cascadia Code-16"))
-;;(set-face-attribute 'default t :font "Cascadia Code-16")
+(add-to-list 'default-frame-alist '(font . "Hack-16"))
+;; (add-hook 'after-init-hook 'ndegruchy/font-setup)
+;; (add-hook 'server-after-make-frame-hook 'ndegruchy/font-setup)
 
 ;; Frame
 (setq frame-resize-pixelwise nil)
@@ -67,6 +68,7 @@
 (load-theme 'leuven)
 
 ;; Editing - Pairs
+
 (electric-pair-mode 1)
 (show-paren-mode    1)
 

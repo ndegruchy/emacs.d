@@ -72,7 +72,6 @@
 		 ("C-x C-f" . helm-find-files)
 		 ("C-x b" . helm-buffers-list)
 		 ("M-y" . helm-show-kill-ring)
-		 ("C-i" . helm-select-action)
 		 ("C-x c m" . helm-man-woman)
 		 ("C-x c c" . helm-colors))
   :config
