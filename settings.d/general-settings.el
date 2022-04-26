@@ -52,6 +52,7 @@
 
 ;; Fonts
 (add-to-list 'default-frame-alist '(font . "Cascadia Code-16"))
+;;(set-face-attribute 'default t :font "Cascadia Code-16")
 
 ;; Frame
 (setq frame-resize-pixelwise nil)

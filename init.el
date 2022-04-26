@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2022-01-24 16:24:42 NathanRDeGruchy>
+;; Time-stamp: <2022-04-22 22:24:57 nathan>
 
 ;; Initialize the package manager
 (package-initialize)
@@ -9,7 +9,11 @@
 (add-to-list 'load-path (concat user-emacs-directory "settings.d/"))
 
 ;; Load Private Variables
-(load-file (concat user-emacs-directory "site-lisp.d/private.el"))
+(if
+	;; I hate when I start a new emacs dir, there is always this missing file
+	(file-exists-p (concat user-emacs-directory "site-lisp.d/private.el"))
+	(load-file (concat user-emacs-directory "site-lisp.d/private.el"))
+  (with-temp-buffer (write-file (concat user-emacs-directory "site-lisp.d/private.el"))))
 
 ;; Different config parts
 (load-library "general-settings")
@@ -19,9 +23,9 @@
 (load-library "custom-keybindings")
 
 ;; Load Windows-specific stuff
-(cond
- ((string-equal system-type "windows-nt")
-  (load-library "win32-settings")))
+(if
+ (string-equal system-type "windows-nt")
+	(load-library "win32-settings"))
 
 
 ;; Set custom file

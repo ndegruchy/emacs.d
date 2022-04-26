@@ -1,5 +1,5 @@
-;; required-packages.el
-;; These packages are required and will be loaded on launch of Emacs
+;;; required-packages.el
+;;; These packages are required and will be loaded on launch of Emacs
 
 (require 'package)
 
@@ -30,7 +30,7 @@
 (eval-when-compile
   (require 'use-package))
 
-;; Package list
+;;; (Package list)
 
 (use-package bind-key
   :ensure t
@@ -56,12 +56,14 @@
 		 (css-mode . emmet-mode)
 		 (php-mode . emmet-mode)))
 
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
+
 (use-package expand-region
   :ensure t
   :bind ("C-c s" . er/expand-region))
-
-(use-package exec-path-from-shell
-  :ensure t)
 
 (use-package helm
   :ensure t
@@ -69,9 +71,16 @@
   :bind (("M-x" . helm-M-x)
 		 ("C-x C-f" . helm-find-files)
 		 ("C-x b" . helm-buffers-list)
-		 ("M-y" . helm-show-kill-ring))
+		 ("M-y" . helm-show-kill-ring)
+		 ("C-i" . helm-select-action)
+		 ("C-x c m" . helm-man-woman)
+		 ("C-x c c" . helm-colors))
   :config
-  (helm-mode 1))
+  (helm-mode 1)
+  (setq helm-move-to-line-cycle-in-source t
+		helm-M-x-fuzzy-match t
+		helm-buffers-fuzzy-matching t
+		helm-recentf-fuzzy-match    t))
 
 (use-package helm-c-yasnippet
   :ensure t
