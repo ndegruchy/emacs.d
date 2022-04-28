@@ -59,6 +59,7 @@
 (use-package exec-path-from-shell
   :ensure t
   :config
+  (setq exec-path-from-shell-variables '("PATH" "MANPATH" "SSH_AUTH_SOCK" "SSH_AGENT_PID"))
   (exec-path-from-shell-initialize))
 
 (use-package expand-region
@@ -81,21 +82,12 @@
 		helm-buffers-fuzzy-matching t
 		helm-recentf-fuzzy-match    t))
 
-(use-package helm-c-yasnippet
-  :ensure t
-  :bind ("C-c y" . helm-yas-complete)
-  :config
-  (setq helm-yas-space-match-any-greedy t))
-
 (use-package no-littering
   :ensure t
   :config
   (require 'recentf)
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
-
-(use-package php-mode
-  :ensure t)
 
 (use-package systemd
   :ensure t)
