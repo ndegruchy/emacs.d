@@ -78,6 +78,7 @@
   :config
   (helm-mode 1)
   (setq helm-move-to-line-cycle-in-source t
+		helm-M-x-always-save-history t
 		helm-M-x-fuzzy-match t
 		helm-buffers-fuzzy-matching t
 		helm-recentf-fuzzy-match    t))

@@ -77,7 +77,9 @@
   :config
   (savehist-mode 1)
   (setq history-delete-duplicates t
-		history-length 20))
+		history-length 20
+		savehist-additional-variables '(helm-M-x-input-history
+										extended-command-history)))
 
 (use-package sgml-mode
   :config
