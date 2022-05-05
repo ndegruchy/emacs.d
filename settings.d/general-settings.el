@@ -51,7 +51,7 @@
 (fset 'yes-or-no-p   'y-or-n-p)
 
 ;; Fonts
-(add-to-list 'default-frame-alist '(font . "Hack-16"))
+(add-to-list 'default-frame-alist '(font . "Hack-15"))
 ;; (add-hook 'after-init-hook 'ndegruchy/font-setup)
 ;; (add-hook 'server-after-make-frame-hook 'ndegruchy/font-setup)
 

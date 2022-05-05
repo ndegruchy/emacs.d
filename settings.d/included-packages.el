@@ -4,7 +4,9 @@
 (diminish 'auto-revert-mode)
 
 (use-package abbrev
-  :diminish abbrev-mode)
+  :diminish abbrev-mode
+  :config
+  (setq-default abbrev-mode t))
 
 (use-package appt
   :config
@@ -84,7 +86,8 @@
 (use-package sgml-mode
   :config
   ;; Discovered it here https://stackoverflow.com/questions/1666513/how-to-indent-4-spaces-under-sgml-mode
-  (setq sgml-basic-offset 4))
+  (setq sgml-basic-offset 4
+		truncate-lines 1))
 
 (use-package tramp
   :config
