@@ -228,3 +228,9 @@ With prefix P, create local abbrev. Otherwise it will be global."
          (insert (expand-file-name filename)))
         (t
          (insert filename))))
+
+(defun ndegruchy/setup-gui (frame)
+  "Setup frame parameters when a new frame is created. Completely
+ridiculous I have to do this in 2022 when using Emacs Server."
+  (select-frame frame)
+  (load-theme 'zenburn t))
