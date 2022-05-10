@@ -52,8 +52,6 @@
 
 ;; Fonts
 (add-to-list 'default-frame-alist '(font . "Hack-15"))
-;; (add-hook 'after-init-hook 'ndegruchy/font-setup)
-;; (add-hook 'server-after-make-frame-hook 'ndegruchy/font-setup)
 
 ;; Frame
 (setq frame-resize-pixelwise nil)
@@ -61,6 +59,10 @@
 (add-to-list 'default-frame-alist '(width . 80))
 (setq-default frame-title-format '("%b [%m]"))
 
+;; After frame creation
+(if (daemonp)
+	(add-hook 'after-make-frame-functions #'ndegruchy/setup-gui)
+  (load-theme 'zenburn t))
 
 ;; Needed if using the default theme
 ;; (set-face-attribute 'region nil :background "light goldenrod")
@@ -91,11 +93,8 @@
 (put 'upcase-region 'disabled nil)
 
 ;; Battery
-;;(setq-default battery-mode-line-format "[%b%p%%]")
-;;(display-battery-mode 1)
-
-;; Hide modeline
-;; (setq-default mode-line-format nil)
+(setq-default battery-mode-line-format "%b%p%%")
+(display-battery-mode 1)
 
 ;; Custom modeline
 (setq-default mode-line-format
@@ -105,9 +104,18 @@
 	   ;; Narrowing enabled?
 	   "%n "
 	   ;; Buffer name
-	   "%b "
+	   mode-line-buffer-identification
+	   ;; Sep
+	   " | "
+	   ;; Battery
+	   "B:" 'battery-mode-line-string
+	   ;; Sep
+	   " | "
+	   ;; Position
+	   mode-line-position
 	   ;; Dashes
-	   "%-"))
+	   mode-line-end-spaces))
+
 
 ;; Birthday
 (when (string= "12-21" (format-time-string "%m-%d"))
