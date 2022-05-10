@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2022-05-04 21:56:04 nathan>
+;; Time-stamp: <2022-05-05 08:30:15 nathan>
 
 ;; Initialize the package manager
 (package-initialize)
@@ -12,8 +12,9 @@
 (if
 	;; I hate when I start a new emacs dir, there is always this missing file
 	(not (file-exists-p (concat user-emacs-directory "site-lisp.d/private.el")))
-	(load-file (concat user-emacs-directory "site-lisp.d/private.el"))
-  (with-temp-buffer (write-file (concat user-emacs-directory "site-lisp.d/private.el"))))
+	(with-temp-buffer (write-file (concat user-emacs-directory "site-lisp.d/private.el")))
+  (load-file (concat user-emacs-directory "site-lisp.d/private.el")))
+
 
 ;; Different config parts
 (load-library "general-settings")

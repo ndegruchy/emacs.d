@@ -10,6 +10,8 @@
 			 '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (add-to-list 'package-archives
 			 '("nongnu" . "https://elpa.nongnu.org/nongnu/"))
+;; (add-to-list 'package-archives
+;; 			 '("melpa" . "https://melpa.org/packages/") t)
 ;; (add-to-list 'package-archives '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
 
 ;; Fix for 26.2 elpa 'bad request' issue
@@ -42,6 +44,7 @@
 
 (use-package editorconfig
   :ensure t
+  :diminish t
   :config
   (editorconfig-mode 1))
 
@@ -52,6 +55,7 @@
 
 (use-package emmet-mode
   :ensure t
+  :diminish t
   :hook ((sgml-mode . emmet-mode)
 		 (css-mode . emmet-mode)
 		 (php-mode . emmet-mode)))
@@ -69,6 +73,7 @@
 (use-package helm
   :ensure t
   :demand t
+  :diminish t
   :bind (("M-x" . helm-M-x)
 		 ("C-x C-f" . helm-find-files)
 		 ("C-x b" . helm-buffers-list)
@@ -82,6 +87,11 @@
 		helm-M-x-fuzzy-match t
 		helm-buffers-fuzzy-matching t
 		helm-recentf-fuzzy-match    t))
+
+(use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown"))
 
 (use-package no-littering
   :ensure t
@@ -105,5 +115,6 @@
 
 (use-package yasnippet
   :ensure t
+  :diminish t
   :config
   (yas-global-mode 1))

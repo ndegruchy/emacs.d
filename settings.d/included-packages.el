@@ -15,6 +15,9 @@
 		appt-display-format 'window)
   (appt-activate 1))
 
+(use-package eldoc
+  :diminish t)
+
 (use-package hide-lines
   :init
   (load-file (concat user-emacs-directory "site-lisp.d/hide-lines.el")))
