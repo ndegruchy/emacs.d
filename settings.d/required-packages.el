@@ -122,4 +122,6 @@
 (use-package zenburn-theme
   :ensure t
   :config
-  (load-theme 'zenburn t))
+  (load-theme 'zenburn t)
+  (set-face-background 'helm-minibuffer-prompt "transparent")
+  (face-attribute 'helm-minibuffer-prompt  :inherit 'nil))
