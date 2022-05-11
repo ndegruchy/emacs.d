@@ -63,12 +63,14 @@
 (use-package exec-path-from-shell
   :ensure t
   :config
-  (setq exec-path-from-shell-variables '("PATH" "MANPATH" "SSH_AUTH_SOCK" "SSH_AGENT_PID"))
   (exec-path-from-shell-initialize))
 
 (use-package expand-region
   :ensure t
   :bind ("C-c s" . er/expand-region))
+
+(use-package git-modes
+  :ensure t)
 
 (use-package helm
   :ensure t
@@ -87,6 +89,9 @@
 		helm-M-x-fuzzy-match t
 		helm-buffers-fuzzy-matching t
 		helm-recentf-fuzzy-match    t))
+
+(use-package magit
+  :ensure t)
 
 (use-package markdown-mode
   :ensure t
@@ -122,9 +127,4 @@
 (use-package zenburn-theme
   :ensure t
   :config
-  (load-theme 'zenburn t)
-  (set-face-background 'helm-minibuffer-prompt "transparent")
-  (face-attribute 'helm-minibuffer-prompt  :inherit 'nil)
-  (set-face-background 'helm-header-line-left-margin "transparent")
-  (set-face-foreground 'helm-header-line-left-margin "#F0DFAF")
-  (set-face-background 'minibuffer-prompt "transparent"))
+  (load-theme 'zenburn t))
