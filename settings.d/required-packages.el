@@ -124,4 +124,7 @@
   :config
   (load-theme 'zenburn t)
   (set-face-background 'helm-minibuffer-prompt "transparent")
-  (face-attribute 'helm-minibuffer-prompt  :inherit 'nil))
+  (face-attribute 'helm-minibuffer-prompt  :inherit 'nil)
+  (set-face-background 'helm-header-line-left-margin "transparent")
+  (set-face-foreground 'helm-header-line-left-margin "#F0DFAF")
+  (set-face-background 'minibuffer-prompt "transparent"))
