@@ -43,6 +43,29 @@
   :ensure t
   :after use-package)
 
+(use-package circe
+  :ensure t
+  :config
+  (setq circe-reduce-lurker-spam t
+		circe-network-options
+		`(("Libera"
+		   :host "irc.libera.chat"
+		   :server-buffer-name "Libera.Chat"
+		   :port (6667 . 6697)
+		   :use-tls t
+		   :nick "ndegruchy"
+		   :user "ndegruchy"
+		   :sasl-username "ndegruchy"
+		   :sasl-password ,circe-libera-password
+		   :channels (:after-auth
+					  "#emacs"
+					  "#linux"
+					  "#debian"
+					  "#firefox"
+					  "#kde"))))
+  (set-face-attribute 'circe-my-message-face nil :background "transparent")
+  (set-face-attribute 'circe-my-message-face nil :foreground "tomato"))
+
 (use-package diminish
   :ensure t
   :after use-package)
@@ -92,7 +115,11 @@
 		helm-M-x-always-save-history t
 		helm-M-x-fuzzy-match t
 		helm-buffers-fuzzy-matching t
-		helm-recentf-fuzzy-match    t))
+		helm-recentf-fuzzy-match    t
+		helm-mode-no-completion-in-region-in-modes
+		'(circe-channel-mode
+		  circe-query-mode
+		  circe-server-mode)))
 
 (use-package helm-bbdb
   :ensure t
