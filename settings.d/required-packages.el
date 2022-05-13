@@ -76,9 +76,6 @@
   :ensure t
   :bind ("C-c s" . er/expand-region))
 
-(use-package git-modes
-  :ensure t)
-
 (use-package helm
   :ensure t
   :demand t
@@ -100,9 +97,6 @@
 (use-package helm-bbdb
   :ensure t
   :after (helm bbdb))
-
-(use-package magit
-  :ensure t)
 
 (use-package markdown-mode
   :ensure t
