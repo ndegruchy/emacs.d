@@ -34,6 +34,11 @@
 
 ;;; (Package list)
 
+(use-package bbdb
+  :ensure t
+  :config
+  (bbdb-initialize))
+
 (use-package bind-key
   :ensure t
   :after use-package)
@@ -89,6 +94,10 @@
 		helm-M-x-fuzzy-match t
 		helm-buffers-fuzzy-matching t
 		helm-recentf-fuzzy-match    t))
+
+(use-package helm-bbdb
+  :ensure t
+  :after (helm bbdb))
 
 (use-package magit
   :ensure t)

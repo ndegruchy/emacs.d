@@ -78,6 +78,10 @@
   (setq org-startup-folded t)
   (require 'org-mouse))
 
+(use-package remember
+  :bind (("C-c ," . remember)
+		 ("C-c <" . remember-region)))
+
 (use-package savehist
   :config
   (savehist-mode 1)
@@ -89,8 +93,7 @@
 (use-package sgml-mode
   :config
   ;; Discovered it here https://stackoverflow.com/questions/1666513/how-to-indent-4-spaces-under-sgml-mode
-  (setq sgml-basic-offset 4
-		truncate-lines 1))
+  (setq sgml-basic-offset 4))
 
 (use-package tramp
   :config
