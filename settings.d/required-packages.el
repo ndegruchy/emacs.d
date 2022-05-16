@@ -56,12 +56,13 @@
 		   :nick "ndegruchy"
 		   :user "ndegruchy"
 		   :sasl-username "ndegruchy"
-		   :sasl-password ,circe-libera-password
+		   :sasl-password ,circe-libera-password ;; Sourced from elsewhere
 		   :channels (:after-auth
 					  "#emacs"
 					  "#linux"
 					  "#debian"
 					  "#firefox"
+					  "#taskwarrior"
 					  "#kde"))))
   (set-face-attribute 'circe-my-message-face nil :background "transparent")
   (set-face-attribute 'circe-my-message-face nil :foreground "tomato"))
@@ -155,8 +156,3 @@
   :diminish t
   :config
   (yas-global-mode 1))
-
-(use-package zenburn-theme
-  :ensure t
-  :config
-  (load-theme 'zenburn t))
