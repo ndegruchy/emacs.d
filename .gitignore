@@ -62,3 +62,6 @@ newsticker/*
 /async-bytecomp.log
 etc/*
 !etc/yasnippet
+
+# Don't sync my todo list via git
+/todo/**
