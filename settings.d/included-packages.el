@@ -33,7 +33,10 @@
   (auth-source-pass-enable))
 
 (use-package diary
-  :hook (diary-list-entries-hook . (diary-sort-entries t)))
+  :hook (diary-list-entries-hook . (diary-sort-entries t))
+  :config
+  (add-hook 'diary-list-entries-hook 'diary-include-other-diary-files)
+  (add-hook 'diary-mark-entries-hook 'diary-mark-included-diary-files))
 
 (use-package dired
   :bind (:map dired-mode-map

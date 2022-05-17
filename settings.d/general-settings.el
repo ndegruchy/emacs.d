@@ -61,13 +61,12 @@
 
 ;; After frame creation
 (if (daemonp)
-	(add-hook 'after-make-frame-functions #'ndegruchy/setup-gui)
-  (load-theme 'zenburn t))
+    (add-hook 'after-make-frame-functions #'ndegruchy/setup-gui))
 
 ;; Needed if using the default theme
 ;; (set-face-attribute 'region nil :background "light goldenrod")
 ;; (load-theme 'tango)
-(load-theme 'leuven)
+;; (load-theme 'leuven)
 
 ;; Editing - Pairs
 
@@ -113,6 +112,8 @@
 	   " | "
 	   ;; Position
 	   mode-line-position
+	   ;; Sep
+	   ;; "|"
 	   ;; Dashes
 	   mode-line-end-spaces))
 
