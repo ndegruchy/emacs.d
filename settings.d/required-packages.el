@@ -10,8 +10,7 @@
 			 '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (add-to-list 'package-archives
 			 '("nongnu" . "https://elpa.nongnu.org/nongnu/"))
-;; (add-to-list 'package-archives
-;; 			 '("melpa" . "https://melpa.org/packages/") t)
+;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; (add-to-list 'package-archives '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
 
 ;; Fix for 26.2 elpa 'bad request' issue
