@@ -12,6 +12,7 @@
  ("C-S-z"			.	bury-buffer)
  ("C-c C"			.	calendar)
  ("<f5>"            .	toggle-truncate-lines)
+ ("M-/"             .   hippie-expand)
  ;; Custom functions
  ("C-c R"			.	ndegruchy/rename-file-and-buffer)
  ("S-<return>"		.	ndegruchy/smart-open-line)

@@ -5,7 +5,11 @@
 (setq user-full-name         "Nathan DeGruchy"
       user-mail-address      "nathan@degruchy.org"
       message-signature      t
-      message-signature-file "~/.config/signature.txt")
+	  calendar-christian-all-holidays-flag t)
+
+;; Signature
+(if (file-exists-p "~/.config/signature.txt")
+	(setq message-signature-file "~/.config/signature.txt"))
 
 ;; Startup
 ;; Some default settings
@@ -38,7 +42,6 @@
       global-font-lock-mode                  t
       delete-selection-mode                  t
       show-paren-mode                        t
-      default-tab-width                      4
       x-gtk-use-system-tooltips              nil)
 
 (tool-bar-mode       -1)
@@ -63,11 +66,6 @@
 (if (daemonp)
     (add-hook 'after-make-frame-functions #'ndegruchy/setup-gui))
 
-;; Needed if using the default theme
-;; (set-face-attribute 'region nil :background "light goldenrod")
-;; (load-theme 'tango)
-;; (load-theme 'leuven)
-
 ;; Editing - Pairs
 
 (electric-pair-mode 1)
@@ -81,7 +79,10 @@
 
 ;; Editing - Indentation
 (setq-default tab-always-indent 'complete
-			  tab-width         4)
+			  tab-width         4
+			  default-tab-width 4
+			  indent-tabs-mode  t
+			  backward-delete-char-untabify-method 'hungry)
 
 ;; Enable narrowing
 (put 'narrow-to-region 'disabled nil)

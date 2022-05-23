@@ -125,6 +125,10 @@
   :ensure t
   :after (helm bbdb))
 
+(use-package iedit
+  ;; No extra keybindings to activate, it maps C-; by default
+  :ensure t)
+
 (use-package markdown-mode
   :ensure t
   :mode ("README\\.md\\'" . gfm-mode)
@@ -136,6 +140,11 @@
   (require 'recentf)
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
+
+(use-package pdf-tools
+  :ensure t
+  :config
+  (pdf-tools-install))
 
 (use-package systemd
   :ensure t)
@@ -149,9 +158,3 @@
 (use-package windresize
   :ensure t
   :bind ("C-c r" . windresize))
-
-(use-package yasnippet
-  :ensure t
-  :diminish t
-  :config
-  (yas-global-mode 1))

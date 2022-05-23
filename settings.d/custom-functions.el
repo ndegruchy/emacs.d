@@ -234,8 +234,6 @@ With prefix P, create local abbrev. Otherwise it will be global."
 ridiculous I have to do this in 2022 when using Emacs Server."
   (select-frame frame)
   (load-theme 'tango-dark t)
-  (set-face-background 'helm-minibuffer-prompt "transparent")
-  (face-attribute 'helm-minibuffer-prompt :inherit 'nil)
-  (set-face-background 'helm-header-line-left-margin "transparent")
-  (set-face-foreground 'helm-header-line-left-margin "#F0DFAF")
-  (set-face-background 'minibuffer-prompt "transparent"))
+  ;; Needed if using the default theme
+  ;; (set-face-attribute 'region nil :background "light goldenrod")
+  )
