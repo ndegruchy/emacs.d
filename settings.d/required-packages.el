@@ -33,38 +33,9 @@
 
 ;;; (Package list)
 
-(use-package bbdb
-  :ensure t
-  :config
-  (bbdb-initialize))
-
 (use-package bind-key
   :ensure t
   :after use-package)
-
-(use-package circe
-  :ensure t
-  :config
-  (setq circe-reduce-lurker-spam t
-		circe-network-options
-		`(("Libera"
-		   :host "irc.libera.chat"
-		   :server-buffer-name "Libera.Chat"
-		   :port (6667 . 6697)
-		   :use-tls t
-		   :nick "ndegruchy"
-		   :user "ndegruchy"
-		   :sasl-username "ndegruchy"
-		   :sasl-password ,circe-libera-password ;; Sourced from elsewhere
-		   :channels (:after-auth
-					  "#emacs"
-					  "#linux"
-					  "#debian"
-					  "#firefox"
-					  "#taskwarrior"
-					  "#kde"))))
-  (set-face-attribute 'circe-my-message-face nil :background "transparent")
-  (set-face-attribute 'circe-my-message-face nil :foreground "tomato"))
 
 (use-package diminish
   :ensure t
@@ -121,18 +92,10 @@
 		  circe-query-mode
 		  circe-server-mode)))
 
-(use-package helm-bbdb
-  :ensure t
-  :after (helm bbdb))
-
-(use-package iedit
-  ;; No extra keybindings to activate, it maps C-; by default
-  :ensure t)
-
 (use-package markdown-mode
   :ensure t
   :mode ("README\\.md\\'" . gfm-mode)
-  :init (setq markdown-command "multimarkdown"))
+  :init (setq markdown-command "pandoc"))
 
 (use-package no-littering
   :ensure t
@@ -141,13 +104,14 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
-(use-package pdf-tools
-  :ensure t
-  :config
-  (pdf-tools-install))
-
 (use-package systemd
   :ensure t)
+
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode 1)
+  (add-to-list 'hippie-expand-try-functions-list 'yas/hippie-try-expand))
 
 (use-package which-key
   :ensure t
