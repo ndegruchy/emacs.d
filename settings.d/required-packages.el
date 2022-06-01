@@ -39,15 +39,12 @@
 
 (use-package counsel
   :ensure t
-  :after ivy
   :bind (("M-x" . counsel-M-x)
 		 ("C-x C-f" . counsel-find-file)
 		 ("M-y" . counsel-yank-pop)
 		 ("C-s" . swiper-isearch))
   :config
-  (setq ivy-use-virtual-buffers t
-		enable-recursive-minibuffers t)
-  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+  (setq enable-recursive-minibuffers t)
   (counsel-mode t))
 
 (use-package diminish
@@ -89,17 +86,29 @@
 
 (use-package ivy
   :ensure t
-  :bind (("C-x b" . ivy-switch-buffer))
+  :bind (("C-x b" . ivy-switch-buffer)
+		 (:map ivy-minibuffer-map
+			   ("C-l" . counsel-up-directory)))
   :config
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) ")
   (setq ivy-wrap t)
+  (setq ivy-use-selectable-prompt t)
   (ivy-mode t))
+
+(use-package ivy-prescient
+  :ensure t
+  :after ivy
+  :config
+  (ivy-prescient-mode t))
 
 (use-package markdown-mode
   :ensure t
   :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "pandoc"))
+
+(use-package modus-themes
+  :ensure t)
 
 (use-package no-littering
   :ensure t
@@ -107,6 +116,11 @@
   (require 'recentf)
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
+
+(use-package prescient
+  :ensure t
+  :config
+  (prescient-persist-mode t))
 
 (use-package systemd
   :ensure t)

@@ -233,7 +233,8 @@ With prefix P, create local abbrev. Otherwise it will be global."
   "Setup frame parameters when a new frame is created. Completely
 ridiculous I have to do this in 2022 when using Emacs Server."
   (select-frame frame)
-  (load-theme 'tango-dark t)
+  (load-theme 'modus-operandi t)
+  (set-frame-font "Cascadia Code-16" nil t) ;; Use official fonts, not the Debian package.
   ;; Needed if using the default theme
   ;; (set-face-attribute 'region nil :background "light goldenrod")
   )
