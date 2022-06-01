@@ -37,6 +37,19 @@
   :ensure t
   :after use-package)
 
+(use-package counsel
+  :ensure t
+  :after ivy
+  :bind (("M-x" . counsel-M-x)
+		 ("C-x C-f" . counsel-find-file)
+		 ("M-y" . counsel-yank-pop)
+		 ("C-s" . swiper-isearch))
+  :config
+  (setq ivy-use-virtual-buffers t
+		enable-recursive-minibuffers t)
+  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+  (counsel-mode t))
+
 (use-package diminish
   :ensure t
   :after use-package)
@@ -70,27 +83,18 @@
   :ensure t
   :bind ("C-c s" . er/expand-region))
 
-(use-package helm
+(use-package hydra
   :ensure t
-  :demand t
-  :diminish t
-  :bind (("M-x" . helm-M-x)
-		 ("C-x C-f" . helm-find-files)
-		 ("C-x b" . helm-buffers-list)
-		 ("M-y" . helm-show-kill-ring)
-		 ("C-x c m" . helm-man-woman)
-		 ("C-x c c" . helm-colors))
+  :after ivy)
+
+(use-package ivy
+  :ensure t
+  :bind (("C-x b" . ivy-switch-buffer))
   :config
-  (helm-mode 1)
-  (setq helm-move-to-line-cycle-in-source t
-		helm-M-x-always-save-history t
-		helm-M-x-fuzzy-match t
-		helm-buffers-fuzzy-matching t
-		helm-recentf-fuzzy-match    t
-		helm-mode-no-completion-in-region-in-modes
-		'(circe-channel-mode
-		  circe-query-mode
-		  circe-server-mode)))
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-wrap t)
+  (ivy-mode t))
 
 (use-package markdown-mode
   :ensure t
