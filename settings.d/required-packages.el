@@ -69,10 +69,11 @@
   (set-face-attribute 'circe-my-message-face nil :foreground "tomato")
 
   (defun ndegruchy/circe-switch-to-buffer ()
+	"Create a buffer list for helm that contain only circe buffers using the function below"
 	(interactive)
 	(let ((helm-source-buffers-list ndegruchy/circe-buffers-source))
       (helm-buffers-list)))
-  (bind-keys ("C-c c b" . ndegruchy/circe-switch-to-buffer))
+  
   (setq ndegruchy/circe-buffers-source
 		(helm-make-source "Circe Buffers" 'helm-source-buffers
 		  :buffer-list
@@ -82,7 +83,9 @@
 					 (lambda (buf)
 					   (with-current-buffer buf
 						 (derived-mode-p 'lui-mode)))
-					 (buffer-list)))))))
+					 (buffer-list))))))
+  
+  (bind-keys ("C-c c b" . ndegruchy/circe-switch-to-buffer)))
 
 (use-package diminish
   :ensure t
