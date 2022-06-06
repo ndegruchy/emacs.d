@@ -9,8 +9,15 @@
 (add-to-list 'package-archives
 			 '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (add-to-list 'package-archives
-			 '("nongnu" . "https://elpa.nongnu.org/nongnu/"))
-;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+			 '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
+(add-to-list 'package-archives
+			 '("melpa" . "https://melpa.org/packages/") t)
+
+(setq package-archive-priorities
+	  '(("melpa-stable" . 20)
+		("nongnu" . 15)
+		("melpa" . 1))) ;; Sets download priority, higher = more likely
+
 ;; (add-to-list 'package-archives '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
 
 ;; Fix for 26.2 elpa 'bad request' issue
@@ -37,15 +44,45 @@
   :ensure t
   :after use-package)
 
-(use-package counsel
+(use-package circe
   :ensure t
-  :bind (("M-x" . counsel-M-x)
-		 ("C-x C-f" . counsel-find-file)
-		 ("M-y" . counsel-yank-pop)
-		 ("C-s" . swiper-isearch))
+  :bind ("C-c l" . circe)
   :config
-  (setq enable-recursive-minibuffers t)
-  (counsel-mode t))
+  (setq circe-reduce-lurker-spam t
+		circe-network-options
+		`(("Libera"
+		   :host "irc.libera.chat"
+		   :server-buffer-name "Libera.Chat"
+		   :port (6667 . 6697)
+		   :use-tls t
+		   :nick "ndegruchy"
+		   :user "ndegruchy"
+		   :sasl-username "ndegruchy"
+		   :sasl-password ,circe-libera-password
+		   :channels (:after-auth
+					  "#emacs"
+					  "#linux"
+					  "#debian"
+					  "#firefox"
+					  "#kde"))))
+  (set-face-attribute 'circe-my-message-face nil :background "transparent")
+  (set-face-attribute 'circe-my-message-face nil :foreground "tomato")
+
+  (defun ndegruchy/circe-switch-to-buffer ()
+	(interactive)
+	(let ((helm-source-buffers-list ndegruchy/circe-buffers-source))
+      (helm-buffers-list)))
+  (bind-keys ("C-c c b" . ndegruchy/circe-switch-to-buffer))
+  (setq ndegruchy/circe-buffers-source
+		(helm-make-source "Circe Buffers" 'helm-source-buffers
+		  :buffer-list
+		  (lambda ()
+			(mapcar #'buffer-name
+					(cl-remove-if-not
+					 (lambda (buf)
+					   (with-current-buffer buf
+						 (derived-mode-p 'lui-mode)))
+					 (buffer-list)))))))
 
 (use-package diminish
   :ensure t
@@ -69,6 +106,26 @@
 		 (css-mode . emmet-mode)
 		 (php-mode . emmet-mode)))
 
+(use-package emms
+  :ensure t
+  :bind (("C-c x b" . emms-smart-browse)
+		 ("C-c x p" . emms-pause)
+		 ("C-c x N" . emms-next)
+		 ("C-c x P" . emms-previous)
+		 ("C-c x s" . emms-stop))
+  :init
+  (require 'emms-setup)
+  ;; (require 'emms-info-libtag)
+  (emms-all)
+  :config
+  (setq emms-source-file-default-directory (concat (getenv "HOME") "/Music")
+		emms-info-asynchronosly t
+		;; emms-info-functions '(emms-info-libtag)
+		emms-show-format "%s")
+  (if (executable-find "cvlc")
+	  (setq emms-player-list '(emms-player-vlc))
+	(emms-default-players)))
+
 (use-package exec-path-from-shell
   :ensure t
   :config
@@ -80,27 +137,26 @@
   :ensure t
   :bind ("C-c s" . er/expand-region))
 
-(use-package hydra
+(use-package helm
   :ensure t
-  :after ivy)
-
-(use-package ivy
-  :ensure t
-  :bind (("C-x b" . ivy-switch-buffer)
-		 (:map ivy-minibuffer-map
-			   ("C-l" . counsel-up-directory)))
+  :demand t
+  :diminish t
+  :bind (("M-x" . helm-M-x)
+		 ("C-x C-f" . helm-find-files)
+		 ("C-x b" . helm-buffers-list)
+		 ("M-y" . helm-show-kill-ring))
   :config
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "(%d/%d) ")
-  (setq ivy-wrap t)
-  (setq ivy-use-selectable-prompt t)
-  (ivy-mode t))
+  (helm-mode 1)
+  (setq helm-move-to-line-cycle-in-source t
+		helm-M-x-always-save-history t
+		helm-M-x-fuzzy-match t
+		helm-buffers-fuzzy-matching t
+		helm-recentf-fuzzy-match    t))
 
-(use-package ivy-prescient
+(use-package helm-swoop
   :ensure t
-  :after ivy
-  :config
-  (ivy-prescient-mode t))
+  :after helm
+  :bind (("C-s" . helm-swoop)))
 
 (use-package markdown-mode
   :ensure t
@@ -116,11 +172,6 @@
   (require 'recentf)
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
-
-(use-package prescient
-  :ensure t
-  :config
-  (prescient-persist-mode t))
 
 (use-package systemd
   :ensure t)

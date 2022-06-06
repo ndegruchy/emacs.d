@@ -1,12 +1,13 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2022-06-01 08:32:50 nathan>
+;; Time-stamp: <2022-06-06 11:55:26 nathan>
 
 ;; Initialize the package manager
 (package-initialize)
 
 ;; Load the local lisp directory
 (add-to-list 'load-path (concat user-emacs-directory "settings.d/"))
+(add-to-list 'load-path (concat user-emacs-directory "site-lisp.d/"))
 
 ;; Load Private Variables
 (if
@@ -24,7 +25,7 @@
 (load-library "custom-keybindings")
 (load-library "custom-abbrevs")
 (load-library "custom-skeletons")
-(load-library "custom-hydras")
+;; (load-library "custom-hydras")
 
 ;; Load Windows-specific stuff
 (if

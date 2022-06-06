@@ -238,3 +238,15 @@ ridiculous I have to do this in 2022 when using Emacs Server."
   ;; Needed if using the default theme
   ;; (set-face-attribute 'region nil :background "light goldenrod")
   )
+
+(defun ndegruchy/ssh-refresh ()
+  "Reset the environment variable SSH_AUTH_SOCK, pulled from https://sachachua.com/dotemacs/index.html"
+  (interactive)
+  (let (ssh-auth-sock-old (getenv "SSH_AUTH_SOCK"))
+    (setenv "SSH_AUTH_SOCK"
+            (car (split-string
+                  (shell-command-to-string
+                   "ls -t $(find /tmp/ssh-* -user $USER -name 'agent.*' 2> /dev/null)"))))
+    (message
+     (format "SSH_AUTH_SOCK %s --> %s"
+             ssh-auth-sock-old (getenv "SSH_AUTH_SOCK")))))

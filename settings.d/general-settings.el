@@ -24,7 +24,8 @@
       enable-local-variables                 :safe
       delete-by-moving-to-trash              t
       suggest-key-bindings                   t
-	  display-time-24hr-format	             t)
+	  display-time-24hr-format	             t
+	  sentence-end-double-space				 nil)
 
 ;; Abbreviations
 (setq-default abbrev-mode t)

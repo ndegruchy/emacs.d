@@ -15,13 +15,6 @@
 		appt-display-format 'window)
   (appt-activate 1))
 
-(use-package eldoc
-  :diminish t)
-
-(use-package hide-lines
-  :init
-  (load-file (concat user-emacs-directory "site-lisp.d/hide-lines.el")))
-
 (use-package ispell
   :config
   (setq ispell-program-name "aspell"
@@ -56,12 +49,17 @@
   :hook (dired-mode . dired-hide-details-mode)
   :init
   (load-file (concat user-emacs-directory "site-lisp.d/dired+.el"))
+  (load-file (concat user-emacs-directory "site-lisp.d/dired-sort-menu.el"))
+  (load-file (concat user-emacs-directory "site-lisp.d/dired-sort-menu+.el"))
   (diredp-toggle-find-file-reuse-dir t)
   :config
   (setq-default dired-omit-files-p t)
-  (setq dired-listing-switches "--group-directories-first -alh"
+  (setq dired-listing-switches "--almost-all --ignore-backups --dired --human-readable -l --group-directories-first --sort=extension"
 		dired-dwim-target t
-		dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
+		dired-omit-files (concat dired-omit-files "\\|^\\..+$")
+		dired-guess-shell-alist-user '(("\\.pdf\\'" "okular")
+									   ("\\.mp4\\'" "vlc")
+									   ("\\.mkv\\'" "vlc")))
   (put 'dired-find-alternate-file 'disabled nil))
 
 (use-package eshell
@@ -69,6 +67,9 @@
   (setq eshell-visual-commands '("less" "tmux" "htop" "top" "bash" "fish" "zsh")
 		eshell-visual-subcommands '(("git" "log" "l" "diff" "show"))
 		eshell-ls-initial-args "-alh"))
+
+(use-package eldoc
+  :diminish t)
 
 (use-package midnight
   :config
