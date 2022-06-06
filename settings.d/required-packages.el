@@ -115,12 +115,10 @@
 		 ("C-c x s" . emms-stop))
   :init
   (require 'emms-setup)
-  ;; (require 'emms-info-libtag)
   (emms-all)
   :config
   (setq emms-source-file-default-directory (concat (getenv "HOME") "/Music")
 		emms-info-asynchronosly t
-		;; emms-info-functions '(emms-info-libtag)
 		emms-show-format "%s")
   (if (executable-find "cvlc")
 	  (setq emms-player-list '(emms-player-vlc))
