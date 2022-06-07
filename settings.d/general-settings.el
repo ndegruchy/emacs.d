@@ -55,7 +55,10 @@
 (fset 'yes-or-no-p   'y-or-n-p)
 
 ;; Fonts
-(add-to-list 'default-frame-alist '(font . "Hack-15"))
+;; If using Cascadia Code, use the *static* fonts, not the variable
+;; ones. Emacs doesn't seem to like them.
+;; https://github.com/microsoft/cascadia-code/issues/589
+(add-to-list 'default-frame-alist '(font . "Cascadia Code-15"))
 
 ;; Frame
 (setq frame-resize-pixelwise nil)
@@ -65,7 +68,8 @@
 
 ;; After frame creation
 (if (daemonp)
-    (add-hook 'after-make-frame-functions #'ndegruchy/setup-gui))
+    (add-hook 'after-make-frame-functions #'ndegruchy/setup-gui)
+  (load-theme 'modus-vivendi t))
 
 ;; Editing - Pairs
 
