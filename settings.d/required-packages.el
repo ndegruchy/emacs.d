@@ -118,11 +118,15 @@
 		 ("C-c x s" . emms-stop))
   :init
   (require 'emms-setup)
+  (require 'emms-mode-line)
   (emms-all)
+  (emms-mode-line 1)
   :config
   (setq emms-source-file-default-directory (concat (getenv "HOME") "/Music")
 		emms-info-asynchronosly t
-		emms-show-format "%s")
+		emms-show-format "%s"
+		emms-browser-covers 'emms-browser-cache-thumbnail-async)
+  
   (if (executable-find "cvlc")
 	  (setq emms-player-list '(emms-player-vlc))
 	(emms-default-players)))
