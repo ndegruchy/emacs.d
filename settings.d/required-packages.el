@@ -147,6 +147,7 @@
   :demand t
   :diminish t
   :bind (("M-x" . helm-M-x)
+		 ("<menu>" . helm-M-x)
 		 ("C-x C-f" . helm-find-files)
 		 ("C-x b" . helm-buffers-list)
 		 ("M-y" . helm-show-kill-ring))
