@@ -177,7 +177,7 @@ files."
 	(emacs-lisp-docstring-fill-column t))
     (fill-paragraph nil region)))
 
-(defun endless/ispell-word-then-abbrev (p)
+(defun ndegruchy/ispell-word-then-abbrev (p)
   "Call `ispell-word'. Then create an abbrev for the correction made.
 With prefix P, create local abbrev. Otherwise it will be global."
   (interactive "P")
