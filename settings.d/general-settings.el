@@ -94,7 +94,7 @@
 (put 'upcase-region 'disabled nil)
 
 ;; Battery
-(setq-default battery-mode-line-format "%b%p%%")
+(setq-default battery-mode-line-format "B:%b%p%% |")
 (display-battery-mode 1)
 
 ;; Custom modeline
@@ -108,17 +108,14 @@
 	   mode-line-buffer-identification
 	   ;; Sep
 	   " | "
-	   ;; Battery
-	   "B:" 'battery-mode-line-string
-	   ;; Sep
-	   " | "
 	   ;; Position
 	   mode-line-position
-	   ;; Sep
-	   ;; "|"
+   	   ;; Sep
+	   " | "
+	   ;; Misc
+	   mode-line-misc-info
 	   ;; Dashes
 	   mode-line-end-spaces))
-
 
 ;; Birthday
 (when (string= "12-21" (format-time-string "%m-%d"))
