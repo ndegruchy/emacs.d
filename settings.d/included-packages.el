@@ -20,11 +20,6 @@
   (setq ispell-program-name "aspell"
 		ispell-extra-args '("--sug-mode=ultra")))
 
-(use-package auth-source-pass
-  :config
-  (require 'auth-source-pass)
-  (auth-source-pass-enable))
-
 (use-package diary
   :hook (diary-list-entries-hook . (diary-sort-entries t))
   :config
