@@ -179,6 +179,17 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
+(use-package pulsar
+  :ensure t
+  :config
+  (setq pulsar-pulse-on-window-change t
+		pulsar-pulse t
+		pulsar-delay 0.055
+		pulsar-iterations 10
+		pulsar-face 'pulsar-magenta
+		pulsar-highlight-face 'pulsar-yellow)
+  (pulsar-global-mode 1))
+
 (use-package systemd
   :ensure t)
 
