@@ -181,17 +181,39 @@
 
 (use-package pulsar
   :ensure t
+  :bind (("C-c p" . pulsar-pulse-line)
+		 ("C-c P" . pulsar-highlight-dwim))
   :config
   (setq pulsar-pulse-on-window-change t
 		pulsar-pulse t
 		pulsar-delay 0.055
 		pulsar-iterations 10
 		pulsar-face 'pulsar-magenta
-		pulsar-highlight-face 'pulsar-yellow)
+		pulsar-highlight-face 'pulsar-yellow
+		pulsar-pulse-functions
+		'(recenter-top-bottom
+		  move-to-window-line-top-bottom
+		  scroll-up-command
+		  scroll-down-command))
   (pulsar-global-mode 1))
 
 (use-package systemd
   :ensure t)
+
+(use-package tmr
+  :ensure t
+  :bind (("C-c t n" . tmr-with-description)
+		 ("C-c t l" . tmr-tabulated-view)
+		 ("C-c t c" . tmr-remove-finished)
+		 ("C-c t k" . tmr-cancel))
+  :config
+  (setq tmr-sound-file "/usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga"
+		tmr-notification-urgency 'normal
+		tmr-descriptions-list
+		(list
+		 "Clock in"
+		 "Clock out"
+		 "Do that thing")))
 
 (use-package yasnippet
   :ensure t
