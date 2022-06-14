@@ -44,6 +44,12 @@
   :ensure t
   :after use-package)
 
+(use-package change-inner
+  :ensure t
+  :after expand-region
+  :bind (("M-i" . change-inner)
+		 ("M-o" . change-outer)))
+
 (use-package circe
   :ensure t
   :bind ("C-c l" . circe)
