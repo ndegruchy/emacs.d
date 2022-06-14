@@ -19,7 +19,7 @@
 
 ;; Misc
 (setq ring-bell-function                     (quote ignore)
-      confirm-kill-emacs                     'y-or-n-p
+      ;; confirm-kill-emacs                     'y-or-n-p
       load-prefer-newer                      t
       enable-local-variables                 :safe
       delete-by-moving-to-trash              t
