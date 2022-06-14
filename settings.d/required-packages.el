@@ -203,6 +203,14 @@
 		  scroll-down-command))
   (pulsar-global-mode 1))
 
+(use-package smart-forward
+  :ensure t
+  :after expand-region
+  :bind (("M-<right>" . smart-forward)
+		 ("M-<left>" . smart-backward)
+		 ("M-<up>" . smart-up)
+		 ("M-<down>" . smart-down)))
+
 (use-package systemd
   :ensure t)
 
