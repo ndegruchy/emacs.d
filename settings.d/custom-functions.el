@@ -250,3 +250,7 @@ ridiculous I have to do this in 2022 when using Emacs Server."
     (message
      (format "SSH_AUTH_SOCK %s --> %s"
              ssh-auth-sock-old (getenv "SSH_AUTH_SOCK")))))
+
+(defun ndegruchy/indent-buffer ()
+  (interactive)
+  (indent-region (point-min) (point-max)))
