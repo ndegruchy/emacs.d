@@ -19,7 +19,6 @@
 
 ;; Misc
 (setq ring-bell-function                     (quote ignore)
-      ;; confirm-kill-emacs                     'y-or-n-p
       load-prefer-newer                      t
       enable-local-variables                 :safe
       delete-by-moving-to-trash              t
@@ -39,32 +38,15 @@
       completion-ignore-case                 t)
 
 ;; UI
-(setq inhibit-x-resources                    t
-      global-font-lock-mode                  t
+(setq global-font-lock-mode                  t
       delete-selection-mode                  t
-      show-paren-mode                        t
-      x-gtk-use-system-tooltips              nil)
+      show-paren-mode                        t)
 
-(tool-bar-mode       -1)
 (menu-bar-mode        1)
-(scroll-bar-mode     -1)
 (display-battery-mode t)
-(tooltip-mode         t)
 (global-linum-mode   -1)
-
 (fset 'yes-or-no-p   'y-or-n-p)
 
-;; Fonts
-;; If using Cascadia Code, use the *static* fonts, not the variable
-;; ones. Emacs doesn't seem to like them.
-;; https://github.com/microsoft/cascadia-code/issues/589
-;; (add-to-list 'default-frame-alist '(font . "Cascadia Code-15"))
-(add-to-list 'default-frame-alist '(font . "Iosevka-15"))
-
-;; Frame
-(setq frame-resize-pixelwise nil)
-(add-to-list 'default-frame-alist '(height . 24))
-(add-to-list 'default-frame-alist '(width . 80))
 (setq-default frame-title-format '("%b [%m]"))
 
 ;; Editing - Pairs
