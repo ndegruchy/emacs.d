@@ -46,6 +46,12 @@
   (load-file (concat user-emacs-directory "site-lisp.d/dired+.el"))
   (load-file (concat user-emacs-directory "site-lisp.d/dired-sort-menu.el"))
   (load-file (concat user-emacs-directory "site-lisp.d/dired-sort-menu+.el"))
+
+  ;; Terminal key fixes
+  ;; Found https://emacs.stackexchange.com/a/68287
+  (when (not (window-system))
+	(setq diredp-bind-problematic-terminal-keys nil))
+
   (diredp-toggle-find-file-reuse-dir t)
   :config
   (setq-default dired-omit-files-p t)
