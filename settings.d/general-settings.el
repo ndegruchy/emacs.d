@@ -45,9 +45,6 @@
       show-paren-mode                        t
       x-gtk-use-system-tooltips              nil)
 
-;; Load modus theme
-(load-theme 'modus-vivendi t)
-
 (tool-bar-mode       -1)
 (menu-bar-mode        1)
 (scroll-bar-mode     -1)

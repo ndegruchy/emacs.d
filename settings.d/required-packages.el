@@ -177,7 +177,9 @@
   :init (setq markdown-command "pandoc"))
 
 (use-package modus-themes
-  :ensure t)
+  :ensure t
+  :init
+  (load-theme 'modus-vivendi t))
 
 (use-package no-littering
   :ensure t
