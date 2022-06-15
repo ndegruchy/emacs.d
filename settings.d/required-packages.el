@@ -129,8 +129,10 @@
   :config
   (setq emms-source-file-default-directory (concat (getenv "HOME") "/Music")
 		emms-info-asynchronosly t
-		emms-show-format "%s"
-		emms-browser-covers 'emms-browser-cache-thumbnail-async)
+		emms-show-format "%s")
+
+  (when (window-system)
+	(setq emms-browser-covers 'emms-browser-cache-thumbnail-async))
   
   (if (executable-find "cvlc")
 	  (setq emms-player-list '(emms-player-vlc))
