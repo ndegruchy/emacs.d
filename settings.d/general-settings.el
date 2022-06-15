@@ -45,6 +45,9 @@
       show-paren-mode                        t
       x-gtk-use-system-tooltips              nil)
 
+;; Load modus theme
+(load-theme 'modus-vivendi t)
+
 (tool-bar-mode       -1)
 (menu-bar-mode        1)
 (scroll-bar-mode     -1)
@@ -66,11 +69,6 @@
 (add-to-list 'default-frame-alist '(height . 24))
 (add-to-list 'default-frame-alist '(width . 80))
 (setq-default frame-title-format '("%b [%m]"))
-
-;; After frame creation
-(if (daemonp)
-    (add-hook 'after-make-frame-functions #'ndegruchy/setup-gui)
-  (load-theme 'modus-vivendi t))
 
 ;; Editing - Pairs
 

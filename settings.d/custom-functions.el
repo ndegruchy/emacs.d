@@ -229,16 +229,6 @@ With prefix P, create local abbrev. Otherwise it will be global."
         (t
          (insert filename))))
 
-(defun ndegruchy/setup-gui (frame)
-  "Setup frame parameters when a new frame is created. Completely
-ridiculous I have to do this in 2022 when using Emacs Server."
-  (select-frame frame)
-  (load-theme 'modus-vivendi t)
-  (set-frame-font "Cascadia Code-16" nil t) ;; Use official fonts, not the Debian package.
-  ;; Needed if using the default theme
-  ;; (set-face-attribute 'region nil :background "light goldenrod")
-  )
-
 (defun ndegruchy/ssh-refresh ()
   "Reset the environment variable SSH_AUTH_SOCK, pulled from https://sachachua.com/dotemacs/index.html"
   (interactive)
