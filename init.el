@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2022-06-06 11:55:26 nathan>
+;; Time-stamp: <2022-06-15 16:04:19 nathan>
 
 ;; Initialize the package manager
 (package-initialize)
@@ -23,9 +23,6 @@
 (load-library "included-packages")
 (load-library "custom-functions")
 (load-library "custom-keybindings")
-(load-library "custom-abbrevs")
-(load-library "custom-skeletons")
-;; (load-library "custom-hydras")
 
 ;; Load Windows-specific stuff
 (if
