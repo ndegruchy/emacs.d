@@ -226,6 +226,14 @@
   (yas-global-mode 1)
   (add-to-list 'hippie-expand-try-functions-list 'yas/hippie-try-expand))
 
+(use-package web-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (setq web-mode-markup-indent-offset 4
+		web-mode-css-indent-offset 4
+		web-mode-code-indent-offset 4))
+
 (use-package which-key
   :ensure t
   :diminish which-key-mode

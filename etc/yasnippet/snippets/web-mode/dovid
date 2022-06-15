@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: DeGruchy.org Video Embed
+# group: degruchy-org
+# key: dovid
+# --
+<section class="video-embed">
+	<figure>
+		${1:embed}
+		<figcapton>${2:caption}</figcaption>
+	</figure>
+</section>
