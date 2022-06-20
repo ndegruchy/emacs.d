@@ -49,8 +49,11 @@
 
   ;; Terminal key fixes
   ;; Found https://emacs.stackexchange.com/a/68287
-  (when (not (window-system))
-	(setq diredp-bind-problematic-terminal-keys nil))
+  (setq diredp-bind-problematic-terminal-keys nil)
+
+  ;; Unset the above
+  (add-hook 'dired-mode-hook (lambda ()
+							   (local-unset-key (kbd "M-O"))))
 
   (diredp-toggle-find-file-reuse-dir t)
   :config
@@ -72,6 +75,14 @@
 (use-package eldoc
   :diminish t)
 
+(use-package flyspell
+  :config
+  (when (executable-find "hunspell")
+	(setq ispell-program-name (executable-find "hunspell")
+		  ispell-extra-args (list
+							 "-d en_US"
+							 (concat "-p " user-emacs-directory "personal-dict")))))
+
 (use-package midnight
   :config
   (midnight-delay-set 'midnight-delay "02:00am"))
@@ -82,6 +93,11 @@
   (add-hook 'org-mode-hook #'flyspell-mode)
   (setq org-startup-folded t)
   (require 'org-mouse))
+
+(use-package proced
+  :config
+  (setq-default proced-auto-update-flag t
+				proced-auto-update-interval 5))
 
 (use-package remember
   :bind (("C-c ," . remember)
