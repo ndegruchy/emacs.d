@@ -90,7 +90,11 @@
 						 (derived-mode-p 'lui-mode)))
 					 (buffer-list))))))
   
-  (bind-keys ("C-c c b" . ndegruchy/circe-switch-to-buffer)))
+  (bind-keys ("C-c c b" . ndegruchy/circe-switch-to-buffer))
+  
+  (with-eval-after-load 'circe
+	(circe-set-display-handler "353" 'circe-display-ignore)
+	(circe-set-display-handler "366" 'circe-display-ignore)))
 
 (use-package diminish
   :ensure t
