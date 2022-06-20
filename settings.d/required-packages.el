@@ -54,6 +54,7 @@
   :bind ("C-c l" . circe)
   :config
   (setq circe-reduce-lurker-spam t
+		lui-flyspell-p t
 		circe-network-options
 		`(("Libera"
 		   :host "irc.libera.chat"
@@ -164,6 +165,7 @@
 		 ("M-y" . helm-show-kill-ring))
   :config
   (helm-mode 1)
+  (bind-keys* ("C-x k" . kill-this-buffer))
   (setq helm-move-to-line-cycle-in-source t
 		helm-M-x-always-save-history t
 		helm-M-x-fuzzy-match t
@@ -173,7 +175,9 @@
 (use-package helm-swoop
   :ensure t
   :after helm
-  :bind (("C-s" . helm-swoop)))
+  :bind (("C-s" . helm-swoop))
+  :config
+  (setq helm-swoop-pre-input-function (lambda () "")))
 
 (use-package markdown-mode
   :ensure t
