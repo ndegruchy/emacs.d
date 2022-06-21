@@ -217,6 +217,9 @@
 (use-package systemd
   :ensure t)
 
+(use-package titlecase
+  :ensure t)
+
 (use-package tmr
   :ensure t
   :bind (("C-c t n" . tmr-with-description)
