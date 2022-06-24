@@ -12,7 +12,7 @@
 ;; ones. Emacs doesn't seem to like them.
 ;; https://github.com/microsoft/cascadia-code/issues/589
 ;; (add-to-list 'default-frame-alist '(font . "Cascadia Code-15"))
-(add-to-list 'default-frame-alist '(font . "Iosevka-15"))
+(add-to-list 'default-frame-alist '(font . "Iosevka-17"))
 
 ;; Frame
 (setq frame-resize-pixelwise nil)
