@@ -170,7 +170,9 @@
 		helm-M-x-always-save-history t
 		helm-M-x-fuzzy-match t
 		helm-buffers-fuzzy-matching t
-		helm-recentf-fuzzy-match    t))
+		helm-recentf-fuzzy-match    t)
+  (setq history-delete-duplicates t
+		history-length 20))
 
 (use-package helm-swoop
   :ensure t
@@ -213,6 +215,9 @@
 		  scroll-up-command
 		  scroll-down-command))
   (pulsar-global-mode 1))
+
+(use-package rec-mode
+  :ensure t)
 
 (use-package systemd
   :ensure t)
