@@ -51,11 +51,11 @@
   ;; Found https://emacs.stackexchange.com/a/68287
   ;; This doesn't seem to be the whole solution, unbinding keys is also needed :\
   ;; TODO: Report bug?
-  (setq diredp-bind-problematic-terminal-keys nil)
-
-  ;; Unset the above
-  (add-hook 'dired-mode-hook (lambda ()
-							   (local-unset-key (kbd "M-O"))))
+  (if (not (window-system))
+	  ((setq diredp-bind-problematic-terminal-keys nil)
+	   ;; Unset the key, anyway, because it doesn't seem to work
+	   (add-hook 'dired-mode-hook (lambda ()
+									(local-unset-key (kbd "M-O"))))))
 
   (diredp-toggle-find-file-reuse-dir t)
   :config
