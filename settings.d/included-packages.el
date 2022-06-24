@@ -49,6 +49,8 @@
 
   ;; Terminal key fixes
   ;; Found https://emacs.stackexchange.com/a/68287
+  ;; This doesn't seem to be the whole solution, unbinding keys is also needed :\
+  ;; TODO: Report bug?
   (setq diredp-bind-problematic-terminal-keys nil)
 
   ;; Unset the above
