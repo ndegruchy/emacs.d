@@ -70,6 +70,8 @@
 					  "#linux"
 					  "#debian"
 					  "#firefox"
+					  "#momw"
+					  "#openmw"
 					  "#kde"))))
   (set-face-attribute 'circe-my-message-face nil :background "transparent")
   (set-face-attribute 'circe-my-message-face nil :foreground "tomato")
@@ -94,6 +96,11 @@
   (bind-keys ("C-c c b" . ndegruchy/circe-switch-to-buffer))
   
   (with-eval-after-load 'circe
+	(circe-set-display-handler "001" 'circe-display-ignore)
+	(circe-set-display-handler "002" 'circe-display-ignore)
+	(circe-set-display-handler "003" 'circe-display-ignore)
+	(circe-set-display-handler "004" 'circe-display-ignore)
+	(circe-set-display-handler "005" 'circe-display-ignore)
 	(circe-set-display-handler "353" 'circe-display-ignore)
 	(circe-set-display-handler "366" 'circe-display-ignore)))
 
