@@ -104,8 +104,9 @@
   :ensure t
   :diminish t
   :hook ((sgml-mode . emmet-mode)
-		 (css-mode . emmet-mode)
-		 (php-mode . emmet-mode)))
+		 (css-mode  . emmet-mode)
+		 (web-mode  . emmet-mode)
+		 (php-mode  . emmet-mode)))
 
 (use-package emms
   :ensure t
