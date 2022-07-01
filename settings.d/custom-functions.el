@@ -2,10 +2,14 @@
 ;; Set custom functions here
 
 ;; Insert the date (formatted)
-(defun ndegruchy/insert-date (format)
-  "Wrapper around format-time-string"
-  (interactive "MFormat: ")
-  (insert (format-time-string format)))
+(defun ndegruchy/insert-date ()
+  "Inserts an ISO date by default, prefixing with C-u asks for a
+  format."
+  (interactive)
+  (if (equal current-prefix-arg nil)
+	  (insert (format-time-string "%F"))
+	(setq format (read-string "Format: "))
+	(insert (format-time-string format))))
 
 ;; Kill all open dired buffers
 (defun ndegruchy/kill-all-dired-buffers ()
@@ -190,15 +194,6 @@ With prefix P, create local abbrev. Otherwise it will be global."
       (define-abbrev
         (if p local-abbrev-table global-abbrev-table)
         bef aft))))
-
-(defun ndegruchy/iso8601 ()
-  "Returns an ISO8601 formatted time string"
-  (interactive)
-  (insert
-   (concat
-	(format-time-string "%Y-%m-%dT%T")
-	((lambda (x) (concat (substring x 0 3) ":" (substring x 3 5)))
-	 (format-time-string "%z")))))
 
 (defun ndegruchy/insert-name ()
   (interactive)
