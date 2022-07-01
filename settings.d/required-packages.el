@@ -75,25 +75,6 @@
 					  "#kde"))))
   (set-face-attribute 'circe-my-message-face nil :background "transparent")
   (set-face-attribute 'circe-my-message-face nil :foreground "tomato")
-
-  (defun ndegruchy/circe-switch-to-buffer ()
-	"Create a buffer list for helm that contain only circe buffers using the function below"
-	(interactive)
-	(let ((helm-source-buffers-list ndegruchy/circe-buffers-source))
-      (helm-buffers-list)))
-  
-  (setq ndegruchy/circe-buffers-source
-		(helm-make-source "Circe Buffers" 'helm-source-buffers
-		  :buffer-list
-		  (lambda ()
-			(mapcar #'buffer-name
-					(cl-remove-if-not
-					 (lambda (buf)
-					   (with-current-buffer buf
-						 (derived-mode-p 'lui-mode)))
-					 (buffer-list))))))
-  
-  (bind-keys ("C-c c b" . ndegruchy/circe-switch-to-buffer))
   
   (with-eval-after-load 'circe
 	(circe-set-display-handler "001" 'circe-display-ignore)
