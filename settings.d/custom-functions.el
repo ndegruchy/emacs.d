@@ -6,10 +6,12 @@
   "Inserts an ISO date by default, prefixing with C-u asks for a
   format."
   (interactive)
-  (if (equal current-prefix-arg nil)
-	  (insert (format-time-string "%F"))
-	(setq format (read-string "Format: "))
-	(insert (format-time-string format))))
+  (if (null current-prefix-arg)
+	  (insert (format-time-string "%F")))
+  (if (eq (prefix-numeric-value current-prefix-arg) 4)
+	  (insert (format-time-string "%FT%T%z")))
+  (if (> (prefix-numeric-value current-prefix-arg) 4)
+	  (insert (format-time-string (read-string "Format: ")))))
 
 ;; Kill all open dired buffers
 (defun ndegruchy/kill-all-dired-buffers ()
