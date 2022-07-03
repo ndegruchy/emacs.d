@@ -12,13 +12,13 @@
 			 '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
 (add-to-list 'package-archives
 			 '("melpa" . "https://melpa.org/packages/") t)
+;; (add-to-list 'package-archives '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
 
 (setq package-archive-priorities
 	  '(("melpa-stable" . 20)
 		("nongnu" . 15)
 		("melpa" . 1))) ;; Sets download priority, higher = more likely
 
-;; (add-to-list 'package-archives '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
 
 ;; Fix for 26.2 elpa 'bad request' issue
 (if (version<= emacs-version "26.2")
