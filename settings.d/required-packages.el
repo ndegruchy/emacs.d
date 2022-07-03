@@ -51,7 +51,6 @@
 
 (use-package circe
   :ensure t
-  :bind ("C-c l" . circe)
   :config
   (setq circe-reduce-lurker-spam t
 		lui-flyspell-p t

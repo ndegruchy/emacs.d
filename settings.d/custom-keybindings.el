@@ -25,6 +25,7 @@
  ("M-Q"             .	unfill-paragraph)
  ("C-c 0"           .   ndegruchy/insert-name)
  ("C-c 9"           .   ndegruchy/insert-email)
+ ("C-c l"           .   ndegruchy/irc)
  ;; Some future bindings
  ("C-x x g"         .   revert-buffer)
  ("C-x x u"         .   rename-uniquely)

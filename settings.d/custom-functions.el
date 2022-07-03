@@ -241,3 +241,7 @@ With prefix P, create local abbrev. Otherwise it will be global."
 (defun ndegruchy/indent-buffer ()
   (interactive)
   (indent-region (point-min) (point-max)))
+
+(defun ndegruchy/irc ()
+  (interactive)
+  (circe "Libera Chat"))
