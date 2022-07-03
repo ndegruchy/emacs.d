@@ -56,7 +56,7 @@
   (setq circe-reduce-lurker-spam t
 		lui-flyspell-p t
 		circe-network-options
-		`(("Libera"
+		`(("Libera Chat"
 		   :host "irc.libera.chat"
 		   :server-buffer-name "Libera.Chat"
 		   :port (6667 . 6697)
@@ -191,6 +191,8 @@
   :ensure t
   :bind (("C-c p" . pulsar-pulse-line)
 		 ("C-c P" . pulsar-highlight-dwim))
+  :init
+  (pulsar-global-mode)
   :config
   (setq pulsar-pulse-on-window-change t
 		pulsar-pulse t
@@ -202,8 +204,7 @@
 		'(recenter-top-bottom
 		  move-to-window-line-top-bottom
 		  scroll-up-command
-		  scroll-down-command))
-  (pulsar-global-mode 1))
+		  scroll-down-command)))
 
 (use-package rec-mode
   :ensure t)
