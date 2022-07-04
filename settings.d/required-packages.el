@@ -150,12 +150,11 @@
 		 ("<menu>" . helm-M-x)
 		 ("C-x C-f" . helm-find-files)
 		 ("C-x b" . helm-buffers-list)
-		 ("M-y" . helm-show-kill-ring))
+		 ("M-y" . helm-show-kill-ring)
+		 ("C-x k" . kill-this-buffer))
   :config
   (helm-mode 1)
-  (bind-keys* ("C-x k" . kill-this-buffer))
   (setq helm-move-to-line-cycle-in-source t
-		helm-M-x-always-save-history t
 		helm-M-x-fuzzy-match t
 		helm-buffers-fuzzy-matching t
 		helm-recentf-fuzzy-match    t)
