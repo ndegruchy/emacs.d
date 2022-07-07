@@ -151,8 +151,6 @@
 
 (use-package pulsar
   :ensure t
-  :bind (("C-c p" . pulsar-pulse-line)
-		 ("C-c P" . pulsar-highlight-dwim))
   :init
   (pulsar-global-mode)
   :config
@@ -192,5 +190,4 @@
 (use-package yasnippet
   :ensure t
   :config
-  (yas-global-mode 1)
-  (add-to-list 'hippie-expand-try-functions-list 'yas/hippie-try-expand))
+  (yas-global-mode 1))

@@ -24,10 +24,4 @@
  ("M-<up>"          .	ndegruchy/move-line-up)
  ("M-<down>"        .	ndegruchy/move-line-down)
  ("M-Q"             .	unfill-paragraph)
- ("C-c 0"           .   ndegruchy/insert-name)
- ("C-c 9"           .   ndegruchy/insert-email)
- ("C-c l"           .   ndegruchy/irc)
- ;; Some future bindings
- ("C-x x g"         .   revert-buffer)
- ("C-x x u"         .   rename-uniquely)
- ("C-x x t"         .   toggle-truncate-lines))
+ ("C-c l"           .   ndegruchy/irc))
