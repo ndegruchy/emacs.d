@@ -150,32 +150,6 @@
   :ensure t
   :bind ("C-c s" . er/expand-region))
 
-;; (use-package helm
-;;   :ensure t
-;;   :demand t
-;;   :diminish t
-;;   :bind (("M-x" . helm-M-x)
-;; 		 ("<menu>" . helm-M-x)
-;; 		 ("C-x C-f" . helm-find-files)
-;; 		 ("C-x b" . helm-buffers-list)
-;; 		 ("M-y" . helm-show-kill-ring)
-;; 		 ("C-x k" . kill-this-buffer))
-;;   :config
-;;   (helm-mode 1)
-;;   (setq helm-move-to-line-cycle-in-source t
-;; 		helm-M-x-fuzzy-match t
-;; 		helm-buffers-fuzzy-matching t
-;; 		helm-recentf-fuzzy-match    t)
-;;   (setq history-delete-duplicates t
-;; 		history-length 20))
-
-;; (use-package helm-swoop
-;;   :ensure t
-;;   :after helm
-;;   :bind (("C-s" . helm-swoop))
-;;   :config
-;;   (setq helm-swoop-pre-input-function (lambda () "")))
-
 (use-package marginalia
   :ensure t
   :bind (("M-A" . marginalia-cycle))
