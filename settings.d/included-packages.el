@@ -3,29 +3,6 @@
 
 (diminish 'auto-revert-mode)
 
-(use-package abbrev
-  :diminish abbrev-mode
-  :config
-  (setq-default abbrev-mode t))
-
-(use-package appt
-  :config
-  (setq appt-audible t
-		appt-display-mode-line t
-		appt-display-format 'window)
-  (appt-activate 1))
-
-(use-package ispell
-  :config
-  (setq ispell-program-name "aspell"
-		ispell-extra-args '("--sug-mode=ultra")))
-
-(use-package diary
-  :hook (diary-list-entries-hook . (diary-sort-entries t))
-  :config
-  (add-hook 'diary-list-entries-hook 'diary-include-other-diary-files)
-  (add-hook 'diary-mark-entries-hook 'diary-mark-included-diary-files))
-
 (use-package dired
   :bind (:map dired-mode-map
 			  ;; Reuse the same dired window
@@ -44,28 +21,13 @@
   :hook (dired-mode . dired-hide-details-mode)
   :init
   (load-file (concat user-emacs-directory "site-lisp.d/dired+.el"))
-  (load-file (concat user-emacs-directory "site-lisp.d/dired-sort-menu.el"))
-  (load-file (concat user-emacs-directory "site-lisp.d/dired-sort-menu+.el"))
-
-  ;; Terminal key fixes
-  ;; Found https://emacs.stackexchange.com/a/68287
-  ;; This doesn't seem to be the whole solution, unbinding keys is also needed :\
-  ;; TODO: Report bug?
-  (if (not (window-system))
-	  ((setq diredp-bind-problematic-terminal-keys nil)
-	   ;; Unset the key, anyway, because it doesn't seem to work
-	   (add-hook 'dired-mode-hook (lambda ()
-									(local-unset-key (kbd "M-O"))))))
 
   (diredp-toggle-find-file-reuse-dir t)
   :config
   (setq-default dired-omit-files-p t)
   (setq dired-listing-switches "--almost-all --ignore-backups --dired --human-readable -l --group-directories-first --sort=extension"
 		dired-dwim-target t
-		dired-omit-files (concat dired-omit-files "\\|^\\..+$")
-		dired-guess-shell-alist-user '(("\\.pdf\\'" "okular")
-									   ("\\.mp4\\'" "vlc")
-									   ("\\.mkv\\'" "vlc")))
+		dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
   (put 'dired-find-alternate-file 'disabled nil))
 
 (use-package eshell
@@ -74,40 +36,22 @@
 		eshell-visual-subcommands '(("git" "log" "l" "diff" "show"))
 		eshell-ls-initial-args "-alh"))
 
-(use-package eldoc
-  :diminish t
-  :config
-  (eldoc-add-command
-   'paredit-backward-delete
-   'paredit-close-round))
-
 (use-package flyspell
   :config
   (when (executable-find "hunspell")
 	(setq ispell-program-name (executable-find "hunspell")
 		  ispell-extra-args (list
 							 "-d en_US"
-							 (concat "-p " user-emacs-directory "personal-dict")))))
+							 (concat "-p " "~/.local/share/hunspell/personal-dict")))))
 
 (use-package midnight
   :config
   (midnight-delay-set 'midnight-delay "02:00am"))
 
-(use-package org
-  :config
-  (add-hook 'org-mode-hook #'auto-fill-mode)
-  (add-hook 'org-mode-hook #'flyspell-mode)
-  (setq org-startup-folded t)
-  (require 'org-mouse))
-
 (use-package proced
   :config
   (setq-default proced-auto-update-flag t
 				proced-auto-update-interval 5))
-
-(use-package remember
-  :bind (("C-c ," . remember)
-		 ("C-c <" . remember-region)))
 
 (use-package savehist
   :config
@@ -121,29 +65,3 @@
   :config
   ;; Discovered it here https://stackoverflow.com/questions/1666513/how-to-indent-4-spaces-under-sgml-mode
   (setq sgml-basic-offset 4))
-
-(use-package tramp
-  :config
-  (with-eval-after-load "tramp"
-  (setq vc-ignore-dir-regexp
-        (rx (seq bos
-                 (or (seq (any "/\\") (any "/\\")
-                          (one-or-more (not (any "/\\")))
-                          (any "/\\"))
-                     (seq "/" (or "net" "afs" "...") "/")
-                     ;; Ignore all tramp paths.
-                     (seq "/"
-                          (eval (cons 'or (mapcar #'car tramp-methods)))
-                          ":"
-                          (zero-or-more anything)))
-                 eos)))))
-
-;; Uniquify
-(setq uniquify-buffer-name-style    'reverse
-      uniquify-separator            "/"
-      uniquify-after-kill-buffer-p  t
-      uniquify-ignore-buffers-re    "^\\*")
-
-;; Window moving keybindings
-(when (fboundp 'windmove-default-keybindings)
-  (windmove-default-keybindings))

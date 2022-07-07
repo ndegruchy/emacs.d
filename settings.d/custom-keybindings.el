@@ -23,5 +23,4 @@
  ("C-c a"			.	ndegruchy/duplicate-line)
  ("M-<up>"          .	ndegruchy/move-line-up)
  ("M-<down>"        .	ndegruchy/move-line-down)
- ("M-Q"             .	unfill-paragraph)
  ("C-c l"           .   ndegruchy/irc))
