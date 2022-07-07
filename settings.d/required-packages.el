@@ -44,11 +44,6 @@
   :ensure t
   :after use-package)
 
-(use-package change-inner
-  :ensure t
-  :bind (("M-i" . change-inner)
-		 ("M-o" . change-outer)))
-
 (use-package circe
   :ensure t
   :config
@@ -84,25 +79,6 @@
 	(circe-set-display-handler "353" 'circe-display-ignore)
 	(circe-set-display-handler "366" 'circe-display-ignore)))
 
-(use-package consult
-  :ensure t
-  :bind (("C-x b" . consult-buffer)
-		 ("C-x 4 b" . consult-buffer-other-window)
-		 ("C-x r b" . consult-boomark)
-		 ("C-s" . consult-line)
-		 ("M-y" . consult-yank-pop)
-		 ("M-g g" . consult-goto-line)
-		 ("C-c x" . consult-mode-command))
-  :config
-  (consult-customize
-   consult-theme
-   :preview-key '(:debounce 0.2 any)
-   consult-ripgrep consult-git-grep consult-grep consult-bookmark
-   consult-recent-file consult-xref consult--source-bookmark
-   consult--source-recent-file consult--source-project-recent-file
-   consult-buffer
-   :preview-key (kbd "M-.")))
-
 (use-package diminish
   :ensure t
   :after use-package)
@@ -112,26 +88,6 @@
   :diminish t
   :config
   (editorconfig-mode 1))
-
-(use-package embark
-  :ensure t
-  :bind (("C-." . embark-act)
-		 ("C-," . embark-export)
-		 ("C-;" . embark-dwim))
-  :init
-  (setq prefix-help-command #'embark-prefix-help-commandx)
-  :config
-  (setq embark-confirm-act-all nil)
-  (add-to-list 'display-buffer-alist
-			   '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-				 nil
-				 (window-parameters (mode-line-format . none)))))
-
-(use-package embark-consult
-  :ensure t
-  :after (embark consult)
-  :demand t
-  :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package embrace
   :ensure t
@@ -150,11 +106,31 @@
   :ensure t
   :bind ("C-c s" . er/expand-region))
 
-(use-package marginalia
+(use-package helm
   :ensure t
-  :bind (("M-A" . marginalia-cycle))
-  :init
-  (marginalia-mode))
+  :demand t
+  :diminish t
+  :bind (("M-x" . helm-M-x)
+		 ("<menu>" . helm-M-x)
+		 ("C-x C-f" . helm-find-files)
+		 ("C-x b" . helm-buffers-list)
+		 ("M-y" . helm-show-kill-ring)
+		 ("C-x k" . kill-this-buffer))
+  :config
+  (helm-mode 1)
+  (setq helm-move-to-line-cycle-in-source t
+		helm-M-x-fuzzy-match t
+		helm-buffers-fuzzy-matching t
+		helm-recentf-fuzzy-match    t)
+  (setq history-delete-duplicates t
+		history-length 20))
+
+(use-package helm-swoop
+  :ensure t
+  :after helm
+  :bind (("C-s" . helm-swoop))
+  :config
+  (setq helm-swoop-pre-input-function (lambda () "")))
 
 (use-package markdown-mode
   :ensure t
@@ -172,23 +148,6 @@
   (require 'recentf)
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
-
-(use-package orderless
-  :ensure t
-  :config
-  (orderless-define-completion-style orderless+initialism
-	(orderless-matching-styles '(orderless-initialism
-								 orderless-literal
-								 orderless-regexp)))
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion))
-								   (command (styles orderless+initialism)))))
-
-(use-package paredit
-  :ensure t
-  :hook ((emacs-lisp-mode-hook . enable-paredit-mode)
-		 (eval-expression-minibuffer-setup-hook . enable-paredit-mode)))
 
 (use-package pulsar
   :ensure t
@@ -211,16 +170,6 @@
 
 (use-package systemd
   :ensure t)
-
-(use-package titlecase
-  :ensure t)
-
-(use-package vertico
-  :ensure t
-  :init
-  (vertico-mode)
-  :config
-  (setq vertico-cycle t))
 
 (use-package web-mode
   :ensure t
