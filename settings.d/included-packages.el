@@ -75,7 +75,11 @@
 		eshell-ls-initial-args "-alh"))
 
 (use-package eldoc
-  :diminish t)
+  :diminish t
+  :config
+  (eldoc-add-command
+   'paredit-backward-delete
+   'paredit-close-round))
 
 (use-package flyspell
   :config
