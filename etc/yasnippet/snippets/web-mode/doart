@@ -3,13 +3,13 @@
 # group: degruchy-org
 # key: doart
 # --
-<article class="hentry h-entry" id="${1:date}-${2:anchor}">
+<article class="hentry h-entry" id="`(insert (format-time-string "%Y%m%d"))`-${1:anchor}">
 	<header>
 		<h2 class="p-name entry-title">
-			${3:title}
-			<a href="#$1-$2" class="u-url">🔗</a>
+			${2:title}
+			<a href="#`(insert (format-time-string "%Y%m%d"))`-$1" class="u-url">🔗</a>
 		</h2>
-		<time class="dt-published published" datetime="${4:dt-date}T${5:dt-time}-04:00">$5 on $4</time>
+		<time class="dt-published published" datetime="`(insert (format-time-string "%FT%T%z"))`">`(insert (format-time-string "%T"))` on `(insert (format-time-string "%F"))`</time>
 	</header>
     <section class="article-content e-content">$0</section>
     <footer>

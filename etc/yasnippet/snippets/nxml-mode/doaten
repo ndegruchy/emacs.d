@@ -5,13 +5,13 @@
 # --
 <entry>
 	<title>${1:title}</title>
-	<id>${2:url}</id>
-	<link rel="alternate" href="$2" />
+	<id>https://degruchy.org/#${2:url}</id>
+	<link rel="alternate" href="https://degruchy.org/#$2" />
 	<author>
 		<name>Nathan DeGruchy</name>
 		<email>nathan@degurchy.org</email>
 	</author>
-	<updated>${3:dt-date}T${4:dt-time}</updated>
-	<published>$3T$4</published>
+	<updated>`(insert (format-time-string "%FT%T%z"))`</updated>
+	<published>`(insert (format-time-string "%FT%T%z"))`</published>
 	<content />
 </entry>
