@@ -93,6 +93,18 @@ line. Useful for listing directories, etc."
       (with-current-buffer buf
         (emacs-lock-mode 'kill)))))
 
+(defun split-name (s)
+  (split-string
+   (let ((case-fold-search nil))
+	 (downcase
+	  (replace-regexp-in-string "\\([a-z]\\)\\([A-Z]\\)" "\\1 \\2" s)))
+   "[^A-Za-z0-9]+"))
+
+(defun dasherize (s)
+  (mapconcat 'downcase
+			 (split-name s) "-"))
+
+;; Launch IRC
 (defun ndegruchy/irc ()
   (interactive)
   (circe "Libera Chat"))
