@@ -132,11 +132,6 @@
   :config
   (setq helm-swoop-pre-input-function (lambda () "")))
 
-(use-package markdown-mode
-  :ensure t
-  :mode ("README\\.md\\'" . gfm-mode)
-  :init (setq markdown-command "pandoc"))
-
 (use-package modus-themes
   :ensure t
   :init
@@ -165,9 +160,6 @@
 		  move-to-window-line-top-bottom
 		  scroll-up-command
 		  scroll-down-command)))
-
-(use-package systemd
-  :ensure t)
 
 (use-package web-mode
   :ensure t
