@@ -15,6 +15,7 @@
  ("M-/"             .   hippie-expand)
  ("C-x k"			.   kill-this-buffer)
  ;; Custom functions
+ ("<f6>"            .	ndegruchy/goto-matching-paren)
  ("C-c R"			.	ndegruchy/rename-file-and-buffer)
  ("S-<return>"		.	ndegruchy/smart-open-line)
  ("C-S-<return>"	.	ndegruchy/smart-open-line-above)
