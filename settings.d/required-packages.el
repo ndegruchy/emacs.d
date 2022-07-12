@@ -102,7 +102,6 @@
 		 (web-mode  . emmet-mode)
 		 (php-mode  . emmet-mode)))
 
-
 (use-package emms
   :ensure t
   :bind (("C-c x b" . emms-smart-browse)
@@ -168,6 +167,16 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
+(use-package org-present
+  :ensure t
+  :bind (:map org-present-mode-keymap
+			  ("C-c C-j" . ndegruchy/present-next)
+			  ("C-c C-k" . ndegruchy/present-prev))
+  :hook ((org-present-mode . ndegruchy/present-hook)
+		 (org-present-mode-quit . ndegruchy/present-quit-hook))
+  :after org
+  :defer t)
+
 (use-package pulsar
   :ensure t
   :init
@@ -184,6 +193,11 @@
 		  move-to-window-line-top-bottom
 		  scroll-up-command
 		  scroll-down-command)))
+
+(use-package visual-fill-column
+  :ensure t
+  :defer t
+  :hook (org-mode . ndegruchy/presentation-settings))
 
 (use-package web-mode
   :ensure t
