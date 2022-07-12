@@ -102,6 +102,30 @@
 		 (web-mode  . emmet-mode)
 		 (php-mode  . emmet-mode)))
 
+
+(use-package emms
+  :ensure t
+  :bind (("C-c x b" . emms-smart-browse)
+		 ("C-c x p" . emms-pause)
+		 ("C-c x N" . emms-next)
+		 ("C-c x P" . emms-previous)
+		 ("C-c x s" . emms-stop))
+  :init
+  (require 'emms-setup)
+  (require 'emms-mode-line)
+  (emms-all)
+  (emms-mode-line 1)
+  :config
+  (setq emms-source-file-default-directory (concat (getenv "HOME") "/Music")
+		emms-info-asynchronosly t
+		emms-show-format "%s")
+  (when (window-system)
+	(setq emms-browser-covers 'emms-browser-cache-thumbnail-async))
+  
+  (if (executable-find "cvlc")
+	  (setq emms-player-list '(emms-player-vlc))
+	(emms-default-players)))
+
 (use-package expand-region
   :ensure t
   :bind ("C-c s" . er/expand-region))
