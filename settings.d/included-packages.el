@@ -10,7 +10,11 @@
   :init
   (put 'dired-find-alternate-file 'disabled nil)
   :config
-  (setq dired-listing-switches "--almost-all --ignore-backups --dired --human-readable -l --group-directories-first --sort=extension"))
+  (setq dired-listing-switches "--almost-all --ignore-backups --dired --human-readable -l --group-directories-first --sort=extension")
+  (if (version< emacs-version "28.1")
+	  (progn
+		;; for dired-jump and dired-omit
+		(require 'dired-x))))
 
 (use-package eshell
   :config
