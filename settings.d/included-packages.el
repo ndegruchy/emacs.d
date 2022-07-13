@@ -4,9 +4,11 @@
 (diminish 'auto-revert-mode)
 
 (use-package dired
+  :bind (:map dired-mode-map
+			  ("RET" . dired-find-alternate-file)
+			  ("^" . (lambda () (interactive) (find-alternate-file ".."))))
   :init
-  (load-library (concat user-emacs-directory "site-lisp.d/dired+.el"))
-  (diredp-toggle-find-file-reuse-dir t)
+  (put 'dired-find-alternate-file 'disabled nil)
   :config
   (setq dired-listing-switches "--almost-all --ignore-backups --dired --human-readable -l --group-directories-first --sort=extension"))
 
