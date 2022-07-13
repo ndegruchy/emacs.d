@@ -7,6 +7,7 @@
   :bind (:map dired-mode-map
 			  ("RET" . dired-find-alternate-file)
 			  ("^" . (lambda () (interactive) (find-alternate-file ".."))))
+  :hook (dired-mode . dired-hide-details-mode)
   :init
   (put 'dired-find-alternate-file 'disabled nil)
   ;; mouse-1 is aliased to mouse-2 in dired-mode 0_o
