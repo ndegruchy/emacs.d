@@ -79,14 +79,6 @@
 	(circe-set-display-handler "353" 'circe-display-ignore)
 	(circe-set-display-handler "366" 'circe-display-ignore)))
 
-(use-package dired-single
-  :ensure t
-  :after dired
-  :bind (:map dired-mode-map
-			  ("[dired-find-file]" . dired-find-file)
-			  ("[dired-mouse-find-file-other-window]" . dired-single-buffer-mouse)
-			  ("[dired-up-directory]" . dired-single-up-directory)))
-
 (use-package diminish
   :ensure t
   :after use-package)
