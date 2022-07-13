@@ -9,6 +9,8 @@
 			  ("^" . (lambda () (interactive) (find-alternate-file ".."))))
   :init
   (put 'dired-find-alternate-file 'disabled nil)
+  ;; mouse-1 is aliased to mouse-2 in dired-mode 0_o
+  (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)
   :config
   (setq dired-listing-switches "--almost-all --ignore-backups --dired --human-readable -l --group-directories-first --sort=extension")
   (if (version< emacs-version "28.1")
