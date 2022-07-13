@@ -4,31 +4,11 @@
 (diminish 'auto-revert-mode)
 
 (use-package dired
-  :bind (:map dired-mode-map
-			  ;; Reuse the same dired window
-			  ;; ("RET" . dired-find-alternate-file)
-			  ("^"   . (lambda()
-						 (interactive)
-						 (find-alternate-file "..")))
-			  ;; Use 'open' to open the file with the user's choice
-			  ("E"   . ndegruchy/open-in-external-app)
-			  ;; Get the file size(s)
-			  ("; d" . dired-get-size)
-			  ;; Toggle omit
-			  ("; o" . dired-omit-mode)
-			  ;; Close the frame, useful when using dired by itself
-			  ("; q" . delete-frame))
-  :hook (dired-mode . dired-hide-details-mode)
   :init
-  (load-file (concat user-emacs-directory "site-lisp.d/dired+.el"))
-
+  (load-library (concat user-emacs-directory "site-lisp.d/dired+.el"))
   (diredp-toggle-find-file-reuse-dir t)
   :config
-  (setq-default dired-omit-files-p t)
-  (setq dired-listing-switches "--almost-all --ignore-backups --dired --human-readable -l --group-directories-first --sort=extension"
-		dired-dwim-target t
-		dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
-  (put 'dired-find-alternate-file 'disabled nil))
+  (setq dired-listing-switches "--almost-all --ignore-backups --dired --human-readable -l --group-directories-first --sort=extension"))
 
 (use-package eshell
   :config
