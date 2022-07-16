@@ -83,6 +83,9 @@
   :ensure t
   :after use-package)
 
+(use-package dwim-shell-command
+  :load-path "site-lisp.d/dwim-shell-command.el")
+
 (use-package editorconfig
   :ensure t
   :diminish t
@@ -142,6 +145,8 @@
   :config
   (helm-mode 1)
   (setq helm-move-to-line-cycle-in-source t
+		;; helm-ff-skip-boring-files t
+		helm-ff-skip-git-ignored-files t
 		helm-M-x-fuzzy-match t
 		helm-buffers-fuzzy-matching t
 		helm-recentf-fuzzy-match    t)

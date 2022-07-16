@@ -161,3 +161,9 @@ line. Useful for listing directories, etc."
   (interactive)
   (org-present-next)
   (ndegruchy/prepare-slide))
+
+(defun dwim-shell-command-unzip ()
+  (interactive)
+  (dwim-shell-command-on-marked-files
+   "Unzip" "atool --extract --explain ' '"
+   :utils "atool"))
