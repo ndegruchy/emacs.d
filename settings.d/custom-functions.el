@@ -104,19 +104,6 @@ line. Useful for listing directories, etc."
   (mapconcat 'downcase
 			 (split-name s) "-"))
 
-(defun ndegruchy/goto-matching-paren (&optional arg)
-  "Go to the matching paren, similar to vi's %."
-  (interactive "p")
-  (or arg (setq arg 1))
-  (cond
-   ;; Check for "outside of bracket" positions
-   ((looking-at "[\[\(\{]") (forward-sexp arg))
-   ((looking-back "[\]\)\}]" 1) (backward-sexp arg))
-   ;; Otherwise, move from inside the bracket
-   ((looking-at "[\]\)\}]") (forward-char) (backward-sexp arg))
-   ((looking-back "[\[\(\{]" 1) (backward-char) (forward-sexp arg))
-   (t (up-list arg t t))))
-
 ;; Launch IRC
 (defun ndegruchy/irc ()
   (interactive)
