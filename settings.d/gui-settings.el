@@ -1,6 +1,7 @@
 ;; GUI mode settings
 
 (scroll-bar-mode -1)
+(menu-bar-mode   -1)
 (tooltip-mode    -1)
 (tool-bar-mode   -1)
 
@@ -16,5 +17,5 @@
 
 ;; Frame
 (setq frame-resize-pixelwise nil)
-(add-to-list 'default-frame-alist '(height . 24))
-(add-to-list 'default-frame-alist '(width . 80))
+;; (add-to-list 'default-frame-alist '(height . 24))
+;; (add-to-list 'default-frame-alist '(width . 80))
