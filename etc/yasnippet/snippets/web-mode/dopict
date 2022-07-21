@@ -6,7 +6,7 @@
 <section class="picture">
 	<figure>
 		<picture>
-			<source srcset="${1:path}.avif" type="image/avif">
+			<source srcset="${1:path}.heic" type="image/heic">
 			<source srcset="$1.webp" type="image/webp">
 			<img src="$1.jpg" alt="${2:caption}" loading="lazy">
 		</picture>
