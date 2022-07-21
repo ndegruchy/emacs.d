@@ -103,7 +103,7 @@
 		 (php-mode  . emmet-mode)))
 
 (use-package emms
-  :ensure t
+  ;;:ensure t
   :bind (("C-c x b" . emms-smart-browse)
 		 ("C-c x p" . emms-pause)
 		 ("C-c x N" . emms-next)
