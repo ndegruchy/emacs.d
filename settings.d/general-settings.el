@@ -111,7 +111,7 @@
 (add-hook 'before-save-hook 'time-stamp)
 
 ;; Protect buffers
-(add-hook 'after-init-hook #'protect-buffers)
+(add-hook 'after-init-hook #'ndegruchy/protect-buffers)
 
 ;; Removes weird characters in the title of a frame
 (setq frame-title-format "%b")

@@ -26,9 +26,6 @@
 
 ;; Fetch packages
 
-(unless package-archive-contents
-  (package-refresh-contents))
-
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -67,7 +64,7 @@
 					  "#momw"
 					  "#openmw"
 					  "#kde"))))
-  (set-face-attribute 'circe-my-message-face nil :background "transparent")
+  ;; (set-face-attribute 'circe-my-message-face nil :background "transparent")
   (set-face-attribute 'circe-my-message-face nil :foreground "tomato")
   
   (with-eval-after-load 'circe

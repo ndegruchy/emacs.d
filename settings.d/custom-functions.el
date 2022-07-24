@@ -87,22 +87,22 @@ line. Useful for listing directories, etc."
   (forward-line -1)
   (indent-according-to-mode))
 
-(defun protect-buffers ()
+(defun ndegruchy/protect-buffers ()
   (let ((protected '("*scratch*" "*Messages*")))
     (dolist (buf protected)
       (with-current-buffer buf
         (emacs-lock-mode 'kill)))))
 
-(defun split-name (s)
+(defun ndegruchy/split-name (s)
   (split-string
    (let ((case-fold-search nil))
 	 (downcase
 	  (replace-regexp-in-string "\\([a-z]\\)\\([A-Z]\\)" "\\1 \\2" s)))
    "[^A-Za-z0-9]+"))
 
-(defun dasherize (s)
+(defun ndegruchy/dasherize (s)
   (mapconcat 'downcase
-			 (split-name s) "-"))
+			 (ndegruchy/split-name s) "-"))
 
 ;; Launch IRC
 (defun ndegruchy/irc ()
