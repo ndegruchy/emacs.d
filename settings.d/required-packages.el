@@ -166,6 +166,13 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
+(use-package pdf-tools
+  :ensure t
+  :bind (:map pdf-view-mode-map
+			  ("C-s" . isearch-forward))
+  :init
+  (pdf-tools-install))
+
 (use-package pulsar
   :ensure t
   :init
