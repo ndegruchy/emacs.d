@@ -41,7 +41,7 @@
       delete-selection-mode                  t
 	  show-paren-mode                        t)
 
-(menu-bar-mode		 -1)
+(menu-bar-mode		  t)
 (display-battery-mode t)
 (global-linum-mode   -1)
 (fset 'yes-or-no-p   'y-or-n-p)
