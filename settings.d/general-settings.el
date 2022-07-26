@@ -4,9 +4,7 @@
 ;; Me
 (setq user-full-name         "Nathan DeGruchy"
       user-mail-address      "nathan@degruchy.org"
-      message-signature      t
-	  calendar-christian-all-holidays-flag t
-	  calendar-date-style    'iso)
+      message-signature      t)
 
 ;; Signature
 (if (file-exists-p "~/.config/signature.txt")
@@ -99,6 +97,11 @@
 	   mode-line-misc-info
 	   ;; Dashes
 	   mode-line-end-spaces))
+
+;; Calendaring
+(setq calendar-christian-all-holidays-flag 	t
+	  calendar-date-style    				'iso
+	  calendar-mark-diary-entries-flag 		t)
 
 ;; Birthday
 (when (string= "12-21" (format-time-string "%m-%d"))
