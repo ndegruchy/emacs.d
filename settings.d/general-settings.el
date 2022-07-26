@@ -5,7 +5,8 @@
 (setq user-full-name         "Nathan DeGruchy"
       user-mail-address      "nathan@degruchy.org"
       message-signature      t
-	  calendar-christian-all-holidays-flag t)
+	  calendar-christian-all-holidays-flag t
+	  calendar-date-style    'iso)
 
 ;; Signature
 (if (file-exists-p "~/.config/signature.txt")
