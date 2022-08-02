@@ -108,3 +108,9 @@ line. Useful for listing directories, etc."
 (defun ndegruchy/irc ()
   (interactive)
   (circe "Libera Chat"))
+
+;; Make
+(defun ndegruchy/make ()
+  (interactive)
+  (let ((default-directory (locate-dominating-file "." "Makefile")))
+	(compile "make -k")))
