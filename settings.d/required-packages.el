@@ -80,6 +80,19 @@
   :ensure t
   :after use-package)
 
+(use-package dwim-shell-command
+  :ensure t
+  :bind (:map dired-mode-map
+			  ("; x" . dwim/unzip))
+  :config
+  (setq dwim-shell-command-shell-util "bash")
+  (defun dwim/unzip ()
+	"Unzip all marked archives (of any kind) using `atool'."
+	(interactive)
+	(dwim-shell-command-on-marked-files
+	 "Unzip" "atool --extract --explain '<<f>>'"
+	 :utils "atool")))
+
 (use-package editorconfig
   :ensure t
   :diminish t
@@ -109,14 +122,16 @@
   :init
   (require 'emms-setup)
   (require 'emms-mode-line)
+  (require 'emms-info-libtag)
   (emms-all)
   (emms-mode-line 1)
   :config
-  (setq emms-source-file-default-directory (concat (getenv "HOME") "/Music")
+  (setq emms-info-functions '(emms-info-libtag)
+		emms-source-file-default-directory (concat (getenv "HOME") "/Music")
 		emms-info-asynchronosly t
 		emms-show-format "%s")
-  (when (window-system)
-	(setq emms-browser-covers 'emms-browser-cache-thumbnail-async))
+  (setq emms-browser-covers 'emms-browser-cache-thumbnail-async)
+  (add-to-list 'emms-info-functions 'emms-info-libtag)
   
   (if (executable-find "cvlc")
 	  (setq emms-player-list '(emms-player-vlc))
@@ -166,13 +181,6 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
-(use-package pdf-tools
-  :ensure t
-  :bind (:map pdf-view-mode-map
-			  ("C-s" . isearch-forward))
-  :init
-  (pdf-tools-install))
-
 (use-package pulsar
   :ensure t
   :init
@@ -189,6 +197,21 @@
 		  move-to-window-line-top-bottom
 		  scroll-up-command
 		  scroll-down-command)))
+
+(use-package tmr
+  :ensure t
+  :bind (("C-c t n" . tmr-with-description)
+		 ("C-c t l" . tmr-tabulated-view)
+		 ("C-c t c" . tmr-remove-finished)
+		 ("C-c t k" . tmr-cancel))
+  :config
+  (setq tmr-sound-file "/usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga"
+		tmr-notification-urgency 'normal
+		tmr-descriptions-list
+		(list
+		 "Clock in"
+		 "Clock out"
+		 "Do that thing")))
 
 (use-package web-mode
   :ensure t
