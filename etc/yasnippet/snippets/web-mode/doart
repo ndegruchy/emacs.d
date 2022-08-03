@@ -3,13 +3,13 @@
 # group: degruchy-org
 # key: doart
 # --
-<article class="hentry h-entry" id="`(insert (format-time-string "%Y%m%d"))`-${1:$(ndegruchy/dasherize yas-text)}">
+<article class="hentry h-entry" id="`(format-time-string "%Y%m%d")`-${1:$(ndegruchy/dasherize yas-text)}">
 	<header>
 		<h2 class="p-name entry-title">
 			${1:title}
-			<a href="#`(insert (format-time-string "%Y%m%d"))`-${1:$(ndegruchy/dasherize yas-text)}" class="u-url">🔗</a>
+			<a href="#`(format-time-string "%Y%m%d")`-${1:$(ndegruchy/dasherize yas-text)}" class="u-url">🔗</a>
 		</h2>
-		<time class="dt-published published" datetime="`(insert (format-time-string "%FT%T%z"))`">`(insert (format-time-string "%T"))` on `(insert (format-time-string "%F"))`</time>
+		<time class="dt-published published" datetime="`(format-time-string "%FT%T%z")`">`(format-time-string "%T")` on `(format-time-string "%F")`</time>
 	</header>
     <section class="article-content e-content">$0</section>
 </article>

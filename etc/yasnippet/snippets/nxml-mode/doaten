@@ -11,7 +11,7 @@
 		<name>Nathan DeGruchy</name>
 		<email>nathan@degurchy.org</email>
 	</author>
-	<updated>`(insert (format-time-string "%FT%T%z"))`</updated>
-	<published>`(insert (format-time-string "%FT%T%z"))`</published>
+	<updated>`(format-time-string "%FT%T%z")`</updated>
+	<published>`(format-time-string "%FT%T%z")`</published>
 	<content />
 </entry>
