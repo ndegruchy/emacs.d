@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: New tag, inline
-# key: tni
-# --
-<$1>$2</$1>$0
