@@ -82,4 +82,5 @@
   > "<updated>" (format-time-string "%FT%T%z") "</updated>\n"
   > "<published>" (format-time-string "%FT%T%z") "</published>\n"
   > "<content />\n"
+  > "</author>\n"
   > "</entry>\n")
