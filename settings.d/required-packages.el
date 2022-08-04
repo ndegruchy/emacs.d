@@ -185,29 +185,6 @@
 		  scroll-up-command
 		  scroll-down-command)))
 
-(use-package tmr
-  :ensure t
-  :bind (("C-c t n" . tmr-with-description)
-		 ("C-c t l" . tmr-tabulated-view)
-		 ("C-c t c" . tmr-remove-finished)
-		 ("C-c t k" . tmr-cancel))
-  :config
-  (setq tmr-sound-file "/usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga"
-		tmr-notification-urgency 'normal
-		tmr-descriptions-list
-		(list
-		 "Clock in"
-		 "Clock out"
-		 "Do that thing")))
-
-(use-package web-mode
-  :ensure t
-  :config
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-  (setq web-mode-markup-indent-offset 4
-		web-mode-css-indent-offset 4
-		web-mode-code-indent-offset 4))
-
 (use-package which-key
   :ensure t
   :diminish which-key-mode
@@ -217,8 +194,3 @@
 (use-package windresize
   :ensure t
   :bind ("C-c r" . windresize))
-
-(use-package yasnippet
-  :ensure t
-  :config
-  (yas-global-mode 1))

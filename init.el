@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2022-07-12 21:02:39 nathan>
+;; Time-stamp: <2022-08-04 16:10:44 nathan>
 
 ;; Initialize the package manager
 (package-initialize)
@@ -8,6 +8,7 @@
 ;; Load the local lisp directory
 (add-to-list 'load-path (concat user-emacs-directory "settings.d/"))
 (add-to-list 'load-path (concat user-emacs-directory "site-lisp.d/"))
+(add-to-list 'load-path (concat user-emacs-directory "skeletons.d/"))
 
 ;; Load Private Variables
 (if
@@ -23,6 +24,7 @@
 (load-library "included-packages")
 (load-library "custom-functions")
 (load-library "custom-keybindings")
+(load-library "web")
 
 ;; UI Specific Stuff
 (when (window-system)
