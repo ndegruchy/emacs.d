@@ -80,19 +80,6 @@
   :ensure t
   :after use-package)
 
-(use-package dwim-shell-command
-  :ensure t
-  :bind (:map dired-mode-map
-			  ("; x" . dwim/unzip))
-  :config
-  (setq dwim-shell-command-shell-util "bash")
-  (defun dwim/unzip ()
-	"Unzip all marked archives (of any kind) using `atool'."
-	(interactive)
-	(dwim-shell-command-on-marked-files
-	 "Unzip" "atool --extract --explain '<<f>>'"
-	 :utils "atool")))
-
 (use-package editorconfig
   :ensure t
   :diminish t
