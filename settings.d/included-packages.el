@@ -52,5 +52,6 @@
 
 (use-package sgml-mode
   :config
+  (sgml-electric-tag-pair-mode t)
   ;; Discovered it here https://stackoverflow.com/questions/1666513/how-to-indent-4-spaces-under-sgml-mode
   (setq sgml-basic-offset 4))
