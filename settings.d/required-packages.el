@@ -65,7 +65,6 @@
 					  "#momw"
 					  "#openmw"
 					  "#kde"))))
-  ;; (set-face-attribute 'circe-my-message-face nil :background "transparent")
   (set-face-attribute 'circe-my-message-face nil :foreground "tomato")
   
   (with-eval-after-load 'circe
@@ -96,12 +95,13 @@
   :ensure t
   :diminish t
   :hook ((sgml-mode . emmet-mode)
-		 (css-mode  . emmet-mode)
-		 (web-mode  . emmet-mode)
-		 (php-mode  . emmet-mode)))
+		 (css-mode  . emmet-mode)))
 
 (use-package emms
-  ;;:ensure t
+  ;; Having 'ensure t' here causes it to try and be downloaded from
+  ;; melpa, instead of using the system-provided package in debian
+  ;; (elpa-emms)
+  ;; :ensure t
   :bind (("C-c x b" . emms-smart-browse)
 		 ("C-c x p" . emms-pause)
 		 ("C-c x N" . emms-next)
