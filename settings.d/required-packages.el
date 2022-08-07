@@ -12,7 +12,8 @@
 			 '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
 (add-to-list 'package-archives
 			 '("melpa" . "https://melpa.org/packages/") t)
-;; (add-to-list 'package-archives '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/"))
+;; (add-to-list 'package-archives
+;; 			 '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/") t)
 
 (setq package-archive-priorities
 	  '(("melpa-stable" . 20)
