@@ -185,9 +185,10 @@
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion))))
   :config
-  (setq orderless-matching-styles '(orderless-initialism
-									orderless-literal
-									orderless-regexp)))
+  (setq orderless-matching-styles '(orderless-initialism ;; Use this for cool things like 'plp'
+									orderless-literal    ;; Things like EMMS need to be literal
+									orderless-regexp     ;; Last resort
+									)))
 
 (use-package pulsar
   :ensure t
