@@ -76,6 +76,21 @@
 	(circe-set-display-handler "353" 'circe-display-ignore)
 	(circe-set-display-handler "366" 'circe-display-ignore)))
 
+(use-package consult
+  :ensure t
+  :bind (("C-x M-:" 	. consult-complex-command)
+		 ("C-x b"   	. consult-buffer)
+		 ("C-x 4 b" 	. consult-buffer-other-window)
+		 ("C-x 5 b" 	. consult-buffer-other-frame)
+		 ("C-x r b" 	. consult-bookmark)
+		 ("M-y"     	. consult-yank-pop)
+		 ("<help> a" 	. consult-apropos)
+		 ("M-s l"		. consult-line))
+  :hook (completion-list-mode . consult-preview-at-point-mode)
+  :init
+  (setq register-preview-delay 1
+		register-preview-function #'consult-register-format))
+
 (use-package diminish
   :ensure t
   :after use-package)
@@ -85,6 +100,24 @@
   :diminish t
   :config
   (editorconfig-mode 1))
+
+(use-package embark
+  :ensure t
+  :bind (:map minibuffer-local-map
+		 ("C-," . embark-export)
+		 ("C-z" . embark-become))
+  :config
+  (setq embark-confirm-act-all nil)
+  (add-to-list 'display-buffer-alist
+			   '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+				 nil
+				 (window-parameters (mode-line-format . none)))))
+
+(use-package embark-consult
+  :ensure t
+  :after (embark consult)
+  :demand t
+  :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package embrace
   :ensure t
@@ -100,7 +133,7 @@
 (use-package emms
   ;; Having 'ensure t' here causes it to try and be downloaded from
   ;; melpa, instead of using the system-provided package in debian
-  ;; (elpa-emms)
+  ;; package 'elpa-emms'
   ;; :ensure t
   :bind (("C-c x b" . emms-smart-browse)
 		 ("C-c x p" . emms-pause)
@@ -129,33 +162,10 @@
   :ensure t
   :bind ("C-c s" . er/expand-region))
 
-(use-package helm
+(use-package marginalia
   :ensure t
-  :demand t
-  :diminish t
-  :bind (("M-x" . helm-M-x)
-		 ("<menu>" . helm-M-x)
-		 ("C-x C-f" . helm-find-files)
-		 ("C-x b" . helm-buffers-list)
-		 ("M-y" . helm-show-kill-ring)
-		 ("C-x k" . kill-this-buffer))
-  :config
-  (helm-mode 1)
-  (setq helm-move-to-line-cycle-in-source t
-		;; helm-ff-skip-boring-files t
-		helm-ff-skip-git-ignored-files t
-		helm-M-x-fuzzy-match t
-		helm-buffers-fuzzy-matching t
-		helm-recentf-fuzzy-match    t)
-  (setq history-delete-duplicates t
-		history-length 20))
-
-(use-package helm-swoop
-  :ensure t
-  :after helm
-  :bind (("C-s" . helm-swoop))
-  :config
-  (setq helm-swoop-pre-input-function (lambda () "")))
+  :init
+  (marginalia-mode))
 
 (use-package modus-themes
   :ensure t
@@ -168,6 +178,16 @@
   (require 'recentf)
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
+
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion))))
+  :config
+  (setq orderless-matching-styles '(orderless-initialism
+									orderless-literal
+									orderless-regexp)))
 
 (use-package pulsar
   :ensure t
@@ -185,6 +205,18 @@
 		  move-to-window-line-top-bottom
 		  scroll-up-command
 		  scroll-down-command)))
+
+(use-package trashed
+  :ensure t
+  :bind (("C-c t" . trashed)))
+
+(use-package vertico
+  :ensure t
+  :bind (:map vertico-map
+			  ("RET" . vertico-directory-enter)
+			  ("C-l" . vertico-directory-up))
+  :init
+  (vertico-mode))
 
 (use-package which-key
   :ensure t
