@@ -25,7 +25,7 @@
   > "<header>\n"
   > "<h2 class=\"p-name entry-title\">\n"
   > title "\n"
-  > "<a href=\"#" anchor "\" class=\"u-url\">🔗</a>\n"
+  > "<a href=\"#" anchor "\" class=\"u-url\">&#x1F517;</a>\n"
   > "</h2>\n"
   > "<time class=\"dt-published published\" datetime=\"" (format-time-string "%FT%T%z") "\">" (format-time-string "%T") " on " (format-time-string "%Y-%m-%d") "</time>\n"
   > "</header>\n"
