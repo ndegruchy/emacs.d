@@ -143,12 +143,13 @@
   :init
   (require 'emms-setup)
   (require 'emms-mode-line)
+  (require 'emms-player-mpv)
   (require 'emms-info-libtag)
   (emms-all)
   (emms-mode-line 1)
   :config
   (setq emms-info-functions '(emms-info-libtag)
-		emms-source-file-default-directory (concat (getenv "HOME") "/Music")
+		emms-source-file-default-directory (concat (getenv "HOME") "/Media/Music")
 		emms-info-asynchronosly t
 		emms-show-format "%s")
   (setq emms-browser-covers 'emms-browser-cache-thumbnail-async)
@@ -156,6 +157,9 @@
   
   (if (executable-find "cvlc")
 	  (setq emms-player-list '(emms-player-vlc))
+	(emms-default-players))
+  (if (executable-find "mpv")
+	  (setq emms-player-list '(emms-player-mpv))
 	(emms-default-players)))
 
 (use-package expand-region

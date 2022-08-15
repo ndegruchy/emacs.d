@@ -3,6 +3,12 @@
 
 (diminish 'auto-revert-mode)
 
+(use-package autoinsert
+  :init
+  (auto-insert-mode t)
+  :config
+  (define-auto-insert '(tex-mode . "Empty TeX file skeleton") 'ndegruchy/latex-base))
+
 (use-package dired
   :bind (:map dired-mode-map
 			  ("RET" . dired-find-alternate-file)
@@ -36,6 +42,16 @@
 (use-package midnight
   :config
   (midnight-delay-set 'midnight-delay "02:00am"))
+
+(use-package org
+  :config
+  (setq org-publish-project-alist
+		'(("notes"
+		   :base-directory "/home/nathan/Documents/Notes"
+		   :publishing-function org-html-publish-to-html
+		   :publishing-directory "/home/nathan/Documents/public/notes"
+		   :section-numbers nil
+		   :with-toc nil))))
 
 (use-package proced
   :config

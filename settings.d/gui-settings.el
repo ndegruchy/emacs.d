@@ -12,7 +12,13 @@
 ;; ones. Emacs doesn't seem to like them.
 ;; https://github.com/microsoft/cascadia-code/issues/589
 ;; (add-to-list 'default-frame-alist '(font . "Cascadia Code-15"))
-(add-to-list 'default-frame-alist '(font . "Iosevka-17"))
+(add-to-list 'default-frame-alist '(font . "Iosevka-18"))
+
+(set-face-attribute 'menu nil
+					:inverse-video nil
+					:background "black"
+					:foreground "white"
+					:font       "Iosevka")
 
 ;; Frame
 (setq frame-resize-pixelwise nil)
