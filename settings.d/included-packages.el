@@ -27,9 +27,7 @@
 
 (use-package eshell
   :config
-  (setq eshell-visual-commands '("less" "tmux" "htop" "top" "bash" "fish" "zsh")
-		eshell-visual-subcommands '(("git" "log" "l" "diff" "show"))
-		eshell-ls-initial-args "-alh"))
+  (setq eshell-ls-initial-args "-alh"))
 
 (use-package flyspell
   :config
@@ -44,12 +42,14 @@
   (midnight-delay-set 'midnight-delay "02:00am"))
 
 (use-package org
+  :init
+  (require 'org-tempo)
   :config
   (setq org-publish-project-alist
 		'(("notes"
 		   :base-directory "/home/nathan/Documents/Notes"
 		   :publishing-function org-html-publish-to-html
-		   :publishing-directory "/home/nathan/Documents/public/notes"
+		   :publishing-directory "/home/nathan/Documents/Public/Notes"
 		   :section-numbers nil
 		   :with-toc nil))))
 

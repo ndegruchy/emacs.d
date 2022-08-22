@@ -211,6 +211,9 @@
 		  scroll-up-command
 		  scroll-down-command)))
 
+(use-package titlecase
+  :ensure t)
+
 (use-package trashed
   :ensure t
   :bind (("C-c t" . trashed)))
