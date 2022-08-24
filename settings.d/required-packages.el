@@ -20,11 +20,6 @@
 		("nongnu" . 15)
 		("melpa" . 1))) ;; Sets download priority, higher = more likely
 
-
-;; Fix for 26.2 elpa 'bad request' issue
-(if (version<= emacs-version "26.2")
-    (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
-
 ;; Fetch packages
 
 (unless (package-installed-p 'use-package)
