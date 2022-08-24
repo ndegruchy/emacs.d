@@ -216,8 +216,9 @@
 (use-package vertico
   :ensure t
   :bind (:map vertico-map
-			  ("RET" . vertico-directory-enter)
-			  ("C-l" . vertico-directory-up))
+			  ("RET"             . vertico-directory-enter)
+			  ("C-l"             . vertico-directory-up)
+			  ("<C-return>"      . vertico-exit-input))
   :init
   (vertico-mode))
 

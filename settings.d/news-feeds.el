@@ -7,6 +7,11 @@
 
 (use-package newsticker
   :ensure nil
+  :bind (("C-c n l" . newsticker-show-news)
+		 ("C-c n s" . newsticker-stop)
+		 ("C-c n t" . newsticker-start))
+  :config
+  (setq newsticker-download-logos    nil)
   :custom
   (setq newsticker-url-list
 		'(("NPR News"                "https://feeds.npr.org/1001/rss.xml")
