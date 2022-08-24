@@ -3,6 +3,7 @@
 (scroll-bar-mode -1)
 (tooltip-mode    -1)
 (tool-bar-mode   -1)
+(menu-bar-mode   -1)
 
 (setq x-gtk-use-system-tooltips nil
 	  inhibit-x-resources       t)
@@ -12,7 +13,7 @@
 ;; ones. Emacs doesn't seem to like them.
 ;; https://github.com/microsoft/cascadia-code/issues/589
 ;; (add-to-list 'default-frame-alist '(font . "Cascadia Code-15"))
-(add-to-list 'default-frame-alist '(font . "Iosevka-18"))
+(add-to-list 'default-frame-alist '(font . "Iosevka-17"))
 
 (set-face-attribute 'menu nil
 					:inverse-video nil
