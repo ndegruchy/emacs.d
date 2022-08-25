@@ -114,3 +114,15 @@ line. Useful for listing directories, etc."
   (interactive)
   (let ((default-directory (locate-dominating-file "." "Makefile")))
 	(compile "make -k")))
+
+(defun append-to-list (list-var elements)
+  "Append ELEMENTS to the end of LIST-VAR.
+
+The return value is the new value of LIST-VAR."
+  (unless (consp elements)
+    (error "ELEMENTS must be a list"))
+  (let ((list (symbol-value list-var)))
+    (if list
+        (setcdr (last list) elements)
+      (set list-var elements)))
+  (symbol-value list-var))
