@@ -1,8 +1,6 @@
 ;; included-packages.el
 ;; Configure packages distributed with Emacs
 
-(diminish 'auto-revert-mode)
-
 (use-package autoinsert
   :init
   (auto-insert-mode t)
