@@ -80,23 +80,23 @@
 
 ;; Custom modeline
 (setq-default mode-line-format
-	  (list
-	   ;; Dirty flag
-	   "[%+] "
-	   ;; Narrowing enabled?
-	   "%n "
-	   ;; Buffer name
-	   mode-line-buffer-identification
-	   ;; Sep
-	   " | "
-	   ;; Position
-	   mode-line-position
-   	   ;; Sep
-	   " | "
-	   ;; Misc
-	   mode-line-misc-info
-	   ;; Dashes
-	   mode-line-end-spaces))
+	(list
+		;; Dirty flag
+		"[%+] "
+		;; Narrowing enabled?
+		"%n "
+		;; Buffer name
+		mode-line-buffer-identification
+		;; Sep
+		" | "
+		;; Position
+		mode-line-position
+   		;; Sep
+		" | "
+		;; Misc
+		mode-line-misc-info
+		;; Dashes
+		mode-line-end-spaces))
 
 ;; Calendaring
 (setq calendar-christian-all-holidays-flag 	t
@@ -110,11 +110,11 @@
 
 ;; Birthday
 (when (string= "12-21" (format-time-string "%m-%d"))
-  (run-with-idle-timer
-   1 nil
-   (lambda ()
-     (let (cursor-type)
-       (animate-birthday-present user-full-name)))))
+	(run-with-idle-timer
+		1 nil
+		(lambda ()
+			(let (cursor-type)
+				(animate-birthday-present user-full-name)))))
 
 ;; Timestamps
 (add-hook 'before-save-hook 'time-stamp)
@@ -136,4 +136,4 @@
 
 ;; Window moving keybindings
 (when (fboundp 'windmove-default-keybindings)
-  (windmove-default-keybindings))
+	(windmove-default-keybindings))
