@@ -183,6 +183,9 @@
 (use-package titlecase
 	:ensure t)
 
+(use-package vc-auto-commit
+	:ensure t)
+
 (use-package which-key
 	:ensure t
 	:config
