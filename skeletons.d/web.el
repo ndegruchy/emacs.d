@@ -60,7 +60,7 @@
 	> "<picture>\n"
 	> "<source srcset=\"/assets/images/posts/" date "/\" type=\"image/heic\">\n"
 	> "<source srcset=\"/assets/images/posts/" date "/\" type=\"image/webp\">\n"
-	> "<img href=\"/assets/images/posts/" date "/\" alt=\"\" height=\"128\" width=\"128\" loading=\"lazy\">\n"
+	> "<img href=\"/assets/images/posts/" date "/\" alt=\"\" height=\"\" width=\"\" loading=\"lazy\">\n"
 	> "</picture>\n"
 	> "<figcaption>" _ "</figcaption>\n"
 	> "</figure>\n")
