@@ -205,7 +205,8 @@
 	:config
 	(setq lin-face 'lin-blue
 		lin-mode-hooks '(dired-mode-hook
-							proced-mode-hook))
+							proced-mode-hook
+							vc-dir-mode-hook))
 	(lin-global-mode 1))
 
 (use-package marginalia
