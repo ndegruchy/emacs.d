@@ -37,6 +37,21 @@
 	:ensure t
 	:after use-package)
 
+(use-package consult
+	:ensure t
+	:bind (("C-x M-:" 	. consult-complex-command)
+			  ("C-x b"   	. consult-buffer)
+			  ("C-x 4 b" 	. consult-buffer-other-window)
+			  ("C-x 5 b" 	. consult-buffer-other-frame)
+			  ("C-x r b" 	. consult-bookmark)
+			  ("M-y"     	. consult-yank-pop)
+			  ("<help> a" 	. consult-apropos)
+			  ("M-s l"		. consult-line))
+	:hook (completion-list-mode . consult-preview-at-point-mode)
+	:init
+	(setq register-preview-delay 1
+		register-preview-function #'consult-register-format))
+
 (use-package circe
 	:ensure t
 	:config
@@ -79,6 +94,24 @@
 	:config
 	(editorconfig-mode 1))
 
+(use-package embark
+	:ensure t
+	:bind (:map minibuffer-local-map
+			  ("C-," . embark-export)
+			  ("C-z" . embark-become))
+	:config
+	(setq embark-confirm-act-all nil)
+	(add-to-list 'display-buffer-alist
+		'("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+			 nil
+			 (window-parameters (mode-line-format . none)))))
+
+(use-package embark-consult
+	:ensure t
+	:after (embark consult)
+	:demand t
+	:hook (embark-collect-mode . consult-preview-at-point-mode))
+
 (use-package embrace
 	:ensure t
 	:bind (("C-c E" . embrace-commander)
@@ -93,7 +126,7 @@
 	;; Having 'ensure t' here causes it to try and be downloaded from
 	;; melpa, instead of using the system-provided package in debian
 	;; package 'elpa-emms'
-	:ensure t
+	;; :ensure t
 	:bind (("C-c x b" . emms-smart-browse)
 			  ("C-c x p" . emms-pause)
 			  ("C-c x N" . emms-next)
@@ -125,31 +158,58 @@
 	:ensure t
 	:bind ("C-c s" . er/expand-region))
 
-(use-package helm
+(use-package fontaine
 	:ensure t
-	:demand t
-	;; :diminish t
-	:bind (("M-x" . helm-M-x)
-			  ("<menu>" . helm-M-x)
-			  ("C-x C-f" . helm-find-files)
-			  ("C-x b" . helm-buffers-list)
-			  ("M-y" . helm-show-kill-ring)
-			  ("C-h a" . helm-apropos))
+	:bind (("C-c f" . fontaine-set-preset))
 	:config
-	(helm-mode 1)
-	(setq helm-move-to-line-cycle-in-source t
-		helm-M-x-fuzzy-match t
-		helm-buffers-fuzzy-matching t
-		helm-recentf-fuzzy-match	t)
-	(setq history-delete-duplicates t
-		history-length 20))
+	(setq fontaine-presets
+		'((normal
+			  :default-family "Ioveska"
+			  :default-weight normal
+			  :default-height 170)
+			 (presentation
+				 :default-family "Ioveska"
+				 :default-weight normal
+				 :default-height 300))))
 
-(use-package helm-swoop
+;; (use-package helm
+;; 	:ensure t
+;; 	:demand t
+;; 	:diminish t
+;; 	:bind (("M-x" . helm-M-x)
+;; 			  ("<menu>" . helm-M-x)
+;; 			  ("C-x C-f" . helm-find-files)
+;; 			  ("C-x b" . helm-buffers-list)
+;; 			  ("M-y" . helm-show-kill-ring)
+;; 			  ("C-h a" . helm-apropos))
+;; 	:config
+;; 	(helm-mode 1)
+;; 	(setq helm-move-to-line-cycle-in-source t
+;; 		helm-M-x-fuzzy-match t
+;; 		helm-buffers-fuzzy-matching t
+;; 		helm-recentf-fuzzy-match	t)
+;; 	(setq history-delete-duplicates t
+;; 		history-length 20))
+
+;; (use-package helm-swoop
+;; 	:ensure t
+;; 	:after helm
+;; 	:bind (("C-s" . helm-swoop))
+;; 	:config
+;; 	(setq helm-swoop-pre-input-function (lambda () "")))
+
+(use-package lin
 	:ensure t
-	:after helm
-	:bind (("C-s" . helm-swoop))
 	:config
-	(setq helm-swoop-pre-input-function (lambda () "")))
+	(setq lin-face 'lin-blue
+		lin-mode-hooks '(dired-mode-hook
+							proced-mode-hook))
+	(lin-global-mode 1))
+
+(use-package marginalia
+	:ensure t
+	:init
+	(marginalia-mode))
 
 (use-package modus-themes
 	:ensure t
@@ -162,6 +222,17 @@
 	(require 'recentf)
 	(add-to-list 'recentf-exclude no-littering-var-directory)
 	(add-to-list 'recentf-exclude no-littering-etc-directory))
+
+(use-package orderless
+	:ensure t
+	:custom
+	(completion-styles '(orderless basic))
+	(completion-category-overrides '((file (styles basic partial-completion))))
+	:config
+	(setq orderless-matching-styles '(orderless-initialism ;; Use this for cool things like 'plp'
+										 orderless-literal    ;; Things like EMMS need to be literal
+										 orderless-regexp     ;; Last resort
+										 )))
 
 (use-package pulsar
 	:ensure t
@@ -183,8 +254,24 @@
 (use-package titlecase
 	:ensure t)
 
-(use-package vc-auto-commit
-	:ensure t)
+(use-package tmr
+	:ensure t
+	:bind (("C-c t l" . tmr-tabulated-view)
+			  ("C-c t t" . tmr)
+			  ("C-c t T" . tmr-with-description)))
+
+(use-package vertico
+	:ensure t
+	:bind (:map vertico-map
+			  ("RET" . vertico-directory-enter)
+			  ("C-l" . vertico-directory-up))
+	:init
+	(vertico-mode)
+	(setq vertico-cyle t))
+
+(use-package web-mode
+	:init
+	(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 
 (use-package which-key
 	:ensure t
