@@ -163,14 +163,16 @@
 	:bind (("C-c f" . fontaine-set-preset))
 	:config
 	(setq fontaine-presets
-		'((normal
-			  :default-family "Ioveska"
-			  :default-weight normal
+		'((regular
+			  :default-weight medium
 			  :default-height 170)
 			 (presentation
-				 :default-family "Ioveska"
-				 :default-weight normal
-				 :default-height 300))))
+				 :default-family "Noto Sans"
+				 :default-weight bold
+				 :default-height 300)
+			 (t ;; defaults
+				 :default-family "Iosevka"
+				 :default-height 170))))
 
 ;; (use-package helm
 ;; 	:ensure t
