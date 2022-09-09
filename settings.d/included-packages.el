@@ -24,8 +24,16 @@
 			(require 'dired-x))))
 
 (use-package eshell
+	:init
+	(setenv "TERM" "xterm-256color")
 	:config
-	(setq eshell-ls-initial-args "-alh"))
+	(setq eshell-ls-initial-args '("--almost-all"
+									  "--ignore-backups"
+									  "--human-readable"
+									  "-l"
+									  "--group-directories-first"
+									  "--color=always"
+									  "--sort=extension"))
 
 (use-package flyspell
 	:config
