@@ -11,19 +11,19 @@
 	"Hide or show the cursor.
 
 When the cursor is hidden `scroll-lock-mode' is enabled, so that
-the buffer works like a pager."
+the buffer works like a pager.
+
+https://karthinks.com/software/more-less-emacs/"
 	:global nil
 	:lighter "H"
 	(if ndegruchy/hide-cursor-mode
 		(progn
 			(scroll-lock-mode 1)
-			(view-mode 1)
 			(read-only-mode 1)
 			(setq-local hide-cursor--original
                 cursor-type)
 			(setq-local cursor-type nil))
 		(scroll-lock-mode -1)
 		(read-only-mode -1)
-		(view-mode -1)
 		(setq-local cursor-type (or hide-cursor--original
 									t))))

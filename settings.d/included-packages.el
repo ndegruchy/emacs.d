@@ -51,6 +51,7 @@
 	:init
 	(require 'org-tempo)
 	:config
+	(setq org-return-follows-link t)
 	(setq org-publish-project-alist
 		'(("notes"
 			  :base-directory "/home/nathan/Documents/Notes"
