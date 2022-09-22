@@ -29,7 +29,7 @@
 	> "</h2>\n"
 	> "<time class=\"dt-published published\" datetime=\"" (format-time-string "%FT%T%z") "\">" (format-time-string "%T") " on " (format-time-string "%Y-%m-%d") "</time>\n"
 	> "</header>\n"
-	> "\t<section class=\"article-content e-content\">" _ "</section>\n"
+	> "<section class=\"article-content e-content\">" _ "</section>\n"
 	> "</article>\n")
 
 (define-skeleton ndegruchy/skeleton-web-gallery
