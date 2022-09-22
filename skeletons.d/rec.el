@@ -8,6 +8,7 @@
 (define-skeleton ndegruchy/skeleton-rec-new-contact
 	"Inserts a skeletal contact card record for a rec-mode database"
 	nil
+	;; Should I just ask for these up front? Seems like an obvious choice
 	"Given_Name: " _ "\n"
 	"Family_Name: " _ " \n"
 	"Street_Address: " _ " \n"

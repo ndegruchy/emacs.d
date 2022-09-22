@@ -29,4 +29,6 @@
 	("C-c w a"			.	ndegruchy/skeleton-web-article)
 	("C-c w g"			.	ndegruchy/skeleton-web-gallery)
 	("C-c w p"			.	ndegruchy/skeleton-web-picture)
-	("C-c w t"			.	ndegruchy/skeleton-web-atom-entry))
+	("C-c w t"			.	ndegruchy/skeleton-web-atom-entry)
+	("C-c w n"			.	ndegruchy/skeleton-rec-new-contact)
+	("<f7>"				.	ndegruchy/hide-cursor-mode))

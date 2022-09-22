@@ -89,6 +89,12 @@
 (use-package diminish
 	:ensure t)
 
+(use-package dired-atool
+	:ensure t
+	:after dired
+	:init
+	(dired-atool-setup))
+
 (use-package editorconfig
 	:ensure t
 	:config
@@ -108,7 +114,7 @@
 
 (use-package embark-consult
 	:ensure t
-	:after (embark consult)
+	:after (embark)
 	:demand t
 	:hook (embark-collect-mode . consult-preview-at-point-mode))
 
@@ -206,11 +212,14 @@
 	(setq lin-face 'lin-blue
 		lin-mode-hooks '(dired-mode-hook
 							proced-mode-hook
-							vc-dir-mode-hook))
+							vc-dir-mode-hook
+							embark-collect-mode-hook))
 	(lin-global-mode 1))
 
 (use-package marginalia
 	:ensure t
+	:bind (:map minibuffer-local-map
+			  ("M-A" . marginalia-cycle))
 	:init
 	(marginalia-mode))
 
@@ -255,7 +264,8 @@
 			 scroll-down-command)))
 
 (use-package titlecase
-	:ensure t)
+	:ensure t
+	:bind ("C-c p" . titlecase-dwim))
 
 (use-package tmr
 	:ensure t
@@ -266,6 +276,7 @@
 (use-package vertico
 	:ensure t
 	:bind (:map vertico-map
+			  ("C-j" . minibuffer-force-complete-and-exit)
 			  ("RET" . vertico-directory-enter)
 			  ("C-l" . vertico-directory-up))
 	:init
