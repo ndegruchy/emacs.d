@@ -48,6 +48,11 @@
 
 (setq-default frame-title-format '("%b [%m]"))
 
+;; UI - Minibuffer completion
+(setq completion-styles '(initials partial-completion substring)
+	  read-buffer-completion-ignore-case t
+	  read-file-name-completion-ignore-case t)
+
 ;; Editing - Pairs
 
 (electric-pair-mode 1)
