@@ -23,4 +23,8 @@
 	"Inserts a skeleton for new recutils file"
 	nil
 	;; tbd
+	"# -*- mode: rec -*-\n"
+	"\n"
+	"$rec: " _ "\n"
+	"%doc: " _ "\n"
 	)
