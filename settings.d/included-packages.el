@@ -5,7 +5,8 @@
 	:init
 	(auto-insert-mode t)
 	:config
-	(define-auto-insert '(tex-mode . "Empty TeX file skeleton") 'ndegruchy/latex-base))
+	;; (define-auto-insert '(tex-mode . "Empty TeX file skeleton") 'ndegruchy/latex-base)
+	(define-auto-insert '(rec-mode . "Basic RecUtils database info") 'ndegruchy/skeleton-rec-new-file))
 
 (use-package dired
 	:bind (:map dired-mode-map
