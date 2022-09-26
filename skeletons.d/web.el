@@ -14,6 +14,24 @@
 ;;      || ||
 ;; l42 ==' '==
 
+(define-skeleton ndegruchy/skeleton-web-new-file
+  "Insert an HTML skeleton in a blank file"
+  nil
+  '(setq title (skeleton-read "Page title: "))
+  > "<!DOCTYPE html>\n"
+  > "<html lang=\"en\">\n"
+  > "<head>\n"
+  > "<meta charset=\"UTF-8\">\n"
+  > "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+  > "<meta name=\"description\" content=\"\">\n"
+  > "<meta name=\"generator\" content=\"\">\n"
+  > "<title>" title "</title>\n"
+  > "</head>\n"
+  > "<body>\n"
+  > _
+  > "</body>\n"
+  > "</html>\n")
+
 (define-skeleton ndegruchy/skeleton-web-article
 	"Insert a degruchy-org article HTML skeleton"
 	nil
@@ -24,7 +42,7 @@
 	> "<article class=\"hentry h-entry\" id=\"" anchor "\">\n"
 	> "<header>\n"
 	> "<h2 class=\"p-name entry-title\">\n"
-	> (titlecase--string title "apa") "\n"
+	> title "\n"
 	> "<a href=\"#" anchor "\" class=\"u-url\">&#x1F517;</a>\n"
 	> "</h2>\n"
 	> "<time class=\"dt-published published\" datetime=\"" (format-time-string "%FT%T%z") "\">" (format-time-string "%T") " on " (format-time-string "%Y-%m-%d") "</time>\n"
