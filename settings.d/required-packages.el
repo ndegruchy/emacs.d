@@ -7,134 +7,137 @@
 ;; List repositories to download files from
 
 (add-to-list 'package-archives
-	'("melpa-stable" . "https://stable.melpa.org/packages/"))
+			 '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (add-to-list 'package-archives
-	'("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
+			 '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
 (add-to-list 'package-archives
-	'("melpa" . "https://melpa.org/packages/") t)
+			 '("melpa" . "https://melpa.org/packages/") t)
 ;; (add-to-list 'package-archives
 ;;			 '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/") t)
 
 (setq package-archive-priorities
-	'(("melpa-stable" . 20)
-		 ("nongnu" . 15)
-		 ("melpa" . 1))) ;; Sets download priority, higher = more likely
+	  '(("melpa-stable" . 20)
+		("nongnu" . 15)
+		("melpa" . 1))) ;; Sets download priority, higher = more likely
 
 ;; Fetch packages
 
 (unless (package-installed-p 'use-package)
-	(package-refresh-contents)
-	(package-install 'use-package))
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 (require 'use-package)
 
 (eval-when-compile
-	(require 'use-package))
+  (require 'use-package))
 
 ;;; (Package list)
 
 (use-package bind-key
-	:ensure t
-	:after use-package)
+  :ensure t
+  :after use-package)
 
 (use-package circe
-	:ensure t
-	:config
-	(setq circe-reduce-lurker-spam t
+  :ensure t
+  :config
+  (setq circe-reduce-lurker-spam t
 		lui-flyspell-p t
 		circe-network-options
 		`(("Libera Chat"
-			  :host "irc.libera.chat"
-			  :server-buffer-name "Libera.Chat"
-			  :port (6667 . 6697)
-			  :use-tls t
-			  :nick "ndegruchy"
-			  :user "ndegruchy"
-			  :sasl-username "ndegruchy"
-			  :sasl-password ,circe-libera-password
-			  :channels (:after-auth
-							"#emacs"
-							"#linux"
-							"#debian"
-							"#firefox"
-							"#momw"
-							"#openmw"
-							"#kde"))))
-	(set-face-attribute 'circe-my-message-face nil :foreground "tomato")
+		   :host "irc.libera.chat"
+		   :server-buffer-name "Libera.Chat"
+		   :port (6667 . 6697)
+		   :use-tls t
+		   :nick "ndegruchy"
+		   :user "ndegruchy"
+		   :sasl-username "ndegruchy"
+		   :sasl-password ,circe-libera-password
+		   :channels (:after-auth
+					  "#emacs"
+					  "#linux"
+					  "#debian"
+					  "#firefox"
+					  "#momw"
+					  "#openmw"
+					  "#kde"))))
+  (set-face-attribute 'circe-my-message-face nil :foreground "tomato")
 
-	(with-eval-after-load 'circe
-		(circe-set-display-handler "001" 'circe-display-ignore)
-		(circe-set-display-handler "002" 'circe-display-ignore)
-		(circe-set-display-handler "003" 'circe-display-ignore)
-		(circe-set-display-handler "004" 'circe-display-ignore)
-		(circe-set-display-handler "005" 'circe-display-ignore)
-		(circe-set-display-handler "353" 'circe-display-ignore)
-		(circe-set-display-handler "366" 'circe-display-ignore)))
+  (with-eval-after-load 'circe
+	(circe-set-display-handler "001" 'circe-display-ignore)
+	(circe-set-display-handler "002" 'circe-display-ignore)
+	(circe-set-display-handler "003" 'circe-display-ignore)
+	(circe-set-display-handler "004" 'circe-display-ignore)
+	(circe-set-display-handler "005" 'circe-display-ignore)
+	(circe-set-display-handler "353" 'circe-display-ignore)
+	(circe-set-display-handler "366" 'circe-display-ignore)))
 
-;;; Still deciding if I want/need this
-;; (use-package emmet-mode
-;; 	:ensure t
-;; 	:hook ((sgml-mode . emmet-mode)
-;; 			  (css-mode	. emmet-mode)
-;; 			  (web-mode . emmet-mode)))
+(use-package ef-themes
+  :ensure t
+  :config
+  (load-theme 'ef-spring t nil))
+
+(use-package emmet-mode
+  :ensure t
+  :hook ((sgml-mode . emmet-mode)
+		 (css-mode . emmet-mode)
+		 (web-mode . emmet-mode)))
 
 (use-package emms
-	:ensure t
-	:bind (("C-c x b" . emms-smart-browse)
-			  ("C-c x p" . emms-pause)
-			  ("C-c x N" . emms-next)
-			  ("C-c x P" . emms-previous)
-			  ("C-c x s" . emms-stop))
-	:init
-	(require 'emms-setup)
-	(require 'emms-mode-line)
-	(require 'emms-player-vlc)
-	(require 'emms-info-native)
-	(emms-all)
-	(emms-mode-line 1)
-	:config
-	(setq emms-info-functions '(emms-info-native)
+  :ensure t
+  :bind (("C-c x b" . emms-smart-browse)
+		 ("C-c x p" . emms-pause)
+		 ("C-c x N" . emms-next)
+		 ("C-c x P" . emms-previous)
+		 ("C-c x s" . emms-stop))
+  :init
+  (require 'emms-setup)
+  (require 'emms-player-vlc)
+  (require 'emms-info-native)
+  (emms-all)
+  :config
+  (setq emms-librefm-scrobbler-username "ndegruchy"
+		emms-librefm-scrobbler-password librefm-password) ;; set in private file
+  (emms-librefm-scrobbler-enable)
+  (setq emms-info-functions '(emms-info-native)
 		emms-source-file-default-directory (concat (getenv "HOME") "/Media/Music")
-		emms-info-asynchronosly t
-		emms-show-format "%s")
-	(setq emms-browser-covers 'emms-browser-cache-thumbnail-async)
-	(add-to-list 'emms-info-functions 'emms-info-libtag)
+		emms-info-asynchronosly t)
+  (setq emms-browser-covers 'emms-browser-cache-thumbnail-async)
 
-	(if (executable-find "cvlc")
-		(setq emms-player-list '(emms-player-vlc))
-		(emms-default-players))
-	(if (executable-find "mpv")
-		(setq emms-player-list '(emms-player-mpv))
-		(emms-default-players)))
+  (if (executable-find "cvlc")
+	  (setq emms-player-list '(emms-player-vlc))
+	(emms-default-players))
+  (if (executable-find "mpv")
+	  (setq emms-player-list '(emms-player-mpv))
+	(emms-default-players)))
 
 (use-package lin
-	:ensure t
-	:config
-	(setq lin-face 'lin-blue
+  :ensure t
+  :config
+  (setq lin-face 'lin-blue
 		lin-mode-hooks '(dired-mode-hook
-							proced-mode-hook
-							vc-dir-mode-hook
-							package-menu-mode-hook))
-	(lin-global-mode 1))
+						 proced-mode-hook
+						 vc-dir-mode-hook
+						 package-menu-mode-hook))
+  (lin-global-mode 1))
 
 (use-package modus-themes
-	:ensure t
-	:init
-	(load-theme 'modus-vivendi t))
+  :ensure t)
+  ;; :init
+  ;; (load-theme 'modus-vivendi t))
 
 (use-package no-littering
-	:ensure t
-	:config
-	(require 'recentf)
-	(add-to-list 'recentf-exclude no-littering-var-directory)
-	(add-to-list 'recentf-exclude no-littering-etc-directory))
+  :ensure t
+  :config
+  (require 'recentf)
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory))
 
 (use-package pulsar
-	:ensure t
-	:init
-	(pulsar-global-mode)
-	:config
-	(setq pulsar-pulse-on-window-change t
+  :ensure t
+  :init
+  (pulsar-global-mode)
+  :config
+  (setq pulsar-pulse-on-window-change t
 		pulsar-pulse t
 		pulsar-delay 0.055
 		pulsar-iterations 10
@@ -142,19 +145,27 @@
 		pulsar-highlight-face 'pulsar-yellow
 		pulsar-pulse-functions
 		'(recenter-top-bottom
-			 move-to-window-line-top-bottom
-			 scroll-up-command
-			 scroll-down-command)))
+		  move-to-window-line-top-bottom
+		  scroll-up-command
+		  scroll-down-command)))
 
 (use-package titlecase
-	:ensure t
-	:bind ("C-c p" . titlecase-dwim))
+  :ensure t
+  :bind ("C-c p" . titlecase-dwim))
+
+(use-package web-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (setq web-mode-markup-indent-offset 4
+		web-mode-css-indent-offset 4
+		web-mode-code-indent-offset 4))
 
 (use-package which-key
-	:ensure t
-	:config
-	(which-key-mode))
+  :ensure t
+  :config
+  (which-key-mode))
 
 (use-package windresize
-	:ensure t
-	:bind ("C-c r" . windresize))
+  :ensure t
+  :bind ("C-c r" . windresize))
