@@ -118,9 +118,10 @@
   (lin-global-mode 1))
 
 (use-package modus-themes
-  :ensure t)
+  :ensure t
   ;; :init
-  ;; (load-theme 'modus-vivendi t))
+  ;; (load-theme 'modus-vivendi t)
+  )
 
 (use-package no-littering
   :ensure t
