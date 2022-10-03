@@ -105,9 +105,6 @@
 
   (if (executable-find "cvlc")
 	  (setq emms-player-list '(emms-player-vlc))
-	(emms-default-players))
-  (if (executable-find "mpv")
-	  (setq emms-player-list '(emms-player-mpv))
 	(emms-default-players)))
 
 (use-package lin
