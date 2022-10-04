@@ -126,3 +126,30 @@ The return value is the new value of LIST-VAR."
 			(setcdr (last list) elements)
 			(set list-var elements)))
 	(symbol-value list-var))
+
+(defun ndegruchy/sgml-delete-tagged-text ()
+  "delete text between the tags that contain the current point
+
+Stolen from: https://stackoverflow.com/a/4786257"
+  (interactive)
+  (let ((b (point)))
+    (sgml-skip-tag-backward 1)
+    (when (not (eq b (point)))
+      ;; moved somewhere, should be at front of a tag now
+      (save-excursion 
+        (forward-sexp 1)
+        (setq b (point)))
+      (sgml-skip-tag-forward 1)
+      (backward-sexp 1)
+      (delete-region b (point)))))
+
+(defun ndegruchy/up-directory (path)
+  "Move up a directory in PATH without affecting the kill buffer.
+
+Taken, shamelessly, from: https://www.reddit.com/r/emacs/comments/re31i6/how_to_go_up_one_directory_when_using_findfile_cx/"
+  (interactive "p")
+  (if (string-match-p "/." (minibuffer-contents))
+      (let ((end (point)))
+	    (re-search-backward "/.")
+	    (forward-char)
+	    (delete-region (point) end))))

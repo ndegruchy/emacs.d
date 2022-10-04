@@ -55,7 +55,7 @@
 
 ;; Editing - Pairs
 
-(electric-pair-mode 1)
+;; (electric-pair-mode 1)
 (show-paren-mode    1)
 
 ;; Editing - selection
@@ -96,10 +96,6 @@
 		" | "
 		;; Position
 		mode-line-position
-   		;; Sep
-		" | "
-		;; Misc
-		mode-line-misc-info
 		;; Dashes
 		mode-line-end-spaces))
 

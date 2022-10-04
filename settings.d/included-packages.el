@@ -6,7 +6,9 @@
 	(auto-insert-mode t)
 	:config
 	;; (define-auto-insert '(tex-mode . "Empty TeX file skeleton") 'ndegruchy/latex-base)
-	(define-auto-insert '(rec-mode . "Basic RecUtils database info") 'ndegruchy/skeleton-rec-new-file))
+	(define-auto-insert '(rec-mode . "Basic RecUtils database info") 'ndegruchy/skeleton-rec-new-file)
+	(define-auto-insert '(sgml-mode . "Basic HTML template") 'ndegruchy/skeleton-web-new-file)
+	(define-auto-insert '(html-mode . "Basic HTML template") 'ndegruchy/skeleton-web-new-file))
 
 (use-package dired
 	:bind (:map dired-mode-map
@@ -75,7 +77,7 @@
 										   extended-command-history)))
 
 (use-package sgml-mode
-	:config
-	(sgml-electric-tag-pair-mode t)
-	;; Discovered it here https://stackoverflow.com/questions/1666513/how-to-indent-4-spaces-under-sgml-mode
-	(setq sgml-basic-offset 4))
+  :config
+  (sgml-electric-tag-pair-mode t)
+  ;; Discovered it here https://stackoverflow.com/questions/1666513/how-to-indent-4-spaces-under-sgml-mode
+  (setq sgml-basic-offset 4))

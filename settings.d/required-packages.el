@@ -7,7 +7,7 @@
 ;; List repositories to download files from
 
 (add-to-list 'package-archives
-			 '("melpa-stable" . "https://stable.melpa.org/packages/"))
+			 '("stable" . "https://stable.melpa.org/packages/"))
 (add-to-list 'package-archives
 			 '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
 (add-to-list 'package-archives
@@ -16,7 +16,7 @@
 ;;			 '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/") t)
 
 (setq package-archive-priorities
-	  '(("melpa-stable" . 20)
+	  '(("stable" . 20)
 		("nongnu" . 15)
 		("melpa" . 1))) ;; Sets download priority, higher = more likely
 
@@ -93,6 +93,7 @@
   (require 'emms-setup)
   (require 'emms-player-vlc)
   (require 'emms-info-native)
+  (require 'emms-librefm-scrobbler)
   (emms-all)
   :config
   (setq emms-librefm-scrobbler-username "ndegruchy"
@@ -146,6 +147,8 @@
 		  move-to-window-line-top-bottom
 		  scroll-up-command
 		  scroll-down-command)))
+
+(use-package rec-mode)
 
 (use-package titlecase
   :ensure t

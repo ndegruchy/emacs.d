@@ -14,6 +14,7 @@
 	("<f5>"            	.	toggle-truncate-lines)
 	("M-/"             	.   hippie-expand)
 	("M-z"				.	zap-to-char)
+	("M-Z"				.	zap-up-to-char)
 	("C-x k"			.   kill-this-buffer)
 	;; Custom functions
 	("C-c R"			.	ndegruchy/rename-file-and-buffer)
@@ -31,4 +32,7 @@
 	("C-c w p"			.	ndegruchy/skeleton-web-picture)
 	("C-c w t"			.	ndegruchy/skeleton-web-atom-entry)
 	("C-c w n"			.	ndegruchy/skeleton-rec-new-contact)
-	("<f7>"				.	ndegruchy/hide-cursor-mode))
+	("<f7>"				.	ndegruchy/hide-cursor-mode)
+	:map minibuffer-local-filename-completion-map
+	;; map to simulate Helm's excellent 'up-directory' mapping
+	("C-l"				.	ndegruchy/up-directory))

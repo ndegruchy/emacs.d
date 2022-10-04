@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2022-09-21 20:55:47 nathan>
+;; Time-stamp: <2022-10-04 11:17:28 nathan>
 
 ;; Initialize the package manager
 (package-initialize)
@@ -29,6 +29,7 @@
 (load-library "web")
 ;; (load-library "org-mode")
 (load-library "latex")
+(load-library "rec")
 
 ;; UI Specific Stuff
 (when (window-system)
