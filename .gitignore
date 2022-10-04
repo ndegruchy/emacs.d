@@ -12,6 +12,7 @@ session.*
 auto-save-list
 tramp
 .\#*
+history
 
 # Ebdb
 *ebdb*
