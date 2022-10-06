@@ -16,7 +16,6 @@
 	("M-z"				.	zap-to-char)
 	("M-Z"				.	zap-up-to-char)
 	("C-x k"			.   kill-this-buffer)
-	("M-#"				.	dictionary-lookup-definition)
 	;; Custom functions
 	("C-c R"			.	ndegruchy/rename-file-and-buffer)
 	("S-<return>"		.	ndegruchy/smart-open-line)
