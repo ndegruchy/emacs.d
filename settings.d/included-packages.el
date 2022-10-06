@@ -26,6 +26,18 @@
 			;; for dired-jump and dired-omit
 			(require 'dired-x))))
 
+(use-package dictionary
+  :if (version< emacs-version "28") ;; This is only available in 28
+  :config
+  ;; mandatory, as the dictionary misbehaves!
+  (setq switch-to-buffer-obey-display-actions 	t
+		dictionary-use-single-buffer			t
+		dictionary-server						"dict.org")
+  (add-to-list 'display-buffer-alist
+			   '("^\\*Dictionary\\*" display-buffer-in-side-window
+				 (side . left)
+				 (width . 50))))
+
 (use-package eshell
 	:init
 	(setenv "TERM" "xterm-256color")
