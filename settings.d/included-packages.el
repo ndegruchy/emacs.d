@@ -5,7 +5,7 @@
 	:init
 	(auto-insert-mode t)
 	:config
-	;; (define-auto-insert '(tex-mode . "Empty TeX file skeleton") 'ndegruchy/latex-base)
+	(define-auto-insert '(org-mode . "Basic Org Mode file") 'ndegruchy/skeleton-org-new-file)
 	(define-auto-insert '(rec-mode . "Basic RecUtils database info") 'ndegruchy/skeleton-rec-new-file)
 	(define-auto-insert '(sgml-mode . "Basic HTML template") 'ndegruchy/skeleton-web-new-file)
 	(define-auto-insert '(html-mode . "Basic HTML template") 'ndegruchy/skeleton-web-new-file))
