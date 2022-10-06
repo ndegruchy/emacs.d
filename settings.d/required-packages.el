@@ -54,11 +54,8 @@
 		   :sasl-password ,circe-libera-password
 		   :channels (:after-auth
 					  "#emacs"
-					  "#linux"
 					  "#debian"
 					  "#firefox"
-					  "#momw"
-					  "#openmw"
 					  "#kde"))))
   (set-face-attribute 'circe-my-message-face nil :foreground "tomato")
 
