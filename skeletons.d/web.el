@@ -41,13 +41,13 @@
 	'(setq anchor (concat date "-" dashed))
 	> "<article class=\"hentry h-entry\" id=\"" anchor "\">\n"
 	> "<header>\n"
-	> "<h2 class=\"p-name entry-title\">\n"
+	> "<h2>\n"
 	> title "\n"
-	> "<a href=\"#" anchor "\" class=\"u-url\">&#x1F517;</a>\n"
+	> "<a href=\"#" anchor "\">&#x1F517;</a>\n"
 	> "</h2>\n"
-	> "<time class=\"dt-published published\" datetime=\"" (format-time-string "%FT%T%z") "\">" (format-time-string "%T") " on " (format-time-string "%Y-%m-%d") "</time>\n"
+	> "<time datetime=\"" (format-time-string "%FT%T%z") "\">" (format-time-string "%T") " on " (format-time-string "%Y-%m-%d") "</time>\n"
 	> "</header>\n"
-	> "<section class=\"article-content e-content\">" _ "</section>\n"
+	> "<section>" _ "</section>\n"
 	> "</article>\n")
 
 (define-skeleton ndegruchy/skeleton-web-gallery
@@ -60,9 +60,9 @@
 	> "<a href=\"/assets/images/posts/" date "/\">\n"
 	> "<figure>\n"
 	> "<picture>\n"
-	> "<source srcset=\"/assets/images/posts/" date "/\" type=\"image/heic\" />\n"
-	> "<source srcset=\"/assets/images/posts/" date "/\" type=\"image/webp\" />\n"
-	> "<img href=\"/assets/images/posts/" date "/\" alt=\"\" height=\"128\" width=\"128\" loading=\"lazy\" />\n"
+	> "<source srcset=\"/assets/images/posts/" date "/\" type=\"image/heic\">\n"
+	> "<source srcset=\"/assets/images/posts/" date "/\" type=\"image/webp\">\n"
+	> "<img href=\"/assets/images/posts/" date "/\" alt=\"\" height=\"128\" width=\"128\" loading=\"lazy\">\n"
 	> "</picture>\n"
 	> "<figcaption>" _ "</figcaption>\n"
 	> "</figure>\n"
@@ -76,9 +76,9 @@
 	'(setq date (format-time-string "%Y-%m-%d"))
 	> "<figure>\n"
 	> "<picture>\n"
-	> "<source srcset=\"/assets/images/posts/" date "/\" type=\"image/heic\" />\n"
-	> "<source srcset=\"/assets/images/posts/" date "/\" type=\"image/webp\" />\n"
-	> "<img href=\"/assets/images/posts/" date "/\" alt=\"\" height=\"\" width=\"\" loading=\"lazy\" />\n"
+	> "<source srcset=\"/assets/images/posts/" date "/\" type=\"image/heic\">\n"
+	> "<source srcset=\"/assets/images/posts/" date "/\" type=\"image/webp\">\n"
+	> "<img href=\"/assets/images/posts/" date "/\" alt=\"\" height=\"\" width=\"\" loading=\"lazy\">\n"
 	> "</picture>\n"
 	> "<figcaption>" _ "</figcaption>\n"
 	> "</figure>\n")
