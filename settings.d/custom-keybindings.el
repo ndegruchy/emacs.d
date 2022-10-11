@@ -25,7 +25,6 @@
 	("C-c a"			.	ndegruchy/duplicate-line)
 	("M-<up>"			.	ndegruchy/move-line-up)
 	("M-<down>"        	.	ndegruchy/move-line-down)
-	("C-c l"			.   ndegruchy/irc)
 	("C-c M"			.	ndegruchy/make)
 	("C-c w a"			.	ndegruchy/skeleton-web-article)
 	("C-c w g"			.	ndegruchy/skeleton-web-gallery)

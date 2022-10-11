@@ -37,89 +37,10 @@
   :ensure t
   :after use-package)
 
-(use-package circe
-  :ensure t
-  :config
-  (setq circe-reduce-lurker-spam t
-		lui-flyspell-p t
-		circe-network-options
-		`(("Libera Chat"
-		   :host "irc.libera.chat"
-		   :server-buffer-name "Libera.Chat"
-		   :port (6667 . 6697)
-		   :use-tls t
-		   :nick "ndegruchy"
-		   :user "ndegruchy"
-		   :sasl-username "ndegruchy"
-		   :sasl-password ,circe-libera-password
-		   :channels (:after-auth
-					  "#emacs"
-					  "#debian"
-					  "#firefox"
-					  "#kde"))))
-  (set-face-attribute 'circe-my-message-face nil :foreground "tomato")
-
-  (with-eval-after-load 'circe
-	(circe-set-display-handler "001" 'circe-display-ignore)
-	(circe-set-display-handler "002" 'circe-display-ignore)
-	(circe-set-display-handler "003" 'circe-display-ignore)
-	(circe-set-display-handler "004" 'circe-display-ignore)
-	(circe-set-display-handler "005" 'circe-display-ignore)
-	(circe-set-display-handler "353" 'circe-display-ignore)
-	(circe-set-display-handler "366" 'circe-display-ignore)))
-
 (use-package ef-themes
   :ensure t
   :config
   (load-theme 'ef-spring t nil))
-
-(use-package emmet-mode
-  :ensure t
-  :hook ((sgml-mode . emmet-mode)
-		 (css-mode . emmet-mode)
-		 (web-mode . emmet-mode)))
-
-(use-package emms
-  :ensure t
-  :bind (("C-c x b" . emms-smart-browse)
-		 ("C-c x p" . emms-pause)
-		 ("C-c x N" . emms-next)
-		 ("C-c x P" . emms-previous)
-		 ("C-c x s" . emms-stop))
-  :init
-  (require 'emms-setup)
-  (require 'emms-player-vlc)
-  (require 'emms-info-native)
-  (require 'emms-librefm-scrobbler)
-  (emms-all)
-  :config
-  (setq emms-librefm-scrobbler-username "ndegruchy"
-		emms-librefm-scrobbler-password librefm-password) ;; set in private file
-  (emms-librefm-scrobbler-enable)
-  (setq emms-info-functions '(emms-info-native)
-		emms-source-file-default-directory (concat (getenv "HOME") "/Media/Music")
-		emms-info-asynchronosly t)
-  (setq emms-browser-covers 'emms-browser-cache-thumbnail-async)
-
-  (if (executable-find "cvlc")
-	  (setq emms-player-list '(emms-player-vlc))
-	(emms-default-players)))
-
-(use-package lin
-  :ensure t
-  :config
-  (setq lin-face 'lin-blue
-		lin-mode-hooks '(dired-mode-hook
-						 proced-mode-hook
-						 vc-dir-mode-hook
-						 package-menu-mode-hook))
-  (lin-global-mode 1))
-
-(use-package modus-themes
-  :ensure t
-  ;; :init
-  ;; (load-theme 'modus-vivendi t)
-  )
 
 (use-package no-littering
   :ensure t
@@ -128,29 +49,6 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
-(use-package pulsar
-  :ensure t
-  :init
-  (pulsar-global-mode)
-  :config
-  (setq pulsar-pulse-on-window-change t
-		pulsar-pulse t
-		pulsar-delay 0.055
-		pulsar-iterations 10
-		pulsar-face 'pulsar-magenta
-		pulsar-highlight-face 'pulsar-yellow
-		pulsar-pulse-functions
-		'(recenter-top-bottom
-		  move-to-window-line-top-bottom
-		  scroll-up-command
-		  scroll-down-command)))
-
-(use-package rec-mode)
-
-(use-package titlecase
-  :ensure t
-  :bind ("C-c p" . titlecase-dwim))
-
 (use-package web-mode
   :ensure t
   :config
@@ -158,12 +56,3 @@
   (setq web-mode-markup-indent-offset 4
 		web-mode-css-indent-offset 4
 		web-mode-code-indent-offset 4))
-
-(use-package which-key
-  :ensure t
-  :config
-  (which-key-mode))
-
-(use-package windresize
-  :ensure t
-  :bind ("C-c r" . windresize))
