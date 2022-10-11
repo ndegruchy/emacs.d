@@ -1,8 +1,3 @@
-#+TITLE Nathan's Personal Emacs Configuration
-#+AUTHOR Nathan DeGruchy
-#+DATE 2014-10-24
-#+Time-stamp: <2020-11-16 18:38:50 nathan>
-
 * Emacs Configuration
 
 This is my personal Emacs configuration that I use across multiple
