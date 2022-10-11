@@ -40,7 +40,7 @@
 (use-package ef-themes
   :ensure t
   :config
-  (load-theme 'ef-spring t nil))
+  (load-theme 'ef-bio t nil))
 
 (use-package no-littering
   :ensure t
