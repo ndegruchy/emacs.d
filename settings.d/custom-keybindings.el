@@ -31,7 +31,14 @@
 	("C-c w p"			.	ndegruchy/skeleton-web-picture)
 	("C-c w t"			.	ndegruchy/skeleton-web-atom-entry)
 	("C-c w n"			.	ndegruchy/skeleton-rec-new-contact)
-	("<f7>"				.	ndegruchy/hide-cursor-mode)
-	:map minibuffer-local-filename-completion-map
-	;; map to simulate Helm's excellent 'up-directory' mapping
-	("C-l"				.	ndegruchy/up-directory))
+	("<f7>"				.	ndegruchy/hide-cursor-mode))
+
+(bind-keys
+ :map minibuffer-local-filename-completion-map
+ ;; map to simulate Helm's excellent 'up-directory' mapping
+ ("C-l"				.	ndegruchy/up-directory))
+
+;; (bind-keys ;; I think this only works in Emacs 29+
+;;  :map minibuffer-mode-map
+;;  ("M-n"				.	minibuffer-next-completion)
+;;  ("M-p"				.	minibuffer-previous-completion))

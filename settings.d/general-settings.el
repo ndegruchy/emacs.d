@@ -50,6 +50,11 @@
 
 ;; UI - Minibuffer completion
 (setq completion-styles '(initials partial-completion substring)
+	  completions-format 'vertical
+	  ;; Emacs 29+ features...
+	  ;; completions-header-format nil
+	  ;; completions-max-height 10
+	  ;; completion-auto-select nil
 	  read-buffer-completion-ignore-case t
 	  read-file-name-completion-ignore-case t)
 

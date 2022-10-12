@@ -42,12 +42,25 @@
   :config
   (load-theme 'ef-bio t nil))
 
+(use-package marginalia
+  :ensure t
+  :init (marginalia-mode))
+
 (use-package no-littering
   :ensure t
   :config
   (require 'recentf)
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
+
+(use-package vertico
+  :ensure t
+  :bind (:map vertico-map
+			  ("RET" . vertico-directory-enter)
+			  ("C-l" . vertico-directory-up))
+  :init (vertico-mode)
+  :config
+  (setq vertico-cycle t))
 
 (use-package web-mode
   :ensure t
