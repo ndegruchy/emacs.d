@@ -1,4 +1,4 @@
-;;; modes.el --- A collection of modes created by me (more likely stolen from somewhere else...)  -*- lexical-binding: t; -*-
+;;; custom-modes.el --- A collection of modes created by me (more likely stolen from somewhere else...)  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Nathan DeGruchy
 
