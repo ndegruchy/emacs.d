@@ -11,12 +11,8 @@
   (define-auto-insert '(html-mode . "Basic HTML template") 'ndegruchy/skeleton-web-new-file))
 
 (use-package dired
-  :bind (:map dired-mode-map
-			  ("RET" . dired-find-alternate-file)
-			  ("^" . (lambda () (interactive) (find-alternate-file ".."))))
   :hook (dired-mode . dired-hide-details-mode)
   :config
-  (put 'dired-find-alternate-file 'disabled nil)
   ;; mouse-1 is aliased to mouse-2 in dired-mode 0_o
   (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)
 
@@ -44,7 +40,7 @@
 	(setq ispell-program-name (executable-find "hunspell")
 		  ispell-extra-args (list
 							 "-d en_US"
-							 (concat "-p " "~/.local/share/hunspell/personal-dict")))))
+							 (concat "-p " (getenv "XDG_DATA_HOME") "/hunspell/personal-dict")))))
 
 (use-package midnight
   :config
@@ -73,8 +69,7 @@
   (savehist-mode 1)
   (setq history-delete-duplicates t
 		history-length 20
-		savehist-additional-variables '(helm-M-x-input-history
-										extended-command-history)))
+		savehist-additional-variables '(extended-command-history)))
 
 (use-package sgml-mode
   :config

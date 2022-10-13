@@ -18,19 +18,12 @@
 	("C-x k"			.   kill-this-buffer)
 	;; Custom functions
 	("C-c R"			.	ndegruchy/rename-file-and-buffer)
-	("S-<return>"		.	ndegruchy/smart-open-line)
-	("C-S-<return>"		.	ndegruchy/smart-open-line-above)
 	("C-c m"			.	ndegruchy/select-current-line-dwim)
 	("C-c d"			.	ndegruchy/insert-date)
 	("C-c a"			.	ndegruchy/duplicate-line)
 	("M-<up>"			.	ndegruchy/move-line-up)
 	("M-<down>"        	.	ndegruchy/move-line-down)
 	("C-c M"			.	ndegruchy/make)
-	("C-c w a"			.	ndegruchy/skeleton-web-article)
-	("C-c w g"			.	ndegruchy/skeleton-web-gallery)
-	("C-c w p"			.	ndegruchy/skeleton-web-picture)
-	("C-c w t"			.	ndegruchy/skeleton-web-atom-entry)
-	("C-c w n"			.	ndegruchy/skeleton-rec-new-contact)
 	("<f7>"				.	ndegruchy/hide-cursor-mode))
 
 (bind-keys

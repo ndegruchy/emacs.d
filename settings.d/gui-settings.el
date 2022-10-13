@@ -1,25 +1,16 @@
 ;; GUI mode settings
 
+;; Disable some UI chrome that I don't need
 (scroll-bar-mode -1)
 (tooltip-mode    -1)
 (tool-bar-mode   -1)
 (menu-bar-mode   -1)
 
-(setq x-gtk-use-system-tooltips nil
-	  inhibit-x-resources       t)
+(setq x-gtk-use-system-tooltips nil ;; I don't use GTK build anyway
+	  inhibit-x-resources       t)  ;; I also want to customize this myself, thanks
 
 ;; Fonts
-;; If using Cascadia Code, use the *static* fonts, not the variable
-;; ones. Emacs doesn't seem to like them.
-;; https://github.com/microsoft/cascadia-code/issues/589
-;; (add-to-list 'default-frame-alist '(font . "Cascadia Code-15"))
 (add-to-list 'default-frame-alist '(font . "Iosevka-17"))
-
-(set-face-attribute 'menu nil
-					:inverse-video nil
-					:background "black"
-					:foreground "white"
-					:font       "Iosevka")
 
 ;; Frame
 (setq frame-resize-pixelwise nil)
