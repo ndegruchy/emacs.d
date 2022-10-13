@@ -54,7 +54,7 @@
 	"Skeleton for creating image galleries"
 	nil
 	'(setq date (format-time-string "%Y-%m-%d"))
-	> "<section class=\"gallery\">\n"
+	"<section class=\"gallery\">\n"
 	> "<ul>\n"
 	> "<li>\n"
 	> "<a href=\"/assets/images/posts/" date "/\">\n"
@@ -68,7 +68,8 @@
 	> "</figure>\n"
 	> "</a>\n"
 	> "</li>\n"
-	> "</ul>\n")
+	> "</ul>\n"
+	"</section>\n")
 
 (define-skeleton ndegruchy/skeleton-web-picture
 	"Inserts a skeleton for a picture on a website"
