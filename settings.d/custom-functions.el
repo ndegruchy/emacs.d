@@ -44,23 +44,6 @@ the cursor by ARG lines."
 						(rename-file filename new-name t)
 						(set-visited-file-name new-name t t)))))))
 
-(defun ndegruchy/smart-open-line ()
-	"Insert an empty line after the current line.
-Position the cursor at its beginning, according to the current mode.
-Retrieved from: https://emacsredux.com/blog/2013/03/26/smarter-open-line/ (2018-12-22)"
-	(interactive)
-	(move-end-of-line nil)
-	(newline-and-indent))
-
-(defun ndegruchy/smart-open-line-above ()
-	"Inserts a line above the current line, moving the cursor to
-that line and setting the indent properly"
-	(interactive)
-	(beginning-of-line)
-	(newline)
-	(forward-line -1)
-	(indent-for-tab-command))
-
 (defun ndegruchy/duplicate-line ()
     "Makes a copy of the current line after the current
 line. Useful for listing directories, etc."
@@ -94,26 +77,27 @@ line. Useful for listing directories, etc."
 				(emacs-lock-mode 'kill)))))
 
 (defun ndegruchy/split-name (s)
-	(split-string
-		(let ((case-fold-search nil))
-			(downcase
-				(replace-regexp-in-string "\\([a-z]\\)\\([A-Z]\\)" "\\1 \\2" s)))
-		"[^A-Za-z0-9]+"))
+  "Find the word seperators and split them into a list"
+  (split-string
+   (let ((case-fold-search nil))
+	 (downcase
+	  (replace-regexp-in-string "\\([a-z]\\)\\([A-Z]\\)" "\\1 \\2" s)))
+   "[^A-Za-z0-9]+"))
 
 (defun ndegruchy/dasherize (s)
-	(mapconcat 'downcase
-		(ndegruchy/split-name s) "-"))
-
-;; Launch IRC
-(defun ndegruchy/irc ()
-	(interactive)
-	(circe "Libera Chat"))
+  "Takes a string and splits it across word boundaries, inserting
+dashes where those boundaries would be. This is very useful when
+dealing with making URL slugs, or other computer tokens."
+  (mapconcat 'downcase
+			 (ndegruchy/split-name s) "-"))
 
 ;; Make
 (defun ndegruchy/make ()
-	(interactive)
-	(let ((default-directory (locate-dominating-file "." "Makefile")))
-		(compile "make -k")))
+  "Runs `make -k`, searching 'up' a directory tree to find a
+valid Makefile to run against"
+  (interactive)
+  (let ((default-directory (locate-dominating-file "." "Makefile")))
+	(compile "make -k")))
 
 (defun append-to-list (list-var elements)
 	"Append ELEMENTS to the end of LIST-VAR.
@@ -126,22 +110,6 @@ The return value is the new value of LIST-VAR."
 			(setcdr (last list) elements)
 			(set list-var elements)))
 	(symbol-value list-var))
-
-(defun ndegruchy/sgml-delete-tagged-text ()
-  "delete text between the tags that contain the current point
-
-Stolen from: https://stackoverflow.com/a/4786257"
-  (interactive)
-  (let ((b (point)))
-    (sgml-skip-tag-backward 1)
-    (when (not (eq b (point)))
-      ;; moved somewhere, should be at front of a tag now
-      (save-excursion 
-        (forward-sexp 1)
-        (setq b (point)))
-      (sgml-skip-tag-forward 1)
-      (backward-sexp 1)
-      (delete-region b (point)))))
 
 (defun ndegruchy/up-directory (path)
   "Move up a directory in PATH without affecting the kill buffer.
