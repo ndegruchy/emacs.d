@@ -20,39 +20,8 @@
 		("nongnu" . 15)
 		("melpa" . 1))) ;; Sets download priority, higher = more likely
 
-;; Fetch packages
+;; Fetch required packages
 
-(unless (package-installed-p 'use-package)
+(unless (package-installed-p 'ef-themes)
   (package-refresh-contents)
-  (package-install 'use-package))
-
-(require 'use-package)
-
-(eval-when-compile
-  (require 'use-package))
-
-;;; (Package list)
-
-(use-package bind-key
-  :ensure t
-  :after use-package)
-
-(use-package ef-themes
-  :ensure t
-  :config
-  (load-theme 'ef-bio t nil))
-
-(use-package no-littering
-  :ensure t
-  :config
-  (require 'recentf)
-  (add-to-list 'recentf-exclude no-littering-var-directory)
-  (add-to-list 'recentf-exclude no-littering-etc-directory))
-
-(use-package web-mode
-  :ensure t
-  :config
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-  (setq web-mode-markup-indent-offset 4
-		web-mode-css-indent-offset 4
-		web-mode-code-indent-offset 4))
+  (package-install 'ef-themes))

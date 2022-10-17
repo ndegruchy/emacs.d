@@ -5,33 +5,20 @@
 (dolist (key '("\C-z" "\C-xc" "\C-x\C-z" "\C-x\C-d" "\M-o" "\M-z" "\M-Z" "\C-x\C-r"))
 	(global-unset-key key))
 
-(bind-keys*
-	;; Personal map for commands
-	("C-c h"			.	split-window-vertically)
-	("C-c v"			.	split-window-horizontally)
-	("C-S-z"			.	bury-buffer)
-	("C-c C"			.	calendar)
-	("<f5>"            	.	toggle-truncate-lines)
-	("M-/"             	.   hippie-expand)
-	("M-z"				.	zap-to-char)
-	("M-Z"				.	zap-up-to-char)
-	("C-x k"			.   kill-this-buffer)
-	;; Custom functions
-	("C-c R"			.	ndegruchy/rename-file-and-buffer)
-	("C-c m"			.	ndegruchy/select-current-line-dwim)
-	("C-c d"			.	ndegruchy/insert-date)
-	("C-c a"			.	ndegruchy/duplicate-line)
-	("M-<up>"			.	ndegruchy/move-line-up)
-	("M-<down>"        	.	ndegruchy/move-line-down)
-	("C-c M"			.	ndegruchy/make)
-	("<f7>"				.	ndegruchy/hide-cursor-mode))
+;; Personal map for existing commands
+(global-set-key (kbd "C-c h")	'split-window-vertically)
+(global-set-key (kbd "C-c v")	'split-window-horizontally)
+(global-set-key (kbd "<f5>")	'toggle-truncate-lines)
+(global-set-key (kbd "M-/")		'hippie-expand)
+(global-set-key (kbd "M-z")		'zap-to-char)
+(global-set-key (kbd "M-Z")		'zap-up-to-char)
+(global-set-key (kbd "C-x k")	'kill-this-buffer)
 
-(bind-keys
- :map minibuffer-local-filename-completion-map
- ;; map to simulate Helm's excellent 'up-directory' mapping
- ("C-l"				.	ndegruchy/up-directory))
-
-;; (bind-keys ;; I think this only works in Emacs 29+
-;;  :map minibuffer-mode-map
-;;  ("M-n"				.	minibuffer-next-completion)
-;;  ("M-p"				.	minibuffer-previous-completion))
+;; Custom functions
+(global-set-key (kbd "C-c m")	'ndegruchy/select-current-line-dwim)
+(global-set-key (kbd "C-c d")	'ndegruchy/insert-date)
+(global-set-key (kbd "C-c a")	'ndegruchy/duplicate-line)
+(global-set-key (kbd "C-c M")	'ndegruchy/make)
+(global-set-key (kbd "M-<up>")	'ndegruchy/move-line-up)
+(global-set-key (kbd "M-<down>") 'ndegruchy/move-line-down)
+(define-key minibuffer-local-filename-completion-map (kbd "C-l") 'ndegruchy/up-directory)

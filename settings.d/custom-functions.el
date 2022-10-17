@@ -27,23 +27,6 @@ the cursor by ARG lines."
 		(set-mark-command nil))
 	(forward-line arg))
 
-(defun ndegruchy/rename-file-and-buffer ()
-	"Rename current buffer and if the buffer is visiting a file, rename it too.
-  Pulled from the CRUX package of useful stuff:
-  https://github.com/bbatsov/crux/blob/master/crux.el"
-	(interactive)
-	(let ((filename (buffer-file-name)))
-		(if (not (and filename (file-exists-p filename)))
-			(rename-buffer (read-from-minibuffer "New name: " (buffer-name)))
-			(let* ((new-name (read-from-minibuffer "New name: " filename))
-					  (containing-dir (file-name-directory new-name)))
-				(make-directory containing-dir t)
-				(cond
-					((vc-backend filename) (vc-rename-file filename new-name))
-					(t
-						(rename-file filename new-name t)
-						(set-visited-file-name new-name t t)))))))
-
 (defun ndegruchy/duplicate-line ()
     "Makes a copy of the current line after the current
 line. Useful for listing directories, etc."
@@ -98,18 +81,6 @@ valid Makefile to run against"
   (interactive)
   (let ((default-directory (locate-dominating-file "." "Makefile")))
 	(compile "make -k")))
-
-(defun append-to-list (list-var elements)
-	"Append ELEMENTS to the end of LIST-VAR.
-
-The return value is the new value of LIST-VAR."
-	(unless (consp elements)
-		(error "ELEMENTS must be a list"))
-	(let ((list (symbol-value list-var)))
-		(if list
-			(setcdr (last list) elements)
-			(set list-var elements)))
-	(symbol-value list-var))
 
 (defun ndegruchy/up-directory (path)
   "Move up a directory in PATH without affecting the kill buffer.

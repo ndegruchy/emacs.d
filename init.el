@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2022-10-11 10:14:17 nathan>
+;; Time-stamp: <2022-10-17 15:42:01 nathan>
 
 ;; Initialize the package manager
 (package-initialize)
@@ -24,7 +24,6 @@
 (load-library "included-packages")
 (load-library "custom-functions")
 (load-library "custom-keybindings")
-(load-library "custom-modes")
 ;; Skeletons
 (load-library "web")
 (load-library "org-mode")

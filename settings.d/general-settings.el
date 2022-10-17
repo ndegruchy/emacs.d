@@ -42,7 +42,6 @@
 	  show-paren-mode                        t)
 
 (menu-bar-mode		  t)
-(display-battery-mode t)
 (global-linum-mode   -1)
 (fset 'yes-or-no-p   'y-or-n-p)
 
@@ -84,25 +83,14 @@
 ;; Upcasing
 (put 'upcase-region 'disabled nil)
 
-;; Battery
-(setq-default battery-mode-line-format "B:%b%p%% |")
-(display-battery-mode 1)
-
 ;; Custom modeline
 (setq-default mode-line-format
-	(list
-		;; Dirty flag
-		"[%+] "
-		;; Narrowing enabled?
-		"%n "
-		;; Buffer name
-		mode-line-buffer-identification
-		;; Sep
-		" | "
-		;; Position
-		mode-line-position
-		;; Dashes
-		mode-line-end-spaces))
+			  (list " " mode-line-modified
+					;; Buffer name
+					" " mode-line-buffer-identification
+					;; Position
+					" " mode-line-position
+					" " mode-line-misc-info))
 
 ;; Calendaring
 (setq calendar-christian-all-holidays-flag 	t
@@ -146,11 +134,11 @@
 
 ;; Disable customize functions
 (dolist (sym '(customize-option customize-browse customize-group customize-face
-				  customize-rogue customize-saved customize-apropos
-				  customize-changed customize-unsaved customize-variable
-				  customize-set-value customize-customized customize-set-variable
-				  customize-apropos-faces customize-save-variable
-				  customize-apropos-groups customize-apropos-options
-				  customize-changed-options customize-save-customized))
-	(put sym 'disabled "I've disabled `customize', configure Emacs from $XDG_CONFIG_HOME/emacs/config.el instead"))
+								customize-rogue customize-saved customize-apropos
+								customize-changed customize-unsaved customize-variable
+								customize-set-value customize-customized customize-set-variable
+								customize-apropos-faces customize-save-variable
+								customize-apropos-groups customize-apropos-options
+								customize-changed-options customize-save-customized))
+  (put sym 'disabled "I've disabled `customize', configure Emacs from $XDG_CONFIG_HOME/emacs/config.el instead"))
 (put 'customize-themes 'disabled "I've disabled `customize', configure Emacs from $XDG_CONFIG_HOME/emacs/config.el instead")
