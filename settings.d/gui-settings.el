@@ -19,4 +19,5 @@
 (add-to-list 'default-frame-alist '(height . 24))
 (add-to-list 'default-frame-alist '(width . 80))
 
-(load-theme 'ef-bio t nil)
+(require 'ef-themes)
+(load-theme 'ef-bio :no-confirm)
