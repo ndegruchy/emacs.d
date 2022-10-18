@@ -30,13 +30,16 @@
 
 ;; Flyspell
 (when (executable-find "hunspell")
-(setq ispell-program-name (executable-find "hunspell")
-	  ispell-extra-args (list
-						 "-d en_US"
-						 (concat "-p " (getenv "XDG_DATA_HOME") "/hunspell/personal-dict"))))
+  (setq ispell-program-name (executable-find "hunspell")
+		ispell-extra-args (list
+						   "-d en_US"
+						   (concat "-p " (getenv "XDG_DATA_HOME") "/hunspell/personal-dict"))))
 
 ;; Org Mode
-(add-hook 'org-mode 'org-tempo)
+(add-hook 'org-mode-hook 'turn-on-flyspell)
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
+(add-hook 'org-mode-hook (lambda ()
+						   (require 'org-tempo)))
 (setq org-return-follows-link t)
 (setq org-publish-project-alist
 	  '(("notes"
