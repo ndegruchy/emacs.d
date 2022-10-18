@@ -13,7 +13,7 @@
 (global-set-key (kbd "M-z")		'zap-to-char)
 (global-set-key (kbd "M-Z")		'zap-up-to-char)
 (global-set-key (kbd "C-x k")	'kill-this-buffer)
-(global-set-key (kbd "C-c R")	'windmove-mode)
+(global-set-key (kbd "C-c R")	'windresize)
 
 ;; Custom functions
 (global-set-key (kbd "C-c m")	'ndegruchy/select-current-line-dwim)

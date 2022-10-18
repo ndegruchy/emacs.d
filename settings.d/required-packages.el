@@ -15,10 +15,12 @@
 ;; (add-to-list 'package-archives
 ;;			 '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/") t)
 
+;; Package archive priorities
+;; Higher number = picked first
 (setq package-archive-priorities
-	  '(("stable" . 20)
-		("nongnu" . 15)
-		("melpa" . 1))) ;; Sets download priority, higher = more likely
+	  '(("stable" . 20) ;; Make stable the highest priority
+		("nongnu" . 15) ;; Non-GNU has some good stuff
+		("melpa" . 1))) ;; I don't care much for the unstable "latest" stuff
 
 ;; Fetch required packages
 
@@ -26,6 +28,10 @@
   (package-refresh-contents)
   (package-install 'ef-themes))
 
-(require 'rec-mode)
+(unless (package-installed-p 'windresize)
+  (package-refresh-contents)
+  (package-install 'windresize))
 
-(require 'windmove)
+(require 'windresize)
+(require 'rec-mode) ;; Loaded from site-lisp.d
+

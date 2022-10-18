@@ -48,20 +48,19 @@
 (global-linum-mode   -1)
 (fset 'yes-or-no-p   'y-or-n-p)
 
-(setq-default frame-title-format '("%b [%m]"))
-
 ;; UI - Minibuffer completion
 (setq completion-styles '(initials partial-completion substring)
 	  completions-format 'vertical
-	  ;; Emacs 29+ features...
-	  ;; completions-header-format nil
-	  ;; completions-max-height 10
-	  ;; completion-auto-select nil
 	  read-buffer-completion-ignore-case t
-	  read-file-name-completion-ignore-case t)
+	  read-file-name-completion-ignore-case t
+	  ;; Emacs 29+ features...
+	  completions-header-format nil
+	  completions-max-height 10
+	  completion-auto-select nil)
 
 ;; Editing - Pairs
 
+;; This is annoying when you don't want it...
 ;; (electric-pair-mode 1)
 (show-paren-mode    1)
 
@@ -120,7 +119,7 @@
 (add-hook 'after-init-hook #'ndegruchy/protect-buffers)
 
 ;; Removes weird characters in the title of a frame
-(setq frame-title-format "%b")
+(setq frame-title-format "Emacs - %b")
 
 ;; Save minibuffer history
 (savehist-mode 1)
