@@ -23,7 +23,7 @@
 (setq eshell-ls-initial-args '("--almost-all"
 							   "--ignore-backups"
 							   "--human-readable"
-							   "-l"
+							   "-l" ;; long listing
 							   "--group-directories-first"
 							   "--color=always"
 							   "--sort=extension"))
