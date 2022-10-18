@@ -41,6 +41,9 @@
       delete-selection-mode                  t
 	  show-paren-mode                        t)
 
+;; Disable all other themes to avoid awkward blending:
+(mapc #'disable-theme custom-enabled-themes)
+
 (menu-bar-mode		  t)
 (global-linum-mode   -1)
 (fset 'yes-or-no-p   'y-or-n-p)

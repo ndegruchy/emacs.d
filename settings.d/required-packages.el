@@ -25,3 +25,7 @@
 (unless (package-installed-p 'ef-themes)
   (package-refresh-contents)
   (package-install 'ef-themes))
+
+(require 'rec-mode)
+
+(require 'windmove)
