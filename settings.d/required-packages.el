@@ -7,6 +7,8 @@
 ;; List repositories to download files from
 
 (add-to-list 'package-archives
+			 '("elpa" . "https://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives
 			 '("stable" . "https://stable.melpa.org/packages/"))
 (add-to-list 'package-archives
 			 '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
@@ -18,7 +20,8 @@
 ;; Package archive priorities
 ;; Higher number = picked first
 (setq package-archive-priorities
-	  '(("stable" . 20) ;; Make stable the highest priority
+	  '(("elpa"   . 25) ;; Make ELPA the highest priority
+		("stable" . 20) 
 		("nongnu" . 15) ;; Non-GNU has some good stuff
 		("melpa" . 1))) ;; I don't care much for the unstable "latest" stuff
 
@@ -28,10 +31,5 @@
   (package-refresh-contents)
   (package-install 'ef-themes))
 
-(unless (package-installed-p 'windresize)
-  (package-refresh-contents)
-  (package-install 'windresize))
-
-(require 'windresize)
 (require 'rec-mode) ;; Loaded from site-lisp.d
 

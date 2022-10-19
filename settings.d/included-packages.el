@@ -13,7 +13,8 @@
 							 (define-key dired-mode-map [mouse-2] nil)
 							 (dired-omit-mode)
 							 (dired-hide-details-mode)))
-(setq dired-listing-switches "--almost-all --ignore-backups --dired --human-readable -l --group-directories-first --sort=extension")
+(setq dired-listing-switches "--almost-all --ignore-backups --dired --human-readable -l --group-directories-first --sort=extension"
+	  dired-dwim-target t)
 (if (version< emacs-version "28.1")
 	(progn
 	  ;; for dired-jump and dired-omit
@@ -35,6 +36,30 @@
 						   "-d en_US"
 						   (concat "-p " (getenv "XDG_DATA_HOME") "/hunspell/personal-dict"))))
 
+;; Ibuffer
+(setq-default ibuffer-saved-filter-groups
+			  `(("nathan"
+				 ("Modified" (predicate buffer-modified-p (current-buffer)))
+				 ("Dired" (mode . dired-mode))
+				 ("Org" (mode . org-mode))
+				 ("Web" (or (mode . html-mode)
+							(mode . css-mode)
+							(mode . mhtml-mode)))
+				 ("Help" (or (name . "\*Help\*")
+							 (name . "\*Apropos\*")
+							 (name . "\*Info\*")))
+				 ("Temp" (name . "\*.*\*")))))
+
+(setq ibuffer-show-empty-filter-groups nil
+	  ibuffer-expert t)
+
+(defun ndegruchy/my-ibuffer-hook ()
+  "Custom hook for initializing ibuffer"
+  (ibuffer-switch-to-saved-filter-groups "nathan")
+  (ibuffer-auto-mode 1))
+
+(add-hook 'ibuffer-mode-hook 'ndegruchy/my-ibuffer-hook)
+
 ;; Org Mode
 (add-hook 'org-mode-hook 'turn-on-flyspell)
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
@@ -49,7 +74,15 @@
 		 :section-numbers nil
 		 :with-toc nil)))
 
-;; SGML mode
+
+;; Package.el
+(setq package-name-column-width 40
+	  package-version-column-width 14
+	  package-status-column-width 12
+	  package-archive-column-width 8)
+(add-hook 'package-menu-mode-hook #'hl-line-mode)
+
+;; sgml mode
 (add-hook 'sgml-mode-hook 'sgml-electric-tag-pair-mode)
 ;; Discovered it here https://stackoverflow.com/questions/1666513/how-to-indent-4-spaces-under-sgml-mode
 (setq sgml-basic-offset 4)
