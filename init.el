@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2022-10-17 15:42:01 nathan>
+;; Time-stamp: <2022-10-19 09:15:58 nathan>
 
 ;; Initialize the package manager
 (package-initialize)
@@ -20,7 +20,7 @@
 
 ;; Different config parts
 (load-library "general-settings")
-(load-library "required-packages")
+(load-library "external-packages")
 (load-library "included-packages")
 (load-library "custom-functions")
 (load-library "custom-keybindings")
