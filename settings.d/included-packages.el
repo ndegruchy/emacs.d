@@ -41,10 +41,7 @@
 
 (setq-default ibuffer-saved-filter-groups
 			  `(("nathan"
-				 ("Version Control" (or (name . "^\*vc.*")
-										(name . "\*vc\*")
-										(name . "\*log-edit-files\*")
-										(name . "^\*changes to .*")))
+				 ("Version Control" (name . "^\*changes to .*"))
 				 ("Dired" (mode . dired-mode))
 				 ("Org" (mode . org-mode))
 				 ("Emacs Config" (or (name . "\.el$")
@@ -70,10 +67,11 @@
 
 ;; I don't need to see these buffers, generally because they're not
 ;; useful to visit later
-(add-to-list 'ibuffer-never-show-predicates "\*Completions\*")
-(add-to-list 'ibuffer-never-show-predicates "^\*vc.*")
-(add-to-list 'ibuffer-never-show-predicates "\*vc\*")
-(add-to-list 'ibuffer-never-show-predicates "\*log-edit-files\*")
+(require 'ibuf-ext)
+(add-to-list 'ibuffer-never-show-predicates '(("\*Completions\*"
+											   "^\*vc.*"
+											   "^\*vc\*$"
+											   "\*log-edit-files\*")))
 
 (setq ibuffer-show-empty-filter-groups nil)
 (setq ibuffer-expert t)
