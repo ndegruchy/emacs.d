@@ -68,10 +68,11 @@
 ;; I don't need to see these buffers, generally because they're not
 ;; useful to visit later
 (require 'ibuf-ext)
-(add-to-list 'ibuffer-never-show-predicates '(("\*Completions\*"
-											   "^\*vc.*"
-											   "^\*vc\*$"
-											   "\*log-edit-files\*")))
+(setq ibuffer-never-show-predicates
+	  (mapcar #'regexp-quote '("\*Completions\*"
+							   "^\*vc.*"
+							   "^\*vc\*$"
+							   "\*log-edit-files\*")))
 
 (setq ibuffer-show-empty-filter-groups nil)
 (setq ibuffer-expert t)
