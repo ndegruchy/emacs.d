@@ -41,7 +41,10 @@
 
 (setq-default ibuffer-saved-filter-groups
 			  `(("nathan"
-				 ("Modified" (predicate buffer-modified-p (current-buffer)))
+				 ("Version Control" (or (name . "^\*vc.*")
+										(name . "\*vc\*")
+										(name . "\*log-edit-files\*")
+										(name . "^\*changes to .*")))
 				 ("Dired" (mode . dired-mode))
 				 ("Org" (mode . org-mode))
 				 ("Emacs Config" (or (name . "\.el$")
@@ -54,7 +57,8 @@
 				 ("Help" (or (name . "\*Help\*")
 							 (name . "\*Apropos\*")
 							 (name . "\*Info\*")))
-				 ("Temp" (name . "\*.*\*")))))
+				 ("Temp" (name . "\*.*\*"))
+				 ("Modified" (predicate buffer-modified-p (current-buffer))))))
 
 (define-ibuffer-column size-h
   (:name "Size" :inline t)
@@ -67,6 +71,9 @@
 ;; I don't need to see these buffers, generally because they're not
 ;; useful to visit later
 (add-to-list 'ibuffer-never-show-predicates "\*Completions\*")
+(add-to-list 'ibuffer-never-show-predicates "^\*vc.*")
+(add-to-list 'ibuffer-never-show-predicates "\*vc\*")
+(add-to-list 'ibuffer-never-show-predicates "\*log-edit-files\*")
 
 (setq ibuffer-show-empty-filter-groups nil)
 (setq ibuffer-expert t)
