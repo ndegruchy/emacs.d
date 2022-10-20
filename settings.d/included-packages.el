@@ -1,4 +1,4 @@
-;; included-packages.el
+;; included-packages.el  -*- truncate-lines: t; -*-
 ;; Configure packages distributed with Emacs
 
 ;; Autoinsert
@@ -37,25 +37,56 @@
 						   (concat "-p " (getenv "XDG_DATA_HOME") "/hunspell/personal-dict"))))
 
 ;; Ibuffer
+(require 'ibuffer)
+
 (setq-default ibuffer-saved-filter-groups
 			  `(("nathan"
 				 ("Modified" (predicate buffer-modified-p (current-buffer)))
 				 ("Dired" (mode . dired-mode))
 				 ("Org" (mode . org-mode))
+				 ("Emacs Config" (or (name . "\.el$")
+									 (name . "\.el.gz$")))
 				 ("Web" (or (mode . html-mode)
 							(mode . css-mode)
 							(mode . mhtml-mode)))
+				 ("Calendar" (or (name . "^\\*Calendar\\*$")
+								 (name . "^diary$")))
 				 ("Help" (or (name . "\*Help\*")
 							 (name . "\*Apropos\*")
 							 (name . "\*Info\*")))
 				 ("Temp" (name . "\*.*\*")))))
 
-(setq ibuffer-show-empty-filter-groups nil
-	  ibuffer-expert t)
+(define-ibuffer-column size-h
+  (:name "Size" :inline t)
+  (cond
+   ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+   ((> (buffer-size) 100000) (format "%7.0fk" (/ (buffer-size) 1000.0)))
+   ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
+   (t (format "%8d" (buffer-size)))))
+
+;; I don't need to see these buffers, generally because they're not
+;; useful to visit later
+(add-to-list 'ibuffer-never-show-predicates "\*Completions\*")
+
+(setq ibuffer-show-empty-filter-groups nil)
+(setq ibuffer-expert t)
+(setq ibuffer-use-header-line nil)
+(setq ibuffer-display-summary nil)
+(setq ibuffer-use-other-window t)
+(setq ibuffer-movement-cycle t)
+(setq ibuffer-formats
+	  '((mark modified read-only locked " "
+              (name 30 30 :left :elide)
+              " "
+              (size-h 9 12 :right)
+              " "
+              (mode 16 16 :left :elide)
+              " " filename-and-process)))
 
 (defun ndegruchy/my-ibuffer-hook ()
   "Custom hook for initializing ibuffer"
   (ibuffer-switch-to-saved-filter-groups "nathan")
+  (hl-line-mode 1)
   (ibuffer-auto-mode 1))
 
 (add-hook 'ibuffer-mode-hook 'ndegruchy/my-ibuffer-hook)
