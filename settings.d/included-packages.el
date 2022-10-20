@@ -69,10 +69,10 @@
 ;; useful to visit later
 (require 'ibuf-ext)
 (setq ibuffer-never-show-predicates
-	  (mapcar #'regexp-quote '("\*Completions\*"
-							   "^\*vc.*"
-							   "^\*vc\*$"
-							   "\*log-edit-files\*")))
+	  (mapcar #'regexp-quote '("*Completions*"
+							   "^*vc.*"
+							   "^*vc*$"
+							   "*log-edit-files*")))
 
 (setq ibuffer-show-empty-filter-groups nil)
 (setq ibuffer-expert t)
