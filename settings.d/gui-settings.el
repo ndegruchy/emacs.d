@@ -11,7 +11,7 @@
 	  use-dialog-box 			nil) ;; No UI dialogs, either
 
 ;; Fonts
-(add-to-list 'default-frame-alist '(font . "Iosevka-17"))
+(add-to-list 'default-frame-alist '(font . "Iosevka-20"))
 
 ;; Frame
 (setq frame-resize-pixelwise nil)
