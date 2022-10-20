@@ -38,7 +38,7 @@
 
 ;; Ibuffer
 (require 'ibuffer)
-
+(require 'ibuf-ext) ;; for hiding buffers in the list
 (setq-default ibuffer-saved-filter-groups
 			  `(("nathan"
 				 ("Version Control" (name . "^\*changes to .*"))
@@ -67,7 +67,6 @@
 
 ;; I don't need to see these buffers, generally because they're not
 ;; useful to visit later
-(require 'ibuf-ext)
 (setq ibuffer-never-show-predicates
 	  (mapcar #'regexp-quote '("*Completions*"
 							   "^*vc.*"
