@@ -35,5 +35,8 @@
   (package-refresh-contents)
   (package-install 'ef-themes))
 
+(require 'ef-themes)
+(load-theme 'ef-bio :no-confirm)
+
 (require 'rec-mode) ;; Loaded from site-lisp.d
 
