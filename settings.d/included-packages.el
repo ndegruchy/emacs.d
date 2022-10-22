@@ -11,14 +11,9 @@
 ;; Dired
 (add-hook 'dired-mode-hook (lambda ()
 							 (define-key dired-mode-map [mouse-2] nil)
-							 (dired-omit-mode)
 							 (dired-hide-details-mode)))
 (setq dired-listing-switches "--almost-all --ignore-backups --dired --human-readable -l --group-directories-first --sort=extension"
 	  dired-dwim-target t)
-(if (version< emacs-version "28.1")
-	(progn
-	  ;; for dired-jump and dired-omit
-	  (require 'dired-x)))
 
 ;; EShell
 (setq eshell-ls-initial-args '("--almost-all"
@@ -41,7 +36,8 @@
 (require 'ibuf-ext) ;; for hiding buffers in the list
 (setq-default ibuffer-saved-filter-groups
 			  `(("nathan"
-				 ("Version Control" (name . "^\*changes to .*"))
+				 ("Version Control" (or (name . "^\*changes to .*")
+										(name . "^\*vc\*")))
 				 ("Dired" (mode . dired-mode))
 				 ("Org" (mode . org-mode))
 				 ("Emacs Config" (or (name . "\.el$")
@@ -55,6 +51,7 @@
 							 (name . "\*Apropos\*")
 							 (name . "\*Info\*")))
 				 ("Temp" (name . "\*.*\*"))
+				 ("Databases" (mode . rec-mode))
 				 ("Modified" (predicate buffer-modified-p (current-buffer))))))
 
 (define-ibuffer-column size-h
@@ -69,8 +66,7 @@
 ;; useful to visit later
 (setq ibuffer-never-show-predicates
 	  (mapcar #'regexp-quote '("*Completions*"
-							   "^*vc.*"
-							   "^*vc*$"
+							   "^*vc"
 							   "*log-edit-files*")))
 
 (setq ibuffer-show-empty-filter-groups nil)
@@ -92,7 +88,13 @@
   "Custom hook for initializing ibuffer"
   (ibuffer-switch-to-saved-filter-groups "nathan")
   (hl-line-mode 1)
-  (ibuffer-auto-mode 1))
+  (ibuffer-auto-mode 1)
+  
+  ;; I don't like it when it reuses the same buffer, though I need to
+  ;; figure out how to make it also close the ibuffer... buffer when
+  ;; selection occurs
+  ;; TODO: Fix this
+  (define-key ibuffer-mode-map (kbd "RET") 'ibuffer-visit-buffer-other-window))
 
 (add-hook 'ibuffer-mode-hook 'ndegruchy/my-ibuffer-hook)
 
@@ -104,9 +106,9 @@
 (setq org-return-follows-link t)
 (setq org-publish-project-alist
 	  '(("notes"
-		 :base-directory "/home/nathan/Documents/Notes"
+		 :base-directory (concat (getenv "HOME") "/Documents/Notes")
 		 :publishing-function org-html-publish-to-html
-		 :publishing-directory "/home/nathan/Documents/Public/Notes"
+		 :publishing-directory (concat (getenv "HOME") "/Documents/Public/Notes")
 		 :section-numbers nil
 		 :with-toc nil)))
 

@@ -1,10 +1,14 @@
-;; custom-functions.el
-;; Set custom functions here
+;;; custom-functions --- A collection of site-local functions for my emacs  -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Nathan DeGruchy
+
+;; Author: Nathan DeGruchy <nathan@degruchy.org>
+;; Keywords: local, data, processes, convenience
 
 ;; Insert the date (formatted)
 (defun ndegruchy/insert-date ()
-	"Inserts an ISO date by default, prefixing with C-u asks for a
-  format."
+	"Inserts an ISO date by default, prefixing with C-u prints the
+  full ISO date, double-prefixing asks for a format."
 	(interactive)
 	(if (null current-prefix-arg)
 		(insert (format-time-string "%F")))
@@ -92,3 +96,7 @@ Taken, shamelessly, from: https://www.reddit.com/r/emacs/comments/re31i6/how_to_
 	    (re-search-backward "/.")
 	    (forward-char)
 	    (delete-region (point) end))))
+
+;; Local Variables:
+;; truncate-lines: t
+;; End:
