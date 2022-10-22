@@ -26,11 +26,11 @@
   > "<meta name=\"description\" content=\"\">\n"
   > "<meta name=\"generator\" content=\"\">\n"
   > "<title>" title "</title>\n"
-  > "</head>\n"
+  > "</head>" > \n
   > "<body>\n"
   > _
-  > "</body>\n"
-  > "</html>\n")
+  > "</body>" > \n
+  "</html>\n")
 
 (define-skeleton ndegruchy/skeleton-web-article
 	"Insert a degruchy-org article HTML skeleton"
@@ -39,16 +39,16 @@
 	'(setq dashed (ndegruchy/dasherize title))
 	'(setq date   (format-time-string "%Y%m%d"))
 	'(setq anchor (concat date "-" dashed))
-	> "<article class=\"hentry h-entry\" id=\"" anchor "\">\n"
+	"<article class=\"hentry h-entry\" id=\"" anchor "\">\n"
 	> "<header>\n"
 	> "<h2>\n"
 	> title "\n"
-	> "<a href=\"#" anchor "\">&#x1F517;</a>\n"
-	> "</h2>\n"
-	> "<time datetime=\"" (format-time-string "%FT%T%z") "\">" (format-time-string "%T") " on " (format-time-string "%Y-%m-%d") "</time>\n"
-	> "</header>\n"
-	> "<section>" _ "</section>\n"
-	> "</article>\n")
+	> "<a href=\"#" anchor "\">&#x1F517;</a>" > \n
+	> "</h2>" > \n
+	> "<time datetime=\"" (format-time-string "%FT%T%z") "\">" (format-time-string "%T") " on " (format-time-string "%Y-%m-%d") "</time>" > \n
+	"</header>" \n
+	"<section></section>" > \n
+	"</article>")
 
 (define-skeleton ndegruchy/skeleton-web-gallery
 	"Skeleton for creating image galleries"
@@ -62,13 +62,13 @@
 	> "<picture>\n"
 	> "<source srcset=\"/assets/images/posts/" date "/\" type=\"image/heic\">\n"
 	> "<source srcset=\"/assets/images/posts/" date "/\" type=\"image/webp\">\n"
-	> "<img href=\"/assets/images/posts/" date "/\" alt=\"\" height=\"128\" width=\"128\" loading=\"lazy\">\n"
-	> "</picture>\n"
-	> "<figcaption>" _ "</figcaption>\n"
-	> "</figure>\n"
-	> "</a>\n"
-	> "</li>\n"
-	> "</ul>\n"
+	> "<img href=\"/assets/images/posts/" date "/\" alt=\"\" height=\"128\" width=\"128\" loading=\"lazy\">" > \n
+	"</picture>\n"
+	> "<figcaption>" _ "</figcaption>" > \n
+	> "</figure>" > \n
+	> "</a>" > \n
+	> "</li>" > \n
+	> "</ul>" > \n
 	"</section>\n")
 
 (define-skeleton ndegruchy/skeleton-web-picture
@@ -79,10 +79,10 @@
 	> "<picture>\n"
 	> "<source srcset=\"/assets/images/posts/" date "/\" type=\"image/heic\">\n"
 	> "<source srcset=\"/assets/images/posts/" date "/\" type=\"image/webp\">\n"
-	> "<img href=\"/assets/images/posts/" date "/\" alt=\"\" height=\"\" width=\"\" loading=\"lazy\">\n"
-	> "</picture>\n"
-	> "<figcaption>" _ "</figcaption>\n"
-	> "</figure>\n")
+	> "<img href=\"/assets/images/posts/" date "/\" alt=\"\" height=\"\" width=\"\" loading=\"lazy\">" > \n
+	> "</picture>" > \n
+	> "<figcaption>" _ "</figcaption>" > \n
+	"</figure>\n")
 
 (define-skeleton ndegruchy/skeleton-web-atom-entry
 	"ATOM entry skeleton for updating feed.xml"
