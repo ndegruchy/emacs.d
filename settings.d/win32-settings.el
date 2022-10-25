@@ -12,3 +12,7 @@
 ;; And set some ls-lisp.el arguments
 (setq default-directory "C:/Users/NathanRDeGruchy/"
 	dired-listing-switches "-a -F -l")
+
+;; Local Variables:
+;; truncate-lines: t
+;; End:

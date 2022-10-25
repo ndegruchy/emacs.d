@@ -35,8 +35,36 @@
   (package-refresh-contents)
   (package-install 'ef-themes))
 
+(unless (package-installed-p 'emms)
+  (package-refresh-contents)
+  (package-install 'emms))
+
 (require 'ef-themes)
 (load-theme 'ef-bio :no-confirm)
 
 (require 'rec-mode) ;; Loaded from site-lisp.d
 
+;; Emms
+(require 'emms-setup)
+(require 'emms-mode-line)
+(require 'emms-player-vlc)
+(require 'emms-info-libtag)
+(emms-all)
+(emms-mode-line 1)
+(setq emms-info-functions '(emms-info-libtag))
+(setq emms-source-file-default-directory (concat (getenv "HOME") "/Media/Music"))
+(setq emms-info-asynchronosly t)
+(setq emms-show-format "%s")
+(setq emms-browser-covers 'emms-browser-cache-thumbnail-async)
+(if (executable-find "cvlc")
+	(setq emms-player-list '(emms-player-vlc))
+  (emms-default-players))
+(global-set-key (kbd "C-c e b") 'emms-smart-browse)
+(global-set-key (kbd "C-c e p") 'emms-pause)
+(global-set-key (kbd "C-c e N") 'emms-next)
+(global-set-key (kbd "C-c e P") 'emms-previous)
+(global-set-key (kbd "C-c e s") 'emms-stop)
+
+;; Local Variables:
+;; truncate-lines: t
+;; End:

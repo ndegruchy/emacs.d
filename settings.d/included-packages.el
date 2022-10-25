@@ -1,5 +1,9 @@
-;; included-packages.el  -*- truncate-lines: t; -*-
-;; Configure packages distributed with Emacs
+;;; included-packages.el --- My configs for the included emacs packages  -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Nathan DeGruchy
+
+;; Author: Nathan DeGruchy <nathan@degruchy.org>
+;; Keywords: local, data, processes, convenience
 
 ;; Autoinsert
 (auto-insert-mode t)
@@ -40,6 +44,9 @@
 										(name . "^\*vc\*")))
 				 ("Dired" (mode . dired-mode))
 				 ("Org" (mode . org-mode))
+				 ("Shell" (or (mode . eshell-mode)
+							  (mode . shell-mode)))
+				 ("Packages" (mode . package-menu-mode))
 				 ("Emacs Config" (or (name . "\.el$")
 									 (name . "\.el.gz$")))
 				 ("Web" (or (mode . html-mode)
@@ -51,7 +58,8 @@
 							 (name . "\*Apropos\*")
 							 (name . "\*Info\*")))
 				 ("Temp" (name . "\*.*\*"))
-				 ("Databases" (mode . rec-mode))
+				 ("Databases" (or (mode . rec-mode)
+								  (mode . rec-summary-mode)))
 				 ("Modified" (predicate buffer-modified-p (current-buffer))))))
 
 (define-ibuffer-column size-h
@@ -98,6 +106,18 @@
 
 (add-hook 'ibuffer-mode-hook 'ndegruchy/my-ibuffer-hook)
 
+;; Isearch
+(defun ndegruchy/isearch-clear-search ()
+  "Deletes everything in the current isearch area"
+  (interactive)
+  (isearch-del-char most-positive-fixnum))
+(define-key isearch-mode-map (kbd "C-S-<backspace>") #'ndegruchy/isearch-clear-search)
+
+;; Occur Mode
+;; Turn off line wrapping in occur-mode buffer(s)
+(add-hook 'occur-mode-hook #'toggle-truncate-lines)
+(add-hook 'occur-edit-mode-hook #'toggle-truncate-lines)
+
 ;; Org Mode
 (add-hook 'org-mode-hook 'turn-on-flyspell)
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
@@ -114,13 +134,22 @@
 
 
 ;; Package.el
-(setq package-name-column-width 40
+(setq package-name-column-width 35
 	  package-version-column-width 14
 	  package-status-column-width 12
 	  package-archive-column-width 8)
 (add-hook 'package-menu-mode-hook #'hl-line-mode)
 
+;; RecentF
+(recentf-mode 1)
+(setq recentf-max-menu-items 10)
+(setq recentf-max-saved-items 10)
+
 ;; sgml mode
 (add-hook 'sgml-mode-hook 'sgml-electric-tag-pair-mode)
 ;; Discovered it here https://stackoverflow.com/questions/1666513/how-to-indent-4-spaces-under-sgml-mode
 (setq sgml-basic-offset 4)
+
+;; Local Variables:
+;; truncate-lines: t
+;; End:

@@ -1,5 +1,9 @@
-;; general-settings.el
-;; Basic setup and configuration
+;;; general-settings --- General emacs configurations  -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Nathan DeGruchy
+
+;; Author: Nathan DeGruchy <nathan@degruchy.org>
+;; Keywords: local, data, processes, convenience
 
 ;; Me
 (setq user-full-name         "Nathan DeGruchy"
@@ -95,9 +99,12 @@
 					" " mode-line-misc-info))
 
 ;; Calendaring
+(require 'remember)
 (setq calendar-christian-all-holidays-flag 	t
 	  calendar-date-style    				'iso
-	  calendar-mark-diary-entries-flag 		t)
+	  calendar-mark-diary-entries-flag 		t
+	  calendar-view-diary-initially-flag	t)
+(add-to-list 'remember-handler-functions 'remember-diary-extract-entries)
 ;; Appointments
 (setq appt-audible 				t
 	  appt-display-mode-line 	t
@@ -144,3 +151,7 @@
 								customize-changed-options customize-save-customized))
   (put sym 'disabled "I've disabled `customize', configure Emacs from $XDG_CONFIG_HOME/emacs/config.el instead"))
 (put 'customize-themes 'disabled "I've disabled `customize', configure Emacs from $XDG_CONFIG_HOME/emacs/config.el instead")
+
+;; Local Variables:
+;; truncate-lines: t
+;; End:

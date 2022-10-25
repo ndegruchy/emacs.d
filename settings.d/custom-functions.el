@@ -97,6 +97,24 @@ Taken, shamelessly, from: https://www.reddit.com/r/emacs/comments/re31i6/how_to_
 	    (forward-char)
 	    (delete-region (point) end))))
 
+(defun ndegruchy/occur-dwim ()
+  "Switch to occur, or the existing buffer"
+  (interactive)
+  (if (get-buffer "*Occur*")
+	  (switch-to-buffer "*Occur*")
+	(call-interactively 'occur)))
+
+(defun ndegruchy/revert-buffer-noconfirm (&optional force-reverting)
+  "Interactive call to revert-buffer. Ignoring the auto-save file
+ and not requesting for confirmation. When the current buffer is
+ modified, the command refuses to revert it, unless you specify
+ the optional argument: force-reverting to true."
+  (interactive "P")
+  ;;(message "force-reverting value is %s" force-reverting)
+  (if (or force-reverting (not (buffer-modified-p)))
+      (revert-buffer :ignore-auto :noconfirm)
+    (error "The buffer has been modified")))
+
 ;; Local Variables:
 ;; truncate-lines: t
 ;; End:

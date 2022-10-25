@@ -1,4 +1,9 @@
-;; GUI mode settings
+;;; gui-settings --- Emacs GUI settings  -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Nathan DeGruchy
+
+;; Author: Nathan DeGruchy <nathan@degruchy.org>
+;; Keywords: local, convenience
 
 ;; Disable some UI chrome that I don't need
 (scroll-bar-mode -1)
@@ -15,3 +20,7 @@
 
 ;; Frame
 (setq frame-resize-pixelwise nil)
+
+;; Local Variables:
+;; truncate-lines: t
+;; End:
