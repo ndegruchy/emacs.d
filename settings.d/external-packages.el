@@ -48,10 +48,10 @@
 (require 'emms-setup)
 (require 'emms-mode-line)
 (require 'emms-player-vlc)
-(require 'emms-info-libtag)
+(require 'emms-info-native)
 (emms-all)
 (emms-mode-line 1)
-(setq emms-info-functions '(emms-info-libtag))
+(setq emms-info-functions '(emms-info-native))
 (setq emms-source-file-default-directory (concat (getenv "HOME") "/Media/Music"))
 (setq emms-info-asynchronosly t)
 (setq emms-show-format "%s")
@@ -64,6 +64,17 @@
 (global-set-key (kbd "C-c e N") 'emms-next)
 (global-set-key (kbd "C-c e P") 'emms-previous)
 (global-set-key (kbd "C-c e s") 'emms-stop)
+(global-set-key (kbd "C-c e l") 'ndegruchy/emms-show-playlist)
+(defun ndegruchy/emms-show-playlist ()
+  "Shows *just* the playlist buffer without having to invoke some
+form of the EMMS browse functions"
+  (interactive)
+  (switch-to-buffer emms-playlist-buffer))
+(defun ndegruchy/emms-mode-hook ()
+  "Customizations to various emms buffers and modes"
+  (hl-line-mode 1))
+(add-hook 'emms-browser-mode-hook #'ndegruchy/emms-mode-hook)
+(add-hook 'emms-playlist-mode-hook #'ndegruchy/emms-mode-hook)
 
 ;; Local Variables:
 ;; truncate-lines: t

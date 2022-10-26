@@ -43,6 +43,8 @@
 				 ("Version Control" (or (name . "^\*changes to .*")
 										(name . "^\*vc\*")))
 				 ("Dired" (mode . dired-mode))
+				 ("Music" (or (mode . emms-browser-mode)
+							  (mode . emms-playlist-mode)))
 				 ("Org" (mode . org-mode))
 				 ("Shell" (or (mode . eshell-mode)
 							  (mode . shell-mode)))
@@ -92,19 +94,25 @@
               (mode 16 16 :left :elide)
               " " filename-and-process)))
 
+(defun ndegruchy/ibuffer-open-and-close ()
+  "Switch to the selected buffer and close ibuffer"
+  (interactive)
+  (ibuffer-visit-buffer-other-window :noselect)
+  (delete-window))
+
 (defun ndegruchy/my-ibuffer-hook ()
   "Custom hook for initializing ibuffer"
   (ibuffer-switch-to-saved-filter-groups "nathan")
   (hl-line-mode 1)
   (ibuffer-auto-mode 1)
-  
-  ;; I don't like it when it reuses the same buffer, though I need to
-  ;; figure out how to make it also close the ibuffer... buffer when
-  ;; selection occurs
-  ;; TODO: Fix this
-  (define-key ibuffer-mode-map (kbd "RET") 'ibuffer-visit-buffer-other-window))
+  ;; Make ibuffer close itself when selecting a buffer
+  (define-key ibuffer-mode-map (kbd "RET") 'ndegruchy/ibuffer-open-and-close))
 
 (add-hook 'ibuffer-mode-hook 'ndegruchy/my-ibuffer-hook)
+
+;; Not really *ibuffer*, per-se, but close enough
+(global-set-key (kbd "s-<left>")	'previous-buffer)
+(global-set-key (kbd "s-<right>")	'next-buffer)
 
 ;; Isearch
 (defun ndegruchy/isearch-clear-search ()
@@ -144,6 +152,9 @@
 (recentf-mode 1)
 (setq recentf-max-menu-items 10)
 (setq recentf-max-saved-items 10)
+(defun ndegruchy/recentf-mode-hook ()
+  (hl-line-mode 1))
+(add-hook 'recentf-dialog-mode-hook #'ndegruchy/recentf-mode-hook)
 
 ;; sgml mode
 (add-hook 'sgml-mode-hook 'sgml-electric-tag-pair-mode)
