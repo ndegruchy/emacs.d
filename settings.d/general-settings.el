@@ -122,6 +122,9 @@
 ;; Timestamps
 (add-hook 'before-save-hook 'time-stamp)
 
+;; Backup file settings
+(setq make-backup-files nil) ;; don't
+ 
 ;; Protect buffers
 (add-hook 'after-init-hook #'ndegruchy/protect-buffers)
 
