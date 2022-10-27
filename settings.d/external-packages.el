@@ -81,7 +81,7 @@
 (global-set-key (kbd "C-c e N") 'emms-next)
 (global-set-key (kbd "C-c e P") 'emms-previous)
 (global-set-key (kbd "C-c e s") 'emms-stop)
-(global-set-key (kbd "C-c e l") 'ndegruchy/emms-show-playlist)
+(global-set-key (kbd "C-c e l") 'ndegruchy/emms-show-playlist) ;; Show current playlist
 (global-set-key (kbd "C-c e L") 'emms-metaplaylist-mode-go) ;; Show all playlists
 
 ;; Custom functions for emms
