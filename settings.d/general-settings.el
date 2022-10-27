@@ -63,10 +63,8 @@
 	  completion-auto-select nil)
 
 ;; Editing - Pairs
-
 ;; This is annoying when you don't want it...
 ;; (electric-pair-mode 1)
-(show-paren-mode    1)
 
 ;; Editing - selection
 (delete-selection-mode t)
