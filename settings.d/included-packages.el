@@ -40,10 +40,10 @@
 (require 'ibuf-ext) ;; for hiding buffers in the list
 (setq-default ibuffer-saved-filter-groups
 			  `(("nathan"
-				 ("Modified" (predicate buffer-modified-p (current-buffer)))
 				 ("Org" (mode . org-mode))
 				 ("Emacs Config" (or (name . "\.el$")
-									 (name . "\.el.gz$")))
+									 (name . "\.el.gz$")
+									 (mode . elisp-mode)))
 				 ("Web" (or (mode . html-mode)
 							(mode . css-mode)
 							(mode . mhtml-mode)))
@@ -61,14 +61,16 @@
 							 (name . "\*Info\*")
 							 (name . "^\*Man")
 							 (mode . man-mode)))
-				 ("Temp" (name . "\*.*\*"))
 				 ("Databases" (or (mode . rec-mode)
 								  (mode . rec-summary-mode)))
 				 ("Images" (or (mode . image-mode)
 							   (mode . image-minor-mode)
 							   (mode . auto-image-file-mode)))
 				 ("Version Control" (or (name . "^\*changes to .*")
-										(name . "^\*vc\*"))))))
+										(name . "^\*vc\*$")
+										(mode . compilation-mode)
+										(mode . change-log-mode)))
+				 ("Temp" (name . "\*.*\*")))))
 
 (define-ibuffer-column size-h
   (:name "Size" :inline t)
@@ -112,7 +114,8 @@
   (hl-line-mode 1)
   (ibuffer-auto-mode 1)
   ;; Make ibuffer close itself when selecting a buffer
-  (define-key ibuffer-mode-map (kbd "RET") 'ndegruchy/ibuffer-open-and-close))
+  (define-key ibuffer-mode-map (kbd "RET") 'ndegruchy/ibuffer-open-and-close)
+  (define-key ibuffer-mode-map (kbd "q") 'delete-window))
 
 (add-hook 'ibuffer-mode-hook 'ndegruchy/my-ibuffer-hook)
 
