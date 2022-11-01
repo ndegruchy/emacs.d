@@ -31,18 +31,36 @@
 
 ;; Fetch required packages
 
-(unless (package-installed-p 'ef-themes)
+(unless (package-installed-p 'solarized-theme)
   (package-refresh-contents)
-  (package-install 'ef-themes))
+  (package-install 'solarized-theme))
 
+(require 'solarized-theme)
+;; Use more italics
+(setq solarized-use-more-italic t)
+;; Use less colors for indicators such as git:gutter, flycheck and similar
+(setq solarized-emphasize-indicators nil)
+;; Don't change size of org-mode headlines (but keep other size-changes)
+(setq solarized-scale-org-headlines nil)
+;; make the modeline high contrast
+(setq solarized-high-contrast-mode-line t)
+;; Push underline down
+(setq x-underline-at-descent-line t)
+;; Don't change the heights
+(setq solarized-height-minus-1 1.0)
+(setq solarized-height-plus-1 1.0)
+(setq solarized-height-plus-2 1.0)
+(setq solarized-height-plus-3 1.0)
+(setq solarized-height-plus-4 1.0)
+;; No variable pitch, please
+(setq solarized-use-variable-pitch nil)
+;; Load theme
+(load-theme 'solarized-dark :noconfirm)
+
+;; EMMS
 (unless (package-installed-p 'emms)
   (package-refresh-contents)
   (package-install 'emms))
-
-(require 'ef-themes)
-(load-theme 'ef-bio :no-confirm)
-
-(require 'rec-mode) ;; Loaded from site-lisp.d
 
 ;; Emms
 ;; Load all the bits I want
@@ -84,6 +102,8 @@
 (global-set-key (kbd "C-c e l") 'ndegruchy/emms-show-playlist) ;; Show current playlist
 (global-set-key (kbd "C-c e L") 'emms-metaplaylist-mode-go) ;; Show all playlists
 
+(emms-librefm-scrobbler-enable)
+
 ;; Custom functions for emms
 (defun ndegruchy/emms-show-playlist ()
   "Shows *just* the playlist buffer without having to invoke some
@@ -97,6 +117,8 @@ form of the EMMS browse functions"
 ;; Emms hooks
 (add-hook 'emms-browser-mode-hook #'ndegruchy/emms-mode-hook)
 (add-hook 'emms-playlist-mode-hook #'ndegruchy/emms-mode-hook)
+
+(require 'rec-mode) ;; Loaded from site-lisp.d
 
 ;; Local Variables:
 ;; truncate-lines: t
