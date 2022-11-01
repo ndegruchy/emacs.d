@@ -167,6 +167,7 @@
   (flyspell-mode 1)
   (rcirc-omit-mode 1)
   (rcirc-track-minor-mode 1)
+  (set-fill-column 90)
   (set (make-local-variable 'scroll-conservatively)
 	   8192))
 (add-hook 'rcirc-mode-hook 'ndegruchy/rcirc-mode-hook)

@@ -16,10 +16,13 @@
 	  use-dialog-box 			nil) ;; No UI dialogs, either
 
 ;; Fonts
-(add-to-list 'default-frame-alist '(font . "Iosevka-20"))
+(add-to-list 'default-frame-alist '(font . "Iosevka-19"))
 
 ;; Frame
 (setq frame-resize-pixelwise nil)
+
+;; Theme (if default)
+;; (load-theme 'misterioso :noconfirm)
 
 ;; Local Variables:
 ;; truncate-lines: t
