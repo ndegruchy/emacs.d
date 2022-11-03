@@ -10,6 +10,9 @@
       user-mail-address      "nathan@degruchy.org"
       message-signature      t)
 
+;; GPG Agent Stuff
+(setq epg-pinentry-mode 'loopback)
+
 ;; Signature
 (if (file-exists-p "~/.config/signature.txt")
 	(setq message-signature-file "~/.config/signature.txt"))

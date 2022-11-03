@@ -84,7 +84,9 @@
 (setq emms-source-file-default-directory (concat (getenv "HOME") "/Media/Music"))
 (setq emms-info-asynchronosly t)
 (setq emms-show-format "%s")
-(setq emms-browser-covers 'emms-browser-cache-thumbnail-async)
+
+(when (window-system)
+  (setq emms-browser-covers 'emms-browser-cache-thumbnail-async))
 
 ;; Use console-vlc, if available
 (if (executable-find "cvlc")
