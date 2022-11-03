@@ -1,9 +1,9 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2022-10-19 09:15:58 nathan>
+;; Time-stamp: <2022-11-03 11:10:05 nathan>
 
 ;; Initialize the package manager
-(package-initialize)
+;; (package-initialize)
 
 ;; Load the local lisp directory
 (add-to-list 'load-path (concat user-emacs-directory "settings.d/"))
@@ -16,7 +16,6 @@
 	(not (file-exists-p (concat user-emacs-directory "site-lisp.d/private.el")))
 	(with-temp-buffer (write-file (concat user-emacs-directory "site-lisp.d/private.el")))
   (load-file (concat user-emacs-directory "site-lisp.d/private.el")))
-
 
 ;; Different config parts
 (load-library "general-settings")

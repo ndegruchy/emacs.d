@@ -19,7 +19,8 @@
 (add-to-list 'default-frame-alist '(font . "Iosevka-19"))
 
 ;; Frame
-(setq frame-resize-pixelwise nil)
+(setq frame-resize-pixelwise t)
+(toggle-frame-maximized)
 
 ;; Theme (if default)
 ;; (load-theme 'misterioso :noconfirm)

@@ -149,7 +149,10 @@
 		 :publishing-directory (concat (getenv "HOME") "/Documents/Public/Notes")
 		 :section-numbers nil
 		 :with-toc nil)))
-
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((plantuml . t)))
+(setq org-plantuml-jar-path (concat (getenv "HOME") "/.local/bin/plantuml.jar"))
 
 ;; Package.el
 (setq package-name-column-width 35

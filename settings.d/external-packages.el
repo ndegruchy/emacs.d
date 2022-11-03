@@ -67,13 +67,15 @@
 (require 'emms-setup)
 (require 'emms-mode-line)
 (require 'emms-mode-line-icon)
-(require 'emms-player-vlc)
-(require 'emms-info-native)
+;; (require 'emms-player-vlc)
+(require 'emms-player-mpv)
 (require 'emms-librefm-scrobbler)
+(require 'emms-info-native)
 
 ;; Enable the functions
 (emms-all)
 (emms-mode-line 1)
+(emms-librefm-scrobbler-enable)
 (emms-playing-time-disable-display)
 
 ;; Settings
@@ -89,9 +91,9 @@
 	(setq emms-player-list '(emms-player-vlc))
   (emms-default-players))
 
-;; Libre.FM scrobbling
-(setq emms-librefm-scrobbler-username "ndegruchy"
-	  emms-librefm-scrobbler-password librefm-password)
+(if (executable-find "mpv")
+	(setq emms-player-list '(emms-player-mpv))
+  (emms-default-players))
 
 ;; Control surfaces
 (global-set-key (kbd "C-c e b") 'emms-smart-browse)
@@ -101,8 +103,6 @@
 (global-set-key (kbd "C-c e s") 'emms-stop)
 (global-set-key (kbd "C-c e l") 'ndegruchy/emms-show-playlist) ;; Show current playlist
 (global-set-key (kbd "C-c e L") 'emms-metaplaylist-mode-go) ;; Show all playlists
-
-(emms-librefm-scrobbler-enable)
 
 ;; Custom functions for emms
 (defun ndegruchy/emms-show-playlist ()
