@@ -31,31 +31,11 @@
 
 ;; Fetch required packages
 
-(unless (package-installed-p 'solarized-theme)
+(unless (package-installed-p 'ef-themes)
   (package-refresh-contents)
-  (package-install 'solarized-theme))
+  (package-install 'ef-themes))
 
-(require 'solarized-theme)
-;; Use more italics
-(setq solarized-use-more-italic t)
-;; Use less colors for indicators such as git:gutter, flycheck and similar
-(setq solarized-emphasize-indicators nil)
-;; Don't change size of org-mode headlines (but keep other size-changes)
-(setq solarized-scale-org-headlines nil)
-;; make the modeline high contrast
-(setq solarized-high-contrast-mode-line t)
-;; Push underline down
-(setq x-underline-at-descent-line t)
-;; Don't change the heights
-(setq solarized-height-minus-1 1.0)
-(setq solarized-height-plus-1 1.0)
-(setq solarized-height-plus-2 1.0)
-(setq solarized-height-plus-3 1.0)
-(setq solarized-height-plus-4 1.0)
-;; No variable pitch, please
-(setq solarized-use-variable-pitch nil)
-;; Load theme
-(load-theme 'solarized-dark :noconfirm)
+(load-theme 'ef-bio :noconfirm)
 
 ;; EMMS
 (unless (package-installed-p 'emms)
@@ -67,15 +47,15 @@
 (require 'emms-setup)
 (require 'emms-mode-line)
 (require 'emms-mode-line-icon)
-;; (require 'emms-player-vlc)
-(require 'emms-player-mpv)
-(require 'emms-librefm-scrobbler)
+(require 'emms-player-vlc)
+;; (require 'emms-player-mpv)
+;; (require 'emms-librefm-scrobbler)
 (require 'emms-info-native)
 
 ;; Enable the functions
 (emms-all)
 (emms-mode-line 1)
-(emms-librefm-scrobbler-enable)
+;; (emms-librefm-scrobbler-enable)
 (emms-playing-time-disable-display)
 
 ;; Settings
@@ -120,6 +100,18 @@ form of the EMMS browse functions"
 (add-hook 'emms-browser-mode-hook #'ndegruchy/emms-mode-hook)
 (add-hook 'emms-playlist-mode-hook #'ndegruchy/emms-mode-hook)
 
+
+;;; Expand Region
+(unless (package-installed-p 'expand-region)
+  (package-refresh-contents)
+  (package-install 'expand-region))
+
+(require 'expand-region)
+(global-set-key (kbd "C-c s s") 'er/expand-region)
+(global-set-key (kbd "C-c s w") 'er/mark-word)
+(global-set-key (kbd "C-c s p") 'er/mark-inside-pairs)
+
+;;; Recmode
 (require 'rec-mode) ;; Loaded from site-lisp.d
 
 ;; Local Variables:
