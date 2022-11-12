@@ -12,12 +12,12 @@
 
 (add-to-list 'package-archives
 			 '("elpa" . "https://elpa.gnu.org/packages/"))
-(add-to-list 'package-archives
-			 '("stable" . "https://stable.melpa.org/packages/"))
+;; (add-to-list 'package-archives
+;; 			 '("stable" . "https://stable.melpa.org/packages/"))
 (add-to-list 'package-archives
 			 '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
-(add-to-list 'package-archives
-			 '("melpa" . "https://melpa.org/packages/") t)
+;; (add-to-list 'package-archives
+;; 			 '("melpa" . "https://melpa.org/packages/") t)
 ;; (add-to-list 'package-archives
 ;;			 '("melpa-stable-mirror" . "https://www.mirrorservice.org/sites/stable.melpa.org/packages/") t)
 
@@ -25,12 +25,22 @@
 ;; Higher number = picked first
 (setq package-archive-priorities
 	  '(("elpa"   . 25) ;; Make ELPA the highest priority
-		("stable" . 20) 
-		("nongnu" . 15) ;; Non-GNU has some good stuff
-		("melpa" . 1))) ;; I don't care much for the unstable "latest" stuff
+		;;("stable" . 20) 
+		("nongnu" . 15))) ;; Non-GNU has some good stuff
+		;;("melpa" . 1))) ;; I don't care much for the unstable "latest" stuff
 
 ;; Fetch required packages
 
+
+;; Easy Kill (trying in place of expand-region)
+(unless (package-installed-p 'easy-kill)
+  (package-refresh-contents)
+  (package-install 'easy-kill))
+
+(require 'easy-kill)
+(global-set-key (kbd "C-c s") 'easy-kill)
+
+;; Ef-Themes
 (unless (package-installed-p 'ef-themes)
   (package-refresh-contents)
   (package-install 'ef-themes))
@@ -102,14 +112,14 @@ form of the EMMS browse functions"
 
 
 ;;; Expand Region
-(unless (package-installed-p 'expand-region)
-  (package-refresh-contents)
-  (package-install 'expand-region))
+;; (unless (package-installed-p 'expand-region)
+;;   (package-refresh-contents)
+;;   (package-install 'expand-region))
 
-(require 'expand-region)
-(global-set-key (kbd "C-c s s") 'er/expand-region)
-(global-set-key (kbd "C-c s w") 'er/mark-word)
-(global-set-key (kbd "C-c s p") 'er/mark-inside-pairs)
+;; (require 'expand-region)
+;; (global-set-key (kbd "C-c s s") 'er/expand-region)
+;; (global-set-key (kbd "C-c s w") 'er/mark-word)
+;; (global-set-key (kbd "C-c s p") 'er/mark-inside-pairs)
 
 ;;; Recmode
 (require 'rec-mode) ;; Loaded from site-lisp.d
