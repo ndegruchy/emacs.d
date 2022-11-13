@@ -31,12 +31,12 @@
 							   "--color=always"
 							   "--sort=extension"))
 
-;; Flyspell
+;; Flyspell/ISpell
 (when (executable-find "hunspell")
   (setq ispell-program-name (executable-find "hunspell")
 		ispell-extra-args (list
 						   "-d en_US"
-						   (concat "-p " (getenv "XDG_DATA_HOME") "/hunspell/personal-dict"))))
+						   (concat "-p " (getenv "XDG_DATA_HOME") "/hunspell/personal_en_US"))))
 
 ;; Ibuffer
 (require 'ibuffer)
@@ -158,7 +158,7 @@
 (setq org-plantuml-jar-path (concat (getenv "HOME") "/.local/bin/plantuml.jar"))
 
 ;; Package.el
-(setq package-name-column-width 35
+(setq package-name-column-width 30
 	  package-version-column-width 14
 	  package-status-column-width 12
 	  package-archive-column-width 8)
