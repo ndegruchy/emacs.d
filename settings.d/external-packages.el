@@ -31,7 +31,6 @@
 
 ;; Fetch required packages
 
-
 ;; Easy Kill (trying in place of expand-region)
 (unless (package-installed-p 'easy-kill)
   (package-refresh-contents)
@@ -120,9 +119,6 @@ form of the EMMS browse functions"
 ;; (global-set-key (kbd "C-c s s") 'er/expand-region)
 ;; (global-set-key (kbd "C-c s w") 'er/mark-word)
 ;; (global-set-key (kbd "C-c s p") 'er/mark-inside-pairs)
-
-;;; Recmode
-(require 'rec-mode) ;; Loaded from site-lisp.d
 
 ;; Local Variables:
 ;; truncate-lines: t
