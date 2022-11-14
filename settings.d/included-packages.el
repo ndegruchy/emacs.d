@@ -33,10 +33,8 @@
 
 ;; Flyspell/ISpell
 (when (executable-find "hunspell")
-  (setq ispell-program-name (executable-find "hunspell")
-		ispell-extra-args (list
-						   "-d en_US"
-						   (concat "-p " (getenv "XDG_DATA_HOME") "/hunspell/personal_en_US"))))
+  (setq ispell-program-name (executable-find "hunspell"))
+  (setq ispell-personal-dictionary (concat (getenv "XDG_DATA_HOME") "/share/hunspell/personal_en_US")))
 
 ;; Ibuffer
 (require 'ibuffer)
