@@ -23,27 +23,19 @@
 
 ;; Fetch required packages
 
-;; Easy Kill (trying in place of expand-region)
-(unless (package-installed-p 'easy-kill)
-  (package-refresh-contents)
-  (package-install 'easy-kill))
+(setq package-selected-packages '(easy-kill
+								  ef-themes
+								  emms))
+(package-install-selected-packages)
 
+;; Easy Kill (trying in place of expand-region)
 (require 'easy-kill)
 (global-set-key (kbd "C-c s") 'easy-kill)
 
 ;; Ef-Themes
-(unless (package-installed-p 'ef-themes)
-  (package-refresh-contents)
-  (package-install 'ef-themes))
-
 (load-theme 'ef-bio :noconfirm)
 
 ;; EMMS
-(unless (package-installed-p 'emms)
-  (package-refresh-contents)
-  (package-install 'emms))
-
-;; Emms
 ;; Load all the bits I want
 (require 'emms-setup)
 (require 'emms-mode-line)
@@ -100,17 +92,6 @@ form of the EMMS browse functions"
 ;; Emms hooks
 (add-hook 'emms-browser-mode-hook #'ndegruchy/emms-mode-hook)
 (add-hook 'emms-playlist-mode-hook #'ndegruchy/emms-mode-hook)
-
-
-;;; Expand Region
-;; (unless (package-installed-p 'expand-region)
-;;   (package-refresh-contents)
-;;   (package-install 'expand-region))
-
-;; (require 'expand-region)
-;; (global-set-key (kbd "C-c s s") 'er/expand-region)
-;; (global-set-key (kbd "C-c s w") 'er/mark-word)
-;; (global-set-key (kbd "C-c s p") 'er/mark-inside-pairs)
 
 ;; Local Variables:
 ;; truncate-lines: t
