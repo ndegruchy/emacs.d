@@ -28,7 +28,7 @@
 							   "--human-readable"
 							   "-l" ;; long listing
 							   "--group-directories-first"
-							   "--color=always"
+							   "--color=never"
 							   "--sort=extension"))
 
 ;; Flyspell/ISpell
@@ -170,7 +170,11 @@
   (hl-line-mode 1))
 (add-hook 'recentf-dialog-mode-hook #'ndegruchy/recentf-mode-hook)
 
-;; sgml mode
+;; Remember
+(global-set-key (kbd "<f7>") 'remember-notes)
+(global-set-key (kbd "<f8>") 'remember)
+
+;; SGML mode
 (add-hook 'sgml-mode-hook 'sgml-electric-tag-pair-mode)
 ;; Discovered it here https://stackoverflow.com/questions/1666513/how-to-indent-4-spaces-under-sgml-mode
 (setq sgml-basic-offset 4)
