@@ -23,14 +23,9 @@
 
 ;; Fetch required packages
 
-(setq package-selected-packages '(easy-kill
-								  ef-themes
+(setq package-selected-packages '(ef-themes
 								  emms))
 (package-install-selected-packages)
-
-;; Easy Kill (trying in place of expand-region)
-(require 'easy-kill)
-(global-set-key (kbd "C-c s") 'easy-kill)
 
 ;; Ef-Themes
 (load-theme 'ef-bio :noconfirm)
@@ -62,9 +57,7 @@
   (setq emms-browser-covers 'emms-browser-cache-thumbnail-async))
 
 ;; Use console-vlc, if available
-(if (executable-find "cvlc")
-	(setq emms-player-list '(emms-player-vlc))
-  (emms-default-players))
+(setq emms-player-list '(emms-player-vlc))
 
 (if (executable-find "mpv")
 	(setq emms-player-list '(emms-player-mpv))
