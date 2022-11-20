@@ -1,9 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2022-11-03 11:10:05 nathan>
-
-;; Initialize the package manager
-;; (package-initialize)
+;; Time-stamp: <2022-11-20 15:33:01 nathan>
 
 ;; Load the local lisp directory
 (add-to-list 'load-path (concat user-emacs-directory "settings.d/"))
@@ -44,3 +41,7 @@
 ;; Found on 2020-08-12
 ;; at: https://github.com/cmacrae/.emacs.d#discard-customizations
 (setq custom-file (make-temp-file ""))
+
+;; Local Variables:
+;; truncate-lines: t
+;; End:
