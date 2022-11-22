@@ -163,6 +163,49 @@
 	  package-archive-column-width 8)
 (add-hook 'package-menu-mode-hook #'hl-line-mode)
 
+;;; rcirc
+(require 'rcirc)
+
+;; Custom hook function to enable stuff
+(defun ndegruchy/rcirc-mode-hook ()
+  "Turn on spell-check and pin the input line at the bottom"
+  (flyspell-mode 1)
+  (rcirc-omit-mode 1)
+  (rcirc-track-minor-mode 1)
+  (set (make-local-variable 'scroll-conservatively)
+	   8192)
+  (setq fill-column 90))
+(add-hook 'rcirc-mode-hook 'ndegruchy/rcirc-mode-hook)
+
+;; I see me
+(set-face-foreground 'rcirc-my-nick "tomato" nil)
+
+;; User info
+(setq rcirc-default-nick "ndegruchy"
+	  rcirc-default-user-name "ndegruchy"
+	  rcirc-default-full-name "Nathan DeGruchy")
+
+;; Misc
+(setq rcirc-default-part-reason "Bye!")
+
+;; Time formatting
+(setq rcirc-time-format "%Y-%m-%d %H:%M ")
+
+;; Channel setup
+(setq rcirc-server-alist
+	  `(("irc.libera.chat"
+		 :channels
+		 ("#emacs"
+		  "#rcirc"
+		  "#debian"
+		  "#firefox")
+		 :encryption tls
+		 :port 6697
+		 :server-alias "Libera.chat")))
+
+;; Launch control
+(global-set-key (kbd "C-c i") 'rcirc)
+
 ;; RecentF
 (recentf-mode 1)
 (setq recentf-max-menu-items 10)
