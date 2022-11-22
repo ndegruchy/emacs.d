@@ -7,61 +7,63 @@
 
 ;; Insert the date (formatted)
 (defun ndegruchy/insert-date ()
-	"Inserts an ISO date by default, prefixing with C-u prints the
+  "Inserts an ISO date by default, prefixing with C-u prints the
   full ISO date, double-prefixing asks for a format."
-	(interactive)
-	(if (null current-prefix-arg)
-		(insert (format-time-string "%F")))
-	(if (eq (prefix-numeric-value current-prefix-arg) 4)
-		(insert (format-time-string "%FT%T%z")))
-	(if (> (prefix-numeric-value current-prefix-arg) 4)
-		(insert (format-time-string (read-string "Format: ")))))
+  (interactive)
+  (if (null current-prefix-arg)
+	  (insert (format-time-string "%F")))
+  (if (eq (prefix-numeric-value current-prefix-arg) 4)
+	  (insert (format-time-string "%FT%T%z")))
+  (if (> (prefix-numeric-value current-prefix-arg) 4)
+	  (insert (format-time-string (read-string "Format: ")))))
 
 (defun ndegruchy/select-current-line-dwim (arg)
-	;; Retrieved from https://emacs.stackexchange.com/questions/15033/how-to-mark-current-line-and-move-cursor-to-next-line
-	;; on 2018-08-07
-	"Select the current line and move the cursor by ARG lines IF
-no region is selected.
+  "Select the current line and move the cursor by ARG lines IF no
+region is selected.
 
-If a region is already selected when calling this command, only move
-the cursor by ARG lines."
-	(interactive "p")
-	(when (not (use-region-p))
-		(forward-line 0)
-		(set-mark-command nil))
-	(forward-line arg))
+If a region is already selected when calling this command, only
+move the cursor by ARG lines.
+
+Retrieved from https://emacs.stackexchange.com/a/15040/11870 on
+2018-08-07"
+  (interactive "p")
+  (when (not (use-region-p))
+	(forward-line 0)
+	(set-mark-command nil))
+  (forward-line arg))
 
 (defun ndegruchy/duplicate-line ()
-    "Makes a copy of the current line after the current
-line. Useful for listing directories, etc."
-	(interactive)
-	(move-beginning-of-line 1)
-	(kill-line)
-	(yank)
-	(open-line 1)
-	(next-line 1)
-	(yank))
+  "Makes a copy of the current line after the current line. Useful
+for listing directories, etc."
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank))
 
 (defun ndegruchy/move-line-up()
-	"Move the line up by one"
-	(interactive)
-	(transpose-lines 1)
-	(forward-line -2)
-	(indent-according-to-mode))
+  "Move the line up by one"
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2)
+  (indent-according-to-mode))
 
 (defun ndegruchy/move-line-down()
-	"Move the line down by one"
-	(interactive)
-	(forward-line 1)
-	(transpose-lines 1)
-	(forward-line -1)
-	(indent-according-to-mode))
+  "Move the line down by one"
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1)
+  (indent-according-to-mode))
 
 (defun ndegruchy/protect-buffers ()
-	(let ((protected '("*scratch*" "*Messages*")))
-		(dolist (buf protected)
-			(with-current-buffer buf
-				(emacs-lock-mode 'kill)))))
+  "Prevents certain defined buffers from being killed/deleted"
+  (let ((protected '("*scratch*" "*Messages*")))
+	(dolist (buf protected)
+	  (with-current-buffer buf
+		(emacs-lock-mode 'kill)))))
 
 (defun ndegruchy/split-name (s)
   "Find the word seperators and split them into a list"
