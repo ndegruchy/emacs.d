@@ -126,6 +126,13 @@ Stolen from: https://www.emacswiki.org/emacs/NavigatingParentheses#h5o-3"
         ((looking-at "\\s)") (forward-char) (backward-sexp arg))
         ((looking-back "\\s(" 1) (backward-char) (forward-sexp arg))))
 
+(defun ndegruchy/capitalize-dwim (word)
+  "Moves to the beginning of the word before capitalizing"
+  (interactive "p")
+  (save-excursion
+	(backward-word)
+	(capitalize-word word)))
+
 ;; Local Variables:
 ;; truncate-lines: t
 ;; End:
