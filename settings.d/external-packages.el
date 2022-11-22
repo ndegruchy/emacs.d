@@ -36,8 +36,6 @@
 (require 'emms-mode-line)
 (require 'emms-mode-line-icon)
 (require 'emms-player-vlc)
-;; (require 'emms-player-mpv)
-;; (require 'emms-librefm-scrobbler)
 (require 'emms-info-native)
 
 ;; Enable the functions
@@ -56,12 +54,9 @@
 (when (window-system)
   (setq emms-browser-covers 'emms-browser-cache-thumbnail-async))
 
-;; Use console-vlc, if available
+;; Player (vlc has a wide support for media formats, and has a
+;; "headless" console version, perfect.
 (setq emms-player-list '(emms-player-vlc))
-
-(if (executable-find "mpv")
-	(setq emms-player-list '(emms-player-mpv))
-  (emms-default-players))
 
 ;; Control surfaces
 (global-set-key (kbd "C-c e b") 'emms-smart-browse)
