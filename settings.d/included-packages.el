@@ -20,7 +20,8 @@
 (defun ndegruchy/dired-mode-hook ()
   (define-key dired-mode-map [mouse-2] nil)
   (define-key dired-mode-map (kbd "<f9>") 'wdired-change-to-wdired-mode)
-  (dired-hide-details-mode))
+  (dired-hide-details-mode)
+  (hl-line-mode 1))
 
 ;; EShell
 (setq eshell-ls-initial-args '("--almost-all"
