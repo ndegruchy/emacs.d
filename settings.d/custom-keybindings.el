@@ -29,6 +29,7 @@
 (global-set-key (kbd "M-<down>") 'ndegruchy/move-line-down)
 (global-set-key (kbd "C-c o")	'ndegruchy/occur-dwim)
 (global-set-key (kbd "<f6>")	'ndegruchy/revert-buffer-noconfirm)
+(global-set-key (kbd "<f9>")	'ndegruchy/forward-or-backward-sexp)
 (define-key minibuffer-local-filename-completion-map (kbd "C-l") 'ndegruchy/up-directory)
 
 ;; Local Variables:

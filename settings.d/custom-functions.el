@@ -115,6 +115,17 @@ Taken, shamelessly, from: https://www.reddit.com/r/emacs/comments/re31i6/how_to_
       (revert-buffer :ignore-auto :noconfirm)
     (error "The buffer has been modified")))
 
+(defun ndegruchy/forward-or-backward-sexp (&optional arg)
+  "Go to the matching parenthesis character if one is adjacent to point.
+
+Stolen from: https://www.emacswiki.org/emacs/NavigatingParentheses#h5o-3"
+  (interactive "^p")
+  (cond ((looking-at "\\s(") (forward-sexp arg))
+        ((looking-back "\\s)" 1) (backward-sexp arg))
+        ;; Now, try to succeed from inside of a bracket
+        ((looking-at "\\s)") (forward-char) (backward-sexp arg))
+        ((looking-back "\\s(" 1) (backward-char) (forward-sexp arg))))
+
 ;; Local Variables:
 ;; truncate-lines: t
 ;; End:
