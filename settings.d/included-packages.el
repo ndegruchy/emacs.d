@@ -17,11 +17,24 @@
 (setq dired-listing-switches "--almost-all --ignore-backups --dired --human-readable -l --group-directories-first --sort=extension"
 	  dired-dwim-target t)
 (setq dired-guess-shell-alist-user '((".*" "~/.local/bin/handlr open")))
+
+;; Special keys
+(global-set-key (kbd "C-M-s-f") 'dired)	; Use that otherwise useless 'office' key
+
 (defun ndegruchy/dired-mode-hook ()
   (define-key dired-mode-map [mouse-2] nil)
   (define-key dired-mode-map (kbd "<f9>") 'wdired-change-to-wdired-mode)
   (dired-hide-details-mode)
   (hl-line-mode 1))
+
+;; Elisp Mode
+(defun ndegruchy/elisp-mode-hook ()
+  "A small hook function to adjust some default settings for elisp
+mode."
+  (paredit-mode 1)
+  (electric-indent-mode -1) ;; apparently there is bad blood here
+  )
+(add-hook 'emacs-lisp-mode-hook #'ndegruchy/elisp-mode-hook)
 
 ;; EShell
 (setq eshell-ls-initial-args '("--almost-all"
@@ -172,6 +185,7 @@
   (flyspell-mode 1)
   (rcirc-omit-mode 1)
   (rcirc-track-minor-mode 1)
+  ()
   (set (make-local-variable 'scroll-conservatively)
 	   8192)
   (setq fill-column 90))
@@ -217,6 +231,9 @@
 ;; Remember
 (global-set-key (kbd "<f7>") 'remember-notes)
 (global-set-key (kbd "<f8>") 'remember)
+
+;; Repeat mode
+(repeat-mode 1)
 
 ;; SGML mode
 (add-hook 'sgml-mode-hook 'sgml-electric-tag-pair-mode)
