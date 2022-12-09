@@ -12,14 +12,6 @@
 
 (add-to-list 'package-archives
 			 '("elpa" . "https://elpa.gnu.org/packages/"))
-(add-to-list 'package-archives
-			 '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
-
-;; Package archive priorities
-;; Higher number = picked first
-(setq package-archive-priorities
-	  '(("elpa"   . 25) ;; Make ELPA the highest priority
-		("nongnu" . 15))) ;; Non-GNU has some good stuff
 
 ;; Fetch required packages
 
@@ -80,6 +72,10 @@ form of the EMMS browse functions"
 ;; Emms hooks
 (add-hook 'emms-browser-mode-hook #'ndegruchy/emms-mode-hook)
 (add-hook 'emms-playlist-mode-hook #'ndegruchy/emms-mode-hook)
+
+;; Paredit
+(load-library "paredit")
+(require 'paredit)
 
 ;; Local Variables:
 ;; truncate-lines: t
