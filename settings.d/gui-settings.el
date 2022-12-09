@@ -22,8 +22,8 @@
 (setq frame-resize-pixelwise t)
 (toggle-frame-maximized)
 
-;; Theme (if default)
-;; (load-theme 'misterioso :noconfirm)
+;; Image support
+(setq image-use-external-converter t)
 
 ;; Local Variables:
 ;; truncate-lines: t
