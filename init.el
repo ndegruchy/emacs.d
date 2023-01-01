@@ -1,6 +1,6 @@
 ;; Nathan's Emacs File
 ;; Now with less Cider
-;; Time-stamp: <2022-12-09 16:21:18 nathan>
+;; Time-stamp: <2022-12-16 11:20:58 nathan>
 
 ;; Load the local lisp directory
 (add-to-list 'load-path (concat user-emacs-directory "settings.d/"))
@@ -23,7 +23,6 @@
 ;; Skeletons
 (load-library "web")
 (load-library "org-mode")
-(load-library "rec")
 
 ;; UI Specific Stuff
 (when (window-system)

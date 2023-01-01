@@ -16,7 +16,8 @@
 	  use-dialog-box 			nil) ;; No UI dialogs, either
 
 ;; Fonts
-(add-to-list 'default-frame-alist '(font . "Hack-19"))
+(add-to-list 'default-frame-alist '(font . "Iosevka-18"))
+(setq-default line-spacing 2)
 
 ;; Frame
 (setq frame-resize-pixelwise t)

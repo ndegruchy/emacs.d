@@ -7,20 +7,11 @@
 
 (require 'package)
 
-;; Package sources
-;; List repositories to download files from
-
-(add-to-list 'package-archives
-			 '("elpa" . "https://elpa.gnu.org/packages/"))
-
 ;; Fetch required packages
+(setq package-selected-packages '(emms
+								  web-mode))
 
-(setq package-selected-packages '(ef-themes
-								  emms))
 (package-install-selected-packages)
-
-;; Ef-Themes
-(load-theme 'ef-bio :noconfirm)
 
 ;; EMMS
 ;; Load all the bits I want
@@ -73,9 +64,16 @@ form of the EMMS browse functions"
 (add-hook 'emms-browser-mode-hook #'ndegruchy/emms-mode-hook)
 (add-hook 'emms-playlist-mode-hook #'ndegruchy/emms-mode-hook)
 
-;; Paredit
-(load-library "paredit")
-(require 'paredit)
+;; Web Mode
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(defun ndegruchy/web-mode-hook ()
+  "My custom web mode hooks"
+  (setq web-mode-markup-ident-offset 4)
+  (setq web-mode-css-indent-offset 4)
+  (setq web-mode-code-indent-offset 4))
+(add-hook 'web-mode-hook #'ndegruchy/web-mode-hook)
 
 ;; Local Variables:
 ;; truncate-lines: t

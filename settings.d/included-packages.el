@@ -8,7 +8,6 @@
 ;; Autoinsert
 (auto-insert-mode t)
 (define-auto-insert '(org-mode . "Basic Org Mode file") 'ndegruchy/skeleton-org-new-file)
-(define-auto-insert '(rec-mode . "Basic RecUtils database info") 'ndegruchy/skeleton-rec-new-file)
 (define-auto-insert '(sgml-mode . "Basic HTML template") 'ndegruchy/skeleton-web-new-file)
 (define-auto-insert '(html-mode . "Basic HTML template") 'ndegruchy/skeleton-web-new-file)
 
@@ -22,19 +21,12 @@
 (global-set-key (kbd "C-M-s-f") 'dired)	; Use that otherwise useless 'office' key
 
 (defun ndegruchy/dired-mode-hook ()
+  "A hook for dired to diable the mouse, and to quickly jump to
+wdired mode and some other stuff I like to have"
   (define-key dired-mode-map [mouse-2] nil)
   (define-key dired-mode-map (kbd "<f9>") 'wdired-change-to-wdired-mode)
   (dired-hide-details-mode)
   (hl-line-mode 1))
-
-;; Elisp Mode
-(defun ndegruchy/elisp-mode-hook ()
-  "A small hook function to adjust some default settings for elisp
-mode."
-  (paredit-mode 1)
-  (electric-indent-mode -1) ;; apparently there is bad blood here
-  )
-(add-hook 'emacs-lisp-mode-hook #'ndegruchy/elisp-mode-hook)
 
 ;; EShell
 (setq eshell-ls-initial-args '("--almost-all"
@@ -152,10 +144,14 @@ mode."
 (add-hook 'occur-edit-mode-hook #'toggle-truncate-lines)
 
 ;; Org Mode
+(defun ndegruchy/org-mode-hook ()
+  "A hook for Org Mode for different parts that I'd like to enable"
+  (require 'org-tempo))
+
 (add-hook 'org-mode-hook 'turn-on-flyspell)
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
-(add-hook 'org-mode-hook (lambda ()
-						   (require 'org-tempo)))
+(add-hook 'org-mode-hook 'ndegruchy/org-mode-hook)
+
 (setq org-return-follows-link t)
 (setq org-publish-project-alist
 	  '(("notes"
@@ -164,10 +160,6 @@ mode."
 		 :publishing-directory (concat (getenv "HOME") "/Documents/Public/Notes")
 		 :section-numbers nil
 		 :with-toc nil)))
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((plantuml . t)))
-(setq org-plantuml-jar-path (concat (getenv "HOME") "/.local/bin/plantuml.jar"))
 
 ;; Package.el
 (setq package-name-column-width 30
@@ -175,50 +167,6 @@ mode."
 	  package-status-column-width 12
 	  package-archive-column-width 8)
 (add-hook 'package-menu-mode-hook #'hl-line-mode)
-
-;;; rcirc
-(require 'rcirc)
-
-;; Custom hook function to enable stuff
-(defun ndegruchy/rcirc-mode-hook ()
-  "Turn on spell-check and pin the input line at the bottom"
-  (flyspell-mode 1)
-  (rcirc-omit-mode 1)
-  (rcirc-track-minor-mode 1)
-  ()
-  (set (make-local-variable 'scroll-conservatively)
-	   8192)
-  (setq fill-column 90))
-(add-hook 'rcirc-mode-hook 'ndegruchy/rcirc-mode-hook)
-
-;; I see me
-(set-face-foreground 'rcirc-my-nick "tomato" nil)
-
-;; User info
-(setq rcirc-default-nick "ndegruchy"
-	  rcirc-default-user-name "ndegruchy"
-	  rcirc-default-full-name "Nathan DeGruchy")
-
-;; Misc
-(setq rcirc-default-part-reason "Bye!")
-
-;; Time formatting
-(setq rcirc-time-format "%Y-%m-%d %H:%M ")
-
-;; Channel setup
-(setq rcirc-server-alist
-	  `(("irc.libera.chat"
-		 :channels
-		 ("#emacs"
-		  "#rcirc"
-		  "#debian"
-		  "#firefox")
-		 :encryption tls
-		 :port 6697
-		 :server-alias "Libera.chat")))
-
-;; Launch control
-(global-set-key (kbd "C-c i") 'rcirc)
 
 ;; RecentF
 (recentf-mode 1)
